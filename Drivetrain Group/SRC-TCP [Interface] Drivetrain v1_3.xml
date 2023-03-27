@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<microprocessor name="SRC-TCP [Interface] Drivetrain v1.3" description="Communicates with drive module and UI" width="5" length="2" id_counter="341" id_counter_node="42" sym2="4" sym3="2" sym4="8191" sym5="8194" sym6="9508" sym7="1184" sym8="3232" sym9="11636" sym10="16388" sym11="65528" sym12="16384" sym13="8192">
+<microprocessor name="SRC-TCP [Interface] Drivetrain v1.3" description="Communicates with drive module and UI" width="5" length="2" id_counter="349" id_counter_node="43" sym2="4" sym3="2" sym4="8191" sym5="8194" sym6="9508" sym7="1184" sym8="3232" sym9="11636" sym10="16388" sym11="65528" sym12="16384" sym13="8192">
 	<nodes>
 		<n id="22" component_id="152">
 			<node label="Module - Interface" mode="1" type="5" description="Communicates with Drivetrain Module">
@@ -15,38 +15,33 @@
 			</node>
 		</n>
 		<n id="35" component_id="278">
-			<node label="Brake" type="1" description="Outputs brake value as set by master and ABS (if enabled)">
-				<position x="2" z="1"/>
+			<node label="Brake" type="1" description="Outputs brakes to wheels">
+				<position x="3" z="1"/>
 			</node>
 		</n>
 		<n id="36" component_id="281">
-			<node label="Throttle" type="1" description="Outputs throttle value as set by master and TCS">
-				<position x="2"/>
+			<node label="Throttle" type="1" description="Outputs throttle to motors">
+				<position x="3"/>
 			</node>
 		</n>
 		<n id="37" component_id="340">
 			<node label="Slip" mode="1" description="Slip input from Bogie">
-				<position x="1"/>
-			</node>
-		</n>
-		<n id="39" component_id="288">
-			<node label="Throttle Set-Speed" type="1" description="Speed requested by master (m/s)">
-				<position x="3" z="1"/>
-			</node>
-		</n>
-		<n id="40" component_id="291">
-			<node label="Expected Brakes" type="1" description="Brake value as requested by master">
-				<position x="3"/>
+				<position x="2" z="1"/>
 			</node>
 		</n>
 		<n id="41" component_id="293">
 			<node label="Current Speed (m/s)" mode="1" type="1" description="Current speed in (m/s)">
-				<position x="4" z="1"/>
+				<position x="4"/>
 			</node>
 		</n>
 		<n id="42" component_id="299">
 			<node label="Wheel RPS" mode="1" type="1" description="RPS at the wheels">
-				<position x="4"/>
+				<position x="4" z="1"/>
+			</node>
+		</n>
+		<n id="43" component_id="349">
+			<node label="Activate Engine" description="Connect to engine for remote engine activation (optional)">
+				<position x="2"/>
 			</node>
 		</n>
 	</nodes>
@@ -58,20 +53,20 @@
 		<components>
 			<c type="17">
 				<object id="11">
-					<pos x="2.25" y="-4.75"/>
+					<pos x="1.75" y="-4.5"/>
 					<in1 component_id="90"/>
 					<in2 component_id="12"/>
 				</object>
 			</c>
 			<c type="15">
 				<object id="12">
-					<pos x="1" y="-5"/>
+					<pos x="0.5" y="-4.75"/>
 					<n text="0.01" value="0.01"/>
 				</object>
 			</c>
 			<c type="42">
 				<object id="70">
-					<pos x="10" y="-18.75"/>
+					<pos x="9.75" y="-18.5"/>
 					<in1 component_id="138"/>
 					<in2 component_id="78"/>
 					<e text="0.0001" value="0.0001"/>
@@ -119,7 +114,7 @@
 			</c>
 			<c type="15">
 				<object id="78">
-					<pos x="8.75" y="-18.75"/>
+					<pos x="8.5" y="-18.5"/>
 					<n text="0"/>
 				</object>
 			</c>
@@ -139,7 +134,7 @@
 			</c>
 			<c type="14">
 				<object id="90">
-					<pos x="1" y="-4.5"/>
+					<pos x="0.5" y="-4.25"/>
 					<in1 component_id="138"/>
 				</object>
 			</c>
@@ -204,7 +199,7 @@
 			</c>
 			<c type="22">
 				<object id="138">
-					<pos x="-1" y="-5.5"/>
+					<pos x="-1.5" y="-4.75"/>
 					<in1 component_id="236"/>
 					<in2 component_id="162"/>
 					<in3 component_id="170"/>
@@ -212,7 +207,7 @@
 			</c>
 			<c type="22">
 				<object id="139">
-					<pos x="1" y="-3.75"/>
+					<pos x="0.5" y="-3.25"/>
 					<in1 component_id="235"/>
 					<in2 component_id="163"/>
 					<in3 component_id="224"/>
@@ -323,14 +318,14 @@
 			</c>
 			<c type="2">
 				<object id="224">
-					<pos x="-1" y="-4.25"/>
+					<pos x="-1.5" y="-3.5"/>
 					<in1 component_id="170"/>
 					<in2 component_id="225"/>
 				</object>
 			</c>
 			<c>
 				<object id="225">
-					<pos x="-2.5" y="-4.25"/>
+					<pos x="-3" y="-3.5"/>
 					<in1 component_id="223"/>
 				</object>
 			</c>
@@ -353,20 +348,8 @@
 				</object>
 			</c>
 			<c type="29">
-				<object id="240" i="1">
-					<pos x="-6.5" y="-16.5"/>
-					<in1 component_id="230"/>
-				</object>
-			</c>
-			<c type="29">
-				<object id="241" i="2">
-					<pos x="-6.5" y="-17.25"/>
-					<in1 component_id="230"/>
-				</object>
-			</c>
-			<c type="29">
-				<object id="242" i="3">
-					<pos x="-6.5" y="-18"/>
+				<object id="242" i="4">
+					<pos x="-6.5" y="-17"/>
 					<in1 component_id="230"/>
 				</object>
 			</c>
@@ -380,42 +363,42 @@
 				</object>
 			</c>
 			<c type="43">
-				<object id="257" l="Braking">
+				<object id="257" l="Brakes">
 					<pos x="29" y="-9.25"/>
 					<in1 component_id="339"/>
 				</object>
 			</c>
 			<c type="33">
 				<object id="265" n="ABS" on="On" off="Off" v="true">
-					<pos x="22.25" y="-8.75"/>
+					<pos x="22.25" y="-9.5"/>
 				</object>
 			</c>
 			<c type="44">
 				<object id="268" l="ABS" on="ENABLED" off="DISABLED">
-					<pos x="22.25" y="-8.25"/>
+					<pos x="22.25" y="-10"/>
 					<in1 component_id="265"/>
 				</object>
 			</c>
 			<c type="43">
-				<object id="294" l="speed rps">
+				<object id="294" l="Speed RPS">
 					<pos x="-3" y="-13.75"/>
 					<in1 component_id="322"/>
 				</object>
 			</c>
 			<c type="43">
-				<object id="305" l="rps delta">
+				<object id="305" l="RPS Delta">
 					<pos x="4" y="-9"/>
 					<in1 component_id="332"/>
 				</object>
 			</c>
 			<c type="43">
-				<object id="306" l="pid">
+				<object id="306" l="PID">
 					<pos x="4" y="-8.25"/>
 					<in1 component_id="330"/>
 				</object>
 			</c>
 			<c type="43">
-				<object id="307" l="wheel rps">
+				<object id="307" l="Wheel Rps">
 					<pos x="-4" y="-7.25"/>
 					<in1 component_id="323"/>
 				</object>
@@ -555,7 +538,7 @@ end'>
 				</object>
 			</c>
 			<c type="43">
-				<object id="335" l="limit multiplier">
+				<object id="335" l="Limit Multiplier">
 					<pos x="4" y="-9.75"/>
 					<in1 component_id="336"/>
 				</object>
@@ -569,7 +552,7 @@ end'>
 			<c type="37">
 				<object id="337" m="1">
 					<pos x="25.75" y="-9.25"/>
-					<in1 component_id="265"/>
+					<in1 component_id="345"/>
 					<in3 component_id="334"/>
 					<r text="0"/>
 					<i text="0.01" value="0.01"/>
@@ -589,6 +572,52 @@ end'>
 					<pos x="-4.75" y="-16"/>
 					<in1 component_id="239"/>
 					<in2 component_id="340"/>
+				</object>
+			</c>
+			<c type="43">
+				<object id="342" l="Expected Throttle">
+					<pos x="0.5" y="-5.5"/>
+					<in1 component_id="138"/>
+				</object>
+			</c>
+			<c type="43">
+				<object id="343" l="Expected Brakes">
+					<pos x="20.25" y="-7.5"/>
+					<in1 component_id="79"/>
+				</object>
+			</c>
+			<c type="43">
+				<object id="344" l="Throttle">
+					<pos x="17.5" y="-19"/>
+					<in1 component_id="71"/>
+				</object>
+			</c>
+			<c type="16">
+				<object id="345">
+					<pos x="24" y="-8.75"/>
+				</object>
+			</c>
+			<c type="2">
+				<object id="346">
+					<pos x="-4.75" y="-17"/>
+					<in1 component_id="166"/>
+					<in2 component_id="242"/>
+				</object>
+			</c>
+			<c type="44">
+				<object id="347" l="my engine is enabled" on="yes" off="no">
+					<pos x="-3" y="-16.75"/>
+					<in1 component_id="346"/>
+				</object>
+			</c>
+			<c type="29">
+				<object id="240" i="1">
+					<pos x="6.75" y="-21.25"/>
+				</object>
+			</c>
+			<c type="29">
+				<object id="241" i="2">
+					<pos x="6.75" y="-22.75"/>
 				</object>
 			</c>
 		</components>
@@ -621,18 +650,6 @@ end'>
 					<in1 component_id="71"/>
 				</object>
 			</c>
-			<c type="3">
-				<object id="288">
-					<pos x="7.5" y="-3.25"/>
-					<in1 component_id="138"/>
-				</object>
-			</c>
-			<c type="3">
-				<object id="291">
-					<pos x="20.25" y="-7.25"/>
-					<in1 component_id="79"/>
-				</object>
-			</c>
 			<c type="2">
 				<object id="293">
 					<pos x="-6.5" y="-14.75"/>
@@ -645,23 +662,26 @@ end'>
 			</c>
 			<c>
 				<object id="340">
-					<pos x="-7.75" y="-16"/>
+					<pos x="-8.25" y="-16"/>
 				</object>
+			</c>
+			<c type="1">
+				<object id="349"/>
 			</c>
 		</components_bridge>
 		<groups/>
 		<component_states>
 			<c0 id="11">
-				<pos x="2.25" y="-4.75"/>
+				<pos x="1.75" y="-4.5"/>
 				<in1 component_id="90"/>
 				<in2 component_id="12"/>
 			</c0>
 			<c1 id="12">
-				<pos x="1" y="-5"/>
+				<pos x="0.5" y="-4.75"/>
 				<n text="0.01" value="0.01"/>
 			</c1>
 			<c2 id="70">
-				<pos x="10" y="-18.75"/>
+				<pos x="9.75" y="-18.5"/>
 				<in1 component_id="138"/>
 				<in2 component_id="78"/>
 				<e text="0.0001" value="0.0001"/>
@@ -695,7 +715,7 @@ end'>
 				<n text="5" value="5"/>
 			</c8>
 			<c9 id="78">
-				<pos x="8.75" y="-18.75"/>
+				<pos x="8.5" y="-18.5"/>
 				<n text="0"/>
 			</c9>
 			<c10 id="79">
@@ -709,7 +729,7 @@ end'>
 				<n text="1" value="1"/>
 			</c11>
 			<c12 id="90">
-				<pos x="1" y="-4.5"/>
+				<pos x="0.5" y="-4.25"/>
 				<in1 component_id="138"/>
 			</c12>
 			<c13 id="99">
@@ -754,13 +774,13 @@ end'>
 				<in1 component_id="241"/>
 			</c21>
 			<c22 id="138">
-				<pos x="-1" y="-5.5"/>
+				<pos x="-1.5" y="-4.75"/>
 				<in1 component_id="236"/>
 				<in2 component_id="162"/>
 				<in3 component_id="170"/>
 			</c22>
 			<c23 id="139">
-				<pos x="1" y="-3.75"/>
+				<pos x="0.5" y="-3.25"/>
 				<in1 component_id="235"/>
 				<in2 component_id="163"/>
 				<in3 component_id="224"/>
@@ -837,12 +857,12 @@ end'>
 				<in1 component_id="152"/>
 			</c39>
 			<c40 id="224">
-				<pos x="-1" y="-4.25"/>
+				<pos x="-1.5" y="-3.5"/>
 				<in1 component_id="170"/>
 				<in2 component_id="225"/>
 			</c40>
 			<c41 id="225">
-				<pos x="-2.5" y="-4.25"/>
+				<pos x="-3" y="-3.5"/>
 				<in1 component_id="223"/>
 			</c41>
 			<c42 id="235">
@@ -857,61 +877,53 @@ end'>
 				<pos x="-6.5" y="-15.75"/>
 				<in1 component_id="230"/>
 			</c44>
-			<c45 id="240" i="1">
-				<pos x="-6.5" y="-16.5"/>
+			<c45 id="242" i="4">
+				<pos x="-6.5" y="-17"/>
 				<in1 component_id="230"/>
 			</c45>
-			<c46 id="241" i="2">
-				<pos x="-6.5" y="-17.25"/>
-				<in1 component_id="230"/>
-			</c46>
-			<c47 id="242" i="3">
-				<pos x="-6.5" y="-18"/>
-				<in1 component_id="230"/>
-			</c47>
-			<c48 id="244" name="acceleration multiplier">
+			<c46 id="244" name="acceleration multiplier">
 				<pos x="0.5" y="-8.75"/>
 				<min text="1" value="1"/>
 				<max text="10" value="10"/>
 				<int text=".5" value="0.5"/>
 				<v text="5" value="5"/>
-			</c48>
-			<c49 id="257" l="Braking">
+			</c46>
+			<c47 id="257" l="Brakes">
 				<pos x="29" y="-9.25"/>
 				<in1 component_id="339"/>
-			</c49>
-			<c50 id="265" n="ABS" on="On" off="Off" v="true">
-				<pos x="22.25" y="-8.75"/>
-			</c50>
-			<c51 id="268" l="ABS" on="ENABLED" off="DISABLED">
-				<pos x="22.25" y="-8.25"/>
+			</c47>
+			<c48 id="265" n="ABS" on="On" off="Off" v="true">
+				<pos x="22.25" y="-9.5"/>
+			</c48>
+			<c49 id="268" l="ABS" on="ENABLED" off="DISABLED">
+				<pos x="22.25" y="-10"/>
 				<in1 component_id="265"/>
-			</c51>
-			<c52 id="294" l="speed rps">
+			</c49>
+			<c50 id="294" l="Speed RPS">
 				<pos x="-3" y="-13.75"/>
 				<in1 component_id="322"/>
-			</c52>
-			<c53 id="305" l="rps delta">
+			</c50>
+			<c51 id="305" l="RPS Delta">
 				<pos x="4" y="-9"/>
 				<in1 component_id="332"/>
-			</c53>
-			<c54 id="306" l="pid">
+			</c51>
+			<c52 id="306" l="PID">
 				<pos x="4" y="-8.25"/>
 				<in1 component_id="330"/>
-			</c54>
-			<c55 id="307" l="wheel rps">
+			</c52>
+			<c53 id="307" l="Wheel Rps">
 				<pos x="-4" y="-7.25"/>
 				<in1 component_id="323"/>
-			</c55>
-			<c56 id="322" e="x/pi">
+			</c53>
+			<c54 id="322" e="x/pi">
 				<pos x="-3" y="-14.25"/>
 				<in1 component_id="324"/>
-			</c56>
-			<c57 id="324" e="abs(x)">
+			</c54>
+			<c55 id="324" e="abs(x)">
 				<pos x="-3" y="-14.75"/>
 				<in1 component_id="293"/>
-			</c57>
-			<c58 id="328" script='s,scr,i,o,m=self,screen,input,output,math
+			</c55>
+			<c56 id="328" script='s,scr,i,o,m=self,screen,input,output,math
 pgn,pgb,gn,gb,sn,sb=property.getNumber,property.getBool,i.getNumber,i.getBool,o.setNumber,o.setBool
 abs=m.abs
 					
@@ -989,63 +1001,93 @@ sn(3,a)
 end'>
 				<pos x="2.25" y="-7.5"/>
 				<in1 component_id="329"/>
-			</c58>
-			<c59 id="329" count="3">
+			</c56>
+			<c57 id="329" count="3">
 				<pos x="0.5" y="-8"/>
 				<inc component_id="331"/>
 				<in1 component_id="138"/>
 				<in2 component_id="293"/>
 				<in3 component_id="299"/>
-			</c59>
-			<c60 id="330">
+			</c57>
+			<c58 id="330">
 				<pos x="2.25" y="-8"/>
 				<in1 component_id="328"/>
-			</c60>
-			<c61 id="331" count="2">
+			</c58>
+			<c59 id="331" count="2">
 				<pos x="0.5" y="-6.75"/>
 				<in1 component_id="11"/>
 				<in2 component_id="341"/>
-			</c61>
-			<c62 id="332" i="1">
+			</c59>
+			<c60 id="332" i="1">
 				<pos x="2.25" y="-8.5"/>
 				<in1 component_id="328"/>
-			</c62>
-			<c63 id="334">
+			</c60>
+			<c61 id="334">
 				<pos x="24" y="-9.5"/>
 				<in1 component_id="341"/>
 				<in2 component_id="265"/>
-			</c63>
-			<c64 id="323" e="abs(x)">
+			</c61>
+			<c62 id="323" e="abs(x)">
 				<pos x="-5.5" y="-7"/>
 				<in1 component_id="299"/>
-			</c64>
-			<c65 id="335" l="limit multiplier">
+			</c62>
+			<c63 id="335" l="Limit Multiplier">
 				<pos x="4" y="-9.75"/>
 				<in1 component_id="336"/>
-			</c65>
-			<c66 id="336" i="2">
+			</c63>
+			<c64 id="336" i="2">
 				<pos x="2.25" y="-9"/>
 				<in1 component_id="328"/>
-			</c66>
-			<c67 id="337" m="1">
+			</c64>
+			<c65 id="337" m="1">
 				<pos x="25.75" y="-9.25"/>
-				<in1 component_id="265"/>
+				<in1 component_id="345"/>
 				<in3 component_id="334"/>
 				<r text="0"/>
 				<i text="0.01" value="0.01"/>
 				<min text="0"/>
 				<max text="1" value="1"/>
-			</c67>
-			<c68 id="339" e="clamp(x*y,0,1)">
+			</c65>
+			<c66 id="339" e="clamp(x*y,0,1)">
 				<pos x="27.25" y="-9"/>
 				<in1 component_id="79"/>
 				<in2 component_id="337"/>
-			</c68>
-			<c69 id="341">
+			</c66>
+			<c67 id="341">
 				<pos x="-4.75" y="-16"/>
 				<in1 component_id="239"/>
 				<in2 component_id="340"/>
+			</c67>
+			<c68 id="342" l="Expected Throttle">
+				<pos x="0.5" y="-5.5"/>
+				<in1 component_id="138"/>
+			</c68>
+			<c69 id="343" l="Expected Brakes">
+				<pos x="20.25" y="-7.5"/>
+				<in1 component_id="79"/>
 			</c69>
+			<c70 id="344" l="Throttle">
+				<pos x="17.5" y="-19"/>
+				<in1 component_id="71"/>
+			</c70>
+			<c71 id="345">
+				<pos x="24" y="-8.75"/>
+			</c71>
+			<c72 id="346">
+				<pos x="-4.75" y="-17"/>
+				<in1 component_id="166"/>
+				<in2 component_id="242"/>
+			</c72>
+			<c73 id="347" l="my engine is enabled" on="yes" off="no">
+				<pos x="-3" y="-16.75"/>
+				<in1 component_id="346"/>
+			</c73>
+			<c74 id="240" i="1">
+				<pos x="6.75" y="-21.25"/>
+			</c74>
+			<c75 id="241" i="2">
+				<pos x="6.75" y="-22.75"/>
+			</c75>
 		</component_states>
 		<component_bridge_states>
 			<c0 id="152">
@@ -1066,23 +1108,16 @@ end'>
 				<pos x="17.5" y="-18.25"/>
 				<in1 component_id="71"/>
 			</c4>
-			<c5 id="288">
-				<pos x="7.5" y="-3.25"/>
-				<in1 component_id="138"/>
-			</c5>
-			<c6 id="291">
-				<pos x="20.25" y="-7.25"/>
-				<in1 component_id="79"/>
-			</c6>
-			<c7 id="293">
+			<c5 id="293">
 				<pos x="-6.5" y="-14.75"/>
-			</c7>
-			<c8 id="299">
+			</c5>
+			<c6 id="299">
 				<pos x="-5.5" y="-6.5"/>
-			</c8>
-			<c9 id="340">
-				<pos x="-7.75" y="-16"/>
-			</c9>
+			</c6>
+			<c7 id="340">
+				<pos x="-8.25" y="-16"/>
+			</c7>
+			<c8 id="349"/>
 		</component_bridge_states>
 		<group_states/>
 	</group>
