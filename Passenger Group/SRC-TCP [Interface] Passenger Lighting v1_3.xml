@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<microprocessor name="SRC-TCP [Interface] Passenger Lighting v1.3" description="Connects to passenger module. Controls lights in passenger cars" width="2" length="3" id_counter="328" id_counter_node="16" sym2="4" sym3="2" sym4="8191" sym5="8194" sym6="9508" sym7="1184" sym8="3232" sym9="11636" sym10="16388" sym11="65528" sym12="16384" sym13="8192">
+<microprocessor name="SRC-TCP [Interface] Passenger Lighting v1.3" description="Connects to passenger module. Controls lights in passenger cars" width="2" length="4" id_counter="337" id_counter_node="17" sym2="4" sym3="2" sym4="8191" sym5="8194" sym6="9508" sym7="1184" sym8="3232" sym9="11636" sym10="16388" sym11="65528" sym12="16384" sym13="8192">
 	<nodes>
 		<n id="7" component_id="18">
 			<node label="RGB Lights" type="5" description="Ouputs RGB values to RGB lights">
-				<position z="1"/>
+				<position x="1" z="2"/>
 			</node>
 		</n>
 		<n id="8" component_id="20">
 			<node label="UI" mode="1" type="5" description="Connects to Instruments or Display Controller">
-				<position z="2"/>
+				<position z="3"/>
 			</node>
 		</n>
 		<n id="9" component_id="23">
 			<node label="Video Out" type="6" description="To Display Controller">
-				<position x="1" z="2"/>
+				<position x="1" z="3"/>
 			</node>
 		</n>
 		<n id="13" component_id="139">
@@ -26,6 +26,11 @@
 		</n>
 		<n id="15" component_id="194">
 			<node label="Heaters" description="Turns on/off heaters">
+				<position z="1"/>
+			</node>
+		</n>
+		<n id="17" component_id="337">
+			<node label="Lights" description="Turns on non-rgb lights if lights are set to greater than the standard lights threshold">
 				<position x="1" z="1"/>
 			</node>
 		</n>
@@ -473,6 +478,50 @@ function hsv2rgb(f,g,h)local a,b,c;local j=math.floor(f*6)local k=f*6-j;local l=
 					<in3 component_id="322"/>
 				</object>
 			</c>
+			<c type="2">
+				<object id="329">
+					<pos x="6" y="1.75"/>
+					<in1 component_id="331"/>
+					<in2 component_id="330"/>
+				</object>
+			</c>
+			<c type="2">
+				<object id="330">
+					<pos x="6" y="0.75"/>
+					<in1 component_id="332"/>
+					<in2 component_id="333"/>
+				</object>
+			</c>
+			<c type="17">
+				<object id="331">
+					<pos x="4.25" y="1.75"/>
+					<in1 component_id="77"/>
+					<in2 component_id="334"/>
+				</object>
+			</c>
+			<c type="17">
+				<object id="332">
+					<pos x="4.25" y="0.75"/>
+					<in1 component_id="309"/>
+					<in2 component_id="334"/>
+				</object>
+			</c>
+			<c type="17">
+				<object id="333">
+					<pos x="4.25" y="-0.25"/>
+					<in1 component_id="313"/>
+					<in2 component_id="334"/>
+				</object>
+			</c>
+			<c type="19">
+				<object id="334" name="Standard Light Turn-On Threshold">
+					<pos x="2.5" y="1.75"/>
+					<min text="0"/>
+					<max text="1" value="1"/>
+					<int text="0.1" value="0.1"/>
+					<v text="0"/>
+				</object>
+			</c>
 		</components>
 		<components_bridge>
 			<c type="5">
@@ -507,6 +556,12 @@ function hsv2rgb(f,g,h)local a,b,c;local j=math.floor(f*6)local k=f*6-j;local l=
 				<object id="194">
 					<pos x="-4.5" y="4.5"/>
 					<in1 component_id="228"/>
+				</object>
+			</c>
+			<c type="1">
+				<object id="337">
+					<pos x="7.75" y="2"/>
+					<in1 component_id="329"/>
 				</object>
 			</c>
 		</components_bridge>
@@ -869,6 +924,38 @@ function hsv2rgb(f,g,h)local a,b,c;local j=math.floor(f*6)local k=f*6-j;local l=
 				<in2 component_id="321"/>
 				<in3 component_id="322"/>
 			</c39>
+			<c40 id="329">
+				<pos x="6" y="1.75"/>
+				<in1 component_id="331"/>
+				<in2 component_id="330"/>
+			</c40>
+			<c41 id="330">
+				<pos x="6" y="0.75"/>
+				<in1 component_id="332"/>
+				<in2 component_id="333"/>
+			</c41>
+			<c42 id="331">
+				<pos x="4.25" y="1.75"/>
+				<in1 component_id="77"/>
+				<in2 component_id="334"/>
+			</c42>
+			<c43 id="332">
+				<pos x="4.25" y="0.75"/>
+				<in1 component_id="309"/>
+				<in2 component_id="334"/>
+			</c43>
+			<c44 id="333">
+				<pos x="4.25" y="-0.25"/>
+				<in1 component_id="313"/>
+				<in2 component_id="334"/>
+			</c44>
+			<c45 id="334" name="Standard Light Turn-On Threshold">
+				<pos x="2.5" y="1.75"/>
+				<min text="0"/>
+				<max text="1" value="1"/>
+				<int text="0.1" value="0.1"/>
+				<v text="0"/>
+			</c45>
 		</component_states>
 		<component_bridge_states>
 			<c0 id="18">
@@ -893,6 +980,10 @@ function hsv2rgb(f,g,h)local a,b,c;local j=math.floor(f*6)local k=f*6-j;local l=
 				<pos x="-4.5" y="4.5"/>
 				<in1 component_id="228"/>
 			</c5>
+			<c6 id="337">
+				<pos x="7.75" y="2"/>
+				<in1 component_id="329"/>
+			</c6>
 		</component_bridge_states>
 		<group_states/>
 	</group>

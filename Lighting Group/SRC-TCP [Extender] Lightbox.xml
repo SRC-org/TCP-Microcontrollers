@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<microprocessor name="SRC-TCP [Extender] Lightbox" description="Interacts with TCP Lighting Interface to control train lights" width="3" length="5" id_counter="612" id_counter_node="51" sym2="4" sym3="2" sym4="8191" sym5="8194" sym6="9508" sym7="1184" sym8="3232" sym9="11636" sym10="16388" sym11="65528" sym12="16384" sym13="8192">
+<microprocessor name="SRC-TCP [Extender] Lightbox" description="Interacts with TCP Lighting Interface to control train lights" width="3" length="4" id_counter="612" id_counter_node="51" sym2="4" sym3="2" sym4="8191" sym5="8194" sym6="9508" sym7="1184" sym8="3232" sym9="11636" sym10="16388" sym11="65528" sym12="16384" sym13="8192">
 	<nodes>
 		<n id="38" component_id="554">
 			<node label="Interface" mode="1" type="5" description="Communicates with lighting interface"/>
@@ -35,38 +35,28 @@
 			</node>
 		</n>
 		<n id="45" component_id="568">
-			<node label="Work Lights" description="Connects to work lights (optional, can be renamed)">
+			<node label="Work Lights" description="Connects to Work Lights (Optional)">
 				<position z="1"/>
 			</node>
 		</n>
 		<n id="46" component_id="570">
-			<node label="Warning Lights" description="Connects to warning lights (optional, can be renamed)">
+			<node label="Hazard Lights" description="Connects to Hazard Lights (Optional)">
 				<position z="2"/>
 			</node>
 		</n>
 		<n id="47" component_id="572">
-			<node label="Decorative Lights" description="Connects to decorative lighting (optional, can be renamed)">
+			<node label="Decorative Lights" description="Connects to Decorative Lights (Optional)">
 				<position z="3"/>
 			</node>
 		</n>
 		<n id="48" component_id="575">
-			<node label="Front RGB" type="5" description="Front RGB lights. Displays DRL/Headlights/Taillights">
+			<node label="Front RGB" type="5" description="Front RGB Lights. Combined Headlights/Taillights">
 				<position x="1"/>
 			</node>
 		</n>
 		<n id="49" component_id="578">
-			<node label="Rear RGB" type="5" description="Rear RGB Lights. Displays DRL/Headlights/Taillights">
+			<node label="Rear RGB" type="5" description="Rear RGB Lights. Combined Headlights/Taillights">
 				<position x="2"/>
-			</node>
-		</n>
-		<n id="50" component_id="597">
-			<node label="DRL Front" description="Daytime Running Lights Front">
-				<position x="1" z="4"/>
-			</node>
-		</n>
-		<n id="51" component_id="599">
-			<node label="DRL Rear" description="Daytime Running Lights Rear">
-				<position x="2" z="4"/>
 			</node>
 		</n>
 	</nodes>
@@ -90,18 +80,6 @@
 					<in1 component_id="590"/>
 					<in2 component_id="591"/>
 					<in3 component_id="592"/>
-				</object>
-			</c>
-			<c type="29">
-				<object id="581" i="1">
-					<pos x="-1.25" y="2"/>
-					<in1 component_id="554"/>
-				</object>
-			</c>
-			<c type="29">
-				<object id="582" i="2">
-					<pos x="-1.25" y="1.5"/>
-					<in1 component_id="554"/>
 				</object>
 			</c>
 			<c type="29">
@@ -195,18 +173,6 @@
 				</object>
 			</c>
 			<c type="44">
-				<object id="602" l="DRL Front" on="ON" off="OFF">
-					<pos x="2.25" y="2"/>
-					<in1 component_id="581"/>
-				</object>
-			</c>
-			<c type="44">
-				<object id="603" l="DRL Rear" on="ON" off="OFF">
-					<pos x="2.25" y="1.5"/>
-					<in1 component_id="582"/>
-				</object>
-			</c>
-			<c type="44">
 				<object id="604" l="Front Headlights" on="ON" off="OFF">
 					<pos x="2.25" y="0.75"/>
 					<in1 component_id="583"/>
@@ -264,7 +230,7 @@
 		<components_bridge>
 			<c type="4">
 				<object id="554">
-					<pos x="-3" y="2"/>
+					<pos x="-3" y="0.75"/>
 				</object>
 			</c>
 			<c type="1">
@@ -333,18 +299,6 @@
 					<in1 component_id="579"/>
 				</object>
 			</c>
-			<c type="1">
-				<object id="597">
-					<pos x="0.5" y="2"/>
-					<in1 component_id="581"/>
-				</object>
-			</c>
-			<c type="1">
-				<object id="599">
-					<pos x="0.5" y="1.5"/>
-					<in1 component_id="582"/>
-				</object>
-			</c>
 		</components_bridge>
 		<groups/>
 		<component_states>
@@ -360,122 +314,106 @@
 				<in2 component_id="591"/>
 				<in3 component_id="592"/>
 			</c1>
-			<c2 id="581" i="1">
-				<pos x="-1.25" y="2"/>
-				<in1 component_id="554"/>
-			</c2>
-			<c3 id="582" i="2">
-				<pos x="-1.25" y="1.5"/>
-				<in1 component_id="554"/>
-			</c3>
-			<c4 id="583" i="3">
+			<c2 id="583" i="3">
 				<pos x="-1.25" y="0.75"/>
 				<in1 component_id="554"/>
-			</c4>
-			<c5 id="584" i="4">
+			</c2>
+			<c3 id="584" i="4">
 				<pos x="-1.25" y="0.25"/>
 				<in1 component_id="554"/>
-			</c5>
-			<c6 id="585" i="5">
+			</c3>
+			<c4 id="585" i="5">
 				<pos x="-1.25" y="-0.5"/>
 				<in1 component_id="554"/>
-			</c6>
-			<c7 id="586" i="6">
+			</c4>
+			<c5 id="586" i="6">
 				<pos x="-1.25" y="-1"/>
 				<in1 component_id="554"/>
-			</c7>
-			<c8 id="587" i="7">
+			</c5>
+			<c6 id="587" i="7">
 				<pos x="-1.25" y="-1.75"/>
 				<in1 component_id="554"/>
-			</c8>
-			<c9 id="588" i="8">
+			</c6>
+			<c7 id="588" i="8">
 				<pos x="-1.25" y="-2.25"/>
 				<in1 component_id="554"/>
-			</c9>
-			<c10 id="589" i="9">
+			</c7>
+			<c8 id="589" i="9">
 				<pos x="-1.25" y="-3"/>
 				<in1 component_id="554"/>
-			</c10>
-			<c11 id="590">
+			</c8>
+			<c9 id="590">
 				<pos x="-1.25" y="-5"/>
 				<in1 component_id="554"/>
-			</c11>
-			<c12 id="591" i="1">
+			</c9>
+			<c10 id="591" i="1">
 				<pos x="-1.25" y="-5.5"/>
 				<in1 component_id="554"/>
-			</c12>
-			<c13 id="592" i="2">
+			</c10>
+			<c11 id="592" i="2">
 				<pos x="-1.25" y="-6"/>
 				<in1 component_id="554"/>
-			</c13>
-			<c14 id="593" i="3">
+			</c11>
+			<c12 id="593" i="3">
 				<pos x="-1.25" y="-6.75"/>
 				<in1 component_id="554"/>
-			</c14>
-			<c15 id="594" i="4">
+			</c12>
+			<c13 id="594" i="4">
 				<pos x="-1.25" y="-7.25"/>
 				<in1 component_id="554"/>
-			</c15>
-			<c16 id="595" i="5">
+			</c13>
+			<c14 id="595" i="5">
 				<pos x="-1.25" y="-7.75"/>
 				<in1 component_id="554"/>
-			</c16>
-			<c17 id="600" i="10">
+			</c14>
+			<c15 id="600" i="10">
 				<pos x="-1.25" y="-3.5"/>
 				<in1 component_id="554"/>
-			</c17>
-			<c18 id="601" i="11">
+			</c15>
+			<c16 id="601" i="11">
 				<pos x="-1.25" y="-4"/>
 				<in1 component_id="554"/>
-			</c18>
-			<c19 id="602" l="DRL Front" on="ON" off="OFF">
-				<pos x="2.25" y="2"/>
-				<in1 component_id="581"/>
-			</c19>
-			<c20 id="603" l="DRL Rear" on="ON" off="OFF">
-				<pos x="2.25" y="1.5"/>
-				<in1 component_id="582"/>
-			</c20>
-			<c21 id="604" l="Front Headlights" on="ON" off="OFF">
+			</c16>
+			<c17 id="604" l="Front Headlights" on="ON" off="OFF">
 				<pos x="2.25" y="0.75"/>
 				<in1 component_id="583"/>
-			</c21>
-			<c22 id="605" l="Rear Headlights" on="ON" off="OFF">
+			</c17>
+			<c18 id="605" l="Rear Headlights" on="ON" off="OFF">
 				<pos x="2.25" y="0.25"/>
 				<in1 component_id="584"/>
-			</c22>
-			<c23 id="606" l="Front Taillights" on="ON" off="OFF">
+			</c18>
+			<c19 id="606" l="Front Taillights" on="ON" off="OFF">
 				<pos x="2.25" y="-0.5"/>
 				<in1 component_id="585"/>
-			</c23>
-			<c24 id="607" l="Rear Taillights" on="ON" off="OFF">
+			</c19>
+			<c20 id="607" l="Rear Taillights" on="ON" off="OFF">
 				<pos x="2.25" y="-1"/>
 				<in1 component_id="586"/>
-			</c24>
-			<c25 id="608" l="Front Highbeams" on="ON" off="OFF">
+			</c20>
+			<c21 id="608" l="Front Highbeams" on="ON" off="OFF">
 				<pos x="2.25" y="-1.75"/>
 				<in1 component_id="587"/>
-			</c25>
-			<c26 id="609" l="Rear Highbeams" on="ON" off="OFF">
+			</c21>
+			<c22 id="609" l="Rear Highbeams" on="ON" off="OFF">
 				<pos x="2.25" y="-2.25"/>
 				<in1 component_id="588"/>
-			</c26>
-			<c27 id="610" l="Work Lights" on="ON" off="OFF">
+			</c22>
+			<c23 id="610" l="Work Lights" on="ON" off="OFF">
 				<pos x="2.25" y="-3"/>
 				<in1 component_id="589"/>
-			</c27>
-			<c28 id="611" l="Warning Lights" on="ON" off="OFF">
+			</c23>
+			<c24 id="611" l="Warning Lights" on="ON" off="OFF">
 				<pos x="2.25" y="-3.5"/>
 				<in1 component_id="600"/>
-			</c28>
-			<c29 id="612" l="Decorative Lights" on="ON" off="OFF">
+			</c24>
+			<c25 id="612" l="Decorative Lights" on="ON" off="OFF">
 				<pos x="2.25" y="-4"/>
 				<in1 component_id="601"/>
-			</c29>
+			</c25>
 		</component_states>
 		<component_bridge_states>
 			<c0 id="554">
-				<pos x="-3" y="2"/>
+				<pos x="-3" y="0.75"/>
 			</c0>
 			<c1 id="556">
 				<pos x="0.5" y="0.75"/>
@@ -521,14 +459,6 @@
 				<pos x="2.25" y="-6.5"/>
 				<in1 component_id="579"/>
 			</c11>
-			<c12 id="597">
-				<pos x="0.5" y="2"/>
-				<in1 component_id="581"/>
-			</c12>
-			<c13 id="599">
-				<pos x="0.5" y="1.5"/>
-				<in1 component_id="582"/>
-			</c13>
 		</component_bridge_states>
 		<group_states/>
 	</group>
