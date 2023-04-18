@@ -157,6 +157,7 @@
 			<c type="41">
 				<object id="155" count="3">
 					<pos x="7.5" y="-11.25"/>
+					<in1/>
 					<in2 disabled="true"/>
 					<in3 component_id="340"/>
 				</object>
@@ -323,7 +324,7 @@ return clamp(error*s.p+s.integral,min,max)
 end}
 end
 
-mult=pgn("acceleration multiplier")
+mult=pgn("Acceleration Multiplier")
 piVal=pid(mult*0.003,mult*0.000003)
 a=1
 b=1
@@ -628,6 +629,7 @@ end'>
 			</c14>
 			<c15 id="155" count="3">
 				<pos x="7.5" y="-11.25"/>
+				<in1/>
 				<in2 disabled="true"/>
 				<in3 component_id="340"/>
 			</c15>
@@ -748,7 +750,7 @@ return clamp(error*s.p+s.integral,min,max)
 end}
 end
 
-mult=pgn("acceleration multiplier")
+mult=pgn("Acceleration Multiplier")
 piVal=pid(mult*0.003,mult*0.000003)
 a=1
 b=1
