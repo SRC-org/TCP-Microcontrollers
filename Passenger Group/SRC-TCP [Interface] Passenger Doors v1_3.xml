@@ -412,6 +412,7 @@ function clamp(v,x,y) return math.min(math.max(v,x),y) end'>
 				<object id="809" count="1" offset="3">
 					<pos x="-17.5" y="10.75"/>
 					<inc component_id="526"/>
+					<in1/>
 				</object>
 			</c>
 			<c type="40">
@@ -889,6 +890,7 @@ function clamp(v,x,y) return math.min(math.max(v,x),y) end'>
 			<c36 id="809" count="1" offset="3">
 				<pos x="-17.5" y="10.75"/>
 				<inc component_id="526"/>
+				<in1/>
 			</c36>
 			<c37 id="849" count="4">
 				<pos x="-2.75" y="12.5"/>

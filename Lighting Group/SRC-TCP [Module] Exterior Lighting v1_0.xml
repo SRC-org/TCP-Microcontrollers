@@ -5,7 +5,7 @@
 			<node label="Hub slot/Main Input" type="5" description="Outputs information to Hub/Main"/>
 		</n>
 		<n id="24" component_id="139">
-			<node label="Main Both" mode="1" type="5" description="Connects to Main Both in order to receive information from other cars">
+			<node label="Main Both" mode="1" type="5" description="Connects to Main Both for information from other cars">
 				<position x="1"/>
 			</node>
 		</n>

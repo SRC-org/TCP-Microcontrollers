@@ -2,7 +2,7 @@
 <microprocessor name="SRC-TCP [RO Module] Passenger v1.0" description="Module for controlling passenger functions such as doors and lighting" width="2" length="1" id_counter="757" id_counter_node="36" sym2="4" sym3="2" sym4="8191" sym5="8194" sym6="9508" sym7="1184" sym8="3232" sym9="11636" sym10="16388" sym11="65528" sym12="16384" sym13="8192">
 	<nodes>
 		<n id="24" component_id="139">
-			<node label="Main Both" mode="1" type="5" description="Connects to Main Both in order to receive information from other cars"/>
+			<node label="Main Both" mode="1" type="5" description="Connects to Main Both for information from other cars"/>
 		</n>
 		<n id="35" component_id="334">
 			<node label="Module - Interface" type="5" description="Communicates with all interfaces">

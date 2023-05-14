@@ -3,16 +3,16 @@
 	<nodes>
 		<n id="7" component_id="18">
 			<node label="RGB Lights" type="5" description="Ouputs RGB values to RGB lights">
-				<position x="1" z="2"/>
+				<position z="2"/>
 			</node>
 		</n>
 		<n id="8" component_id="20">
-			<node label="UI" mode="1" type="5" description="Connects to Instruments or Display Controller">
+			<node label="UI" mode="1" type="5" description="Connects to instruments or display controller">
 				<position z="3"/>
 			</node>
 		</n>
 		<n id="9" component_id="23">
-			<node label="Video Out" type="6" description="To Display Controller">
+			<node label="Video Out" type="6" description="To display controller">
 				<position x="1" z="3"/>
 			</node>
 		</n>
@@ -193,7 +193,7 @@ function rgb2hsv(a,b,c)local d,e=math.max(a,b,c),math.min(a,b,c)local f,g,h;h=d;
 			</c>
 			<c type="40">
 				<object id="40" count="3">
-					<pos x="4.25" y="3"/>
+					<pos x="2.5" y="3"/>
 					<in1 component_id="77"/>
 					<in2 component_id="309"/>
 					<in3 component_id="313"/>
@@ -201,21 +201,21 @@ function rgb2hsv(a,b,c)local d,e=math.max(a,b,c),math.min(a,b,c)local f,g,h;h=d;
 			</c>
 			<c type="17">
 				<object id="68">
-					<pos x="-2.75" y="3.25"/>
-					<in1 component_id="188"/>
+					<pos x="-4.5" y="3.25"/>
+					<in1 component_id="225"/>
 					<in2 component_id="77"/>
 				</object>
 			</c>
 			<c type="18">
 				<object id="69">
-					<pos x="-2.75" y="1.75"/>
-					<in1 component_id="188"/>
+					<pos x="-4.5" y="1.75"/>
+					<in1 component_id="225"/>
 					<in2 component_id="77"/>
 				</object>
 			</c>
 			<c type="37">
 				<object id="77" m="1">
-					<pos x="2.5" y="3"/>
+					<pos x="0.75" y="3"/>
 					<in1 component_id="80"/>
 					<in2 component_id="83"/>
 					<r text="0"/>
@@ -226,86 +226,68 @@ function rgb2hsv(a,b,c)local d,e=math.max(a,b,c),math.min(a,b,c)local f,g,h;h=d;
 			</c>
 			<c type="1">
 				<object id="80">
-					<pos x="0.75" y="3.25"/>
+					<pos x="-1" y="3.25"/>
 					<in1 component_id="68"/>
 					<in2 component_id="308"/>
 				</object>
 			</c>
 			<c type="1">
 				<object id="83">
-					<pos x="0.75" y="2"/>
+					<pos x="-1" y="2"/>
 					<in1 component_id="308"/>
 					<in2 component_id="69"/>
 				</object>
 			</c>
 			<c type="42">
 				<object id="91">
-					<pos x="-2.75" y="2.5"/>
-					<in1 component_id="188"/>
+					<pos x="-4.5" y="2.5"/>
+					<in1 component_id="225"/>
 					<in2 component_id="77"/>
 					<e text="0.01" value="0.01"/>
 				</object>
 			</c>
 			<c type="17">
 				<object id="95">
-					<pos x="-2.75" y="0.75"/>
-					<in1 component_id="189"/>
+					<pos x="-4.5" y="0.75"/>
+					<in1 component_id="226"/>
 					<in2 component_id="309"/>
 				</object>
 			</c>
 			<c type="18">
 				<object id="96">
-					<pos x="-2.75" y="-0.75"/>
-					<in1 component_id="189"/>
+					<pos x="-4.5" y="-0.75"/>
+					<in1 component_id="226"/>
 					<in2 component_id="309"/>
 				</object>
 			</c>
 			<c type="42">
 				<object id="103">
-					<pos x="-2.75"/>
-					<in1 component_id="189"/>
+					<pos x="-4.5"/>
+					<in1 component_id="226"/>
 					<in2 component_id="309"/>
 					<e text="0.01" value="0.01"/>
 				</object>
 			</c>
 			<c type="17">
 				<object id="109">
-					<pos x="-2.75" y="-1.75"/>
-					<in1 component_id="190"/>
+					<pos x="-4.5" y="-1.75"/>
+					<in1 component_id="227"/>
 					<in2 component_id="313"/>
 				</object>
 			</c>
 			<c type="18">
 				<object id="110">
-					<pos x="-2.75" y="-3.25"/>
-					<in1 component_id="190"/>
+					<pos x="-4.5" y="-3.25"/>
+					<in1 component_id="227"/>
 					<in2 component_id="313"/>
 				</object>
 			</c>
 			<c type="42">
 				<object id="117">
-					<pos x="-2.75" y="-2.5"/>
-					<in1 component_id="190"/>
+					<pos x="-4.5" y="-2.5"/>
+					<in1 component_id="227"/>
 					<in2 component_id="313"/>
 					<e text="0.01" value="0.01"/>
-				</object>
-			</c>
-			<c type="45">
-				<object id="188" e="x/7">
-					<pos x="-4.5" y="3.5"/>
-					<in1 component_id="225"/>
-				</object>
-			</c>
-			<c type="45">
-				<object id="189" e="x/7">
-					<pos x="-4.5" y="1"/>
-					<in1 component_id="226"/>
-				</object>
-			</c>
-			<c type="45">
-				<object id="190" e="x/7">
-					<pos x="-4.5" y="-1.5"/>
-					<in1 component_id="227"/>
 				</object>
 			</c>
 			<c type="31">
@@ -367,13 +349,13 @@ function hsv2rgb(f,g,h)local a,b,c;local j=math.floor(f*6)local k=f*6-j;local l=
 			</c>
 			<c>
 				<object id="308">
-					<pos x="-1" y="2.75"/>
+					<pos x="-2.75" y="2.75"/>
 					<in1 component_id="91"/>
 				</object>
 			</c>
 			<c type="37">
 				<object id="309" m="1">
-					<pos x="2.5" y="0.5"/>
+					<pos x="0.75" y="0.5"/>
 					<in1 component_id="310"/>
 					<in2 component_id="311"/>
 					<r text="0"/>
@@ -384,27 +366,27 @@ function hsv2rgb(f,g,h)local a,b,c;local j=math.floor(f*6)local k=f*6-j;local l=
 			</c>
 			<c type="1">
 				<object id="310">
-					<pos x="0.75" y="0.75"/>
+					<pos x="-1" y="0.75"/>
 					<in1 component_id="95"/>
 					<in2 component_id="312"/>
 				</object>
 			</c>
 			<c type="1">
 				<object id="311">
-					<pos x="0.75" y="-0.5"/>
+					<pos x="-1" y="-0.5"/>
 					<in1 component_id="312"/>
 					<in2 component_id="96"/>
 				</object>
 			</c>
 			<c>
 				<object id="312">
-					<pos x="-1" y="0.25"/>
+					<pos x="-2.75" y="0.25"/>
 					<in1 component_id="103"/>
 				</object>
 			</c>
 			<c type="37">
 				<object id="313" m="1">
-					<pos x="2.5" y="-2"/>
+					<pos x="0.75" y="-2"/>
 					<in1 component_id="314"/>
 					<in2 component_id="315"/>
 					<r text="0"/>
@@ -415,21 +397,21 @@ function hsv2rgb(f,g,h)local a,b,c;local j=math.floor(f*6)local k=f*6-j;local l=
 			</c>
 			<c type="1">
 				<object id="314">
-					<pos x="0.75" y="-1.75"/>
+					<pos x="-1" y="-1.75"/>
 					<in1 component_id="109"/>
 					<in2 component_id="316"/>
 				</object>
 			</c>
 			<c type="1">
 				<object id="315">
-					<pos x="0.75" y="-3"/>
+					<pos x="-1" y="-3"/>
 					<in1 component_id="316"/>
 					<in2 component_id="110"/>
 				</object>
 			</c>
 			<c>
 				<object id="316">
-					<pos x="-1" y="-2.25"/>
+					<pos x="-2.75" y="-2.25"/>
 					<in1 component_id="117"/>
 				</object>
 			</c>
@@ -451,71 +433,53 @@ function hsv2rgb(f,g,h)local a,b,c;local j=math.floor(f*6)local k=f*6-j;local l=
 					<in1 component_id="304"/>
 				</object>
 			</c>
-			<c type="45">
-				<object id="320" e="clamp(x,0,1)*7">
-					<pos x="-1" y="5.5"/>
-					<in1 component_id="317"/>
-				</object>
-			</c>
-			<c type="45">
-				<object id="321" e="clamp(x,0,1)*7">
-					<pos x="-1" y="5"/>
-					<in1 component_id="318"/>
-				</object>
-			</c>
-			<c type="45">
-				<object id="322" e="clamp(x,0,1)*7">
-					<pos x="-1" y="4.5"/>
-					<in1 component_id="319"/>
-				</object>
-			</c>
 			<c type="40">
 				<object id="323" count="3">
-					<pos x="0.75" y="5"/>
+					<pos x="-1" y="5"/>
 					<inc component_id="304"/>
-					<in1 component_id="320"/>
-					<in2 component_id="321"/>
-					<in3 component_id="322"/>
+					<in1 component_id="317"/>
+					<in2 component_id="318"/>
+					<in3 component_id="319"/>
 				</object>
 			</c>
 			<c type="2">
 				<object id="329">
-					<pos x="6" y="1.75"/>
+					<pos x="4.25" y="1.75"/>
 					<in1 component_id="331"/>
 					<in2 component_id="330"/>
 				</object>
 			</c>
 			<c type="2">
 				<object id="330">
-					<pos x="6" y="0.75"/>
+					<pos x="4.25" y="0.75"/>
 					<in1 component_id="332"/>
 					<in2 component_id="333"/>
 				</object>
 			</c>
 			<c type="17">
 				<object id="331">
-					<pos x="4.25" y="1.75"/>
+					<pos x="2.5" y="1.75"/>
 					<in1 component_id="77"/>
 					<in2 component_id="334"/>
 				</object>
 			</c>
 			<c type="17">
 				<object id="332">
-					<pos x="4.25" y="0.75"/>
+					<pos x="2.5" y="0.75"/>
 					<in1 component_id="309"/>
 					<in2 component_id="334"/>
 				</object>
 			</c>
 			<c type="17">
 				<object id="333">
-					<pos x="4.25" y="-0.25"/>
+					<pos x="2.5" y="-0.25"/>
 					<in1 component_id="313"/>
 					<in2 component_id="334"/>
 				</object>
 			</c>
 			<c type="19">
 				<object id="334" name="Standard Light Turn-On Threshold">
-					<pos x="2.5" y="1.75"/>
+					<pos x="0.75" y="1.75"/>
 					<min text="0"/>
 					<max text="1" value="1"/>
 					<int text="0.1" value="0.1"/>
@@ -526,7 +490,7 @@ function hsv2rgb(f,g,h)local a,b,c;local j=math.floor(f*6)local k=f*6-j;local l=
 		<components_bridge>
 			<c type="5">
 				<object id="18">
-					<pos x="5.75" y="3.75"/>
+					<pos x="4" y="3.75"/>
 					<in1 component_id="40"/>
 				</object>
 			</c>
@@ -548,7 +512,7 @@ function hsv2rgb(f,g,h)local a,b,c;local j=math.floor(f*6)local k=f*6-j;local l=
 			</c>
 			<c type="5">
 				<object id="142">
-					<pos x="2.5" y="5.75"/>
+					<pos x="0.75" y="5.75"/>
 					<in1 component_id="323"/>
 				</object>
 			</c>
@@ -560,7 +524,7 @@ function hsv2rgb(f,g,h)local a,b,c;local j=math.floor(f*6)local k=f*6-j;local l=
 			</c>
 			<c type="1">
 				<object id="337">
-					<pos x="7.75" y="2"/>
+					<pos x="6" y="2"/>
 					<in1 component_id="329"/>
 				</object>
 			</c>
@@ -716,23 +680,23 @@ function rgb2hsv(a,b,c)local d,e=math.max(a,b,c),math.min(a,b,c)local f,g,h;h=d;
 				<in1 component_id="20"/>
 			</c0>
 			<c1 id="40" count="3">
-				<pos x="4.25" y="3"/>
+				<pos x="2.5" y="3"/>
 				<in1 component_id="77"/>
 				<in2 component_id="309"/>
 				<in3 component_id="313"/>
 			</c1>
 			<c2 id="68">
-				<pos x="-2.75" y="3.25"/>
-				<in1 component_id="188"/>
+				<pos x="-4.5" y="3.25"/>
+				<in1 component_id="225"/>
 				<in2 component_id="77"/>
 			</c2>
 			<c3 id="69">
-				<pos x="-2.75" y="1.75"/>
-				<in1 component_id="188"/>
+				<pos x="-4.5" y="1.75"/>
+				<in1 component_id="225"/>
 				<in2 component_id="77"/>
 			</c3>
 			<c4 id="77" m="1">
-				<pos x="2.5" y="3"/>
+				<pos x="0.75" y="3"/>
 				<in1 component_id="80"/>
 				<in2 component_id="83"/>
 				<r text="0"/>
@@ -741,86 +705,74 @@ function rgb2hsv(a,b,c)local d,e=math.max(a,b,c),math.min(a,b,c)local f,g,h;h=d;
 				<max text="1" value="1"/>
 			</c4>
 			<c5 id="80">
-				<pos x="0.75" y="3.25"/>
+				<pos x="-1" y="3.25"/>
 				<in1 component_id="68"/>
 				<in2 component_id="308"/>
 			</c5>
 			<c6 id="83">
-				<pos x="0.75" y="2"/>
+				<pos x="-1" y="2"/>
 				<in1 component_id="308"/>
 				<in2 component_id="69"/>
 			</c6>
 			<c7 id="91">
-				<pos x="-2.75" y="2.5"/>
-				<in1 component_id="188"/>
+				<pos x="-4.5" y="2.5"/>
+				<in1 component_id="225"/>
 				<in2 component_id="77"/>
 				<e text="0.01" value="0.01"/>
 			</c7>
 			<c8 id="95">
-				<pos x="-2.75" y="0.75"/>
-				<in1 component_id="189"/>
+				<pos x="-4.5" y="0.75"/>
+				<in1 component_id="226"/>
 				<in2 component_id="309"/>
 			</c8>
 			<c9 id="96">
-				<pos x="-2.75" y="-0.75"/>
-				<in1 component_id="189"/>
+				<pos x="-4.5" y="-0.75"/>
+				<in1 component_id="226"/>
 				<in2 component_id="309"/>
 			</c9>
 			<c10 id="103">
-				<pos x="-2.75"/>
-				<in1 component_id="189"/>
+				<pos x="-4.5"/>
+				<in1 component_id="226"/>
 				<in2 component_id="309"/>
 				<e text="0.01" value="0.01"/>
 			</c10>
 			<c11 id="109">
-				<pos x="-2.75" y="-1.75"/>
-				<in1 component_id="190"/>
+				<pos x="-4.5" y="-1.75"/>
+				<in1 component_id="227"/>
 				<in2 component_id="313"/>
 			</c11>
 			<c12 id="110">
-				<pos x="-2.75" y="-3.25"/>
-				<in1 component_id="190"/>
+				<pos x="-4.5" y="-3.25"/>
+				<in1 component_id="227"/>
 				<in2 component_id="313"/>
 			</c12>
 			<c13 id="117">
-				<pos x="-2.75" y="-2.5"/>
-				<in1 component_id="190"/>
+				<pos x="-4.5" y="-2.5"/>
+				<in1 component_id="227"/>
 				<in2 component_id="313"/>
 				<e text="0.01" value="0.01"/>
 			</c13>
-			<c14 id="188" e="x/7">
-				<pos x="-4.5" y="3.5"/>
-				<in1 component_id="225"/>
-			</c14>
-			<c15 id="189" e="x/7">
-				<pos x="-4.5" y="1"/>
-				<in1 component_id="226"/>
-			</c15>
-			<c16 id="190" e="x/7">
-				<pos x="-4.5" y="-1.5"/>
-				<in1 component_id="227"/>
-			</c16>
-			<c17 id="225" i="5">
+			<c14 id="225" i="5">
 				<pos x="-6.25" y="3.5"/>
 				<in1 component_id="139"/>
-			</c17>
-			<c18 id="226" i="6">
+			</c14>
+			<c15 id="226" i="6">
 				<pos x="-6.25" y="3"/>
 				<in1 component_id="139"/>
-			</c18>
-			<c19 id="227" i="7">
+			</c15>
+			<c16 id="227" i="7">
 				<pos x="-6.25" y="2.5"/>
 				<in1 component_id="139"/>
-			</c19>
-			<c20 id="228" i="6">
+			</c16>
+			<c17 id="228" i="6">
 				<pos x="-6.25" y="4.5"/>
 				<in1 component_id="139"/>
-			</c20>
-			<c21 id="297" i="3">
+			</c17>
+			<c18 id="297" i="3">
 				<pos x="-6.25" y="5.25"/>
 				<in1 component_id="20"/>
-			</c21>
-			<c22 id="302" script="function onTick()
+			</c18>
+			<c19 id="302" script="function onTick()
 	a = input.getNumber(7)
 	b = input.getNumber(8)
 	c = input.getNumber(9)
@@ -836,130 +788,118 @@ end
 function hsv2rgb(f,g,h)local a,b,c;local j=math.floor(f*6)local k=f*6-j;local l=h*(1-g)local m=h*(1-k*g)local n=h*(1-(1-k)*g)j=j%6;if j==0 then a,b,c=h,n,l elseif j==1 then a,b,c=m,h,l elseif j==2 then a,b,c=l,h,n elseif j==3 then a,b,c=l,m,h elseif j==4 then a,b,c=n,l,h elseif j==5 then a,b,c=h,l,m end;return{a=a,b=b,c=c}end">
 				<pos x="-6.25" y="7.5"/>
 				<in1 component_id="20"/>
-			</c22>
-			<c23 id="304">
+			</c19>
+			<c20 id="304">
 				<pos x="-4.5" y="5.25"/>
 				<in1 component_id="302"/>
 				<in2 component_id="37"/>
 				<in3 component_id="297"/>
-			</c23>
-			<c24 id="308">
-				<pos x="-1" y="2.75"/>
+			</c20>
+			<c21 id="308">
+				<pos x="-2.75" y="2.75"/>
 				<in1 component_id="91"/>
-			</c24>
-			<c25 id="309" m="1">
-				<pos x="2.5" y="0.5"/>
+			</c21>
+			<c22 id="309" m="1">
+				<pos x="0.75" y="0.5"/>
 				<in1 component_id="310"/>
 				<in2 component_id="311"/>
 				<r text="0"/>
 				<i text="0.003" value="0.003"/>
 				<min text="0"/>
 				<max text="1" value="1"/>
-			</c25>
-			<c26 id="310">
-				<pos x="0.75" y="0.75"/>
+			</c22>
+			<c23 id="310">
+				<pos x="-1" y="0.75"/>
 				<in1 component_id="95"/>
 				<in2 component_id="312"/>
-			</c26>
-			<c27 id="311">
-				<pos x="0.75" y="-0.5"/>
+			</c23>
+			<c24 id="311">
+				<pos x="-1" y="-0.5"/>
 				<in1 component_id="312"/>
 				<in2 component_id="96"/>
-			</c27>
-			<c28 id="312">
-				<pos x="-1" y="0.25"/>
+			</c24>
+			<c25 id="312">
+				<pos x="-2.75" y="0.25"/>
 				<in1 component_id="103"/>
-			</c28>
-			<c29 id="313" m="1">
-				<pos x="2.5" y="-2"/>
+			</c25>
+			<c26 id="313" m="1">
+				<pos x="0.75" y="-2"/>
 				<in1 component_id="314"/>
 				<in2 component_id="315"/>
 				<r text="0"/>
 				<i text="0.003" value="0.003"/>
 				<min text="0"/>
 				<max text="1" value="1"/>
-			</c29>
-			<c30 id="314">
-				<pos x="0.75" y="-1.75"/>
+			</c26>
+			<c27 id="314">
+				<pos x="-1" y="-1.75"/>
 				<in1 component_id="109"/>
 				<in2 component_id="316"/>
-			</c30>
-			<c31 id="315">
-				<pos x="0.75" y="-3"/>
+			</c27>
+			<c28 id="315">
+				<pos x="-1" y="-3"/>
 				<in1 component_id="316"/>
 				<in2 component_id="110"/>
-			</c31>
-			<c32 id="316">
-				<pos x="-1" y="-2.25"/>
+			</c28>
+			<c29 id="316">
+				<pos x="-2.75" y="-2.25"/>
 				<in1 component_id="117"/>
-			</c32>
-			<c33 id="317">
+			</c29>
+			<c30 id="317">
 				<pos x="-2.75" y="5.5"/>
 				<in1 component_id="304"/>
-			</c33>
-			<c34 id="318" i="1">
+			</c30>
+			<c31 id="318" i="1">
 				<pos x="-2.75" y="5"/>
 				<in1 component_id="304"/>
-			</c34>
-			<c35 id="319" i="2">
+			</c31>
+			<c32 id="319" i="2">
 				<pos x="-2.75" y="4.5"/>
 				<in1 component_id="304"/>
-			</c35>
-			<c36 id="320" e="clamp(x,0,1)*7">
-				<pos x="-1" y="5.5"/>
-				<in1 component_id="317"/>
-			</c36>
-			<c37 id="321" e="clamp(x,0,1)*7">
+			</c32>
+			<c33 id="323" count="3">
 				<pos x="-1" y="5"/>
-				<in1 component_id="318"/>
-			</c37>
-			<c38 id="322" e="clamp(x,0,1)*7">
-				<pos x="-1" y="4.5"/>
-				<in1 component_id="319"/>
-			</c38>
-			<c39 id="323" count="3">
-				<pos x="0.75" y="5"/>
 				<inc component_id="304"/>
-				<in1 component_id="320"/>
-				<in2 component_id="321"/>
-				<in3 component_id="322"/>
-			</c39>
-			<c40 id="329">
-				<pos x="6" y="1.75"/>
+				<in1 component_id="317"/>
+				<in2 component_id="318"/>
+				<in3 component_id="319"/>
+			</c33>
+			<c34 id="329">
+				<pos x="4.25" y="1.75"/>
 				<in1 component_id="331"/>
 				<in2 component_id="330"/>
-			</c40>
-			<c41 id="330">
-				<pos x="6" y="0.75"/>
+			</c34>
+			<c35 id="330">
+				<pos x="4.25" y="0.75"/>
 				<in1 component_id="332"/>
 				<in2 component_id="333"/>
-			</c41>
-			<c42 id="331">
-				<pos x="4.25" y="1.75"/>
+			</c35>
+			<c36 id="331">
+				<pos x="2.5" y="1.75"/>
 				<in1 component_id="77"/>
 				<in2 component_id="334"/>
-			</c42>
-			<c43 id="332">
-				<pos x="4.25" y="0.75"/>
+			</c36>
+			<c37 id="332">
+				<pos x="2.5" y="0.75"/>
 				<in1 component_id="309"/>
 				<in2 component_id="334"/>
-			</c43>
-			<c44 id="333">
-				<pos x="4.25" y="-0.25"/>
+			</c37>
+			<c38 id="333">
+				<pos x="2.5" y="-0.25"/>
 				<in1 component_id="313"/>
 				<in2 component_id="334"/>
-			</c44>
-			<c45 id="334" name="Standard Light Turn-On Threshold">
-				<pos x="2.5" y="1.75"/>
+			</c38>
+			<c39 id="334" name="Standard Light Turn-On Threshold">
+				<pos x="0.75" y="1.75"/>
 				<min text="0"/>
 				<max text="1" value="1"/>
 				<int text="0.1" value="0.1"/>
 				<v text="0"/>
-			</c45>
+			</c39>
 		</component_states>
 		<component_bridge_states>
 			<c0 id="18">
-				<pos x="5.75" y="3.75"/>
+				<pos x="4" y="3.75"/>
 				<in1 component_id="40"/>
 			</c0>
 			<c1 id="20">
@@ -973,7 +913,7 @@ function hsv2rgb(f,g,h)local a,b,c;local j=math.floor(f*6)local k=f*6-j;local l=
 				<pos x="-8" y="3.5"/>
 			</c3>
 			<c4 id="142">
-				<pos x="2.5" y="5.75"/>
+				<pos x="0.75" y="5.75"/>
 				<in1 component_id="323"/>
 			</c4>
 			<c5 id="194">
@@ -981,7 +921,7 @@ function hsv2rgb(f,g,h)local a,b,c;local j=math.floor(f*6)local k=f*6-j;local l=
 				<in1 component_id="228"/>
 			</c5>
 			<c6 id="337">
-				<pos x="7.75" y="2"/>
+				<pos x="6" y="2"/>
 				<in1 component_id="329"/>
 			</c6>
 		</component_bridge_states>

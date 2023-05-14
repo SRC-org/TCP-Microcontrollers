@@ -25,17 +25,17 @@
 			</node>
 		</n>
 		<n id="37" component_id="340">
-			<node label="Slip" mode="1" description="Slip input from Bogie">
+			<node label="Slip" mode="1" description="Slip input from the wheels">
 				<position x="2" z="1"/>
 			</node>
 		</n>
 		<n id="41" component_id="293">
-			<node label="Current Speed (m/s)" mode="1" type="1" description="Current speed in (m/s, directional)">
+			<node label="Speed" mode="1" type="1" description="Current speed (m/s, directional)">
 				<position x="4"/>
 			</node>
 		</n>
 		<n id="42" component_id="299">
-			<node label="Wheel RPS" mode="1" type="1" description="RPS at the wheels">
+			<node label="Wheel RPS" mode="1" type="1" description="RPS at the wheels (from torque meter)">
 				<position x="4" z="1"/>
 			</node>
 		</n>
@@ -258,7 +258,7 @@
 				</object>
 			</c>
 			<c type="44">
-				<object id="268" l="ABS" on="ENABLED" off="DISABLED">
+				<object id="268" l="ABS" on="Enabled" off="Disabled">
 					<pos x="2.25" y="-17.5"/>
 					<in1 component_id="265"/>
 				</object>
@@ -351,18 +351,24 @@ if on then
 	end
 	
 	if slip then
-		--rst=true
 		b=clamp(b-0.05,0.05,1)
 	else
-		--rst=false
 		b=clamp(b+0.001,0.05,1)
 	end
 	
-	thrTemp=piVal:run(target*b,current,-1,1,2.5*a,rst)
+	if target &lt; 0 then
+		thrTemp=piVal:run(target*b,current,-1,0,2.5*a,rst)
+	elseif target &gt; 0 then
+		thrTemp=piVal:run(target*b,current,0,1,2.5*a,rst)
+	end
+
+	--thrTemp=piVal:run(target*b,current,-1,1,2.5*a,rst)
 	if abs(current) &gt; abs(target)+3 then
 		thr=0
+		rst=true
 	else
 		thr=thrTemp
+		rst=false
 	end
 else
 	thr=0
@@ -698,7 +704,7 @@ end'>
 			<c30 id="265" n="ABS" on="On" off="Off" v="true">
 				<pos x="2.25" y="-17"/>
 			</c30>
-			<c31 id="268" l="ABS" on="ENABLED" off="DISABLED">
+			<c31 id="268" l="ABS" on="Enabled" off="Disabled">
 				<pos x="2.25" y="-17.5"/>
 				<in1 component_id="265"/>
 			</c31>
@@ -777,18 +783,24 @@ if on then
 	end
 	
 	if slip then
-		--rst=true
 		b=clamp(b-0.05,0.05,1)
 	else
-		--rst=false
 		b=clamp(b+0.001,0.05,1)
 	end
 	
-	thrTemp=piVal:run(target*b,current,-1,1,2.5*a,rst)
+	if target &lt; 0 then
+		thrTemp=piVal:run(target*b,current,-1,0,2.5*a,rst)
+	elseif target &gt; 0 then
+		thrTemp=piVal:run(target*b,current,0,1,2.5*a,rst)
+	end
+
+	--thrTemp=piVal:run(target*b,current,-1,1,2.5*a,rst)
 	if abs(current) &gt; abs(target)+3 then
 		thr=0
+		rst=true
 	else
 		thr=thrTemp
+		rst=false
 	end
 else
 	thr=0

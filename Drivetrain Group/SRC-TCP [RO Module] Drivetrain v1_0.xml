@@ -2,7 +2,7 @@
 <microprocessor name="SRC-TCP [RO Module] Drivetrain v1.0" description="Communicates with main and drive interface." width="2" length="1" id_counter="400" id_counter_node="35" sym2="4" sym3="2" sym4="8191" sym5="8194" sym6="9508" sym7="1184" sym8="3236" sym9="11636" sym10="16388" sym11="65528" sym12="16384" sym13="8192">
 	<nodes>
 		<n id="20" component_id="268">
-			<node label="Main Both" mode="1" type="5" description="Connects to Main Both in order to receive information from other cars"/>
+			<node label="Main Both" mode="1" type="5" description="Connects to Main Both for information from other cars"/>
 		</n>
 		<n id="31" component_id="313">
 			<node label="Module - Interface" type="5" description="Communicates with Drivetrain Interface">
