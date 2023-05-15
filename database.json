@@ -1,0 +1,180 @@
+{
+	"controllers": {
+		"[Interface] Decouple": {
+			"full": "[Interface] Decouple",
+			"group": "Decouple",
+			"type": "Interface",
+			"name": "Decouple",
+			"version": "1.3"
+		},
+		"[Module] Decouple": {
+			"full": "[Module] Decouple",
+			"group": "Decouple",
+			"type": "Module",
+			"name": "Decouple",
+			"version": "1.0"
+		},
+		"[RO Interface] Decouple": {
+			"full": "[RO Interface] Decouple",
+			"group": "Decouple",
+			"type": "RO Interface",
+			"name": "Decouple",
+			"version": "1.3"
+		},
+		"[RO Module] Decouple": {
+			"full": "[RO Module] Decouple",
+			"group": "Decouple",
+			"type": "RO Module",
+			"name": "Decouple",
+			"version": "1.0"
+		},
+		"[Interface] Drivetrain": {
+			"full": "[Interface] Drivetrain",
+			"group": "Drivetrain",
+			"type": "Interface",
+			"name": "Drivetrain",
+			"version": "1.3"
+		},
+		"[Module] Drivetrain": {
+			"full": "[Module] Drivetrain",
+			"group": "Drivetrain",
+			"type": "Module",
+			"name": "Drivetrain",
+			"version": "1.0"
+		},
+		"[RO Interface] Drivetrain (Brakes Only)": {
+			"full": "[RO Interface] Drivetrain (Brakes Only)",
+			"group": "Drivetrain",
+			"type": "RO Interface",
+			"name": "Drivetrain",
+			"modifier": "Brakes Only",
+			"version": "1.3"
+		},
+		"[RO Module] Drivetrain": {
+			"full": "[RO Module] Drivetrain",
+			"group": "Drivetrain",
+			"type": "RO Module",
+			"name": "Drivetrain",
+			"version": "1.0"
+		},
+		"[Extender] Lightbox": {
+			"full": "[Extender] Lightbox",
+			"group": "Lighting",
+			"type": "Extender",
+			"name": "Lightbox"
+		},
+		"[Interface] Exterior Lighting": {
+			"full": "[Interface] Exterior Lighting",
+			"group": "Lighting",
+			"type": "Interface",
+			"name": "Exterior Lighting",
+			"version": "1.3"
+		},
+		"[Module] Exterior Lighting": {
+			"full": "[Module] Exterior Lighting",
+			"group": "Lighting",
+			"type": "Module",
+			"name": "Exterior Lighting",
+			"version": "1.0"
+		},
+		"[RO Interface] Exterior Lighting": {
+			"full": "[RO Interface] Exterior Lighting",
+			"group": "Lighting",
+			"type": "RO Interface",
+			"name": "Exterior Lighting",
+			"version": "1.3"
+		},
+		"[RO Module] Exterior Lighting": {
+			"full": "[RO Module] Exterior Lighting",
+			"group": "Lighting",
+			"type": "RO Module",
+			"name": "Exterior Lighting",
+			"version": "1.0"
+		},
+		"[Interface] Passenger Doors": {
+			"full": "[Interface] Passenger Doors",
+			"group": "Passenger",
+			"type": "Interface",
+			"name": "Passenger Doors",
+			"version": "1.3"
+		},
+		"[Interface] Passenger Lighting": {
+			"full": "[Interface] Passenger Lighting",
+			"group": "Passenger",
+			"type": "Interface",
+			"name": "Passenger Lighting",
+			"version": "1.3"
+		},
+		"[Module] Passenger": {
+			"full": "[Module] Passenger",
+			"group": "Passenger",
+			"type": "Module",
+			"name": "Passenger",
+			"version": "1.0"
+		},
+		"[RO Interface] Passenger Doors": {
+			"full": "[RO Interface] Passenger Doors",
+			"group": "Passenger",
+			"type": "RO Interface",
+			"name": "Passenger Doors",
+			"version": "1.3"
+		},
+		"[RO Interface] Passenger Lighting": {
+			"full": "[RO Interface] Passenger Lighting",
+			"group": "Passenger",
+			"type": "RO Interface",
+			"name": "Passenger Lighting",
+			"version": "1.3"
+		},
+		"[RO Module] Passenger": {
+			"full": "[RO Module] Passenger",
+			"group": "Passenger",
+			"type": "RO Module",
+			"name": "Passenger",
+			"version": "1.0"
+		},
+		"[System] Display Controller": {
+			"full": "[System] Display Controller",
+			"group": "System",
+			"type": "System",
+			"name": "Display Controller",
+			"version": "1.3"
+		},
+		"[System] Dual Cab Controller": {
+			"full": "[System] Dual Cab Controller",
+			"group": "System",
+			"type": "System",
+			"name": "Dual Cab Controller",
+			"version": "1.3"
+		},
+		"[System] Dual Cab Switchbox": {
+			"full": "[System] Dual Cab Switchbox",
+			"group": "System",
+			"type": "System",
+			"name": "Dual Cab Switchbox",
+			"version": "1.3"
+		},
+		"[System] Hub": {
+			"full": "[System] Hub",
+			"group": "System",
+			"type": "System",
+			"name": "Hub",
+			"version": "1.0"
+		},
+		"[System] Main Controller (Slave Only)": {
+			"full": "[System] Main Controller (Slave Only)",
+			"group": "System",
+			"type": "System",
+			"name": "Main Controller",
+			"modifier": "Slave Only",
+			"version": "1.3"
+		},
+		"[System] Main Controller": {
+			"full": "[System] Main Controller",
+			"group": "System",
+			"type": "System",
+			"name": "Main Controller",
+			"version": "1.3"
+		}
+	}
+}
