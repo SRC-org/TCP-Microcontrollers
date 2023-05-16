@@ -1,8 +1,9 @@
-const swPath = process.env.APPDATA + '/Stormworks/data/microprocessors/'
-const cPath = '../Controllers/'
-
 fs = require('fs')
-database = require(cPath + 'database.json')
+path = require('path')
+database = require('../Controllers/database.json')
+
+const swPath = process.env.APPDATA + '/Stormworks/data/microprocessors/'
+const cPath = path.join(__dirname, '../Controllers/')
 
 let args = process.argv;
 
@@ -71,22 +72,29 @@ async function execCopy() {
 async function execDatabase() {
 	let dirs = (await fs.promises.readdir(cPath, {withFileTypes: true})).filter(d => d.isDirectory()).map(d => d.name).filter(d => d.endsWith('Group'))
 	let promises = []
-	let controllerData = []
+	let controllers = []
 	dirs.forEach((dir, i) => {
 		let promise = fs.promises.readdir(cPath + dir + '/')
-		promise.then(files => files.filter(file => file.startsWith('SRC-TCP') && file.endsWith('.xml')).forEach((file, i) => controllerData.push(data.fromFileName(file))))
+		promise.then(groupFiles => groupFiles.filter(file => file.startsWith('SRC-TCP') && file.endsWith('.xml')).forEach((file, i) => controllers.push({
+			path: cPath + dir + '/',
+			file: file,
+			fileNameData: data.fromFileName(file),
+			fileData: data.fromFile(cPath + dir + '/' + file)
+		})))
 		promises.push(promise)
 	})
 	await Promise.all(promises)
 
-	controllerData.forEach(info => {
+	console.log(controllers)	
+
+	/*controllerData.forEach(info => {
 		if (database.controllers[info.identifier] === undefined) {
 			console.log('\x1b[33m%s\x1b[0m', 'controller with no database entry: \'' + info.identifier + '\', please register it using -r')
 			database.controllers[info.identifier] = info
 			return
 		}
 		for (let attr in info) database.controllers[info.identifier][attr] = info[attr]
-	})
+	})*/
 }
 
 // Images
@@ -116,7 +124,11 @@ data = {
 	fromDatabase: (identifier) => {
 		return database.controllers[identifier]
 	},
-	fromFile: (file) => {
+	fromFile: (path) => {
 		return undefined
 	}
+}
+
+mergeJSON = (old, updated) => {
+	for (attr in updated) old[attr] = updated[attr]
 }
