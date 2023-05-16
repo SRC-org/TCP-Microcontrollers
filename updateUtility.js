@@ -50,13 +50,17 @@ async function execCopy() {
 	let files = (await fs.promises.readdir(swPath)).filter(file => file.startsWith('SRC-TCP') && file.endsWith('.xml'))
 	let promises = []
 
+	// TODO: ask for confirmation
+
 	files.forEach((file, i) => {
-		let fileData = data.fromFile(file)
-		let entry = data.fromDatabase(fileData.identifier)
-		if (!entry || !entry.group) return console.log('\x1b[33m%s\x1b[0m', 'unknown group for controller: \'' + fileData.identifier + '\', controller was not copied, please register it using -r')
-		if (entry.version && entry.version !== fileData.version) promises.push(fs.promises.unlink('./' + entry.group + ' Group/SRC-TCP ' + fileData.identifier + ' v' + entry.version.replaceAll('.', '_') + '.xml')) // replace old version if present
-		entry.version = fileData.version // update version
-		promises.push(fs.promises.copyFile(swPath + '/' + file, './' + entry.group + ' Group/' + file)) // copy file
+		let fData = data.fromFileName(file)
+		let dData = data.fromDatabase(fData.identifier)
+		if (!dData || !dData.group) // unknown group
+			return console.log('\x1b[33m%s\x1b[0m', 'unknown group for controller: \'' + fData.identifier + '\', controller was not copied, please register it using -r')
+		if (dData.version && dData.version !== fData.version) // replace old version if present
+			promises.push(fs.promises.unlink('./' + dData.group + ' Group/SRC-TCP ' + fData.identifier + ' v' + dData.version.replaceAll('.', '_') + '.xml'))
+		dData.version = fData.version // update version
+		promises.push(fs.promises.copyFile(swPath + '/' + file, './' + dData.group + ' Group/' + file)) // copy file
 	})
 	await Promise.all(promises)
 }
@@ -68,7 +72,7 @@ async function execDatabase() {
 	let controllerData = []
 	dirs.forEach((dir, i) => {
 		let promise = fs.promises.readdir('./' + dir + '/')
-		promise.then(files => files.filter(file => file.startsWith('SRC-TCP') && file.endsWith('.xml')).forEach((file, i) => controllerData.push(data.fromFile(file))))
+		promise.then(files => files.filter(file => file.startsWith('SRC-TCP') && file.endsWith('.xml')).forEach((file, i) => controllerData.push(data.fromFileName(file))))
 		promises.push(promise)
 	})
 	await Promise.all(promises)
@@ -97,7 +101,7 @@ data = {
 	matchInfo: (file) => {
 		return file.matchAll(/(?<=\[)(.*?)(?=\] )(?:\] )(.*?)(?=\.| \(| v[\d\_]*\.xml)(?:(?: \()([a-zA-Z\s]+)(?:\)))?(?: v)?([\d\_]*)?/g).next().value // i will forget how this works tomorrow
 	},
-	fromFile: (file) => {
+	fromFileName: (file) => {
 		let info = data.matchInfo(file)
 		return {
 			identifier: '[' + info[1] + '] ' + info[2] + (info[3] ? ' (' + info[3] + ')' : ''),
@@ -109,5 +113,8 @@ data = {
 	},
 	fromDatabase: (identifier) => {
 		return database.controllers[identifier]
+	},
+	fromFile: (file) => {
+		return undefined
 	}
 }
