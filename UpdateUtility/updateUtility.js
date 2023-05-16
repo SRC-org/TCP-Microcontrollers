@@ -1,7 +1,9 @@
-fs = require('fs')
-database = require('./database.json')
+const swPath = process.env.APPDATA + '/Stormworks/data/microprocessors/'
+const cPath = '../Controllers/'
 
-const swPath = process.env.APPDATA + '/Stormworks/data/microprocessors'
+fs = require('fs')
+database = require(cPath + 'database.json')
+
 let args = process.argv;
 
 // node updateUtility -args
@@ -20,7 +22,7 @@ async function start() {
 }
 
 start().then(() => {
-	fs.writeFileSync('./database.json', JSON.stringify(database, null, '\t'))
+	fs.writeFileSync(cPath + 'database.json', JSON.stringify(database, null, '\t'))
 	console.log('script finished')
 })
 
@@ -41,7 +43,7 @@ async function execRegister(index) {
 			identifier: c,
 			group: g
 		}
-		if (!fs.existsSync('./' + g + ' Group/')) fs.mkdirSync('./' + g + ' Group/')
+		if (!fs.existsSync(cPath + g + ' Group/')) fs.mkdirSync(cPath + g + ' Group/')
 	})
 }
 
@@ -58,20 +60,20 @@ async function execCopy() {
 		if (!dData || !dData.group) // unknown group
 			return console.log('\x1b[33m%s\x1b[0m', 'unknown group for controller: \'' + fData.identifier + '\', controller was not copied, please register it using -r')
 		if (dData.version && dData.version !== fData.version) // replace old version if present
-			promises.push(fs.promises.unlink('./' + dData.group + ' Group/SRC-TCP ' + fData.identifier + ' v' + dData.version.replaceAll('.', '_') + '.xml'))
-		dData.version = fData.version // update version
-		promises.push(fs.promises.copyFile(swPath + '/' + file, './' + dData.group + ' Group/' + file)) // copy file
+			promises.push(fs.promises.unlink(cPath + dData.group + ' Group/SRC-TCP ' + fData.identifier + ' v' + dData.version.replaceAll('.', '_') + '.xml'))
+		dData.version = fData.version // update version in database
+		promises.push(fs.promises.copyFile(swPath + '/' + file, cPath + dData.group + ' Group/' + file)) // copy file
 	})
 	await Promise.all(promises)
 }
 
 // Database
 async function execDatabase() {
-	let dirs = (await fs.promises.readdir('./', {withFileTypes: true})).filter(d => d.isDirectory()).map(d => d.name).filter(d => d.endsWith('Group'))
+	let dirs = (await fs.promises.readdir(cPath, {withFileTypes: true})).filter(d => d.isDirectory()).map(d => d.name).filter(d => d.endsWith('Group'))
 	let promises = []
 	let controllerData = []
 	dirs.forEach((dir, i) => {
-		let promise = fs.promises.readdir('./' + dir + '/')
+		let promise = fs.promises.readdir(cPath + dir + '/')
 		promise.then(files => files.filter(file => file.startsWith('SRC-TCP') && file.endsWith('.xml')).forEach((file, i) => controllerData.push(data.fromFileName(file))))
 		promises.push(promise)
 	})
