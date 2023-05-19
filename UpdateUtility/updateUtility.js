@@ -1,11 +1,14 @@
 fs = require('fs')
 path = require('path')
 database = require('../Controllers/database.json')
+const { XMLParser, XMLBuilder, XMLValidator} = require("fast-xml-parser")
 
 const swPath = process.env.APPDATA + '/Stormworks/data/microprocessors/'
 const cPath = path.join(__dirname, '../Controllers/')
 
 let args = process.argv;
+
+swXMLParser = new XMLParser({ignoreAttributes : false})
 
 // node updateUtility -args
 // -r:	registers a new controller into the database (identifier and group)
@@ -50,7 +53,7 @@ async function execRegister(index) {
 
 // Copy
 async function execCopy() {
-	let files = (await fs.promises.readdir(swPath)).filter(file => file.startsWith('SRC-TCP') && file.endsWith('.xml'))
+	let files = fs.readdirSync(swPath).filter(file => file.startsWith('SRC-TCP') && file.endsWith('.xml'))
 	let promises = []
 
 	// TODO: ask for confirmation
@@ -70,7 +73,7 @@ async function execCopy() {
 
 // Database
 async function execDatabase() {
-	let dirs = (await fs.promises.readdir(cPath, {withFileTypes: true})).filter(d => d.isDirectory()).map(d => d.name).filter(d => d.endsWith('Group'))
+	let dirs = fs.readdirSync(cPath, {withFileTypes: true}).filter(d => d.isDirectory()).map(d => d.name).filter(d => d.endsWith('Group'))
 	let promises = []
 	let controllers = []
 	dirs.forEach((dir, i) => {
@@ -78,23 +81,21 @@ async function execDatabase() {
 		promise.then(groupFiles => groupFiles.filter(file => file.startsWith('SRC-TCP') && file.endsWith('.xml')).forEach((file, i) => controllers.push({
 			path: cPath + dir + '/',
 			file: file,
-			fileNameData: data.fromFileName(file),
+			nameData: data.fromFileName(file),
 			fileData: data.fromFile(cPath + dir + '/' + file)
 		})))
 		promises.push(promise)
 	})
 	await Promise.all(promises)
 
-	console.log(controllers)	
-
-	/*controllerData.forEach(info => {
-		if (database.controllers[info.identifier] === undefined) {
-			console.log('\x1b[33m%s\x1b[0m', 'controller with no database entry: \'' + info.identifier + '\', please register it using -r')
-			database.controllers[info.identifier] = info
-			return
+	controllers.forEach(info => {
+		if (database.controllers[info.nameData.identifier] === undefined) {
+			console.log('\x1b[33m%s\x1b[0m', 'controller with no database entry: \'' + info.nameData.identifier + '\', please register it using -r')
+			database.controllers[info.nameData.identifier] = {}
 		}
-		for (let attr in info) database.controllers[info.identifier][attr] = info[attr]
-	})*/
+		mergeJSON(database.controllers[info.nameData.identifier], info.nameData)
+		mergeJSON(database.controllers[info.nameData.identifier], info.fileData)
+	})
 }
 
 // Images
@@ -125,7 +126,29 @@ data = {
 		return database.controllers[identifier]
 	},
 	fromFile: (path) => {
-		return undefined
+		rawXML = fs.readFileSync(path)
+		let xml = swXMLParser.parse(rawXML)
+		let nodes = []
+		xml.microprocessor.nodes.n.forEach((n) => {
+			n = n.node
+			//console.log(n['@_label'])
+			nodes.push({
+				label: n['@_label'] || '',
+				description: n['@_description'] || '',
+				mode: (n['@_mode'] === '1'), // false is input, true is output
+				type: Number(n['@_type']) || 0,
+				position: n.position && {
+					x: Number(n.position['@_x']) || 0,
+					z: Number(n.position['@_z']) || 0
+				} || {x: 0, z: 0}
+			})
+		})
+		return {
+			description: xml.microprocessor['@_description'],
+			width: xml.microprocessor['@_width'],
+			length: xml.microprocessor['@_length'],
+			nodes: nodes
+		}
 	}
 }
 

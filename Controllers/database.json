@@ -5,42 +5,372 @@
 			"group": "Decouple",
 			"type": "Interface",
 			"name": "Decouple",
-			"version": "1.3"
+			"version": "1.3",
+			"description": "Connects to decouple module and connectors to decouple cars",
+			"width": "2",
+			"length": "3",
+			"nodes": [
+				{
+					"label": "Interface - Module",
+					"description": "Communicates with Decouple Module",
+					"mode": false,
+					"type": 5,
+					"position": {
+						"x": 1,
+						"z": 0
+					}
+				},
+				{
+					"label": "Module - Interface",
+					"description": "Communicates with Decouple Module",
+					"mode": true,
+					"type": 5,
+					"position": {
+						"x": 0,
+						"z": 0
+					}
+				},
+				{
+					"label": "UI",
+					"description": "Connects to Instruments or Display Controller",
+					"mode": true,
+					"type": 5,
+					"position": {
+						"x": 0,
+						"z": 2
+					}
+				},
+				{
+					"label": "Decouple Front",
+					"description": "Connects to front coupler to disconnect",
+					"mode": false,
+					"type": 0,
+					"position": {
+						"x": 0,
+						"z": 1
+					}
+				},
+				{
+					"label": "Decouple Rear",
+					"description": "Connects to rear coupler to disconnect (in case of being connected in reverse orientation)",
+					"mode": false,
+					"type": 0,
+					"position": {
+						"x": 1,
+						"z": 1
+					}
+				},
+				{
+					"label": "Video Out",
+					"description": "To Display Controller",
+					"mode": false,
+					"type": 6,
+					"position": {
+						"x": 1,
+						"z": 2
+					}
+				}
+			]
 		},
 		"[Module] Decouple": {
 			"identifier": "[Module] Decouple",
 			"group": "Decouple",
 			"type": "Module",
 			"name": "Decouple",
-			"version": "1.0"
+			"version": "1.0",
+			"description": "Enables decoupling of cars",
+			"width": "2",
+			"length": "2",
+			"nodes": [
+				{
+					"label": "Hub slot/Main Input",
+					"description": "Outputs information to Hub/Main",
+					"mode": false,
+					"type": 5,
+					"position": {
+						"x": 0,
+						"z": 0
+					}
+				},
+				{
+					"label": "Main Both",
+					"description": "Connects to Main Both for information from other cars",
+					"mode": true,
+					"type": 5,
+					"position": {
+						"x": 1,
+						"z": 0
+					}
+				},
+				{
+					"label": "Module - Interface",
+					"description": "Communicates with Decouple Interface",
+					"mode": false,
+					"type": 5,
+					"position": {
+						"x": 0,
+						"z": 1
+					}
+				},
+				{
+					"label": "Interface - Module",
+					"description": "Communicates with Decouple Interface",
+					"mode": true,
+					"type": 5,
+					"position": {
+						"x": 1,
+						"z": 1
+					}
+				}
+			]
 		},
 		"[RO Interface] Decouple": {
 			"identifier": "[RO Interface] Decouple",
 			"group": "Decouple",
 			"type": "RO Interface",
 			"name": "Decouple",
-			"version": "1.3"
+			"version": "1.3",
+			"description": "Enables the (remote) decoupling of specific cars.",
+			"width": "3",
+			"length": "1",
+			"nodes": [
+				{
+					"label": "Module - Interface",
+					"description": "Communicates with Decouple Module",
+					"mode": true,
+					"type": 5,
+					"position": {
+						"x": 0,
+						"z": 0
+					}
+				},
+				{
+					"label": "Decouple Front",
+					"description": "Connects to front coupler to disconnect",
+					"mode": false,
+					"type": 0,
+					"position": {
+						"x": 1,
+						"z": 0
+					}
+				},
+				{
+					"label": "Decouple Rear",
+					"description": "Connects to rear coupler to disconnect (in case of being connected in reverse orientation)",
+					"mode": false,
+					"type": 0,
+					"position": {
+						"x": 2,
+						"z": 0
+					}
+				}
+			]
 		},
 		"[RO Module] Decouple": {
 			"identifier": "[RO Module] Decouple",
 			"group": "Decouple",
 			"type": "RO Module",
 			"name": "Decouple",
-			"version": "1.0"
+			"version": "1.0",
+			"description": "Communicates with main and decouple interface.",
+			"width": "2",
+			"length": "1",
+			"nodes": [
+				{
+					"label": "Main Both",
+					"description": "Connects to Main Both for information from other cars",
+					"mode": true,
+					"type": 5,
+					"position": {
+						"x": 0,
+						"z": 0
+					}
+				},
+				{
+					"label": "Module - Interface",
+					"description": "Communicates with Drivetrain Interface",
+					"mode": false,
+					"type": 5,
+					"position": {
+						"x": 1,
+						"z": 0
+					}
+				}
+			]
 		},
 		"[Interface] Drivetrain": {
 			"identifier": "[Interface] Drivetrain",
 			"group": "Drivetrain",
 			"type": "Interface",
 			"name": "Drivetrain",
-			"version": "1.3"
+			"version": "1.3",
+			"description": "Communicates with drive module and UI",
+			"width": "5",
+			"length": "2",
+			"nodes": [
+				{
+					"label": "Module - Interface",
+					"description": "Communicates with Drivetrain Module",
+					"mode": true,
+					"type": 5,
+					"position": {
+						"x": 0,
+						"z": 1
+					}
+				},
+				{
+					"label": "Interface - Module",
+					"description": "Communicates with Drivetrain Module",
+					"mode": false,
+					"type": 5,
+					"position": {
+						"x": 0,
+						"z": 0
+					}
+				},
+				{
+					"label": "UI",
+					"description": "Connects to Instruments/Cab",
+					"mode": true,
+					"type": 5,
+					"position": {
+						"x": 1,
+						"z": 1
+					}
+				},
+				{
+					"label": "Brake",
+					"description": "Outputs brakes to wheels",
+					"mode": false,
+					"type": 1,
+					"position": {
+						"x": 3,
+						"z": 1
+					}
+				},
+				{
+					"label": "Throttle",
+					"description": "Outputs throttle to motors",
+					"mode": false,
+					"type": 1,
+					"position": {
+						"x": 3,
+						"z": 0
+					}
+				},
+				{
+					"label": "Slip",
+					"description": "Slip input from the wheels",
+					"mode": true,
+					"type": 0,
+					"position": {
+						"x": 2,
+						"z": 1
+					}
+				},
+				{
+					"label": "Speed",
+					"description": "Current speed (m/s, directional)",
+					"mode": true,
+					"type": 1,
+					"position": {
+						"x": 4,
+						"z": 0
+					}
+				},
+				{
+					"label": "Wheel RPS",
+					"description": "RPS at the wheels (from torque meter)",
+					"mode": true,
+					"type": 1,
+					"position": {
+						"x": 4,
+						"z": 1
+					}
+				},
+				{
+					"label": "Activate Engine",
+					"description": "Connect to engine for remote engine activation (optional)",
+					"mode": false,
+					"type": 0,
+					"position": {
+						"x": 2,
+						"z": 0
+					}
+				}
+			]
 		},
 		"[Module] Drivetrain": {
 			"identifier": "[Module] Drivetrain",
 			"group": "Drivetrain",
 			"type": "Module",
 			"name": "Drivetrain",
-			"version": "1.0"
+			"version": "1.0",
+			"description": "Communicates with main, other trains, and the drive interface",
+			"width": "2",
+			"length": "3",
+			"nodes": [
+				{
+					"label": "Hub slot/Main Input",
+					"description": "Outputs information to Hub/Main",
+					"mode": false,
+					"type": 5,
+					"position": {
+						"x": 0,
+						"z": 0
+					}
+				},
+				{
+					"label": "Main Both",
+					"description": "Connects to Main Both for information from other cars",
+					"mode": true,
+					"type": 5,
+					"position": {
+						"x": 1,
+						"z": 0
+					}
+				},
+				{
+					"label": "Module - Interface",
+					"description": "Communicates with Drivetrain Interface",
+					"mode": false,
+					"type": 5,
+					"position": {
+						"x": 0,
+						"z": 2
+					}
+				},
+				{
+					"label": "Interface - Module",
+					"description": "Communicates with Drivetrain Interface",
+					"mode": true,
+					"type": 5,
+					"position": {
+						"x": 1,
+						"z": 2
+					}
+				},
+				{
+					"label": "Main Front",
+					"description": "Connects to Main Front in order to receive information from other cars",
+					"mode": true,
+					"type": 5,
+					"position": {
+						"x": 0,
+						"z": 1
+					}
+				},
+				{
+					"label": "Main Rear",
+					"description": "Connects to Main Rear in order to receive information from other cars",
+					"mode": true,
+					"type": 5,
+					"position": {
+						"x": 1,
+						"z": 1
+					}
+				}
+			]
 		},
 		"[RO Interface] Drivetrain (Brakes Only)": {
 			"identifier": "[RO Interface] Drivetrain (Brakes Only)",
@@ -48,118 +378,1183 @@
 			"type": "RO Interface",
 			"name": "Drivetrain",
 			"modifier": "Brakes Only",
-			"version": "1.3"
+			"version": "1.3",
+			"description": "Handles brakes and wheelslip with built-in ABS.",
+			"width": "2",
+			"length": "2",
+			"nodes": [
+				{
+					"label": "Module - Interface",
+					"description": "Communicates with drivetrain module",
+					"mode": true,
+					"type": 5,
+					"position": {
+						"x": 0,
+						"z": 0
+					}
+				},
+				{
+					"label": "Brake",
+					"description": "Outputs brakes to wheels",
+					"mode": false,
+					"type": 1,
+					"position": {
+						"x": 1,
+						"z": 0
+					}
+				},
+				{
+					"label": "Slip",
+					"description": "Slip input from the wheels",
+					"mode": true,
+					"type": 0,
+					"position": {
+						"x": 0,
+						"z": 1
+					}
+				},
+				{
+					"label": "Disable Parking Brake",
+					"description": "Disables the automatic parking brake",
+					"mode": true,
+					"type": 0,
+					"position": {
+						"x": 1,
+						"z": 1
+					}
+				}
+			]
 		},
 		"[RO Module] Drivetrain": {
 			"identifier": "[RO Module] Drivetrain",
 			"group": "Drivetrain",
 			"type": "RO Module",
 			"name": "Drivetrain",
-			"version": "1.0"
+			"version": "1.0",
+			"description": "Communicates with main and drive interface.",
+			"width": "2",
+			"length": "1",
+			"nodes": [
+				{
+					"label": "Main Both",
+					"description": "Connects to Main Both for information from other cars",
+					"mode": true,
+					"type": 5,
+					"position": {
+						"x": 0,
+						"z": 0
+					}
+				},
+				{
+					"label": "Module - Interface",
+					"description": "Communicates with Drivetrain Interface",
+					"mode": false,
+					"type": 5,
+					"position": {
+						"x": 1,
+						"z": 0
+					}
+				}
+			]
 		},
 		"[Extender] Lightbox": {
 			"identifier": "[Extender] Lightbox",
 			"group": "Lighting",
 			"type": "Extender",
-			"name": "Lightbox"
+			"name": "Lightbox",
+			"description": "Interacts with TCP Lighting Interface to control train lights",
+			"width": "3",
+			"length": "4",
+			"nodes": [
+				{
+					"label": "Interface",
+					"description": "Communicates with lighting interface",
+					"mode": true,
+					"type": 5,
+					"position": {
+						"x": 0,
+						"z": 0
+					}
+				},
+				{
+					"label": "Front Headlights",
+					"description": "Front Headlights",
+					"mode": false,
+					"type": 0,
+					"position": {
+						"x": 1,
+						"z": 1
+					}
+				},
+				{
+					"label": "Rear Headlights",
+					"description": "Rear Headlights",
+					"mode": false,
+					"type": 0,
+					"position": {
+						"x": 2,
+						"z": 1
+					}
+				},
+				{
+					"label": "Front Taillights",
+					"description": "Front Taillights",
+					"mode": false,
+					"type": 0,
+					"position": {
+						"x": 1,
+						"z": 2
+					}
+				},
+				{
+					"label": "Rear Taillights",
+					"description": "Rear Taillights",
+					"mode": false,
+					"type": 0,
+					"position": {
+						"x": 2,
+						"z": 2
+					}
+				},
+				{
+					"label": "Front Highbeams",
+					"description": "Front Highbeams",
+					"mode": false,
+					"type": 0,
+					"position": {
+						"x": 1,
+						"z": 3
+					}
+				},
+				{
+					"label": "Rear Highbeams",
+					"description": "Rear Highbeams",
+					"mode": false,
+					"type": 0,
+					"position": {
+						"x": 2,
+						"z": 3
+					}
+				},
+				{
+					"label": "Work Lights",
+					"description": "Connects to Work Lights (Optional)",
+					"mode": false,
+					"type": 0,
+					"position": {
+						"x": 0,
+						"z": 1
+					}
+				},
+				{
+					"label": "Hazard Lights",
+					"description": "Connects to Hazard Lights (Optional)",
+					"mode": false,
+					"type": 0,
+					"position": {
+						"x": 0,
+						"z": 2
+					}
+				},
+				{
+					"label": "Decorative Lights",
+					"description": "Connects to Decorative Lights (Optional)",
+					"mode": false,
+					"type": 0,
+					"position": {
+						"x": 0,
+						"z": 3
+					}
+				},
+				{
+					"label": "Front RGB",
+					"description": "Front RGB Lights. Combined Headlights/Taillights",
+					"mode": false,
+					"type": 5,
+					"position": {
+						"x": 1,
+						"z": 0
+					}
+				},
+				{
+					"label": "Rear RGB",
+					"description": "Rear RGB Lights. Combined Headlights/Taillights",
+					"mode": false,
+					"type": 5,
+					"position": {
+						"x": 2,
+						"z": 0
+					}
+				}
+			]
 		},
 		"[Interface] Exterior Lighting": {
 			"identifier": "[Interface] Exterior Lighting",
 			"group": "Lighting",
 			"type": "Interface",
 			"name": "Exterior Lighting",
-			"version": "1.3"
+			"version": "1.3",
+			"description": "Interacts with the lighting module, UI, and lightbox to control exterior lighting",
+			"width": "2",
+			"length": "3",
+			"nodes": [
+				{
+					"label": "Module - Interface",
+					"description": "Communicates with lighting module",
+					"mode": true,
+					"type": 5,
+					"position": {
+						"x": 0,
+						"z": 0
+					}
+				},
+				{
+					"label": "Interface - Module",
+					"description": "Communicates with lighting module",
+					"mode": false,
+					"type": 5,
+					"position": {
+						"x": 1,
+						"z": 0
+					}
+				},
+				{
+					"label": "UI",
+					"description": "Connects to Instruments or Display Controller",
+					"mode": true,
+					"type": 5,
+					"position": {
+						"x": 0,
+						"z": 1
+					}
+				},
+				{
+					"label": "Lightbox Extender & Instrument Panel",
+					"description": "Outputs information to both the Lightbox Extender and Instrument Panels",
+					"mode": false,
+					"type": 5,
+					"position": {
+						"x": 1,
+						"z": 1
+					}
+				},
+				{
+					"label": "Reverse",
+					"description": "Connects to reversing signal to change lighting configuration",
+					"mode": true,
+					"type": 0,
+					"position": {
+						"x": 1,
+						"z": 2
+					}
+				},
+				{
+					"label": "Video Out",
+					"description": "To display controller",
+					"mode": false,
+					"type": 6,
+					"position": {
+						"x": 0,
+						"z": 2
+					}
+				}
+			]
 		},
 		"[Module] Exterior Lighting": {
 			"identifier": "[Module] Exterior Lighting",
 			"group": "Lighting",
 			"type": "Module",
 			"name": "Exterior Lighting",
-			"version": "1.0"
+			"version": "1.0",
+			"description": "Highly customizable exterior lighting",
+			"width": "2",
+			"length": "2",
+			"nodes": [
+				{
+					"label": "Hub slot/Main Input",
+					"description": "Outputs information to Hub/Main",
+					"mode": false,
+					"type": 5,
+					"position": {
+						"x": 0,
+						"z": 0
+					}
+				},
+				{
+					"label": "Main Both",
+					"description": "Connects to Main Both for information from other cars",
+					"mode": true,
+					"type": 5,
+					"position": {
+						"x": 1,
+						"z": 0
+					}
+				},
+				{
+					"label": "Interface - Module",
+					"description": "Communicates with lighting interface",
+					"mode": true,
+					"type": 5,
+					"position": {
+						"x": 1,
+						"z": 1
+					}
+				},
+				{
+					"label": "Module - Interface",
+					"description": "Communicates with lighting interface",
+					"mode": false,
+					"type": 5,
+					"position": {
+						"x": 0,
+						"z": 1
+					}
+				}
+			]
 		},
 		"[RO Interface] Exterior Lighting": {
 			"identifier": "[RO Interface] Exterior Lighting",
 			"group": "Lighting",
 			"type": "RO Interface",
 			"name": "Exterior Lighting",
-			"version": "1.3"
+			"version": "1.3",
+			"description": "Interacts with the lighting module, UI, and lightbox to control exterior lighting",
+			"width": "2",
+			"length": "1",
+			"nodes": [
+				{
+					"label": "Module - Interface",
+					"description": "Communicates with lighting module",
+					"mode": true,
+					"type": 5,
+					"position": {
+						"x": 0,
+						"z": 0
+					}
+				},
+				{
+					"label": "Lightbox Extender & Instrument Panel",
+					"description": "Outputs information to both the Lightbox Extender and Instrument Panels",
+					"mode": false,
+					"type": 5,
+					"position": {
+						"x": 1,
+						"z": 0
+					}
+				}
+			]
 		},
 		"[RO Module] Exterior Lighting": {
 			"identifier": "[RO Module] Exterior Lighting",
 			"group": "Lighting",
 			"type": "RO Module",
 			"name": "Exterior Lighting",
-			"version": "1.0"
+			"version": "1.0",
+			"description": "Highly customizable exterior lighting",
+			"width": "2",
+			"length": "1",
+			"nodes": [
+				{
+					"label": "Main Both",
+					"description": "Connects to Main Both for information from other cars",
+					"mode": true,
+					"type": 5,
+					"position": {
+						"x": 0,
+						"z": 0
+					}
+				},
+				{
+					"label": "Module - Interface",
+					"description": "Communicates with lighting interface",
+					"mode": false,
+					"type": 5,
+					"position": {
+						"x": 1,
+						"z": 0
+					}
+				}
+			]
 		},
 		"[Interface] Passenger Doors": {
 			"identifier": "[Interface] Passenger Doors",
 			"group": "Passenger",
 			"type": "Interface",
 			"name": "Passenger Doors",
-			"version": "1.3"
+			"version": "1.3",
+			"description": "Connects to passenger module and door controller. Controls locks and doors",
+			"width": "2",
+			"length": "3",
+			"nodes": [
+				{
+					"label": "Module - Interface",
+					"description": "Communicates with passenger module",
+					"mode": true,
+					"type": 5,
+					"position": {
+						"x": 0,
+						"z": 0
+					}
+				},
+				{
+					"label": "Interface - Module",
+					"description": "Communicates with passenger module",
+					"mode": false,
+					"type": 5,
+					"position": {
+						"x": 1,
+						"z": 0
+					}
+				},
+				{
+					"label": "UI",
+					"description": "Connects to Instruments or Display Controller",
+					"mode": true,
+					"type": 5,
+					"position": {
+						"x": 0,
+						"z": 2
+					}
+				},
+				{
+					"label": "Video Out",
+					"description": "To Display Controller",
+					"mode": false,
+					"type": 6,
+					"position": {
+						"x": 1,
+						"z": 2
+					}
+				},
+				{
+					"label": "Door Opener",
+					"description": "Communicates with door opener",
+					"mode": false,
+					"type": 5,
+					"position": {
+						"x": 0,
+						"z": 1
+					}
+				}
+			]
 		},
 		"[Interface] Passenger Lighting": {
 			"identifier": "[Interface] Passenger Lighting",
 			"group": "Passenger",
 			"type": "Interface",
 			"name": "Passenger Lighting",
-			"version": "1.3"
+			"version": "1.3",
+			"description": "Connects to passenger module. Controls lights in passenger cars",
+			"width": "2",
+			"length": "4",
+			"nodes": [
+				{
+					"label": "RGB Lights",
+					"description": "Ouputs RGB values to RGB lights",
+					"mode": false,
+					"type": 5,
+					"position": {
+						"x": 0,
+						"z": 2
+					}
+				},
+				{
+					"label": "UI",
+					"description": "Connects to instruments or display controller",
+					"mode": true,
+					"type": 5,
+					"position": {
+						"x": 0,
+						"z": 3
+					}
+				},
+				{
+					"label": "Video Out",
+					"description": "To display controller",
+					"mode": false,
+					"type": 6,
+					"position": {
+						"x": 1,
+						"z": 3
+					}
+				},
+				{
+					"label": "Module - Interface",
+					"description": "Communicates with passenger module",
+					"mode": true,
+					"type": 5,
+					"position": {
+						"x": 0,
+						"z": 0
+					}
+				},
+				{
+					"label": "Interface - Module",
+					"description": "Communicates with passenger module",
+					"mode": false,
+					"type": 5,
+					"position": {
+						"x": 1,
+						"z": 0
+					}
+				},
+				{
+					"label": "Heaters",
+					"description": "Turns on/off heaters",
+					"mode": false,
+					"type": 0,
+					"position": {
+						"x": 0,
+						"z": 1
+					}
+				},
+				{
+					"label": "Lights",
+					"description": "Turns on non-rgb lights if lights are set to greater than the standard lights threshold",
+					"mode": false,
+					"type": 0,
+					"position": {
+						"x": 1,
+						"z": 1
+					}
+				}
+			]
 		},
 		"[Module] Passenger": {
 			"identifier": "[Module] Passenger",
 			"group": "Passenger",
 			"type": "Module",
 			"name": "Passenger",
-			"version": "1.0"
+			"version": "1.0",
+			"description": "Module for controlling passenger functions such as doors and lighting",
+			"width": "2",
+			"length": "3",
+			"nodes": [
+				{
+					"label": "Hub slot/Main Input",
+					"description": "Outputs information to Hub/Main",
+					"mode": false,
+					"type": 5,
+					"position": {
+						"x": 0,
+						"z": 0
+					}
+				},
+				{
+					"label": "Main Both",
+					"description": "Connects to Main Both for information from other cars",
+					"mode": true,
+					"type": 5,
+					"position": {
+						"x": 1,
+						"z": 0
+					}
+				},
+				{
+					"label": "Passenger Door Interface - Module",
+					"description": "Communicates with passenger door interface",
+					"mode": true,
+					"type": 5,
+					"position": {
+						"x": 1,
+						"z": 2
+					}
+				},
+				{
+					"label": "Passenger Lighting Interface - Module",
+					"description": "Communicates with passenger lighting interface",
+					"mode": true,
+					"type": 5,
+					"position": {
+						"x": 1,
+						"z": 1
+					}
+				},
+				{
+					"label": "Module - Interface",
+					"description": "Communicates with all passenger interfaces",
+					"mode": false,
+					"type": 5,
+					"position": {
+						"x": 0,
+						"z": 2
+					}
+				}
+			]
 		},
 		"[RO Interface] Passenger Doors": {
 			"identifier": "[RO Interface] Passenger Doors",
 			"group": "Passenger",
 			"type": "RO Interface",
 			"name": "Passenger Doors",
-			"version": "1.3"
+			"version": "1.3",
+			"description": "Connects to passenger module and door controller. Controls locks and doors",
+			"width": "2",
+			"length": "1",
+			"nodes": [
+				{
+					"label": "Module - Interface",
+					"description": "Communicates with passenger module",
+					"mode": true,
+					"type": 5,
+					"position": {
+						"x": 0,
+						"z": 0
+					}
+				},
+				{
+					"label": "Door Opener",
+					"description": "Communicates with door opener",
+					"mode": false,
+					"type": 5,
+					"position": {
+						"x": 1,
+						"z": 0
+					}
+				}
+			]
 		},
 		"[RO Interface] Passenger Lighting": {
 			"identifier": "[RO Interface] Passenger Lighting",
 			"group": "Passenger",
 			"type": "RO Interface",
 			"name": "Passenger Lighting",
-			"version": "1.3"
+			"version": "1.3",
+			"description": "Connects to passenger module. Controls lights in passenger cars",
+			"width": "2",
+			"length": "2",
+			"nodes": [
+				{
+					"label": "RGB Lights",
+					"description": "Ouputs RGB values to RGB lights",
+					"mode": false,
+					"type": 5,
+					"position": {
+						"x": 1,
+						"z": 0
+					}
+				},
+				{
+					"label": "Lights",
+					"description": "Turns on non-rgb lights if lights are set to greater than the standard lights threshold",
+					"mode": false,
+					"type": 0,
+					"position": {
+						"x": 1,
+						"z": 1
+					}
+				},
+				{
+					"label": "Module - Interface",
+					"description": "Communicates with passenger module",
+					"mode": true,
+					"type": 5,
+					"position": {
+						"x": 0,
+						"z": 0
+					}
+				},
+				{
+					"label": "Heaters",
+					"description": "Turns on/off heaters",
+					"mode": false,
+					"type": 0,
+					"position": {
+						"x": 0,
+						"z": 1
+					}
+				}
+			]
 		},
 		"[RO Module] Passenger": {
 			"identifier": "[RO Module] Passenger",
 			"group": "Passenger",
 			"type": "RO Module",
 			"name": "Passenger",
-			"version": "1.0"
+			"version": "1.0",
+			"description": "Module for controlling passenger functions such as doors and lighting",
+			"width": "2",
+			"length": "1",
+			"nodes": [
+				{
+					"label": "Main Both",
+					"description": "Connects to Main Both for information from other cars",
+					"mode": true,
+					"type": 5,
+					"position": {
+						"x": 0,
+						"z": 0
+					}
+				},
+				{
+					"label": "Module - Interface",
+					"description": "Communicates with all interfaces",
+					"mode": false,
+					"type": 5,
+					"position": {
+						"x": 1,
+						"z": 0
+					}
+				}
+			]
 		},
 		"[System] Display Controller": {
 			"identifier": "[System] Display Controller",
 			"group": "System",
 			"type": "System",
 			"name": "Display Controller",
-			"version": "1.3"
+			"version": "1.3",
+			"description": "Manages all screen interfaces so they can be displayed on one screen",
+			"width": "4",
+			"length": "3",
+			"nodes": [
+				{
+					"label": "Touch Input",
+					"description": "Touch From Screen In",
+					"mode": true,
+					"type": 5,
+					"position": {
+						"x": 0,
+						"z": 0
+					}
+				},
+				{
+					"label": "To screen",
+					"description": "Video to 2x2 screen",
+					"mode": false,
+					"type": 6,
+					"position": {
+						"x": 2,
+						"z": 0
+					}
+				},
+				{
+					"label": "Interior Lighting Video",
+					"description": "Video From Interior Lighting Interface",
+					"mode": true,
+					"type": 6,
+					"position": {
+						"x": 2,
+						"z": 1
+					}
+				},
+				{
+					"label": "Exterior Lighting Video",
+					"description": "Video From Exterior Lighting Interface",
+					"mode": true,
+					"type": 6,
+					"position": {
+						"x": 0,
+						"z": 1
+					}
+				},
+				{
+					"label": "Decouple Video",
+					"description": "Video From Decouple Interface",
+					"mode": true,
+					"type": 6,
+					"position": {
+						"x": 1,
+						"z": 1
+					}
+				},
+				{
+					"label": "Exterior Lighting UI",
+					"description": "Touch data to Exterior Lighting Interface UI",
+					"mode": false,
+					"type": 5,
+					"position": {
+						"x": 0,
+						"z": 2
+					}
+				},
+				{
+					"label": "Interior Lighting UI",
+					"description": "Touch data to Interior Lighting Interface UI",
+					"mode": false,
+					"type": 5,
+					"position": {
+						"x": 2,
+						"z": 2
+					}
+				},
+				{
+					"label": "Decouple UI",
+					"description": "Touch data to Decouple Interface UI",
+					"mode": false,
+					"type": 5,
+					"position": {
+						"x": 1,
+						"z": 2
+					}
+				},
+				{
+					"label": "Dark Mode",
+					"description": "UI Dark/Light Mode Input",
+					"mode": true,
+					"type": 0,
+					"position": {
+						"x": 1,
+						"z": 0
+					}
+				},
+				{
+					"label": "Door UI",
+					"description": "Touch data to Door Interface UI",
+					"mode": false,
+					"type": 5,
+					"position": {
+						"x": 3,
+						"z": 2
+					}
+				},
+				{
+					"label": "Door Video",
+					"description": "Video From Door Interface",
+					"mode": true,
+					"type": 6,
+					"position": {
+						"x": 3,
+						"z": 1
+					}
+				}
+			]
 		},
 		"[System] Dual Cab Controller": {
 			"identifier": "[System] Dual Cab Controller",
 			"group": "System",
 			"type": "System",
 			"name": "Dual Cab Controller",
-			"version": "1.3"
+			"version": "1.3",
+			"description": "Manages Dual Cab",
+			"width": "5",
+			"length": "2",
+			"nodes": [
+				{
+					"label": "Front Master Request",
+					"description": "Request master button from front cab",
+					"mode": true,
+					"type": 0,
+					"position": {
+						"x": 1,
+						"z": 0
+					}
+				},
+				{
+					"label": "Rear Master Request",
+					"description": "Request master button from rear cab",
+					"mode": true,
+					"type": 0,
+					"position": {
+						"x": 1,
+						"z": 1
+					}
+				},
+				{
+					"label": "Front Controlling",
+					"description": "Front cab is in control",
+					"mode": false,
+					"type": 0,
+					"position": {
+						"x": 4,
+						"z": 0
+					}
+				},
+				{
+					"label": "Rear Controlling",
+					"description": "Rear cab is in control",
+					"mode": false,
+					"type": 0,
+					"position": {
+						"x": 4,
+						"z": 1
+					}
+				},
+				{
+					"label": "Main Both",
+					"description": "Connects to Main Both in order to receive information from other cars",
+					"mode": true,
+					"type": 5,
+					"position": {
+						"x": 0,
+						"z": 0
+					}
+				},
+				{
+					"label": "Rear Master Release",
+					"description": "Release master button from rear cab",
+					"mode": true,
+					"type": 0,
+					"position": {
+						"x": 2,
+						"z": 1
+					}
+				},
+				{
+					"label": "Front Master Release",
+					"description": "Release master button from front cab",
+					"mode": true,
+					"type": 0,
+					"position": {
+						"x": 2,
+						"z": 0
+					}
+				},
+				{
+					"label": "To Main and Switchbox",
+					"description": "Cab information for main controller and dual cab switchbox",
+					"mode": false,
+					"type": 5,
+					"position": {
+						"x": 0,
+						"z": 1
+					}
+				},
+				{
+					"label": "In Front Cab",
+					"description": "Front cab is occupied",
+					"mode": true,
+					"type": 0,
+					"position": {
+						"x": 3,
+						"z": 0
+					}
+				},
+				{
+					"label": "In Rear Cab",
+					"description": "Rront cab is occupied",
+					"mode": true,
+					"type": 0,
+					"position": {
+						"x": 3,
+						"z": 1
+					}
+				}
+			]
 		},
 		"[System] Dual Cab Switchbox": {
 			"identifier": "[System] Dual Cab Switchbox",
 			"group": "System",
 			"type": "System",
 			"name": "Dual Cab Switchbox",
-			"version": "1.3"
+			"version": "1.3",
+			"description": "Composite Switchbox for UIs and instruments from both cabs",
+			"width": "5",
+			"length": "4",
+			"nodes": [
+				{
+					"label": "Front 1",
+					"description": "Connects to the interface",
+					"mode": true,
+					"type": 5,
+					"position": {
+						"x": 0,
+						"z": 1
+					}
+				},
+				{
+					"label": "Rear 1",
+					"description": "Input from rear cab",
+					"mode": true,
+					"type": 5,
+					"position": {
+						"x": 0,
+						"z": 2
+					}
+				},
+				{
+					"label": "Out 1",
+					"description": "Connects to the interface",
+					"mode": false,
+					"type": 5,
+					"position": {
+						"x": 0,
+						"z": 3
+					}
+				},
+				{
+					"label": "Front 2",
+					"description": "Connects to the interface",
+					"mode": true,
+					"type": 5,
+					"position": {
+						"x": 1,
+						"z": 1
+					}
+				},
+				{
+					"label": "Rear 2",
+					"description": "Input from rear cab",
+					"mode": true,
+					"type": 5,
+					"position": {
+						"x": 1,
+						"z": 2
+					}
+				},
+				{
+					"label": "Out 2",
+					"description": "Connects to the interface",
+					"mode": false,
+					"type": 5,
+					"position": {
+						"x": 1,
+						"z": 3
+					}
+				},
+				{
+					"label": "Front 3",
+					"description": "Connects to the interface",
+					"mode": true,
+					"type": 5,
+					"position": {
+						"x": 2,
+						"z": 1
+					}
+				},
+				{
+					"label": "Rear 3",
+					"description": "Input from rear cab",
+					"mode": true,
+					"type": 5,
+					"position": {
+						"x": 2,
+						"z": 2
+					}
+				},
+				{
+					"label": "Out 3",
+					"description": "Connects to the interface",
+					"mode": false,
+					"type": 5,
+					"position": {
+						"x": 2,
+						"z": 3
+					}
+				},
+				{
+					"label": "Front 4",
+					"description": "Connects to the interface",
+					"mode": true,
+					"type": 5,
+					"position": {
+						"x": 3,
+						"z": 1
+					}
+				},
+				{
+					"label": "Rear 4",
+					"description": "Input from rear cab",
+					"mode": true,
+					"type": 5,
+					"position": {
+						"x": 3,
+						"z": 2
+					}
+				},
+				{
+					"label": "Out 4",
+					"description": "Connects to the interface",
+					"mode": false,
+					"type": 5,
+					"position": {
+						"x": 3,
+						"z": 3
+					}
+				},
+				{
+					"label": "Front 5",
+					"description": "Connects to the interface",
+					"mode": true,
+					"type": 5,
+					"position": {
+						"x": 4,
+						"z": 1
+					}
+				},
+				{
+					"label": "Rear 5",
+					"description": "Input from rear cab",
+					"mode": true,
+					"type": 5,
+					"position": {
+						"x": 4,
+						"z": 2
+					}
+				},
+				{
+					"label": "Out 5",
+					"description": "Connects to the interface",
+					"mode": false,
+					"type": 5,
+					"position": {
+						"x": 4,
+						"z": 3
+					}
+				},
+				{
+					"label": "Cab Controller",
+					"description": "Connects to the cab controller to recieve relevant information",
+					"mode": true,
+					"type": 5,
+					"position": {
+						"x": 0,
+						"z": 0
+					}
+				}
+			]
 		},
 		"[System] Hub": {
 			"identifier": "[System] Hub",
 			"group": "System",
 			"type": "System",
 			"name": "Hub",
-			"version": "1.0"
+			"version": "1.0",
+			"description": "Can be used to connect multiple modules to the main controller. Slot 1 will override slot 2, etc.",
+			"width": "1",
+			"length": "4",
+			"nodes": [
+				{
+					"label": "Main Input",
+					"description": "To Main Input on Main Controller (or other hub if chaining)",
+					"mode": false,
+					"type": 5,
+					"position": {
+						"x": 0,
+						"z": 0
+					}
+				},
+				{
+					"label": "Slot 1",
+					"description": "Allows the connection of any module as long as it's ID and channels are defined. Also allows for chaining hubs",
+					"mode": true,
+					"type": 5,
+					"position": {
+						"x": 0,
+						"z": 1
+					}
+				},
+				{
+					"label": "Slot 2",
+					"description": "Allows the connection of any module as long as it's ID and channels are defined. Also allows for chaining hubs",
+					"mode": true,
+					"type": 5,
+					"position": {
+						"x": 0,
+						"z": 2
+					}
+				},
+				{
+					"label": "Slot 3",
+					"description": "Allows the connection of any module as long as it's ID and channels are defined. Also allows for chaining hubs",
+					"mode": true,
+					"type": 5,
+					"position": {
+						"x": 0,
+						"z": 3
+					}
+				}
+			]
 		},
 		"[System] Main Controller (Slave Only)": {
 			"identifier": "[System] Main Controller (Slave Only)",
@@ -167,14 +1562,254 @@
 			"type": "System",
 			"name": "Main Controller",
 			"modifier": "Slave Only",
-			"version": "1.3"
+			"version": "1.3",
+			"description": "The base for everything. Hubs or Modules can be connected to it.",
+			"width": "4",
+			"length": "2",
+			"nodes": [
+				{
+					"label": "Front Coupler",
+					"description": "Connects to front coupler",
+					"mode": true,
+					"type": 5,
+					"position": {
+						"x": 1,
+						"z": 1
+					}
+				},
+				{
+					"label": "Front Coupler",
+					"description": "Connects to front coupler",
+					"mode": false,
+					"type": 5,
+					"position": {
+						"x": 0,
+						"z": 1
+					}
+				},
+				{
+					"label": "Rear Coupler",
+					"description": "Connects to rear coupler",
+					"mode": true,
+					"type": 5,
+					"position": {
+						"x": 1,
+						"z": 0
+					}
+				},
+				{
+					"label": "Rear Coupler",
+					"description": "Connects to rear coupler",
+					"mode": false,
+					"type": 5,
+					"position": {
+						"x": 0,
+						"z": 0
+					}
+				},
+				{
+					"label": "Main Input",
+					"description": "Outputs information to Hub/Main",
+					"mode": true,
+					"type": 5,
+					"position": {
+						"x": 2,
+						"z": 0
+					}
+				},
+				{
+					"label": "Main Front",
+					"description": "Transmits information from car(s) in front",
+					"mode": false,
+					"type": 5,
+					"position": {
+						"x": 3,
+						"z": 1
+					}
+				},
+				{
+					"label": "Main Rear",
+					"description": "Transmits information from car(s) in rear",
+					"mode": false,
+					"type": 5,
+					"position": {
+						"x": 3,
+						"z": 0
+					}
+				},
+				{
+					"label": "Main Both",
+					"description": "Transmits information from master, whichever direction that may be",
+					"mode": false,
+					"type": 5,
+					"position": {
+						"x": 2,
+						"z": 1
+					}
+				}
+			]
 		},
 		"[System] Main Controller": {
 			"identifier": "[System] Main Controller",
 			"group": "System",
 			"type": "System",
 			"name": "Main Controller",
-			"version": "1.3"
+			"version": "1.3",
+			"description": "The base for everything. Hubs or Modules can be connected to it.",
+			"width": "5",
+			"length": "3",
+			"nodes": [
+				{
+					"label": "Front Coupler",
+					"description": "Connects to front coupler",
+					"mode": true,
+					"type": 5,
+					"position": {
+						"x": 1,
+						"z": 2
+					}
+				},
+				{
+					"label": "Front Coupler",
+					"description": "Connects to front coupler",
+					"mode": false,
+					"type": 5,
+					"position": {
+						"x": 0,
+						"z": 2
+					}
+				},
+				{
+					"label": "Rear Coupler",
+					"description": "Connects to rear coupler",
+					"mode": true,
+					"type": 5,
+					"position": {
+						"x": 1,
+						"z": 1
+					}
+				},
+				{
+					"label": "Rear Coupler",
+					"description": "Connects to rear coupler",
+					"mode": false,
+					"type": 5,
+					"position": {
+						"x": 0,
+						"z": 1
+					}
+				},
+				{
+					"label": "Main Controller status",
+					"description": "Status of controller. Used for debugging",
+					"mode": false,
+					"type": 5,
+					"position": {
+						"x": 0,
+						"z": 0
+					}
+				},
+				{
+					"label": "Request Master (Push)",
+					"description": "Requests master from other cars. Master must not be locked",
+					"mode": true,
+					"type": 0,
+					"position": {
+						"x": 2,
+						"z": 0
+					}
+				},
+				{
+					"label": "Main Input",
+					"description": "Outputs information to Hub/Main",
+					"mode": true,
+					"type": 5,
+					"position": {
+						"x": 3,
+						"z": 1
+					}
+				},
+				{
+					"label": "Main Front",
+					"description": "Transmits information from car(s) in front",
+					"mode": false,
+					"type": 5,
+					"position": {
+						"x": 4,
+						"z": 2
+					}
+				},
+				{
+					"label": "Lock Master (Toggle)",
+					"description": "Toggle to prevent other cars from claiming master",
+					"mode": true,
+					"type": 0,
+					"position": {
+						"x": 3,
+						"z": 0
+					}
+				},
+				{
+					"label": "Player in Cab",
+					"description": "If on and autoconnect is enabled, this controller will be made master",
+					"mode": true,
+					"type": 0,
+					"position": {
+						"x": 1,
+						"z": 0
+					}
+				},
+				{
+					"label": "Main Rear",
+					"description": "Transmits information from car(s) in rear",
+					"mode": false,
+					"type": 5,
+					"position": {
+						"x": 4,
+						"z": 1
+					}
+				},
+				{
+					"label": "Main Both",
+					"description": "Transmits information from master, whichever direction that may be",
+					"mode": false,
+					"type": 5,
+					"position": {
+						"x": 3,
+						"z": 2
+					}
+				},
+				{
+					"label": "Release Master (Push)",
+					"description": "Releases master control (if master and not locked)",
+					"mode": true,
+					"type": 0,
+					"position": {
+						"x": 4,
+						"z": 0
+					}
+				},
+				{
+					"label": "debug",
+					"description": "Used for debugging",
+					"mode": false,
+					"type": 6,
+					"position": {
+						"x": 2,
+						"z": 1
+					}
+				},
+				{
+					"label": "Cab Controller",
+					"description": "",
+					"mode": true,
+					"type": 5,
+					"position": {
+						"x": 2,
+						"z": 2
+					}
+				}
+			]
 		}
 	}
 }
