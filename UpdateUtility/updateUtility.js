@@ -1,14 +1,24 @@
 fs = require('fs')
 path = require('path')
 database = require('../Controllers/database.json')
-const { XMLParser, XMLBuilder, XMLValidator} = require("fast-xml-parser")
+const { XMLParser, XMLBuilder, XMLValidator } = require("fast-xml-parser")
+const { createSVGWindow } = require('svgdom')
+const { SVG, registerWindow } = require('@svgdotjs/svg.js')
 
 const swPath = process.env.APPDATA + '/Stormworks/data/microprocessors/'
 const cPath = path.join(__dirname, '../Controllers/')
+const dPath = path.join(__dirname, '../Design/')
 
-let args = process.argv;
+let args = process.argv
 
-swXMLParser = new XMLParser({ignoreAttributes : false})
+swXMLParser = new XMLParser({ignoreAttributes: false})
+
+// load svg templates
+const window = createSVGWindow()
+const document = window.document
+registerWindow(window, document)
+let thumbnail = SVG().svg(fs.readFileSync(dPath + 'Thumbnails/Template.svg').toString())
+//let card = SVG().svg(fs.readFileSync(dPath + 'Cards/Template.svg').toString())
 
 // node updateUtility -args
 // -r:	registers a new controller into the database (identifier and group)
@@ -25,11 +35,6 @@ async function start() {
 	if (args.indexOf('-s') > -1) await execSteam()
 }
 
-start().then(() => {
-	fs.writeFileSync(cPath + 'database.json', JSON.stringify(database, null, '\t'))
-	console.log('script finished')
-})
-
 // Register
 async function execRegister(index) {
 	let wrongFormat = () => console.log('\x1b[33m%s\x1b[0m', 'wrong format, please use: -r controller,controller group,group')
@@ -41,7 +46,7 @@ async function execRegister(index) {
 	if (controllers.length !== groups.length) return wrongFormat()
 
 	controllers.forEach((c, i) => {
-		if (c === '' || groups[i] === '') return wrongFormat();
+		if (c === '' || groups[i] === '') return wrongFormat()
 		let g = groups[i]
 		database.controllers[c] = {
 			identifier: c,
@@ -100,7 +105,11 @@ async function execDatabase() {
 
 // Images
 async function execImages() {
-	console.log('image generation not supported yet')
+	Object.values(database.controllers).forEach(c =>{
+		console.log(c.name)
+		console.log(c.type)
+	})
+	//console.log(Object.values(database.controllers))
 }
 
 // Steam
@@ -155,3 +164,9 @@ data = {
 mergeJSON = (old, updated) => {
 	for (attr in updated) old[attr] = updated[attr]
 }
+
+// run
+start().then(() => {
+	fs.writeFileSync(cPath + 'database.json', JSON.stringify(database, null, '\t'))
+	console.log('script finished')
+})

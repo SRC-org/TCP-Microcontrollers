@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "updateUtility.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
+  "scripts": {},
+  "author": "Serpentine",
   "dependencies": {
-    "fast-xml-parser": "^4.2.2"
+    "@resvg/resvg-js": "^2.4.1",
+    "@svgdotjs/svg.js": "^3.1.2",
+    "fast-xml-parser": "^4.2.2",
+    "svgdom": "^0.1.14"
   }
 }

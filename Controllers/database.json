@@ -1,11 +1,11 @@
 {
 	"definitions": {
 		"groupColours": {
-			"System": "",
-			"Drivetrain": "",
-			"Lighting": "",
-			"Decouple": "",
-			"Passenger": ""
+			"System": "AF3632",
+			"Drivetrain": "FFB640",
+			"Lighting": "FFE843",
+			"Decouple": "723EAF",
+			"Passenger": "344584"
 		},
 		"nodeColours": {
 			"0": "",
