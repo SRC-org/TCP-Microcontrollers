@@ -8,6 +8,7 @@
   "dependencies": {
     "@resvg/resvg-js": "^2.4.1",
     "@svgdotjs/svg.js": "^3.1.2",
+    "convert-svg-to-png": "^0.6.4",
     "fast-xml-parser": "^4.2.2",
     "svgdom": "^0.1.14"
   }

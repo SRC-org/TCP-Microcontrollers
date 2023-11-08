@@ -4,10 +4,12 @@ database = require('../Controllers/database.json')
 const { XMLParser, XMLBuilder, XMLValidator } = require("fast-xml-parser")
 const { createSVGWindow } = require('svgdom')
 const { SVG, registerWindow } = require('@svgdotjs/svg.js')
+const { convert } = require('convert-svg-to-png');
 
 const swPath = process.env.APPDATA + '/Stormworks/data/microprocessors/'
 const cPath = path.join(__dirname, '../Controllers/')
 const dPath = path.join(__dirname, '../Design/')
+const mPath = path.join(__dirname, '../Media/')
 
 let args = process.argv
 
@@ -17,7 +19,7 @@ swXMLParser = new XMLParser({ignoreAttributes: false})
 const window = createSVGWindow()
 const document = window.document
 registerWindow(window, document)
-let thumbnail = SVG().svg(fs.readFileSync(dPath + 'Thumbnails/Template.svg').toString())
+let thumbnail = SVG().svg(fs.readFileSync(mPath + 'Templates/Thumbnail.svg').toString())
 //let card = SVG().svg(fs.readFileSync(dPath + 'Cards/Template.svg').toString())
 
 // node updateUtility -args
@@ -105,11 +107,31 @@ async function execDatabase() {
 
 // Images
 async function execImages() {
-	Object.values(database.controllers).forEach(c =>{
-		console.log(c.name)
-		console.log(c.type)
+
+	let promises = [];
+
+	//if (!fs.existsSync(mPath + "Export/Thumbnails/")) fs.mkdirSync(mPath + "Export/Thumbnails/")
+	//if (!fs.existsSync(mPath + "Thumbnails/Export/" + c.group + " Group/")) fs.mkdirSync(mPath + "Thumbnails/Export/" + c.group + " Group/")
+
+
+	Object.values(database.controllers).forEach(c => {
+		let n = c.name
+		let s = n.substring(0, 10).lastIndexOf(' ')
+		if (n.length > 10) n = n.substring(0, s) + '\n' + n.substring(s+1)
+		let ns = n.split('\n')
+		thumbnail.find("#Name").move(0,-80 * (ns.length - 1)).leading(5).text(add => ns.map(c => add.tspan(c).newLine()))
+		thumbnail.find("#Type").first().text(c.type)
+
+		let promise = convert(thumbnail.svg(), {height: 512, width: 512})
+
+		promise.then(png => /*{
+			let s = */fs.createWriteStream(mPath + "Export/Thumbnails/" + getFilePath(c) + ".png")/*
+			s.on("open", () => s*/.write(png)/*);
+		}*/)
+		promises.push(promise)
 	})
-	//console.log(Object.values(database.controllers))
+
+	await Promise.all(promises)
 }
 
 // Steam
@@ -119,7 +141,7 @@ async function execSteam() {
 
 data = {
 	matchInfo: (file) => {
-		return file.matchAll(/(?<=\[)(.*?)(?=\] )(?:\] )(.*?)(?=\.| \(| v[\d\_]*\.xml)(?:(?: \()([a-zA-Z\s]+)(?:\)))?(?: v)?([\d\_]*)?/g).next().value // i will forget how this works tomorrow
+		return file.matchAll(/(?<=\[)(.*?)(?=\] )(?:\] )(.*?)(?=\.| \(| v[\d\_]*\.xml)(?:(?: \()([a-zA-Z\s]+)(?:\)))?(?: v)?([\d\_]*)?/g).next().value // I will forget how this works tomorrow
 	},
 	fromFileName: (file) => {
 		let info = data.matchInfo(file)
@@ -163,6 +185,10 @@ data = {
 
 mergeJSON = (old, updated) => {
 	for (attr in updated) old[attr] = updated[attr]
+}
+
+getFilePath = c => {
+	return c.group + " Group/SRC-TCP " + c.identifier + (c.version ? " v" + c.version.replaceAll('.', '_') : "")
 }
 
 // run
