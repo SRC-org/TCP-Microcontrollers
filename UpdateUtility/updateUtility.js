@@ -1,14 +1,14 @@
 fs = require('fs')
 path = require('path')
 database = require('../Controllers/database.json')
-const { XMLParser, XMLBuilder, XMLValidator } = require("fast-xml-parser")
+const { XMLParser/*, XMLBuilder, XMLValidator*/ } = require("fast-xml-parser")
 const { createSVGWindow } = require('svgdom')
 const { SVG, registerWindow } = require('@svgdotjs/svg.js')
 const { convert } = require('convert-svg-to-png');
 
 const swPath = process.env.APPDATA + '/Stormworks/data/microprocessors/'
 const cPath = path.join(__dirname, '../Controllers/')
-const dPath = path.join(__dirname, '../Design/')
+//const dPath = path.join(__dirname, '../Design/')
 const mPath = path.join(__dirname, '../Media/')
 
 let args = process.argv
@@ -65,7 +65,7 @@ async function execCopy() {
 
 	// TODO: ask for confirmation
 
-	files.forEach((file, i) => {
+	files.forEach((file) => {
 		let fData = data.fromFileName(file)
 		let dData = data.fromDatabase(fData.identifier)
 		if (!dData || !dData.group) // unknown group
@@ -83,9 +83,9 @@ async function execDatabase() {
 	let dirs = fs.readdirSync(cPath, {withFileTypes: true}).filter(d => d.isDirectory()).map(d => d.name).filter(d => d.endsWith('Group'))
 	let promises = []
 	let controllers = []
-	dirs.forEach((dir, i) => {
+	dirs.forEach((dir) => {
 		let promise = fs.promises.readdir(cPath + dir + '/')
-		promise.then(groupFiles => groupFiles.filter(file => file.startsWith('SRC-TCP') && file.endsWith('.xml')).forEach((file, i) => controllers.push({
+		promise.then(groupFiles => groupFiles.filter(file => file.startsWith('SRC-TCP') && file.endsWith('.xml')).forEach((file) => controllers.push({
 			path: cPath + dir + '/',
 			file: file,
 			nameData: data.fromFileName(file),
@@ -115,21 +115,33 @@ async function execImages() {
 
 
 	Object.values(database.controllers).forEach(c => {
-		let n = c.name
-		let s = n.substring(0, 10).lastIndexOf(' ')
-		if (n.length > 10) n = n.substring(0, s) + '\n' + n.substring(s+1)
-		let ns = n.split('\n')
-		thumbnail.find("#Name").move(0,-80 * (ns.length - 1)).leading(5).text(add => ns.map(c => add.tspan(c).newLine()))
-		thumbnail.find("#Type").first().text(c.type)
+
+		// elements
+		let eFrame = thumbnail.find('#Frame')
+		let eName = thumbnail.find('#Name')
+		let eType = thumbnail.find('#Type')
+
+		// colour
+		let colour = database.definitions.groupColours[c.group]
+		eFrame.css({fill: "#" + colour})
+		eType.removeClass("tLight");
+		eType.removeClass("tDark");
+		eType.addClass(rgbToHsl(hexToRgb(colour)).l > .5 ? "tDark" : "tLight")
+
+		// text
+		if (c.name.length > 10) {
+			let i = c.name.substring(0, 10).lastIndexOf(' ')
+			let n = [c.name.substring(0, i), c.name.substring(i+1)]
+			eName.attr({dy:-80}).text(add => n.map(c => add.tspan(c).attr({x:0, y:0})))
+		} else eName.text(c.name);
+		eType.first().text(c.type)
 
 		let promise = convert(thumbnail.svg(), {height: 512, width: 512})
-
-		promise.then(png => /*{
-			let s = */fs.createWriteStream(mPath + "Export/Thumbnails/" + getFilePath(c) + ".png")/*
-			s.on("open", () => s*/.write(png)/*);
-		}*/)
+		promise.then(png => fs.createWriteStream(mPath + "Export/Thumbnails/" + getFilePath(c) + ".png").write(png))
 		promises.push(promise)
 	})
+
+	fs.writeFileSync(mPath + "Export/Thumbnails/test.svg", thumbnail.svg());
 
 	await Promise.all(promises)
 }
@@ -184,11 +196,34 @@ data = {
 }
 
 mergeJSON = (old, updated) => {
-	for (attr in updated) old[attr] = updated[attr]
+	for (let attr in updated) old[attr] = updated[attr]
 }
 
 getFilePath = c => {
 	return c.group + " Group/SRC-TCP " + c.identifier + (c.version ? " v" + c.version.replaceAll('.', '_') : "")
+}
+
+hexToRgb = hex => {
+	let res = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec("#" + hex)
+	return res ? {
+		r: parseInt(res[1], 16),
+		g: parseInt(res[2], 16),
+		b: parseInt(res[3], 16)
+	} : null
+}
+
+rgbToHsl = rgb => {
+	let r = rgb.r / 255;
+	let g = rgb.g / 255;
+	let b = rgb.b / 255;
+	const l = Math.max(r, g, b);
+	const s = l - Math.min(r, g, b);
+	const h = s ? l === r ? (g - b) / s : l === g ? 2 + (b - r) / s : 4 + (r - g) / s : 0;
+	return {
+		h: 60 * h < 0 ? 60 * h + 360 : 60 * h,
+		s: s ? (l <= 0.5 ? s / (2 * l - s) : s / (2 - (2 * l - s))) : 0,
+		l: (2 * l - s) / 2
+	}
 }
 
 // run
