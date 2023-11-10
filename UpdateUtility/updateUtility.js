@@ -124,7 +124,7 @@ async function execImages() {
 		let colour = database.definitions.groupColours[c.group]
 		eFrame.css({fill: "#" + colour})
 		eType.attr({class: "type"})
-		eType.addClass(rgbToHsl(hexToRgb(colour)).l > .5 ? "dark" : "light")
+		eType.addClass(rgbToHsl(hexToRgb(colour)).l > .5 ? "cDark" : "cLight")
 
 		// text
 		if (c.name.length > 10) {
@@ -134,9 +134,12 @@ async function execImages() {
 		} else eName.text(c.name)
 		eType.first().text(c.type)
 
-		let promise = convert(thumbnailTemplate.svg(), {height: 512, width: 512})
-		promise.then(png => fs.createWriteStream(mPath + "Export/Thumbnails/" + getFilePath(c) + ".png").write(png))
-		promises.push(promise)
+		let svgString = fixSVG(thumbnailTemplate.svg());
+		let p1 = fs.promises.writeFile(mPath + "Export/Thumbnails/" + getFilePath(c) + ".svg", svgString)
+		let p2 = convert(svgString, {height: 512, width: 512})
+		p2.then(png => fs.createWriteStream(mPath + "Export/Thumbnails/" + getFilePath(c) + ".png").write(png))
+		promises.push(p1)
+		promises.push(p2)
 	}
 
 	let genCard = c => {
@@ -184,16 +187,18 @@ async function execImages() {
 		})
 		eMicrocontroller.find("#Nodes").replace(eNodes);
 
-		let promise = convert(cardTemplate.svg(), {height: 1080, width: 1920})
-		promise.then(png => fs.createWriteStream(mPath + "Export/Cards/" + getFilePath(c) + ".png").write(png))
-		promises.push(promise)
+		let svgString = fixSVG(cardTemplate.svg());
+		let p1 = fs.promises.writeFile(mPath + "Export/Cards/" + getFilePath(c) + ".svg", svgString)
+		let p2 = convert(svgString, {height: 1080, width: 1920})
+		p2.then(png => fs.createWriteStream(mPath + "Export/Cards/" + getFilePath(c) + ".png").write(png))
+		promises.push(p1)
+		promises.push(p2)
 	}
 
 	Object.values(database.controllers).forEach(c => {
 		genThumbnail(c)
 		genCard(c)
 	})
-
 
 	await Promise.all(promises)
 }
