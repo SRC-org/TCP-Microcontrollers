@@ -135,9 +135,9 @@ async function execImages() {
 		eType.first().text(c.type)
 
 		let svgString = fixSVG(thumbnailTemplate.svg());
-		let p1 = fs.promises.writeFile(mPath + "Export/Thumbnails/" + getFilePath(c) + ".svg", svgString)
+		let p1 = fs.promises.writeFile(mPath + "Export/Thumbnails/" + c.identifier + ".svg", svgString)
 		let p2 = convert(svgString, {height: 512, width: 512})
-		p2.then(png => fs.createWriteStream(mPath + "Export/Thumbnails/" + getFilePath(c) + ".png").write(png))
+		p2.then(png => fs.createWriteStream(mPath + "Export/Thumbnails/" + c.identifier + ".png").write(png))
 		promises.push(p1)
 		promises.push(p2)
 	}
@@ -149,18 +149,28 @@ async function execImages() {
 		let eName = cardTemplate.find("#Name")
 		let eInfo = cardTemplate.find("#Info")
 		let eDescription = cardTemplate.find("#Description")
+		let eTitleNext = cardTemplate.find("#TitleNext")
+		let eROMarker = cardTemplate.find("#ROMarker")
+		let eROText = cardTemplate.find("#ROText")
 		let eMicrocontroller = cardTemplate.find("#Microcontroller")
 		let eMCBackground = cardTemplate.find("#MCBackground")
 		let eMCBorder = cardTemplate.find("#MCBorder")
 
+
 		// colour
 		let colour = database.definitions.groupColours[c.group]
 		eFrame.css({fill: "#" + colour})
+		eROMarker.css({fill: "#" + colour})
+		eROText.attr({class: "roText"})
+		eROText.addClass(rgbToHsl(hexToRgb(colour)).l > .5 ? "cDark" : "cLight")
+		if (c.readonly) eROMarker.show()
+		else eROMarker.hide()
 
 		// text
 		eName.text(c.name)
 		eInfo.text("[" + c.type + "]" + (c.modifier ? " (" + c.modifier + ")" : "") + (c.version ? " v" + c.version : ""))
 		eDescription.text(c.description)
+		eTitleNext.text("Next" + (c.readonly ? " (Readonly)" : ""))
 
 		// microcontroller
 		eMicrocontroller.attr({transform: "translate(" + (1680 - 120 * (c.width - 1)) + ",120)"})
@@ -174,12 +184,12 @@ async function execImages() {
 			let nodeColour = database.definitions.nodeColours[node.type]
 
 			let eNodeBox = SVG("<rect class=\"cBack nodeBox\" width=\"110\" height=\"110\" rx=\"15\" ry=\"15\"/>")
-			let eNodeIcon = SVG(node.mode ? "<circle style=\"fill: #" + nodeColour + ";\" r=\"15\"/>\n" : "<circle style=\"stroke-width: 10px; fill: none; stroke: #" + nodeColour + ";\"  r=\"25\"/>")
+			let eNodeIcon = SVG(node.mode ? "<circle style=\"stroke-width: 10px; fill: none; stroke: #" + nodeColour + ";\"  r=\"25\"/>" : "<circle style=\"fill: #" + nodeColour + ";\" r=\"15\"/>\n")
 			let eNode = SVG("<g></g>")
 
 			eNodeBox.attr({x: 5, y: 5})
 			eNodeIcon.attr({cx: 60, cy: 60})
-			eNode.attr({transform: "translate(" + node.position.x*120 + "," + node.position.z*120 + ")"})
+			eNode.attr({transform: "translate(" + node.position.x*120 + "," + (c.length - node.position.z - 1)*120 + ")"})
 
 			eNode.add(eNodeBox)
 			eNode.add(eNodeIcon)
@@ -188,9 +198,9 @@ async function execImages() {
 		eMicrocontroller.find("#Nodes").replace(eNodes);
 
 		let svgString = fixSVG(cardTemplate.svg());
-		let p1 = fs.promises.writeFile(mPath + "Export/Cards/" + getFilePath(c) + ".svg", svgString)
+		let p1 = fs.promises.writeFile(mPath + "Export/Cards/" + c.identifier + ".svg", svgString)
 		let p2 = convert(svgString, {height: 1080, width: 1920})
-		p2.then(png => fs.createWriteStream(mPath + "Export/Cards/" + getFilePath(c) + ".png").write(png))
+		p2.then(png => fs.createWriteStream(mPath + "Export/Cards/" + c.identifier + ".png").write(png))
 		promises.push(p1)
 		promises.push(p2)
 	}
@@ -214,10 +224,12 @@ data = {
 	},
 	fromFileName: (file) => {
 		let info = data.matchInfo(file)
+		console.log(info[1]);
 		return {
 			identifier: "[" + info[1] + "] " + info[2] + (info[3] ? " (" + info[3] + ")" : ""),
 			type: info[1],
 			name: info[2],
+			readonly: info[1].indexOf("RO") > -1,
 			modifier: info[3],
 			version: (info[4] ? info[4].replaceAll("_", ".") : undefined)
 		}
@@ -235,7 +247,7 @@ data = {
 			nodes.push({
 				label: n["@_label"] || "",
 				description: n["@_description"] || "",
-				mode: (n["@_mode"] === "1"), // false is input, true is output
+				mode: (n["@_mode"] === "1"), // true is input, false is output
 				type: Number(n["@_type"]) || 0,
 				position: n.position && {
 					x: Number(n.position["@_x"]) || 0,
