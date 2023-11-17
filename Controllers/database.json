@@ -26,6 +26,28 @@
 			"6": "Video"
 		}
 	},
+	"groups": {
+		"System": {
+			"name": "System",
+			"identifier": "[Group] System"
+		},
+		"Decouple": {
+			"name": "Decouple",
+			"identifier": "[Group] Decouple"
+		},
+		"Drivetrain": {
+			"name": "Drivetrain",
+			"identifier": "[Group] Drivetrain"
+		},
+		"Lighting": {
+			"name": "Lighting",
+			"identifier": "[Group] Lighting"
+		},
+		"Passenger": {
+			"name": "Passenger",
+			"identifier": "[Group] Passenger"
+		}
+	},
 	"controllers": {
 		"[Interface] Decouple": {
 			"identifier": "[Interface] Decouple",

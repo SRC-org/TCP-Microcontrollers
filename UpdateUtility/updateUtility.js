@@ -39,7 +39,7 @@ async function start() {
 
 // Register
 async function execRegister(index) {
-	let wrongFormat = () => console.log("\x1b[33m%s\x1b[0m", "wrong format, please use: -r controller,controller group,group")
+	let wrongFormat = () => console.log("\x1b[33m%s\x1b[0m", "wrong format, please use: -r controller1,controller2,... group1,group2,...")
 
 	let arg1 = args[index+1], arg2  = args[index+2]
 	if (!(arg1 && arg2 && !arg1.startsWith("-") && !arg2.startsWith("-"))) return wrongFormat()
@@ -110,10 +110,11 @@ async function execImages() {
 
 	let promises = []
 
-	//if (!fs.existsSync(mPath + "Export/Thumbnails/")) fs.mkdirSync(mPath + "Export/Thumbnails/")
-	//if (!fs.existsSync(mPath + "Thumbnails/Export/" + c.group + " Group/")) fs.mkdirSync(mPath + "Thumbnails/Export/" + c.group + " Group/")
+	if (!fs.existsSync(mPath + "Export/")) fs.mkdirSync(mPath + "Export/")
+	if (!fs.existsSync(mPath + "Export/Thumbnails/")) fs.mkdirSync(mPath + "Export/Thumbnails/")
+	if (!fs.existsSync(mPath + "Export/Cards/")) fs.mkdirSync(mPath + "Export/Cards/")
 
-	let genThumbnail = c => {
+	let genThumbnail = (c, g) => {
 
 		// elements
 		let eFrame = thumbnailTemplate.find("#Frame")
@@ -121,7 +122,7 @@ async function execImages() {
 		let eType = thumbnailTemplate.find("#Type")
 
 		// colour
-		let colour = database.definitions.groupColours[c.group]
+		let colour = database.definitions.groupColours[g ? c.name : c.group]
 		eFrame.css({fill: "#" + colour})
 		eType.attr({class: "type"})
 		eType.addClass(rgbToHsl(hexToRgb(colour)).l > .5 ? "cDark" : "cLight")
@@ -132,7 +133,7 @@ async function execImages() {
 			let n = [c.name.substring(0, i), c.name.substring(i+1)]
 			eName.attr({dy:-80}).text(add => n.map(c => add.tspan(c).attr({x:0, y:0})))
 		} else eName.text(c.name)
-		eType.first().text(c.type)
+		eType.first().text(g ? "Group" : c.type)
 
 		let svgString = fixSVG(thumbnailTemplate.svg());
 		let p1 = fs.promises.writeFile(mPath + "Export/Thumbnails/" + c.identifier + ".svg", svgString)
@@ -210,6 +211,10 @@ async function execImages() {
 		genCard(c)
 	})
 
+	Object.values(database.groups).forEach(g => {
+		genThumbnail(g, true)
+	})
+
 	await Promise.all(promises)
 }
 
@@ -224,7 +229,6 @@ data = {
 	},
 	fromFileName: (file) => {
 		let info = data.matchInfo(file)
-		console.log(info[1]);
 		return {
 			identifier: "[" + info[1] + "] " + info[2] + (info[3] ? " (" + info[3] + ")" : ""),
 			type: info[1],
@@ -243,7 +247,6 @@ data = {
 		let nodes = []
 		xml.microprocessor.nodes.n.forEach((n) => {
 			n = n.node
-			//console.log(n["@_label"])
 			nodes.push({
 				label: n["@_label"] || "",
 				description: n["@_description"] || "",
