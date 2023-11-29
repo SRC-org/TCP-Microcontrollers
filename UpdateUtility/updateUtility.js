@@ -66,7 +66,7 @@ async function execCopy() {
 	// TODO: ask for confirmation
 
 	files.forEach((file) => {
-		let fData = data.fromFileName(file)
+		let fData = data.fromName(file)
 		let dData = data.fromDatabase(fData.identifier)
 		if (!dData || !dData.group) // unknown group
 			return console.log("\x1b[33m%s\x1b[0m", "unknown group for controller: \"" + fData.identifier + "\", controller was not copied, please register it using -r")
@@ -88,7 +88,7 @@ async function execDatabase() {
 		promise.then(groupFiles => groupFiles.filter(file => file.startsWith("SRC-TCP") && file.endsWith(".xml")).forEach((file) => controllers.push({
 			path: cPath + dir + "/",
 			file: file,
-			nameData: data.fromFileName(file),
+			nameData: data.fromName(file),
 			fileData: data.fromFile(cPath + dir + "/" + file)
 		})))
 		promises.push(promise)
@@ -96,12 +96,14 @@ async function execDatabase() {
 	await Promise.all(promises)
 
 	controllers.forEach(info => {
-		if (database.controllers[info.nameData.identifier] === undefined) {
-			console.log("\x1b[33m%s\x1b[0m", "controller with no database entry: \"" + info.nameData.identifier + "\", please register it using -r")
-			database.controllers[info.nameData.identifier] = {}
-		}
-		mergeJSON(database.controllers[info.nameData.identifier], info.nameData)
-		mergeJSON(database.controllers[info.nameData.identifier], info.fileData)
+		if (info.nameData.identifier !== info.fileData.identifier)
+			return console.log("\x1b[33m%s\x1b[0m", "identifier mismatch: \"" + info.nameData.identifier + "\" (filename) // \"" + info.fileData.identifier + "\" (name in xml file)")
+		if (database.controllers[info.fileData.identifier] === undefined)
+			return console.log("\x1b[33m%s\x1b[0m", "controller with no database entry: \"" + info.fileData.identifier + "\", please register it using -r")
+			//database.controllers[info.data.identifier] = {}
+
+		//mergeJSON(database.controllers[info.nameData.identifier], info.nameData)
+		mergeJSON(database.controllers[info.fileData.identifier], info.fileData)
 	})
 }
 
@@ -156,7 +158,6 @@ async function execImages() {
 		let eMicrocontroller = cardTemplate.find("#Microcontroller")
 		let eMCBackground = cardTemplate.find("#MCBackground")
 		let eMCBorder = cardTemplate.find("#MCBorder")
-
 
 		// colour
 		let colour = database.definitions.groupColours[c.group]
@@ -223,26 +224,34 @@ async function execSteam() {
 	console.log("steam upload not supported yet")
 }
 
+/*
+ * new regex:
+ * /SRC-TCP *\[(.*?)\] *(.*?(?= *v\d| *\.| *\(| *$)) *(\((.*?)\))? *v?([0-9._]*[0-9])?/gm
+ *
+ * old regex:
+ * /(?<=\[)(.*?)(?=\] )(?:\] )(.*?)(?=\.| \(| v[\d\_]*\.xml)(?:(?: \()([a-zA-Z\s]+)(?:\)))?(?: v)?([\d\_]*)?/g
+ */
+
 data = {
-	matchInfo: (file) => {
-		return file.matchAll(/(?<=\[)(.*?)(?=\] )(?:\] )(.*?)(?=\.| \(| v[\d\_]*\.xml)(?:(?: \()([a-zA-Z\s]+)(?:\)))?(?: v)?([\d\_]*)?/g).next().value // I will forget how this works tomorrow
+	matchInfo: (str) => {
+		return str.matchAll(/SRC-TCP *\[(.*?)\] *(.*?(?= *v\d| *\.| *\(| *$)) *(\((.*?)\))? *v?([0-9._]*[0-9])?/gm).next().value // I will forget how this works tomorrow
 	},
-	fromFileName: (file) => {
-		let info = data.matchInfo(file)
+	fromName: (name) => {
+		let info = data.matchInfo(name)
 		return {
-			identifier: "[" + info[1] + "] " + info[2] + (info[3] ? " (" + info[3] + ")" : ""),
+			identifier: "[" + info[1] + "] " + info[2] + (info[3] ? " (" + info[4] + ")" : ""),
 			type: info[1],
 			name: info[2],
 			readonly: info[1].indexOf("RO") > -1,
-			modifier: info[3],
-			version: (info[4] ? info[4].replaceAll("_", ".") : undefined)
+			modifier: info[4],
+			version: (info[5] ? info[5].replaceAll("_", ".") : undefined)
 		}
 	},
 	fromDatabase: (identifier) => {
 		return database.controllers[identifier]
 	},
 	fromFile: (path) => {
-		rawXML = fs.readFileSync(path)
+		let rawXML = fs.readFileSync(path)
 		let xml = swXMLParser.parse(rawXML)
 		let nodes = []
 		xml.microprocessor.nodes.n.forEach((n) => {
@@ -258,21 +267,18 @@ data = {
 				} || {x: 0, z: 0}
 			})
 		})
-		return {
+		return mergeJSON(data.fromName(xml.microprocessor["@_name"]), {
 			description: xml.microprocessor["@_description"],
 			width: xml.microprocessor["@_width"],
 			length: xml.microprocessor["@_length"],
 			nodes: nodes
-		}
+		})
 	}
 }
 
 mergeJSON = (old, updated) => {
 	for (let attr in updated) old[attr] = updated[attr]
-}
-
-getFilePath = c => {
-	return c.group + " Group/SRC-TCP " + c.identifier + (c.version ? " v" + c.version.replaceAll(".", "_") : "")
+	return old
 }
 
 hexToRgb = hex => {
