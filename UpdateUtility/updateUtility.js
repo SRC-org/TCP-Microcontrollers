@@ -70,10 +70,11 @@ async function execCopy() {
 		let dData = data.fromDatabase(fData.identifier)
 		if (!dData || !dData.group) // unknown group
 			return console.log("\x1b[33m%s\x1b[0m", "unknown group for controller: \"" + fData.identifier + "\", controller was not copied, please register it using -r")
-		if (dData.version && dData.version !== fData.version) // replace old version if present
-			promises.push(fs.promises.unlink(cPath + dData.group + " Group/SRC-TCP " + fData.identifier + " v" + dData.version.replaceAll(".", "_") + ".xml"))
-		dData.version = fData.version // update version in database
-		promises.push(fs.promises.copyFile(swPath + "/" + file, cPath + dData.group + " Group/" + file)) // copy file
+		/*if (dData.version && dData.version !== fData.version) // replace old version if present
+			promises.push(fs.promises.unlink(cPath + dData.group + " Group/SRC-TCP " + fData.identifier + " v" + dData.version.replaceAll(".", "_") + ".xml"))*/
+		//dData.version = fData.version // update version in database
+		//promises.push(fs.promises.copyFile(swPath + "/" + file, cPath + dData.group + " Group/" + file)) // copy file
+		promises.push(fs.promises.copyFile(swPath + "/" + file, cPath + dData.group + " Group/SRC-TCP " + fData.identifier + ".xml")) // copy file
 	})
 	await Promise.all(promises)
 }
