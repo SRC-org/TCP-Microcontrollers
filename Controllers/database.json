@@ -101,7 +101,7 @@
 				},
 				{
 					"label": "Decouple Rear",
-					"description": "Connects to rear coupler to disconnect (in case of being connected in reverse orientation)",
+					"description": "Connects to rear coupler to disconnect",
 					"mode": false,
 					"type": 0,
 					"position": {
@@ -313,7 +313,7 @@
 				},
 				{
 					"label": "Slip",
-					"description": "Slip input from the wheels",
+					"description": "Slip input from Bogie",
 					"mode": true,
 					"type": 0,
 					"position": {
@@ -322,7 +322,7 @@
 					}
 				},
 				{
-					"label": "Speed",
+					"label": "Current Speed",
 					"description": "Current speed (m/s, directional)",
 					"mode": true,
 					"type": 1,
@@ -333,7 +333,7 @@
 				},
 				{
 					"label": "Wheel RPS",
-					"description": "RPS at the wheels (from torque meter)",
+					"description": "RPS at the wheels",
 					"mode": true,
 					"type": 1,
 					"position": {
@@ -359,7 +359,7 @@
 			"group": "Drivetrain",
 			"type": "Module",
 			"name": "Drivetrain",
-			"version": "1.0",
+			"version": "1.3",
 			"description": "Communicates with main, other trains, and the drive interface",
 			"width": "2",
 			"length": "3",

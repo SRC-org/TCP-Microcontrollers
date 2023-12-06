@@ -486,6 +486,7 @@
 				<object id="214" count="3">
 					<pos x="-3.75" y="-28.5"/>
 					<inc component_id="46"/>
+					<in1/>
 					<in2 component_id="130"/>
 					<in3 component_id="160"/>
 				</object>
@@ -503,6 +504,7 @@
 				<object id="239" count="3">
 					<pos x="-3.75" y="-24.25"/>
 					<inc component_id="49"/>
+					<in1/>
 					<in2 component_id="130"/>
 					<in3 component_id="160"/>
 				</object>
@@ -3831,6 +3833,7 @@
 			<c64 id="214" count="3">
 				<pos x="-3.75" y="-28.5"/>
 				<inc component_id="46"/>
+				<in1/>
 				<in2 component_id="130"/>
 				<in3 component_id="160"/>
 			</c64>
@@ -3844,6 +3847,7 @@
 			<c66 id="239" count="3">
 				<pos x="-3.75" y="-24.25"/>
 				<inc component_id="49"/>
+				<in1/>
 				<in2 component_id="130"/>
 				<in3 component_id="160"/>
 			</c66>

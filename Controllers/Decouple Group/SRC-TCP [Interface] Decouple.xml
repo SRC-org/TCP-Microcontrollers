@@ -20,7 +20,7 @@
 			</node>
 		</n>
 		<n id="39" component_id="791">
-			<node label="Decouple Rear" description="Connects to rear coupler to disconnect (in case of being connected in reverse orientation)">
+			<node label="Decouple Rear" description="Connects to rear coupler to disconnect">
 				<position x="1" z="1"/>
 			</node>
 		</n>
