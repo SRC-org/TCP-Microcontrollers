@@ -3,14 +3,17 @@
   <defs>
     <style>
 
+      @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100..800');
+      @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900');
+
       .name {
-        font-family: Roboto-Bold, Roboto;
+        font-family: Roboto;
         font-size: 80px;
         font-weight: 700;
       }
 
       .type {
-        font-family: JetBrainsMono-Medium, 'JetBrains Mono';
+        font-family: 'JetBrains Mono';
         font-size: 50px;
         font-variation-settings: 'wght' 500;
       }

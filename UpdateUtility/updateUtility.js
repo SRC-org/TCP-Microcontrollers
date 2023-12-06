@@ -170,7 +170,8 @@ async function execImages() {
 
 		// text
 		eName.text(c.name)
-		eInfo.text("[" + c.type + "]" + (c.modifier ? " (" + c.modifier + ")" : "") + (c.version ? " v" + c.version : ""))
+		//eInfo.text("[" + c.type + "]" + (c.modifier ? " (" + c.modifier + ")" : "") + (c.version ? " v" + c.version : ""))
+		eInfo.text(c.identifier + (c.version ? " v" + c.version : ""))
 		eDescription.text(c.description)
 		eTitleNext.text("Next" + (c.readonly ? " (Readonly)" : ""))
 
@@ -267,6 +268,16 @@ data = {
 				} || {x: 0, z: 0}
 			})
 		})
+
+		// sorting nodes
+		/*nodes.sort((a, b) => {
+			return a.type - b.type || b.mode - a.mode;
+		});
+
+		console.log(xml.microprocessor["@_name"])
+		nodes.map(node => console.log(node.type + ", " + node.mode));
+		console.log("end")*/
+
 		return mergeJSON(data.fromName(xml.microprocessor["@_name"]), {
 			description: xml.microprocessor["@_description"],
 			width: xml.microprocessor["@_width"],

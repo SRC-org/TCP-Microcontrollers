@@ -3,38 +3,35 @@
   <defs>
     <style>
 
+      @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100..800');
+      @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900');
+
       .info {
-        font-family: JetBrainsMono-Medium, 'JetBrains Mono';
-        font-size: 32px;
+        font-family: 'JetBrains Mono';
+        font-size: 30px;
         font-variation-settings: 'wght' 500;
       }
 
       .name {
-        font-family: Roboto-Bold, Roboto;
+        font-family: Roboto;
         font-size: 111px;
         font-weight: 700;
       }
 
-      .description {
-        font-family: Roboto-Light, Roboto;
-        font-size: 40px;
+      .description, .hierarchyText {
+        font-family: Roboto;
+        font-size: 35px;
         font-weight: 300;
       }
 
-      .hierarchyText {
-        font-family: JetBrainsMono-Regular, 'JetBrains Mono';
-        font-size: 40px;
-        font-variation-settings: 'wght' 400;
-      }
-
       .hierarchyTitle {
-        font-family: Roboto-Medium, Roboto;
-        font-size: 55px;
+        font-family: Roboto;
+        font-size: 50px;
         font-weight: 500;
       }
 
       .roText {
-        font-family: JetBrainsMono-Medium, 'JetBrains Mono';
+        font-family: 'JetBrains Mono';
         font-weight: 500;
         font-size: 50px;
       }
@@ -75,11 +72,11 @@
     <rect id="MCBackground" class="cBack" x="1680" y="120" width="120" height="120" rx="20" ry="20"/>
     <g id="Nodes"></g>
   </g>
-  <text id="Next" class="hierarchyText cDark" transform="translate(600 754.6)"><tspan x="0" y="0">next</tspan></text>
-  <text id="Previous" class="hierarchyText cDark" transform="translate(120 754.6)"><tspan x="0" y="0">prev</tspan></text>
-  <text id="TitleNext" class="hierarchyTitle cDark" transform="translate(600 647.05)"><tspan x="0" y="0">Next</tspan></text>
-  <text id="TitlePrevious" class="hierarchyTitle cDark" transform="translate(120 647.05)"><tspan x="0" y="0">Previous</tspan></text>
-  <text id="Description" class="description cDark" transform="translate(120 394.22)"><tspan x="0" y="0">Description_</tspan></text>
-  <text id="Name" class="name cDark" transform="translate(120 239.96)"><tspan x="0" y="0">Name_</tspan></text>
-  <text id="Info" class="info cDark" transform="translate(120 119.68)"><tspan x="0" y="0">Info_</tspan></text>
+  <text id="Next" class="hierarchyText cDark" transform="translate(600 749.94)"><tspan x="0" y="0">next</tspan></text>
+  <text id="Previous" class="hierarchyText cDark" transform="translate(120 749.94)"><tspan x="0" y="0">prev</tspan></text>
+  <text id="TitleNext" class="hierarchyTitle cDark" transform="translate(600 642.77)"><tspan x="0" y="0">Next</tspan></text>
+  <text id="TitlePrevious" class="hierarchyTitle cDark" transform="translate(120 642.77)"><tspan x="0" y="0">Previous</tspan></text>
+  <text id="Description" class="description cDark" transform="translate(120 389.94)"><tspan x="0" y="0">Description</tspan></text>
+  <text id="Name" class="name cDark" transform="translate(120 239.96)"><tspan x="0" y="0">Name</tspan></text>
+  <text id="Info" class="info cDark" transform="translate(120 119.68)"><tspan x="0" y="0">Info</tspan></text>
 </svg>
