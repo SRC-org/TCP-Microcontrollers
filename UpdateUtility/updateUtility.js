@@ -1,10 +1,10 @@
 fs = require("fs")
 path = require("path")
 database = require("../Controllers/database.json")
+
 const { XMLParser/*, XMLBuilder, XMLValidator*/ } = require("fast-xml-parser")
-const { createSVGWindow } = require("svgdom")
-const { SVG, registerWindow } = require("@svgdotjs/svg.js")
 const { convert } = require("convert-svg-to-png")
+const { genControllerCard, genControllerThumbnail, genGroupThumbnail } = require("./mediaElements")
 
 const swPath = process.env.APPDATA + "/Stormworks/data/microprocessors/"
 const cPath = path.join(__dirname, "../Controllers/")
@@ -14,13 +14,6 @@ const mPath = path.join(__dirname, "../Media/")
 let args = process.argv
 
 swXMLParser = new XMLParser({ignoreAttributes: false})
-
-// load svg templates
-const window = createSVGWindow()
-const document = window.document
-registerWindow(window, document)
-let thumbnailTemplate = SVG().svg(fs.readFileSync(mPath + "Templates/Thumbnail.svg").toString())
-let cardTemplate = SVG().svg(fs.readFileSync(mPath + "Templates/Card.svg").toString())
 
 // node updateUtility -args
 // -r:	registers a new controller into the database (identifier and group)
@@ -111,112 +104,51 @@ async function execDatabase() {
 // Images
 async function execImages() {
 
-	let promises = []
-
 	if (!fs.existsSync(mPath + "Export/")) fs.mkdirSync(mPath + "Export/")
 	if (!fs.existsSync(mPath + "Export/Thumbnails/")) fs.mkdirSync(mPath + "Export/Thumbnails/")
 	if (!fs.existsSync(mPath + "Export/Cards/")) fs.mkdirSync(mPath + "Export/Cards/")
 
-	let genThumbnail = (c, g) => {
-
-		// elements
-		let eFrame = thumbnailTemplate.find("#Frame")
-		let eName = thumbnailTemplate.find("#Name")
-		let eType = thumbnailTemplate.find("#Type")
-
-		// colour
-		let colour = database.definitions.groupColours[g ? c.name : c.group]
-		eFrame.css({fill: "#" + colour})
-		eType.attr({class: "type"})
-		eType.addClass(rgbToHsl(hexToRgb(colour)).l > .5 ? "cDark" : "cLight")
-
-		// text
-		if (c.name.length > 10) {
-			let i = c.name.substring(0, 10).lastIndexOf(" ")
-			let n = [c.name.substring(0, i), c.name.substring(i+1)]
-			eName.attr({dy:-80}).text(add => n.map(c => add.tspan(c).attr({x:0, y:0})))
-		} else eName.text(c.name)
-		eType.first().text(g ? "Group" : c.type)
-
-		let svgString = fixSVG(thumbnailTemplate.svg());
-		let p1 = fs.promises.writeFile(mPath + "Export/Thumbnails/" + c.identifier + ".svg", svgString)
-		let p2 = convert(svgString, {height: 512, width: 512})
-		p2.then(png => fs.createWriteStream(mPath + "Export/Thumbnails/" + c.identifier + ".png").write(png))
-		promises.push(p1)
-		promises.push(p2)
-	}
-
-	let genCard = c => {
-
-		// elements
-		let eFrame = cardTemplate.find("#Frame")
-		let eName = cardTemplate.find("#Name")
-		let eInfo = cardTemplate.find("#Info")
-		let eDescription = cardTemplate.find("#Description")
-		let eTitleNext = cardTemplate.find("#TitleNext")
-		let eROMarker = cardTemplate.find("#ROMarker")
-		let eROText = cardTemplate.find("#ROText")
-		let eMicrocontroller = cardTemplate.find("#Microcontroller")
-		let eMCBackground = cardTemplate.find("#MCBackground")
-		let eMCBorder = cardTemplate.find("#MCBorder")
-
-		// colour
-		let colour = database.definitions.groupColours[c.group]
-		eFrame.css({fill: "#" + colour})
-		eROMarker.css({fill: "#" + colour})
-		eROText.attr({class: "roText"})
-		eROText.addClass(rgbToHsl(hexToRgb(colour)).l > .5 ? "cDark" : "cLight")
-		if (c.readonly) eROMarker.show()
-		else eROMarker.hide()
-
-		// text
-		eName.text(c.name)
-		//eInfo.text("[" + c.type + "]" + (c.modifier ? " (" + c.modifier + ")" : "") + (c.version ? " v" + c.version : ""))
-		eInfo.text(c.identifier + (c.version ? " v" + c.version : ""))
-		eDescription.text(c.description)
-		eTitleNext.text("Next" + (c.readonly ? " (Readonly)" : ""))
-
-		// microcontroller
-		eMicrocontroller.attr({transform: "translate(" + (1680 - 120 * (c.width - 1)) + ",120)"})
-		let pos = {x: 0, y: 0, width: 120 * c.width, height: 120 * c.length}
-		eMCBackground.attr(pos)
-		eMCBorder.attr(pos)
-
-		// nodes
-		let eNodes = SVG("<g id=\"Nodes\"></g>")
-		c.nodes.forEach(node => {
-			let nodeColour = database.definitions.nodeColours[node.type]
-
-			let eNodeBox = SVG("<rect class=\"cBack nodeBox\" width=\"110\" height=\"110\" rx=\"15\" ry=\"15\"/>")
-			let eNodeIcon = SVG(node.mode ? "<circle style=\"stroke-width: 10px; fill: none; stroke: #" + nodeColour + ";\"  r=\"25\"/>" : "<circle style=\"fill: #" + nodeColour + ";\" r=\"15\"/>\n")
-			let eNode = SVG("<g></g>")
-
-			eNodeBox.attr({x: 5, y: 5})
-			eNodeIcon.attr({cx: 60, cy: 60})
-			eNode.attr({transform: "translate(" + node.position.x*120 + "," + (c.length - node.position.z - 1)*120 + ")"})
-
-			eNode.add(eNodeBox)
-			eNode.add(eNodeIcon)
-			eNodes.add(eNode)
-		})
-		eMicrocontroller.find("#Nodes").replace(eNodes);
-
-		let svgString = fixSVG(cardTemplate.svg());
-		let p1 = fs.promises.writeFile(mPath + "Export/Cards/" + c.identifier + ".svg", svgString)
-		let p2 = convert(svgString, {height: 1080, width: 1920})
-		p2.then(png => fs.createWriteStream(mPath + "Export/Cards/" + c.identifier + ".png").write(png))
-		promises.push(p1)
-		promises.push(p2)
-	}
+	let promises = []
+	let SVGs = []
+	let PNGs = []
 
 	Object.values(database.controllers).forEach(c => {
-		genThumbnail(c)
-		genCard(c)
+		SVGs.push(mergeJSON(genControllerThumbnail(c), {
+			path: mPath + "Export/Thumbnails/" + c.identifier
+		}))
+		SVGs.push(mergeJSON(genControllerCard(c), {
+			path: mPath + "Export/Cards/" + c.identifier
+		}))
 	})
 
 	Object.values(database.groups).forEach(g => {
-		genThumbnail(g, true)
+		SVGs.push(mergeJSON(genGroupThumbnail(g), {
+			path: mPath + "Export/Thumbnails/" + g.identifier
+		}))
 	})
+
+	// convert to png
+	SVGs.map(svg => {
+		let p = convert(svg.data, svg.dimensions)
+		p.then(png => PNGs.push({
+			path: svg.path,
+			data: png
+		}))
+		promises.push(p)
+	})
+
+	await Promise.all(promises)
+	promises = []
+
+	// write all files
+	SVGs.map(svg => promises.push(fs.promises.writeFile(svg.path + ".svg", svg.data)))
+	PNGs.map(png => promises.push(new Promise((resolve, reject) => {
+		const file = fs.createWriteStream(png.path + ".png")
+		file.write(png.data)
+		file.end()
+		file.on("finish", resolve)
+		file.on("error", reject)
+	})))
 
 	await Promise.all(promises)
 }
@@ -272,11 +204,11 @@ data = {
 
 		// sorting nodes
 		/*nodes.sort((a, b) => {
-			return a.type - b.type || b.mode - a.mode;
-		});
+			return a.type - b.type || b.mode - a.mode
+		})
 
 		console.log(xml.microprocessor["@_name"])
-		nodes.map(node => console.log(node.type + ", " + node.mode));
+		nodes.map(node => console.log(node.type + ", " + node.mode))
 		console.log("end")*/
 
 		return mergeJSON(data.fromName(xml.microprocessor["@_name"]), {
@@ -291,33 +223,6 @@ data = {
 mergeJSON = (old, updated) => {
 	for (let attr in updated) old[attr] = updated[attr]
 	return old
-}
-
-hexToRgb = hex => {
-	let res = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec("#" + hex)
-	return res ? {
-		r: parseInt(res[1], 16),
-		g: parseInt(res[2], 16),
-		b: parseInt(res[3], 16)
-	} : null
-}
-
-rgbToHsl = rgb => {
-	let r = rgb.r / 255
-	let g = rgb.g / 255
-	let b = rgb.b / 255
-	const l = Math.max(r, g, b)
-	const s = l - Math.min(r, g, b)
-	const h = s ? l === r ? (g - b) / s : l === g ? 2 + (b - r) / s : 4 + (r - g) / s : 0
-	return {
-		h: 60 * h < 0 ? 60 * h + 360 : 60 * h,
-		s: s ? (l <= 0.5 ? s / (2 * l - s) : s / (2 - (2 * l - s))) : 0,
-		l: (2 * l - s) / 2
-	}
-}
-
-fixSVG = svg => {
-	return svg.replaceAll(/svgjs:data="{.*?}"/gm, "").replace(/<svg.*?>/, "").replace(/<\/svg><\/svg>/, "</svg>")
 }
 
 // run
