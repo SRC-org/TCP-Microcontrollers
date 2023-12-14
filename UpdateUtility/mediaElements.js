@@ -15,16 +15,78 @@ registerWindow(window, document)
 // load templates
 let thumbnailTemplate = SVG().svg(fs.readFileSync(mPath + "Templates/Thumbnail.svg").toString())
 let cardTemplate = SVG().svg(fs.readFileSync(mPath + "Templates/Card.svg").toString())
+let nodesTemplate = SVG().svg(fs.readFileSync(mPath + "Templates/Nodes.svg").toString())
 
 // text width calculations
 getTextWidthFunction = font => options => text => textSVG.loadSync(mPath + 'Fonts/' + font).getMetrics(text, options).width
 textWidth = {
 	robotoLight: getTextWidthFunction('Roboto-Light.ttf'),
+	robotoMedium: getTextWidthFunction('Roboto-Medium.ttf'),
 	robotoBold: getTextWidthFunction('Roboto-Bold.ttf')
 }
 
 /*
  * Elements
+ */
+
+genNode = n => {
+	let nodeColour = database.definitions.nodeColours[n.type]
+
+	let eNodeBox = SVG("<rect class=\"cBack nodeBox\" width=\"110\" height=\"110\" rx=\"15\" ry=\"15\"/>")
+	let eNodeIcon = SVG(n.mode ? "<circle style=\"stroke-width: 10px; fill: none; stroke: #" + nodeColour + ";\"  r=\"25\"/>" : "<circle style=\"fill: #" + nodeColour + ";\" r=\"15\"/>\n")
+	let eNode = SVG("<g></g>")
+
+	eNodeBox.attr({x: 5, y: 5})
+	eNodeIcon.attr({cx: 60, cy: 60})
+	//eNode.attr({transform: "translate(" + node.position.x*120 + "," + (c.length - node.position.z - 1)*120 + ")"})
+
+	eNode.add(eNodeBox)
+	eNode.add(eNodeIcon)
+
+	return {
+		dimensions: { width: 120, height: 120 },
+		data: fixSVG(eNode.svg())
+	}
+}
+
+genNodeInfo = n => {
+
+	let eNode = SVG(genNode(n).data)
+	let eInfo = SVG("<text class=\"mono\" transform=\"translate(150 42)\"></text>")
+	let eLabel = SVG("<text class=\"heading cDark\" transform=\"translate(150 100)\"></text>")
+	let eDescription = SVG("<text class=\"description cDark\" transform=\"translate(150 180)\"></text>\n")
+	let eNodeInfo = SVG("<g></g>")
+
+	// text & positioning
+	eInfo.text((database.definitions.nodeTypes[n.type] + " " + database.definitions.nodeModes[n.mode]).toUpperCase())
+
+	let y = 120
+
+	let wLabel = wrapText(n.label, textWidth.robotoMedium({fontSize: 50}), 645)
+	eLabel.font({size: 60, leading: 1})
+	eLabel.text(add => wLabel.map(line => add.tspan(line).newLine()))
+	y += (wLabel.length-1) * 60
+
+	let wDescription = wrapText(n.description, textWidth.robotoMedium({fontSize: 35}), 645)
+	eDescription.attr({y: y - 180})
+	eDescription.font({size: 45, leading: 1})
+	eDescription.text(add => wDescription.map(line => add.tspan(line).newLine()))
+	y += (wDescription.length-1) * 45
+
+
+	eNodeInfo.add(eNode)
+	eNodeInfo.add(eInfo)
+	eNodeInfo.add(eLabel)
+	eNodeInfo.add(eDescription)
+
+	return {
+		dimensions: { width: 795, height: y },
+		data: fixSVG(eNodeInfo.svg())
+	}
+}
+
+/*
+ * Final Media
  */
 
 genThumbnail = o => {
@@ -43,7 +105,7 @@ genThumbnail = o => {
 	// text
 	let wName = wrapText(o.name, textWidth.robotoBold({fontSize: 80}), 392)
 	eName.attr({dy: -80 * (wName.length-1)})
-	eName.text(add => wName.map(l => add.tspan(l).attr({x: 0, y: 0})))
+	eName.text(add => wName.map(line => add.tspan(line).attr({x: 0, y: 0})))
 	eType.first().text(o.type)
 
 	return {
@@ -94,7 +156,7 @@ genControllerCard = c => {
 	// text
 	eName.text(c.name)
 	eInfo.text(c.identifier + (c.version ? " v" + c.version : ""))
-	eDescription.attr({dy: -45}).text(add => wrapText(c.description, textWidth.robotoLight({fontSize: 35}), 920).map(l => add.tspan(l).attr({x: 0, y: 0})))
+	eDescription.attr({dy: -45}).text(add => wrapText(c.description, textWidth.robotoLight({fontSize: 35}), 920).map(line => add.tspan(line).attr({x: 0, y: 0})))
 	eTitleNext.text("Next" + (c.readonly ? " (Readonly)" : ""))
 
 	// microcontroller
@@ -105,21 +167,7 @@ genControllerCard = c => {
 
 	// nodes
 	let eNodes = SVG("<g id=\"Nodes\"></g>")
-	c.nodes.forEach(node => {
-		let nodeColour = database.definitions.nodeColours[node.type]
-
-		let eNodeBox = SVG("<rect class=\"cBack nodeBox\" width=\"110\" height=\"110\" rx=\"15\" ry=\"15\"/>")
-		let eNodeIcon = SVG(node.mode ? "<circle style=\"stroke-width: 10px; fill: none; stroke: #" + nodeColour + ";\"  r=\"25\"/>" : "<circle style=\"fill: #" + nodeColour + ";\" r=\"15\"/>\n")
-		let eNode = SVG("<g></g>")
-
-		eNodeBox.attr({x: 5, y: 5})
-		eNodeIcon.attr({cx: 60, cy: 60})
-		eNode.attr({transform: "translate(" + node.position.x*120 + "," + (c.length - node.position.z - 1)*120 + ")"})
-
-		eNode.add(eNodeBox)
-		eNode.add(eNodeIcon)
-		eNodes.add(eNode)
-	})
+	c.nodes.map(node => eNodes.add(SVG(genNode(node).data).attr({transform: "translate(" + node.position.x*120 + "," + (c.length - node.position.z - 1)*120 + ")"})))
 	eMicrocontroller.find("#Nodes").replace(eNodes)
 
 	return {
@@ -127,6 +175,52 @@ genControllerCard = c => {
 		data: fixSVG(cardTemplate.svg())
 	}
 }
+
+genControllerNodes = c => {
+
+	// elements
+	let eFrame = nodesTemplate.find("#Frame")
+	let eBackground = nodesTemplate.find("#Background")
+	//let eLogo = nodesTemplate.find("#TCPLogo")
+	let eName = nodesTemplate.find("#Name")
+	let eInfo = nodesTemplate.find("#Info")
+
+	// text
+	eName.text(c.name)
+	eInfo.text(c.identifier + (c.version ? " v" + c.version : ""))
+
+	// nodes
+	let eNodes = SVG("<g id=\"Nodes\" transform=\"translate(120 360)\"></g>")
+	let nodes = ([...c.nodes].sort((a, b) => a.type - b.type || b.mode - a.mode)).map(node => genNodeInfo(node)) // sorting
+	let wrap = wrapPartition(nodes, node => node.dimensions.height, 90)
+
+	let y = 0, x = 0
+	nodes.forEach((node, i) => {
+		if (i === wrap.i) {
+			x = 795 + 90
+			y = 0
+		}
+		eNodes.add(SVG(node.data).attr({transform: "translate(" + x + " " + y + ")"}))
+		y += node.dimensions.height + 90
+	})
+	nodesTemplate.find("#Nodes").replace(eNodes)
+
+	// resize
+	let height = 480 + wrap.min
+	nodesTemplate.first().viewbox(0, 0, 1920, height)
+	eFrame.attr({height: height})
+	eBackground.attr({height: height-60})
+	//eLogo.attr({transform: "translate(0, " + (height - 1080) + ")"})
+
+	return {
+		dimensions: { width: 1920, height: 480 + wrap.min },
+		data: fixSVG(nodesTemplate.svg())
+	}
+}
+
+/*
+ * Helper Functions
+ */
 
 hexToRgb = hex => {
 	let res = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec("#" + hex)
@@ -156,6 +250,7 @@ fixSVG = svg => {
 }
 
 wrapText = (text, sizeFunction, max) => {
+	if (text === "") return []
 	text = text.split(' ')
 
 	let i = 0
@@ -169,8 +264,7 @@ wrapText = (text, sizeFunction, max) => {
 }
 
 wrapPartition = (elements, sizeFunction, spacing) => {
-
-	let a = 0, b = elements.reduce((p, c) => p + sizeFunction(c)) + spacing * (elements.length - 1)
+	let a = 0, b = elements.map(e => sizeFunction(e)).reduce((a, b) => a + b) + spacing * (elements.length - 1)
 	let min = b
 
 	for (let i = 0; i < elements.length; i++) {
@@ -184,4 +278,4 @@ wrapPartition = (elements, sizeFunction, spacing) => {
 	return { a: elements, b: [], i: elements.length - 1, min: min }
 }
 
-module.exports = { genControllerThumbnail, genControllerCard, genGroupThumbnail }
+module.exports = { genControllerThumbnail, genControllerCard, genControllerNodes, genGroupThumbnail }

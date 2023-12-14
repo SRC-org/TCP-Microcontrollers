@@ -4,7 +4,7 @@ database = require("../Controllers/database.json")
 
 const { XMLParser/*, XMLBuilder, XMLValidator*/ } = require("fast-xml-parser")
 const { convert } = require("convert-svg-to-png")
-const { genControllerCard, genControllerThumbnail, genGroupThumbnail } = require("./mediaElements")
+const { genControllerCard, genControllerThumbnail, genControllerNodes, genGroupThumbnail } = require("./mediaElements")
 
 const swPath = process.env.APPDATA + "/Stormworks/data/microprocessors/"
 const cPath = path.join(__dirname, "../Controllers/")
@@ -107,38 +107,44 @@ async function execImages() {
 	if (!fs.existsSync(mPath + "Export/")) fs.mkdirSync(mPath + "Export/")
 	if (!fs.existsSync(mPath + "Export/Thumbnails/")) fs.mkdirSync(mPath + "Export/Thumbnails/")
 	if (!fs.existsSync(mPath + "Export/Cards/")) fs.mkdirSync(mPath + "Export/Cards/")
+	if (!fs.existsSync(mPath + "Export/Nodes/")) fs.mkdirSync(mPath + "Export/Nodes/")
 
 	let promises = []
 	let SVGs = []
 	let PNGs = []
 
 	Object.values(database.controllers).forEach(c => {
-		SVGs.push(mergeJSON(genControllerThumbnail(c), {
+		/*SVGs.push(mergeJSON(genControllerThumbnail(c), {
 			path: mPath + "Export/Thumbnails/" + c.identifier
 		}))
 		SVGs.push(mergeJSON(genControllerCard(c), {
 			path: mPath + "Export/Cards/" + c.identifier
+		}))*/
+		SVGs.push(mergeJSON(genControllerNodes(c), {
+			path: mPath + "Export/Nodes/" + c.identifier
 		}))
 	})
 
 	Object.values(database.groups).forEach(g => {
-		SVGs.push(mergeJSON(genGroupThumbnail(g), {
+		/*SVGs.push(mergeJSON(genGroupThumbnail(g), {
 			path: mPath + "Export/Thumbnails/" + g.identifier
-		}))
+		}))*/
 	})
 
 	// convert to png
-	SVGs.map(svg => {
+	for (let i = 0; i < SVGs.length; i++) {
+		let svg = SVGs[i]
 		let p = convert(svg.data, svg.dimensions)
-		p.then(png => PNGs.push({
-			path: svg.path,
-			data: png
-		}))
+		p.then(png =>
+			PNGs.push({
+				path: svg.path,
+				data: png
+			})
+		)
 		promises.push(p)
-	})
-
-	await Promise.all(promises)
-	promises = []
+		if ((i+1) % 9 === 0) (await Promise.all(promises).then(() => promises = []))
+	}
+	await Promise.all(promises).then(() => promises = [])
 
 	// write all files
 	SVGs.map(svg => promises.push(fs.promises.writeFile(svg.path + ".svg", svg.data)))
@@ -201,15 +207,6 @@ data = {
 				} || {x: 0, z: 0}
 			})
 		})
-
-		// sorting nodes
-		/*nodes.sort((a, b) => {
-			return a.type - b.type || b.mode - a.mode
-		})
-
-		console.log(xml.microprocessor["@_name"])
-		nodes.map(node => console.log(node.type + ", " + node.mode))
-		console.log("end")*/
 
 		return mergeJSON(data.fromName(xml.microprocessor["@_name"]), {
 			description: xml.microprocessor["@_description"],

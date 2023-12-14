@@ -24,6 +24,10 @@
 			"4": "",
 			"5": "Composite",
 			"6": "Video"
+		},
+		"nodeModes": {
+			"true": "In",
+			"false": "Out"
 		}
 	},
 	"groups": {
