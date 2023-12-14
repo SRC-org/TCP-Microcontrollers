@@ -38,7 +38,6 @@ genNode = n => {
 
 	eNodeBox.attr({x: 5, y: 5})
 	eNodeIcon.attr({cx: 60, cy: 60})
-	//eNode.attr({transform: "translate(" + node.position.x*120 + "," + (c.length - node.position.z - 1)*120 + ")"})
 
 	eNode.add(eNodeBox)
 	eNode.add(eNodeIcon)
@@ -54,7 +53,7 @@ genNodeInfo = n => {
 	let eNode = SVG(genNode(n).data)
 	let eInfo = SVG("<text class=\"mono\" transform=\"translate(150 42)\"></text>")
 	let eLabel = SVG("<text class=\"heading cDark\" transform=\"translate(150 100)\"></text>")
-	let eDescription = SVG("<text class=\"description cDark\" transform=\"translate(150 180)\"></text>\n")
+	let eDescription = SVG("<text class=\"description cDark\" transform=\"translate(150 180)\"></text>")
 	let eNodeInfo = SVG("<g></g>")
 
 	// text & positioning
@@ -68,16 +67,18 @@ genNodeInfo = n => {
 	y += (wLabel.length-1) * 60
 
 	let wDescription = wrapText(n.description, textWidth.robotoMedium({fontSize: 35}), 645)
+	if (wDescription.length > 0) y += 60
 	eDescription.attr({y: y - 180})
 	eDescription.font({size: 45, leading: 1})
 	eDescription.text(add => wDescription.map(line => add.tspan(line).newLine()))
-	y += (wDescription.length-1) * 45
-
+	y += Math.max(wDescription.length - 1, 0) * 45
 
 	eNodeInfo.add(eNode)
 	eNodeInfo.add(eInfo)
 	eNodeInfo.add(eLabel)
 	eNodeInfo.add(eDescription)
+
+	if (y < 120) console.log(n.label)
 
 	return {
 		dimensions: { width: 795, height: y },
