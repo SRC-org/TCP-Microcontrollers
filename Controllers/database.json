@@ -490,7 +490,7 @@
 			"group": "Drivetrain",
 			"type": "RO Module",
 			"name": "Drivetrain",
-			"version": "1.0",
+			"version": "1.3",
 			"description": "Communicates with main and drive interface.",
 			"width": "2",
 			"length": "1",
@@ -993,7 +993,7 @@
 			"group": "Passenger",
 			"type": "Module",
 			"name": "Passenger",
-			"version": "1.0",
+			"version": "1.3",
 			"description": "Module for controlling passenger functions such as doors and lighting",
 			"width": "2",
 			"length": "3",
@@ -1020,7 +1020,7 @@
 				},
 				{
 					"label": "Passenger Door Interface - Module",
-					"description": "Communicates with passenger door interface",
+					"description": "Communicates with Passenger Door Interface",
 					"mode": true,
 					"type": 5,
 					"position": {
@@ -1030,7 +1030,7 @@
 				},
 				{
 					"label": "Passenger Lighting Interface - Module",
-					"description": "Communicates with passenger lighting interface",
+					"description": "Communicates with Passenger Lighting Interface",
 					"mode": true,
 					"type": 5,
 					"position": {
@@ -1040,7 +1040,7 @@
 				},
 				{
 					"label": "Module - Interface",
-					"description": "Communicates with all passenger interfaces",
+					"description": "Communicates with all Passenger Interfaces",
 					"mode": false,
 					"type": 5,
 					"position": {
@@ -1142,7 +1142,7 @@
 			"group": "Passenger",
 			"type": "RO Module",
 			"name": "Passenger",
-			"version": "1.0",
+			"version": "1.3",
 			"description": "Module for controlling passenger functions such as doors and lighting",
 			"width": "2",
 			"length": "1",

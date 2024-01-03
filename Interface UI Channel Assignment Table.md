@@ -6,13 +6,14 @@ Channels B1-B3 and N1-N6 are reserved for touch.
 ## Drivetrain
 
 The Drivetrain can only be connected to instruments and has no GUI
+(remote engine currently not implemented)
 
-| Ch. | Function                   |
-|-----|----------------------------|
-| N 1 | Brakes (0-1)               |
-| N 2 | Throttle (0-maxSpeed)      |
-| B 1 | Wheel Slip                 |
-| B 5 | My Engine is ON (optional) |
+| Ch. | Function                           |
+|-----|------------------------------------|
+| N 1 | Brakes (0-1)                       |
+| N 2 | Throttle (0-maxSpeed)              |
+| B 1 | Wheel Slip                         |
+| B 2 | Activate engines remotely (toggle) |
 
 ## Exterior Lighting
 
