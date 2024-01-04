@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<microprocessor name="SRC-TCP [Interface] Passenger Lighting v1.3" description="Connects to passenger module. Controls lights in passenger cars" width="2" length="4" id_counter="337" id_counter_node="17" sym2="4" sym3="2" sym4="8191" sym5="8194" sym6="9508" sym7="1184" sym8="3232" sym9="11636" sym10="16388" sym11="65528" sym12="16384" sym13="8192">
+<microprocessor name="SRC-TCP [Interface] Passenger Lighting v1.3" description="Connects to passenger module. Controls lights in passenger cars" width="2" length="4" id_counter="345" id_counter_node="17" sym2="4" sym3="2" sym4="8191" sym5="8194" sym6="9508" sym7="1184" sym8="3232" sym9="11636" sym10="16388" sym11="65528" sym12="16384" sym13="8192">
 	<nodes>
 		<n id="7" component_id="18">
 			<node label="RGB Lights" type="5" description="Ouputs RGB values to RGB lights">
@@ -68,13 +68,13 @@ function onTick()
 	end
 
 	if onPress(6,24,19,9) then
-		on = not on
+		light = not light
 	end
 	if onPress(6,36,19,9) then
-		mode = false
+		heater = not heater
 	end
 	if onPress(6,48,19,9) then
-		mode = true
+		mode = not mode
 	end
 	
 	o=math.max(d.w/2-14,29)
@@ -95,9 +95,17 @@ function onTick()
 	end
 	if u then col=mode and hsv2rgb(unpack(slide)) or slide end
 	
-	sN(1,on and col.a or 0)
-	sN(2,on and col.b or 0)
-	sN(3,on and col.c or 0)
+	if gB(4) then -- manual input
+		mcol = gB(5) and hsv2rgb(gN(7),gN(8),gN(9)) or {gN(7),gN(8),gN(9)}
+		sN(1,mcol.a)
+		sN(2,mcol.b)
+		sN(3,mcol.c)
+	else -- ui input
+		sN(1,light and col.a or 0)
+		sN(2,light and col.b or 0)
+		sN(3,light and col.c or 0)
+	end
+	sB(1,heater or gB(6))
 
 	pre=gB(1)
 end
@@ -117,6 +125,18 @@ function dGHSV(x,y,l,c1,c2)
 	end
 end
 
+
+function dLgt(x,y)
+	dL(x,y,x+7,y)
+	dL(x,y,x+4,y+3)
+	dL(x+6,y,x+3,y+3)
+end
+
+function dHeat(x,y)
+	dR(x,y,4,2)
+	dR(x+2,y,4,2)
+end
+
 s=screen;sC=s.setColor;dTF=s.drawTriangleF;dR=s.drawRect;dRF=s.drawRectF;dT=s.drawText;dTB=s.drawTextBox;dL=s.drawLine;
 function onDraw()
 	w=s.getWidth()
@@ -124,31 +144,33 @@ function onDraw()
 	setC(theme.bg2)
 	s.drawClear()
 	
-	setC(theme.acc)
+	setC(theme.fg)
 	dL(6,24,6,33)
-	if on then
+	if light then
 		dRF(6,24,19,9)
 		setC(theme.bg2)
-	else
-		setC(theme.fg)
 	end
-	dT(9,26,on and "on" or "off")
+	dT(9,26,"l")
+	if not light then setC(theme.acc) end
+	dLgt(15,27)
 	
 	setC(theme.fg)
 	dL(6,36,6,45)
-	if not mode then
+	if heater then
 		dRF(6,36,19,9)
 		setC(theme.bg2)
 	end
-	dT(9,38,"rgb")
+	dT(9,38,"h")
+	if not heater then setC(theme.acc) end
+	dHeat(15,39)
 	
 	setC(theme.fg)
 	dL(6,48,6,57)
-	if mode then
+	if onTouch(6,48,19,9) then
 		dRF(6,48,19,9)
 		setC(theme.bg2)
 	end
-	dT(9,50,"hsv")
+	dT(9,50,mode and "hsv" or "rgb")
 
 	o=math.max(w/2-14,29)
 	setC(theme.bg)
@@ -187,7 +209,7 @@ end
 function clamp(v,x,y) return math.min(math.max(v,x),y) end
 function unpack(x) return x.a,x.b,x.c end
 function rgb2hsv(a,b,c)local d,e=math.max(a,b,c),math.min(a,b,c)local f,g,h;h=d;local i=d-e;if d==0 then g=0 else g=i/d end;if d==e then f=0 else if d==a then f=(b-c)/i;if b&lt;c then f=f+6 end elseif d==b then f=(c-a)/i+2 elseif d==c then f=(a-b)/i+4 end;f=f/6 end;return{a=f,b=g,c=h}end;function hsv2rgb(f,g,h)local a,b,c;local j=math.floor(f*6)local k=f*6-j;local l=h*(1-g)local m=h*(1-k*g)local n=h*(1-(1-k)*g)j=j%6;if j==0 then a,b,c=h,n,l elseif j==1 then a,b,c=m,h,l elseif j==2 then a,b,c=l,h,n elseif j==3 then a,b,c=l,m,h elseif j==4 then a,b,c=n,l,h elseif j==5 then a,b,c=h,l,m end;return{a=a,b=b,c=c}end'>
-					<pos x="-6.25" y="6.5"/>
+					<pos x="-6.25" y="5.75"/>
 					<in1 component_id="20"/>
 				</object>
 			</c>
@@ -314,39 +336,6 @@ function rgb2hsv(a,b,c)local d,e=math.max(a,b,c),math.min(a,b,c)local f,g,h;h=d;
 					<in1 component_id="139"/>
 				</object>
 			</c>
-			<c type="29">
-				<object id="297" i="3">
-					<pos x="-6.25" y="5.25"/>
-					<in1 component_id="20"/>
-				</object>
-			</c>
-			<c type="56">
-				<object id="302" script="function onTick()
-	a = input.getNumber(7)
-	b = input.getNumber(8)
-	c = input.getNumber(9)
-	col = hsv2rgb(a,b,c)
-	mode = input.getBool(5)
-	
-	output.setNumber(1,mode and col.a or a)
-	output.setNumber(2,mode and col.b or b)
-	output.setNumber(3,mode and col.b or b)
-	output.setBool(1,input.getBool(6))
-end
-
-function hsv2rgb(f,g,h)local a,b,c;local j=math.floor(f*6)local k=f*6-j;local l=h*(1-g)local m=h*(1-k*g)local n=h*(1-(1-k)*g)j=j%6;if j==0 then a,b,c=h,n,l elseif j==1 then a,b,c=m,h,l elseif j==2 then a,b,c=l,h,n elseif j==3 then a,b,c=l,m,h elseif j==4 then a,b,c=n,l,h elseif j==5 then a,b,c=h,l,m end;return{a=a,b=b,c=c}end">
-					<pos x="-6.25" y="7.5"/>
-					<in1 component_id="20"/>
-				</object>
-			</c>
-			<c type="53">
-				<object id="304">
-					<pos x="-4.5" y="5.25"/>
-					<in1 component_id="302"/>
-					<in2 component_id="37"/>
-					<in3 component_id="297"/>
-				</object>
-			</c>
 			<c>
 				<object id="308">
 					<pos x="-2.75" y="2.75"/>
@@ -415,33 +404,6 @@ function hsv2rgb(f,g,h)local a,b,c;local j=math.floor(f*6)local k=f*6-j;local l=
 					<in1 component_id="117"/>
 				</object>
 			</c>
-			<c type="31">
-				<object id="317">
-					<pos x="-2.75" y="5.5"/>
-					<in1 component_id="304"/>
-				</object>
-			</c>
-			<c type="31">
-				<object id="318" i="1">
-					<pos x="-2.75" y="5"/>
-					<in1 component_id="304"/>
-				</object>
-			</c>
-			<c type="31">
-				<object id="319" i="2">
-					<pos x="-2.75" y="4.5"/>
-					<in1 component_id="304"/>
-				</object>
-			</c>
-			<c type="40">
-				<object id="323" count="3">
-					<pos x="-1" y="5"/>
-					<inc component_id="304"/>
-					<in1 component_id="317"/>
-					<in2 component_id="318"/>
-					<in3 component_id="319"/>
-				</object>
-			</c>
 			<c type="2">
 				<object id="329">
 					<pos x="4.25" y="1.75"/>
@@ -496,24 +458,24 @@ function hsv2rgb(f,g,h)local a,b,c;local j=math.floor(f*6)local k=f*6-j;local l=
 			</c>
 			<c type="4">
 				<object id="20">
-					<pos x="-8" y="6.75"/>
+					<pos x="-8" y="6"/>
 				</object>
 			</c>
 			<c type="7">
 				<object id="23">
-					<pos x="-6.25" y="6"/>
+					<pos x="-6.25" y="5.25"/>
 					<in1 component_id="37" node_index="1"/>
 				</object>
 			</c>
 			<c type="4">
 				<object id="139">
-					<pos x="-8" y="3.5"/>
+					<pos x="-8" y="4.5"/>
 				</object>
 			</c>
 			<c type="5">
 				<object id="142">
-					<pos x="0.75" y="5.75"/>
-					<in1 component_id="323"/>
+					<pos x="-4.5" y="6"/>
+					<in1 component_id="37"/>
 				</object>
 			</c>
 			<c type="1">
@@ -557,13 +519,13 @@ function onTick()
 	end
 
 	if onPress(6,24,19,9) then
-		on = not on
+		light = not light
 	end
 	if onPress(6,36,19,9) then
-		mode = false
+		heater = not heater
 	end
 	if onPress(6,48,19,9) then
-		mode = true
+		mode = not mode
 	end
 	
 	o=math.max(d.w/2-14,29)
@@ -584,9 +546,17 @@ function onTick()
 	end
 	if u then col=mode and hsv2rgb(unpack(slide)) or slide end
 	
-	sN(1,on and col.a or 0)
-	sN(2,on and col.b or 0)
-	sN(3,on and col.c or 0)
+	if gB(4) then -- manual input
+		mcol = gB(5) and hsv2rgb(gN(7),gN(8),gN(9)) or {gN(7),gN(8),gN(9)}
+		sN(1,mcol.a)
+		sN(2,mcol.b)
+		sN(3,mcol.c)
+	else -- ui input
+		sN(1,light and col.a or 0)
+		sN(2,light and col.b or 0)
+		sN(3,light and col.c or 0)
+	end
+	sB(1,heater or gB(6))
 
 	pre=gB(1)
 end
@@ -606,6 +576,18 @@ function dGHSV(x,y,l,c1,c2)
 	end
 end
 
+
+function dLgt(x,y)
+	dL(x,y,x+7,y)
+	dL(x,y,x+4,y+3)
+	dL(x+6,y,x+3,y+3)
+end
+
+function dHeat(x,y)
+	dR(x,y,4,2)
+	dR(x+2,y,4,2)
+end
+
 s=screen;sC=s.setColor;dTF=s.drawTriangleF;dR=s.drawRect;dRF=s.drawRectF;dT=s.drawText;dTB=s.drawTextBox;dL=s.drawLine;
 function onDraw()
 	w=s.getWidth()
@@ -613,31 +595,33 @@ function onDraw()
 	setC(theme.bg2)
 	s.drawClear()
 	
-	setC(theme.acc)
+	setC(theme.fg)
 	dL(6,24,6,33)
-	if on then
+	if light then
 		dRF(6,24,19,9)
 		setC(theme.bg2)
-	else
-		setC(theme.fg)
 	end
-	dT(9,26,on and "on" or "off")
+	dT(9,26,"l")
+	if not light then setC(theme.acc) end
+	dLgt(15,27)
 	
 	setC(theme.fg)
 	dL(6,36,6,45)
-	if not mode then
+	if heater then
 		dRF(6,36,19,9)
 		setC(theme.bg2)
 	end
-	dT(9,38,"rgb")
+	dT(9,38,"h")
+	if not heater then setC(theme.acc) end
+	dHeat(15,39)
 	
 	setC(theme.fg)
 	dL(6,48,6,57)
-	if mode then
+	if onTouch(6,48,19,9) then
 		dRF(6,48,19,9)
 		setC(theme.bg2)
 	end
-	dT(9,50,"hsv")
+	dT(9,50,mode and "hsv" or "rgb")
 
 	o=math.max(w/2-14,29)
 	setC(theme.bg)
@@ -676,7 +660,7 @@ end
 function clamp(v,x,y) return math.min(math.max(v,x),y) end
 function unpack(x) return x.a,x.b,x.c end
 function rgb2hsv(a,b,c)local d,e=math.max(a,b,c),math.min(a,b,c)local f,g,h;h=d;local i=d-e;if d==0 then g=0 else g=i/d end;if d==e then f=0 else if d==a then f=(b-c)/i;if b&lt;c then f=f+6 end elseif d==b then f=(c-a)/i+2 elseif d==c then f=(a-b)/i+4 end;f=f/6 end;return{a=f,b=g,c=h}end;function hsv2rgb(f,g,h)local a,b,c;local j=math.floor(f*6)local k=f*6-j;local l=h*(1-g)local m=h*(1-k*g)local n=h*(1-(1-k)*g)j=j%6;if j==0 then a,b,c=h,n,l elseif j==1 then a,b,c=m,h,l elseif j==2 then a,b,c=l,h,n elseif j==3 then a,b,c=l,m,h elseif j==4 then a,b,c=n,l,h elseif j==5 then a,b,c=h,l,m end;return{a=a,b=b,c=c}end'>
-				<pos x="-6.25" y="6.5"/>
+				<pos x="-6.25" y="5.75"/>
 				<in1 component_id="20"/>
 			</c0>
 			<c1 id="40" count="3">
@@ -768,38 +752,11 @@ function rgb2hsv(a,b,c)local d,e=math.max(a,b,c),math.min(a,b,c)local f,g,h;h=d;
 				<pos x="-6.25" y="4.5"/>
 				<in1 component_id="139"/>
 			</c17>
-			<c18 id="297" i="3">
-				<pos x="-6.25" y="5.25"/>
-				<in1 component_id="20"/>
-			</c18>
-			<c19 id="302" script="function onTick()
-	a = input.getNumber(7)
-	b = input.getNumber(8)
-	c = input.getNumber(9)
-	col = hsv2rgb(a,b,c)
-	mode = input.getBool(5)
-	
-	output.setNumber(1,mode and col.a or a)
-	output.setNumber(2,mode and col.b or b)
-	output.setNumber(3,mode and col.b or b)
-	output.setBool(1,input.getBool(6))
-end
-
-function hsv2rgb(f,g,h)local a,b,c;local j=math.floor(f*6)local k=f*6-j;local l=h*(1-g)local m=h*(1-k*g)local n=h*(1-(1-k)*g)j=j%6;if j==0 then a,b,c=h,n,l elseif j==1 then a,b,c=m,h,l elseif j==2 then a,b,c=l,h,n elseif j==3 then a,b,c=l,m,h elseif j==4 then a,b,c=n,l,h elseif j==5 then a,b,c=h,l,m end;return{a=a,b=b,c=c}end">
-				<pos x="-6.25" y="7.5"/>
-				<in1 component_id="20"/>
-			</c19>
-			<c20 id="304">
-				<pos x="-4.5" y="5.25"/>
-				<in1 component_id="302"/>
-				<in2 component_id="37"/>
-				<in3 component_id="297"/>
-			</c20>
-			<c21 id="308">
+			<c18 id="308">
 				<pos x="-2.75" y="2.75"/>
 				<in1 component_id="91"/>
-			</c21>
-			<c22 id="309" m="1">
+			</c18>
+			<c19 id="309" m="1">
 				<pos x="0.75" y="0.5"/>
 				<in1 component_id="310"/>
 				<in2 component_id="311"/>
@@ -807,22 +764,22 @@ function hsv2rgb(f,g,h)local a,b,c;local j=math.floor(f*6)local k=f*6-j;local l=
 				<i text="0.003" value="0.003"/>
 				<min text="0"/>
 				<max text="1" value="1"/>
-			</c22>
-			<c23 id="310">
+			</c19>
+			<c20 id="310">
 				<pos x="-1" y="0.75"/>
 				<in1 component_id="95"/>
 				<in2 component_id="312"/>
-			</c23>
-			<c24 id="311">
+			</c20>
+			<c21 id="311">
 				<pos x="-1" y="-0.5"/>
 				<in1 component_id="312"/>
 				<in2 component_id="96"/>
-			</c24>
-			<c25 id="312">
+			</c21>
+			<c22 id="312">
 				<pos x="-2.75" y="0.25"/>
 				<in1 component_id="103"/>
-			</c25>
-			<c26 id="313" m="1">
+			</c22>
+			<c23 id="313" m="1">
 				<pos x="0.75" y="-2"/>
 				<in1 component_id="314"/>
 				<in2 component_id="315"/>
@@ -830,72 +787,53 @@ function hsv2rgb(f,g,h)local a,b,c;local j=math.floor(f*6)local k=f*6-j;local l=
 				<i text="0.003" value="0.003"/>
 				<min text="0"/>
 				<max text="1" value="1"/>
-			</c26>
-			<c27 id="314">
+			</c23>
+			<c24 id="314">
 				<pos x="-1" y="-1.75"/>
 				<in1 component_id="109"/>
 				<in2 component_id="316"/>
-			</c27>
-			<c28 id="315">
+			</c24>
+			<c25 id="315">
 				<pos x="-1" y="-3"/>
 				<in1 component_id="316"/>
 				<in2 component_id="110"/>
-			</c28>
-			<c29 id="316">
+			</c25>
+			<c26 id="316">
 				<pos x="-2.75" y="-2.25"/>
 				<in1 component_id="117"/>
-			</c29>
-			<c30 id="317">
-				<pos x="-2.75" y="5.5"/>
-				<in1 component_id="304"/>
-			</c30>
-			<c31 id="318" i="1">
-				<pos x="-2.75" y="5"/>
-				<in1 component_id="304"/>
-			</c31>
-			<c32 id="319" i="2">
-				<pos x="-2.75" y="4.5"/>
-				<in1 component_id="304"/>
-			</c32>
-			<c33 id="323" count="3">
-				<pos x="-1" y="5"/>
-				<inc component_id="304"/>
-				<in1 component_id="317"/>
-				<in2 component_id="318"/>
-				<in3 component_id="319"/>
-			</c33>
-			<c34 id="329">
+			</c26>
+			<c27 id="329">
 				<pos x="4.25" y="1.75"/>
 				<in1 component_id="331"/>
 				<in2 component_id="330"/>
-			</c34>
-			<c35 id="330">
+			</c27>
+			<c28 id="330">
 				<pos x="4.25" y="0.75"/>
 				<in1 component_id="332"/>
 				<in2 component_id="333"/>
-			</c35>
-			<c36 id="331">
+			</c28>
+			<c29 id="331">
 				<pos x="2.5" y="1.75"/>
 				<in1 component_id="77"/>
 				<in2 component_id="334"/>
-			</c36>
-			<c37 id="332">
+			</c29>
+			<c30 id="332">
 				<pos x="2.5" y="0.75"/>
 				<in1 component_id="309"/>
 				<in2 component_id="334"/>
-			</c37>
-			<c38 id="333">
+			</c30>
+			<c31 id="333">
 				<pos x="2.5" y="-0.25"/>
 				<in1 component_id="313"/>
 				<in2 component_id="334"/>
-			</c38>
-			<c39 id="334" name="Standard Light Turn-On Threshold">
+			</c31>
+			<c32 id="334" name="Standard Light Turn-On Threshold">
 				<pos x="0.75" y="1.75"/>
 				<min text="0"/>
 				<max text="1" value="1"/>
 				<int text="0.1" value="0.1"/>
 				<v text="0"/>
-			</c39>
+			</c32>
 		</component_states>
 		<component_bridge_states>
 			<c0 id="18">
@@ -903,18 +841,18 @@ function hsv2rgb(f,g,h)local a,b,c;local j=math.floor(f*6)local k=f*6-j;local l=
 				<in1 component_id="40"/>
 			</c0>
 			<c1 id="20">
-				<pos x="-8" y="6.75"/>
+				<pos x="-8" y="6"/>
 			</c1>
 			<c2 id="23">
-				<pos x="-6.25" y="6"/>
+				<pos x="-6.25" y="5.25"/>
 				<in1 component_id="37" node_index="1"/>
 			</c2>
 			<c3 id="139">
-				<pos x="-8" y="3.5"/>
+				<pos x="-8" y="4.5"/>
 			</c3>
 			<c4 id="142">
-				<pos x="0.75" y="5.75"/>
-				<in1 component_id="323"/>
+				<pos x="-4.5" y="6"/>
+				<in1 component_id="37"/>
 			</c4>
 			<c5 id="194">
 				<pos x="-4.5" y="4.5"/>
