@@ -96,7 +96,7 @@ function onTick()
 	if u then col=mode and hsv2rgb(unpack(slide)) or slide end
 	
 	if gB(4) then -- manual input
-		mcol = gB(5) and hsv2rgb(gN(7),gN(8),gN(9)) or {gN(7),gN(8),gN(9)}
+		mcol = gB(5) and hsv2rgb(gN(7),gN(8),gN(9)) or {a=gN(7),b=gN(8),c=gN(9)}
 		sN(1,mcol.a)
 		sN(2,mcol.b)
 		sN(3,mcol.c)
@@ -547,7 +547,7 @@ function onTick()
 	if u then col=mode and hsv2rgb(unpack(slide)) or slide end
 	
 	if gB(4) then -- manual input
-		mcol = gB(5) and hsv2rgb(gN(7),gN(8),gN(9)) or {gN(7),gN(8),gN(9)}
+		mcol = gB(5) and hsv2rgb(gN(7),gN(8),gN(9)) or {a=gN(7),b=gN(8),c=gN(9)}
 		sN(1,mcol.a)
 		sN(2,mcol.b)
 		sN(3,mcol.c)

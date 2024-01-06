@@ -85,7 +85,7 @@
 				},
 				{
 					"label": "UI",
-					"description": "Connects to Instruments or Display Controller",
+					"description": "Connects to instruments or Display Controller",
 					"mode": true,
 					"type": 5,
 					"position": {
@@ -131,7 +131,7 @@
 			"group": "Decouple",
 			"type": "Module",
 			"name": "Decouple",
-			"version": "1.0",
+			"version": "1.3",
 			"description": "Enables decoupling of cars",
 			"width": "2",
 			"length": "2",
@@ -227,7 +227,7 @@
 			"group": "Decouple",
 			"type": "RO Module",
 			"name": "Decouple",
-			"version": "1.0",
+			"version": "1.3",
 			"description": "Communicates with main and decouple interface.",
 			"width": "2",
 			"length": "1",
@@ -244,7 +244,7 @@
 				},
 				{
 					"label": "Module - Interface",
-					"description": "Communicates with Drivetrain Interface",
+					"description": "Communicates with Decouple Interface",
 					"mode": false,
 					"type": 5,
 					"position": {
