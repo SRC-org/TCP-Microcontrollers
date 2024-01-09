@@ -211,7 +211,7 @@
 				},
 				{
 					"label": "Decouple Rear",
-					"description": "Connects to rear coupler to disconnect (in case of being connected in reverse orientation)",
+					"description": "Connects to rear coupler to disconnect",
 					"mode": false,
 					"type": 0,
 					"position": {
