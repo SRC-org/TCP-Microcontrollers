@@ -28,16 +28,36 @@
 		"nodeModes": {
 			"true": "In",
 			"false": "Out"
+		},
+		"visibility": {
+			"0": "staff",
+			"1": "developer",
+			"2": "builder",
+			"3": "user"
+		}
+	},
+	"connections": {
+		"composite": {
+			"System#Main<->Main": {
+				"tID": 0,
+				"channels": {
+					"Boolean": [
+						{
+							"channel": 1,
+							"label": "..."
+						}
+					],
+					"Number": {
+						"1": "..."
+					}
+				}
+			}
 		}
 	},
 	"groups": {
 		"System": {
 			"name": "System",
 			"identifier": "[Group] System"
-		},
-		"Decouple": {
-			"name": "Decouple",
-			"identifier": "[Group] Decouple"
 		},
 		"Drivetrain": {
 			"name": "Drivetrain",
@@ -46,6 +66,10 @@
 		"Lighting": {
 			"name": "Lighting",
 			"identifier": "[Group] Lighting"
+		},
+		"Decouple": {
+			"name": "Decouple",
+			"identifier": "[Group] Decouple"
 		},
 		"Passenger": {
 			"name": "Passenger",
