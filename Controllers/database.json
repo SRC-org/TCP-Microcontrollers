@@ -30,25 +30,110 @@
 			"false": "Out"
 		},
 		"visibility": {
-			"0": "staff",
-			"1": "developer",
-			"2": "builder",
-			"3": "user"
+			"0": "Staff",
+			"1": "Developer",
+			"2": "Builder",
+			"3": "User"
 		}
 	},
 	"connections": {
 		"composite": {
-			"System#Main<->Main": {
+			"TCP#Bus": {
 				"tID": 0,
+				"visibility": 1,
 				"channels": {
-					"Boolean": [
-						{
-							"channel": 1,
-							"label": "..."
-						}
-					],
-					"Number": {
-						"1": "..."
+					"boolean": { },
+					"number": {
+						"4": "Throttle",
+						"5": "Brakes",
+						"7": "Exterior Lights",
+						"8": "Doors & Interior Lights",
+						"11": "Car to decouple"
+					}
+				}
+			},
+			"System#Main<->Main": {
+				"tID": 10,
+				"visibility": 0,
+				"inherit": "TCP#Bus",
+				"channels": {
+					"boolean": {
+						"1": "?",
+						"2": "?",
+						"3": "?"
+					},
+					"number": {
+						"1": "?",
+						"2": "?",
+						"3": "?"
+					}
+				}
+			},
+			"System#Main->Module": {
+				"tID": 11,
+				"visibility": 2,
+				"inherit": "TCP#Bus",
+				"channels": {
+					"boolean": {
+						"1": "I am master",
+						"2": "Master exists",
+						"3": "I am inverted"
+					},
+					"number": {
+						"1": "Number of cars",
+						"2": "Master ID",
+						"3": "My ID"
+					}
+				}
+			},
+			"System#Module->Main": {
+				"tID": 12,
+				"visibility": 1,
+				"inherit": "TCP#Bus",
+				"channels": {
+					"boolean": {
+						"1": "?",
+						"2": "?",
+						"3": "?"
+					},
+					"number": {
+						"1": "?",
+						"2": "?",
+						"3": "?"
+					}
+				}
+			},
+			"System#Cab->Main": {
+				"tID": 13,
+				"visibility": 2,
+				"channels": {
+					"boolean": {
+						"1": "",
+						"2": "",
+						"3": "",
+						"4": ""
+					}
+				}
+			},
+			"Drivetrain#Module->Interface": {
+				"tID": 20,
+				"visibility": 1
+			},
+			"Drivetrain#Interface->Module": {
+				"tID": 21,
+				"visibility": 1
+			},
+			"Drivetrain#UI": {
+				"tID": 22,
+				"visibility": 2,
+				"channels": {
+					"boolean": {
+						"1": "Wheel Slip",
+						"2": "Remote Engine Activation (Toggle)"
+					},
+					"number": {
+						"1": "Brakes (0-1)",
+						"2": "Throttle (0-maxSpeed)"
 					}
 				}
 			}
