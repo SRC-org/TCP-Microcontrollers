@@ -5,6 +5,7 @@ database = require("../Controllers/database.json")
 const { XMLParser/*, XMLBuilder, XMLValidator*/ } = require("fast-xml-parser")
 const { convert } = require("convert-svg-to-png")
 const { genControllerCard, genControllerThumbnail, genControllerNodes, genGroupThumbnail } = require("./mediaElements")
+const readline = require("readline");
 
 const swPath = process.env.APPDATA + "/Stormworks/data/microprocessors/"
 const cPath = path.join(__dirname, "../Controllers/")
@@ -13,12 +14,19 @@ const mPath = path.join(__dirname, "../Media/")
 
 let args = process.argv
 
+const rl = readline.createInterface({
+	input: process.stdin,
+	output: process.stdout
+})
+const prompt = (query) => new Promise((resolve) => rl.question(query, resolve));
+
 swXMLParser = new XMLParser({ignoreAttributes: false})
+//swXMLBuilder = new XMLBuilder()
 
 // node updateUtility -args
 // -r:	registers a new controller into the database (identifier and group)
 // -c:	copies the files from stormworks data to repository folder
-// -d:	updates database with repository folder contents
+// -d:	updates database and controllers
 // -i:	generates illustrations and thumbnails from database
 // -s: 	updates steam workshop items
 
@@ -56,7 +64,12 @@ async function execCopy() {
 	let files = fs.readdirSync(swPath).filter(file => file.startsWith("SRC-TCP") && file.endsWith(".xml"))
 	let promises = []
 
-	// TODO: ask for confirmation
+	console.log("The following controllers will be copied to the repository folder:")
+	files.forEach((s, i) => {
+		console.log("[" + (i+1) + "] " + s);
+	})
+
+	if (await prompt("Do you want to proceed [y/n] ") !== 'y') return;
 
 	files.forEach((file) => {
 		let fData = data.fromName(file)
@@ -77,27 +90,29 @@ async function execDatabase() {
 	let dirs = fs.readdirSync(cPath, {withFileTypes: true}).filter(d => d.isDirectory()).map(d => d.name).filter(d => d.endsWith("Group"))
 	let promises = []
 	let controllers = []
-	dirs.forEach((dir) => {
-		let promise = fs.promises.readdir(cPath + dir + "/")
-		promise.then(groupFiles => groupFiles.filter(file => file.startsWith("SRC-TCP") && file.endsWith(".xml")).forEach((file) => controllers.push({
+	dirs.forEach(dir => fs.readdirSync(cPath + dir + "/").filter(file => file.startsWith("SRC-TCP") && file.endsWith(".xml")).forEach(file => controllers.push({
 			path: cPath + dir + "/",
 			file: file,
-			nameData: data.fromName(file),
-			fileData: data.fromFile(cPath + dir + "/" + file)
-		})))
-		promises.push(promise)
+			nameData: data.fromName(file)
+	})))
+
+	controllers.forEach(c => {
+		let buffer = fs.readFileSync(c.path + c.file, "utf-8")
+		buffer = buffer.replaceAll(/(?<=description=")([^"]+?) *\/\/ *(?:[^"]+? *\/\/ *)?#(c\d+?)(?=")/gm, (match, desc, tID) => desc + resolveTextID(tID) + " // #" + tID)
+
+		let xml = swXMLParser.parse(buffer)
+		c.data = data.fromXML(xml)
+
+		fs.writeFileSync(c.path + c.file, buffer)
 	})
-	await Promise.all(promises)
 
-	controllers.forEach(info => {
-		if (info.nameData.identifier !== info.fileData.identifier)
-			return console.log("\x1b[33m%s\x1b[0m", "identifier mismatch: \"" + info.nameData.identifier + "\" (filename) // \"" + info.fileData.identifier + "\" (name in xml file)")
-		if (database.controllers[info.fileData.identifier] === undefined)
-			return console.log("\x1b[33m%s\x1b[0m", "controller with no database entry: \"" + info.fileData.identifier + "\", please register it using -r")
-			//database.controllers[info.data.identifier] = {}
+	controllers.forEach(c => {
+		if (c.nameData.identifier !== c.data.identifier)
+			return console.log("\x1b[33m%s\x1b[0m", "identifier mismatch: \"" + c.nameData.identifier + "\" (filename) // \"" + c.data.identifier + "\" (name in xml file)")
+		if (database.controllers[c.data.identifier] === undefined)
+			return console.log("\x1b[33m%s\x1b[0m", "controller with no database entry: \"" + c.data.identifier + "\", please register it using -r")
 
-		//mergeJSON(database.controllers[info.nameData.identifier], info.nameData)
-		mergeJSON(database.controllers[info.fileData.identifier], info.fileData)
+		mergeJSON(database.controllers[c.data.identifier], c.data)
 	})
 }
 
@@ -190,15 +205,16 @@ data = {
 	fromDatabase: (identifier) => {
 		return database.controllers[identifier]
 	},
-	fromFile: (path) => {
-		let rawXML = fs.readFileSync(path)
-		let xml = swXMLParser.parse(rawXML)
+	fromXML: (xml) => {
 		let nodes = []
 		xml.microprocessor.nodes.n.forEach((n) => {
 			n = n.node
+			let desc = (n["@_description"] || " ").match(/(.*?)(?: *\/\/ *.*?#c(\d+))?$/m)
+			console.log(desc)
 			nodes.push({
 				label: n["@_label"] || "",
-				description: n["@_description"] || "",
+				description: desc[1],
+				id: desc[2],
 				mode: (n["@_mode"] === "1"), // true is input, false is output
 				type: Number(n["@_type"]) || 0,
 				position: n.position && {
@@ -217,6 +233,60 @@ data = {
 	}
 }
 
+reverseTextIDs = (() => {
+	let result = {}
+	for (let identifier in database.connections.composite) result["c"+database.connections.composite[identifier].id] = identifier
+	return result
+})()
+
+function resolveTextID (tID) {
+
+	switch (tID.charAt(0)) {
+		case 'c':
+			let c = resolveChannels(reverseTextIDs[tID])
+			let convert = (type) => {
+				let res = []
+				for (let ch in c[type])	res.push(mergeJSON(c[type][ch], { channel: ch }))
+				return res.filter(v => v.visibility > 1).sort((a,b) => a.channel - b.channel).reduce((prev, curr) => prev += type.charAt(0).toUpperCase() + curr.channel + ": " + curr.label + "; ", "")
+			}
+			let res = (convert("boolean") + convert("number")).trim()
+			return (res === "") ? "" : " // Channels: " + res
+	}
+
+	return ""
+}
+
+function resolveChannels(identifier) {
+	let current = database.connections.composite[identifier]
+	//let visibility = current.visibility
+	let channels = {
+		boolean: {},
+		number: {}
+	}
+
+	let expandChannels = type => {
+		if (current.channels) for (let id in current.channels[type]) {
+			let desc = current.channels[type][id]
+			channels[type][id] = typeof desc === "string" ? {
+				label: desc,
+				visibility: current.visibility
+			} : desc
+		}
+	}
+
+	expandChannels("boolean")
+	expandChannels("number")
+
+	current.inherit?.forEach(identifier => {
+		let inherited = resolveChannels(identifier)
+		//visibility = Math.max(visibility, inherited.visibility)
+		channels.boolean = mergeJSON(inherited.channels.boolean, channels.boolean)
+		channels.number = mergeJSON(inherited.channels.number, channels.number)
+	})
+
+	return channels
+}
+
 mergeJSON = (old, updated) => {
 	for (let attr in updated) old[attr] = updated[attr]
 	return old
@@ -225,5 +295,6 @@ mergeJSON = (old, updated) => {
 // run
 start().then(() => {
 	fs.writeFileSync(cPath + "database.json", JSON.stringify(database, null, "\t"))
+	rl.close()
 	console.log("script finished")
 })

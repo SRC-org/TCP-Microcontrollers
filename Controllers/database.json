@@ -39,11 +39,36 @@
 	"connections": {
 		"composite": {
 			"TCP#Bus": {
-				"tID": 0,
+				"id": 0,
 				"visibility": 1,
 				"channels": {
-					"boolean": { },
+					"boolean": {
+						"1": {
+							"label": "?",
+							"visibility": 0
+						},
+						"2": {
+							"label": "?",
+							"visibility": 2
+						},
+						"3": {
+							"label": "?",
+							"visibility": 0
+						}
+					},
 					"number": {
+						"1": {
+							"label": "?",
+							"visibility": 0
+						},
+						"2": {
+							"label": "?",
+							"visibility": 0
+						},
+						"3": {
+							"label": "?",
+							"visibility": 0
+						},
 						"4": "Throttle",
 						"5": "Brakes",
 						"7": "Exterior Lights",
@@ -53,9 +78,11 @@
 				}
 			},
 			"System#Main<->Main": {
-				"tID": 10,
+				"id": 10,
 				"visibility": 0,
-				"inherit": "TCP#Bus",
+				"inherit": [
+					"TCP#Bus"
+				],
 				"channels": {
 					"boolean": {
 						"1": "?",
@@ -70,9 +97,11 @@
 				}
 			},
 			"System#Main->Module": {
-				"tID": 11,
+				"id": 11,
 				"visibility": 2,
-				"inherit": "TCP#Bus",
+				"inherit": [
+					"TCP#Bus"
+				],
 				"channels": {
 					"boolean": {
 						"1": "I am master",
@@ -87,9 +116,11 @@
 				}
 			},
 			"System#Module->Main": {
-				"tID": 12,
+				"id": 12,
 				"visibility": 1,
-				"inherit": "TCP#Bus",
+				"inherit": [
+					"TCP#Bus"
+				],
 				"channels": {
 					"boolean": {
 						"1": "?",
@@ -104,7 +135,7 @@
 				}
 			},
 			"System#Cab->Main": {
-				"tID": 13,
+				"id": 13,
 				"visibility": 2,
 				"channels": {
 					"boolean": {
@@ -116,15 +147,15 @@
 				}
 			},
 			"Drivetrain#Module->Interface": {
-				"tID": 20,
+				"id": 20,
 				"visibility": 1
 			},
 			"Drivetrain#Interface->Module": {
-				"tID": 21,
+				"id": 21,
 				"visibility": 1
 			},
 			"Drivetrain#UI": {
-				"tID": 22,
+				"id": 22,
 				"visibility": 2,
 				"channels": {
 					"boolean": {
@@ -1987,7 +2018,7 @@
 				},
 				{
 					"label": "Cab Controller",
-					"description": "",
+					"description": " ",
 					"mode": true,
 					"type": 5,
 					"position": {
