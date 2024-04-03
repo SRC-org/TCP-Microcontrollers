@@ -576,7 +576,7 @@
 			</c>
 			<c type="56">
 				<object id="1210" script='colors={w={85,90,90},w2={70,75,75},b={10,10,10},b2={8,8,8},acc={69,12,10}}
-tog = {"Auto",false,"Head",false,"High",false,"Work",false,"Hzrd",false,"Deco",false}
+tog = {"Auto",false,"Head",false,"High",false,"Work",false,"Warn",false,"Deco",false}
 
 function touch(x,y,w,h) return t.x&gt;=x and t.y&gt;=y and t.x&lt;x+w and t.y&lt;y+h end
 function onTouch(x,y,w,h) return touch(x,y,w,h) and press end
@@ -1180,7 +1180,7 @@ end'>
 				<in5 component_id="1077"/>
 			</c69>
 			<c70 id="1210" script='colors={w={85,90,90},w2={70,75,75},b={10,10,10},b2={8,8,8},acc={69,12,10}}
-tog = {"Auto",false,"Head",false,"High",false,"Work",false,"Hzrd",false,"Deco",false}
+tog = {"Auto",false,"Head",false,"High",false,"Work",false,"Warn",false,"Deco",false}
 
 function touch(x,y,w,h) return t.x&gt;=x and t.y&gt;=y and t.x&lt;x+w and t.y&lt;y+h end
 function onTouch(x,y,w,h) return touch(x,y,w,h) and press end

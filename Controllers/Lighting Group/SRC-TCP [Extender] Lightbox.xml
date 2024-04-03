@@ -40,7 +40,7 @@
 			</node>
 		</n>
 		<n id="46" component_id="570">
-			<node label="Hazard Lights" description="Connects to Hazard Lights (Optional)">
+			<node label="Warning Lights" description="Connects to Warning Lights (Optional)">
 				<position z="2"/>
 			</node>
 		</n>

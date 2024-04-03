@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<microprocessor name="SRC-TCP [Interface] Decouple v1.3" description="Connects to decouple module and connectors to decouple cars" width="2" length="3" id_counter="913" id_counter_node="42" sym2="4" sym3="2" sym4="8191" sym5="8194" sym6="9508" sym7="1184" sym8="3232" sym9="11636" sym10="16388" sym11="65528" sym12="16384" sym13="8192">
+<microprocessor name="SRC-TCP [Interface] Decouple v1.3" description="Connects to decouple module and connectors to decouple cars" width="2" length="3" id_counter="917" id_counter_node="42" sym2="4" sym3="2" sym4="8191" sym5="8194" sym6="9508" sym7="1184" sym8="3232" sym9="11636" sym10="16388" sym11="65528" sym12="16384" sym13="8192">
 	<nodes>
 		<n id="17" component_id="111">
 			<node label="Interface - Module" type="5" description="Communicates with Decouple Module">
@@ -337,32 +337,21 @@ function clamp(v,x,y) return math.min(math.max(v,x),y) end'>
 				</object>
 			</c>
 			<c type="46">
-				<object id="852" e="(!x&amp;y)|(x&amp;z)|w">
+				<object id="852" e="((!x&amp;y)|(x&amp;z))&amp;w">
 					<pos x="4.25" y="-3.75"/>
 					<in1 component_id="833"/>
 					<in2 component_id="906"/>
 					<in3 component_id="907"/>
-					<in4 component_id="861"/>
+					<in4 component_id="917"/>
 				</object>
 			</c>
 			<c type="46">
-				<object id="853" e="(x&amp;y)|(!x&amp;z)|w">
+				<object id="853" e="((x&amp;y)|(!x&amp;z))&amp;w">
 					<pos x="4.25" y="-5.5"/>
 					<in1 component_id="833"/>
 					<in2 component_id="906"/>
 					<in3 component_id="907"/>
-					<in4 component_id="861"/>
-				</object>
-			</c>
-			<c type="48">
-				<object id="861">
-					<pos x="4.25" y="-2.5"/>
-					<in1 component_id="863"/>
-				</object>
-			</c>
-			<c type="16">
-				<object id="863">
-					<pos x="4.25" y="-2"/>
+					<in4 component_id="917"/>
 				</object>
 			</c>
 			<c type="21">
@@ -467,6 +456,12 @@ function clamp(v,x,y) return math.min(math.max(v,x),y) end'>
 			<c type="16">
 				<object id="913">
 					<pos x="-1" y="0.5"/>
+				</object>
+			</c>
+			<c type="17">
+				<object id="917">
+					<pos x="2.5" y="-4.5"/>
+					<in1 component_id="836"/>
 				</object>
 			</c>
 		</components>
@@ -766,101 +761,98 @@ function clamp(v,x,y) return math.min(math.max(v,x),y) end'>
 				<in1 component_id="853"/>
 				<in2 component_id="847"/>
 			</c20>
-			<c21 id="852" e="(!x&amp;y)|(x&amp;z)|w">
+			<c21 id="852" e="((!x&amp;y)|(x&amp;z))&amp;w">
 				<pos x="4.25" y="-3.75"/>
 				<in1 component_id="833"/>
 				<in2 component_id="906"/>
 				<in3 component_id="907"/>
-				<in4 component_id="861"/>
+				<in4 component_id="917"/>
 			</c21>
-			<c22 id="853" e="(x&amp;y)|(!x&amp;z)|w">
+			<c22 id="853" e="((x&amp;y)|(!x&amp;z))&amp;w">
 				<pos x="4.25" y="-5.5"/>
 				<in1 component_id="833"/>
 				<in2 component_id="906"/>
 				<in3 component_id="907"/>
-				<in4 component_id="861"/>
+				<in4 component_id="917"/>
 			</c22>
-			<c23 id="861">
-				<pos x="4.25" y="-2.5"/>
-				<in1 component_id="863"/>
-			</c23>
-			<c24 id="863">
-				<pos x="4.25" y="-2"/>
-			</c24>
-			<c25 id="865">
+			<c23 id="865">
 				<pos x="11.25" y="0.25"/>
 				<in1 component_id="866"/>
 				<in2 component_id="868"/>
-			</c25>
-			<c26 id="866">
+			</c23>
+			<c24 id="866">
 				<pos x="9.5" y="0.5"/>
 				<in1 component_id="812"/>
 				<in3 component_id="824"/>
-			</c26>
-			<c27 id="868" i="1">
+			</c24>
+			<c25 id="868" i="1">
 				<pos x="6" y="0.25"/>
 				<in1 component_id="806"/>
-			</c27>
-			<c28 id="870">
+			</c25>
+			<c26 id="870">
 				<pos x="0.75" y="-1.5"/>
 				<in1 component_id="264"/>
-			</c28>
-			<c29 id="871">
+			</c26>
+			<c27 id="871">
 				<pos x="0.75" y="-5"/>
 				<in1 component_id="865"/>
 				<in2 component_id="837"/>
 				<in3 component_id="870"/>
-			</c29>
-			<c30 id="874" e="(x|y)&amp;z">
+			</c27>
+			<c28 id="874" e="(x|y)&amp;z">
 				<pos x="7.75" y="-1.25"/>
 				<in1 component_id="822"/>
 				<in2 component_id="827"/>
 				<in3 component_id="870"/>
-			</c30>
-			<c31 id="879" name="Time to stay disconnected">
+			</c28>
+			<c29 id="879" name="Time to stay disconnected">
 				<pos x="6" y="-5.75"/>
 				<min text="1" value="1"/>
 				<max text="10" value="10"/>
 				<int text="1" value="1"/>
 				<v text="3" value="3"/>
-			</c31>
-			<c32 id="880" l="External Decouple Value" m="1">
+			</c29>
+			<c30 id="880" l="External Decouple Value" m="1">
 				<pos x="11.25" y="-1.25"/>
 				<in1 component_id="865" node_index="1"/>
-			</c32>
-			<c33 id="881" l="Internal Decouple Value" m="1">
+			</c30>
+			<c31 id="881" l="Internal Decouple Value" m="1">
 				<pos x="11.25" y="-0.5"/>
 				<in1 component_id="865"/>
-			</c33>
-			<c34 id="842" l="Received decouple number" m="1">
+			</c31>
+			<c32 id="842" l="Received decouple number" m="1">
 				<pos x="-1" y="-4.25"/>
 				<in1 component_id="837"/>
-			</c34>
-			<c35 id="886" count="2" offset="6">
+			</c32>
+			<c33 id="886" count="2" offset="6">
 				<pos x="0.75" y="0.5"/>
 				<inc component_id="760"/>
 				<in1 component_id="913"/>
 				<in2 component_id="913"/>
-			</c35>
-			<c36 id="906">
+			</c33>
+			<c34 id="906">
 				<pos x="2.5" y="-3.5"/>
 				<in1 component_id="871"/>
 				<in2 component_id="836"/>
 				<e text="0.0001" value="0.0001"/>
-			</c36>
-			<c37 id="907">
+			</c34>
+			<c35 id="907">
 				<pos x="2.5" y="-5.5"/>
 				<in1 component_id="836"/>
 				<in2 component_id="908"/>
 				<e text="0.0001" value="0.0001"/>
-			</c37>
-			<c38 id="908" e="x-1">
+			</c35>
+			<c36 id="908" e="x-1">
 				<pos x="0.75" y="-5.5"/>
 				<in1 component_id="871"/>
-			</c38>
-			<c39 id="913">
+			</c36>
+			<c37 id="913">
 				<pos x="-1" y="0.5"/>
-			</c39>
+			</c37>
+			<c38 id="917">
+				<pos x="2.5" y="-4.5"/>
+				<in1 component_id="836"/>
+			</c38>
 		</component_states>
 		<component_bridge_states>
 			<c0 id="111">

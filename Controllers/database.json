@@ -748,8 +748,8 @@
 					}
 				},
 				{
-					"label": "Hazard Lights",
-					"description": "Connects to Hazard Lights (Optional)",
+					"label": "Warning Lights",
+					"description": "Connects to Warning Lights (Optional)",
 					"mode": false,
 					"type": 0,
 					"position": {
