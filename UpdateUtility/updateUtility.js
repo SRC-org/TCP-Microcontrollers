@@ -129,25 +129,25 @@ async function execImages() {
 	let PNGs = []
 
 	Object.values(database.controllers).forEach(c => {
-		/*SVGs.push(mergeJSON(genControllerThumbnail(c), {
+		SVGs.push(mergeJSON(genControllerThumbnail(c), {
 			path: mPath + "Export/Thumbnails/" + c.identifier
 		}))
 		SVGs.push(mergeJSON(genControllerCard(c), {
 			path: mPath + "Export/Cards/" + c.identifier
-		}))*/
+		}))
 		SVGs.push(mergeJSON(genControllerNodes(c), {
 			path: mPath + "Export/Nodes/" + c.identifier
 		}))
 	})
 
 	Object.values(database.groups).forEach(g => {
-		/*SVGs.push(mergeJSON(genGroupThumbnail(g), {
+		SVGs.push(mergeJSON(genGroupThumbnail(g), {
 			path: mPath + "Export/Thumbnails/" + g.identifier
-		}))*/
+		}))
 	})
 
 	// convert to png
-	for (let i = 0; i < SVGs.length; i++) {
+	/*for (let i = 0; i < SVGs.length; i++) {
 		let svg = SVGs[i]
 		let p = convert(svg.data, svg.dimensions)
 		p.then(png =>
@@ -159,17 +159,17 @@ async function execImages() {
 		promises.push(p)
 		if ((i+1) % 9 === 0) (await Promise.all(promises).then(() => promises = []))
 	}
-	await Promise.all(promises).then(() => promises = [])
+	await Promise.all(promises).then(() => promises = [])*/
 
 	// write all files
 	SVGs.map(svg => promises.push(fs.promises.writeFile(svg.path + ".svg", svg.data)))
-	PNGs.map(png => promises.push(new Promise((resolve, reject) => {
+	/*PNGs.map(png => promises.push(new Promise((resolve, reject) => {
 		const file = fs.createWriteStream(png.path + ".png")
 		file.write(png.data)
 		file.end()
 		file.on("finish", resolve)
 		file.on("error", reject)
-	})))
+	})))*/
 
 	await Promise.all(promises)
 }
@@ -210,7 +210,7 @@ data = {
 		xml.microprocessor.nodes.n.forEach((n) => {
 			n = n.node
 			let desc = (n["@_description"] || " ").match(/(.*?)(?: *\/\/ *.*?#c(\d+))?$/m)
-			console.log(desc)
+			// console.log(desc) // debug...
 			nodes.push({
 				label: n["@_label"] || "",
 				description: desc[1],
