@@ -44,29 +44,30 @@
 				"channels": {
 					"boolean": {
 						"1": {
-							"label": "?",
+							"label": "",
 							"visibility": 0
 						},
 						"2": {
-							"label": "?",
+							"label": "",
 							"visibility": 2
 						},
 						"3": {
-							"label": "?",
+							"label": "",
 							"visibility": 0
-						}
+						},
+						"5": "Request E-Brake (Slave -> Master)"
 					},
 					"number": {
 						"1": {
-							"label": "?",
+							"label": "",
 							"visibility": 0
 						},
 						"2": {
-							"label": "?",
+							"label": "",
 							"visibility": 0
 						},
 						"3": {
-							"label": "?",
+							"label": "",
 							"visibility": 0
 						},
 						"4": "Throttle",
@@ -85,14 +86,14 @@
 				],
 				"channels": {
 					"boolean": {
-						"1": "?",
-						"2": "?",
-						"3": "?"
+						"1": "",
+						"2": "",
+						"3": ""
 					},
 					"number": {
-						"1": "?",
-						"2": "?",
-						"3": "?"
+						"1": "",
+						"2": "",
+						"3": ""
 					}
 				}
 			},
@@ -123,14 +124,14 @@
 				],
 				"channels": {
 					"boolean": {
-						"1": "?",
-						"2": "?",
-						"3": "?"
+						"1": "",
+						"2": "",
+						"3": ""
 					},
 					"number": {
-						"1": "?",
-						"2": "?",
-						"3": "?"
+						"1": "",
+						"2": "",
+						"3": ""
 					}
 				}
 			},

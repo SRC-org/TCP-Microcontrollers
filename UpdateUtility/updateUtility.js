@@ -29,6 +29,7 @@ swXMLParser = new XMLParser({ignoreAttributes: false})
 // -d:	updates database and controllers
 // -i:	generates illustrations and thumbnails from database
 // -s: 	updates steam workshop items
+// -e:	export database contents
 
 async function start() {
 	if (args.indexOf("-r") > -1) await execRegister(args.indexOf("-r"))
@@ -36,6 +37,7 @@ async function start() {
 	if (args.indexOf("-d") > -1) await execDatabase()
 	if (args.indexOf("-i") > -1) await execImages()
 	if (args.indexOf("-s") > -1) await execSteam()
+	if (args.indexOf("-e") > -1) await execExport(args.indexOf("-e"))
 }
 
 // Register
@@ -179,6 +181,45 @@ async function execSteam() {
 	console.log("steam upload not supported yet")
 }
 
+async function execExport(index) {
+	let wrongFormat = () => console.log("\x1b[33m%s\x1b[0m", "wrong format, please use: -e {composite} {csv}")
+
+	let arg1 = args[index+1], arg2  = args[index+2]
+	if (!(arg1 && arg2 && !arg1.startsWith("-") && !arg2.startsWith("-"))) return wrongFormat()
+	if (!(arg1 === "composite" && arg2 === "csv")) return wrongFormat()
+
+	let groups = {};
+
+	for (let identifier in database.connections.composite) {
+		let group = identifier.match(/^[^#]*/)[0]
+		if (!groups[group]) groups[group] = {
+			header1: "channel",
+			header2: "",
+			entries: Array(32).fill().map((v, i) => "" + (i+1))
+		}
+
+		let channels = resolveChannels(identifier);
+		let pushChannels = type => {
+			groups[group].header2 += "," + type
+			for (let i = 0; i < 32; i++) {
+				groups[group].entries[i] += "," + (channels[type][i+1]?.label ?? "")
+			}
+		}
+
+		groups[group].header1 += "," + identifier.match(/(?<=#).*/)[0] + ","
+		pushChannels("boolean")
+		pushChannels("number")
+	}
+
+	if (!fs.existsSync(path.join(__dirname, "/.export/"))) fs.mkdirSync(path.join(__dirname, "/.export/"))
+
+	for (let group in groups) {
+		let file = groups[group].header1+"\n"+groups[group].header2+"\n"
+		for (let i = 0; i < 32; i++) file += groups[group].entries[i]+"\n"
+		fs.writeFileSync(path.join(__dirname, "/.export/" + group + ".csv"), file, "utf-8")
+	}
+}
+
 /*
  * new regex:
  * /SRC-TCP *\[(.*?)\] *(.*?(?= *v\d| *\.| *\(| *$)) *(\((.*?)\))? *v?([0-9._]*[0-9])?/gm
@@ -257,34 +298,34 @@ function resolveTextID (tID) {
 }
 
 function resolveChannels(identifier) {
-	let current = database.connections.composite[identifier]
-	//let visibility = current.visibility
-	let channels = {
+
+
+	let entry = database.connections.composite[identifier]
+	let resolved = {
 		boolean: {},
 		number: {}
 	}
 
 	let expandChannels = type => {
-		if (current.channels) for (let id in current.channels[type]) {
-			let desc = current.channels[type][id]
-			channels[type][id] = typeof desc === "string" ? {
-				label: desc,
-				visibility: current.visibility
-			} : desc
+		if (entry.channels) for (let ch in entry.channels[type]) {
+			let channel = entry.channels[type][ch]
+			resolved[type][ch] = {
+				label: typeof channel === "string" ? channel : channel.label,
+				visibility: typeof channel === "string" ? entry.visibility : channel.visibility
+			}
 		}
 	}
 
 	expandChannels("boolean")
 	expandChannels("number")
 
-	current.inherit?.forEach(identifier => {
+	entry.inherit?.forEach(identifier => {
 		let inherited = resolveChannels(identifier)
-		//visibility = Math.max(visibility, inherited.visibility)
-		channels.boolean = mergeJSON(inherited.channels.boolean, channels.boolean)
-		channels.number = mergeJSON(inherited.channels.number, channels.number)
+		resolved.boolean = mergeJSON(inherited.boolean, resolved.boolean)
+		resolved.number = mergeJSON(inherited.number, resolved.number)
 	})
 
-	return channels
+	return resolved
 }
 
 mergeJSON = (old, updated) => {
