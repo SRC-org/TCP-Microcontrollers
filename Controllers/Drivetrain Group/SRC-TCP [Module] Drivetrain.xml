@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<microprocessor name="SRC-TCP [Module] Drivetrain v1.3" description="Communicates with main, other trains, and the drive interface" width="2" length="3" id_counter="396" id_counter_node="35" sym2="4" sym3="2" sym4="8191" sym5="8194" sym6="9508" sym7="1184" sym8="3232" sym9="11636" sym10="16388" sym11="65528" sym12="16384" sym13="8192">
+<microprocessor name="SRC-TCP [Module] Drivetrain v1.3" description="Communicates with main, other trains, and the drive interface" width="2" length="3" id_counter="398" id_counter_node="35" sym2="4" sym3="2" sym4="8191" sym5="8194" sym6="9508" sym7="1184" sym8="3232" sym9="11636" sym10="16388" sym11="65528" sym12="16384" sym13="8192">
 	<nodes>
 		<n id="19" component_id="265">
 			<node label="Hub slot/Main Input" type="5" description="Outputs information to Hub/Main"/>
@@ -118,7 +118,7 @@
 					<in2 component_id="382"/>
 					<in3 component_id="325"/>
 					<in4 component_id="394"/>
-					<in5 component_id="396"/>
+					<in5 component_id="397"/>
 					<in6 component_id="395"/>
 				</object>
 			</c>
@@ -252,8 +252,21 @@
 			</c>
 			<c type="29">
 				<object id="396" i="4">
-					<pos x="-0.25" y="-6.5"/>
-					<in1 component_id="268"/>
+					<pos x="1.25" y="-8"/>
+					<in1 component_id="379"/>
+				</object>
+			</c>
+			<c type="2">
+				<object id="397">
+					<pos x="3.25" y="-6.25"/>
+					<in1 component_id="396"/>
+					<in2 component_id="398"/>
+				</object>
+			</c>
+			<c type="29">
+				<object id="398" i="4">
+					<pos x="1.25" y="-8.5"/>
+					<in1 component_id="378"/>
 				</object>
 			</c>
 		</components>
@@ -282,12 +295,12 @@
 			</c>
 			<c type="4">
 				<object id="378">
-					<pos x="3.25" y="-9.25"/>
+					<pos x="-0.25" y="-8.5"/>
 				</object>
 			</c>
 			<c type="4">
 				<object id="379">
-					<pos x="3.25" y="-8.75"/>
+					<pos x="-0.25" y="-8"/>
 				</object>
 			</c>
 		</components_bridge>
@@ -352,7 +365,7 @@
 				<in2 component_id="382"/>
 				<in3 component_id="325"/>
 				<in4 component_id="394"/>
-				<in5 component_id="396"/>
+				<in5 component_id="397"/>
 				<in6 component_id="395"/>
 			</c11>
 			<c12 id="321" count="5">
@@ -444,9 +457,18 @@
 				<in1 component_id="268"/>
 			</c31>
 			<c32 id="396" i="4">
-				<pos x="-0.25" y="-6.5"/>
-				<in1 component_id="268"/>
+				<pos x="1.25" y="-8"/>
+				<in1 component_id="379"/>
 			</c32>
+			<c33 id="397">
+				<pos x="3.25" y="-6.25"/>
+				<in1 component_id="396"/>
+				<in2 component_id="398"/>
+			</c33>
+			<c34 id="398" i="4">
+				<pos x="1.25" y="-8.5"/>
+				<in1 component_id="378"/>
+			</c34>
 		</component_states>
 		<component_bridge_states>
 			<c0 id="265">
@@ -464,10 +486,10 @@
 				<pos x="-2" y="3.25"/>
 			</c3>
 			<c4 id="378">
-				<pos x="3.25" y="-9.25"/>
+				<pos x="-0.25" y="-8.5"/>
 			</c4>
 			<c5 id="379">
-				<pos x="3.25" y="-8.75"/>
+				<pos x="-0.25" y="-8"/>
 			</c5>
 		</component_bridge_states>
 		<group_states/>
