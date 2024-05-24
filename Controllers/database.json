@@ -38,38 +38,14 @@
 	},
 	"connections": {
 		"composite": {
-			"TCP#Bus": {
+			"System#Bus": {
 				"id": 0,
 				"visibility": 1,
 				"channels": {
 					"boolean": {
-						"1": {
-							"label": "",
-							"visibility": 0
-						},
-						"2": {
-							"label": "",
-							"visibility": 2
-						},
-						"3": {
-							"label": "",
-							"visibility": 0
-						},
 						"5": "Request E-Brake (Slave -> Master)"
 					},
 					"number": {
-						"1": {
-							"label": "",
-							"visibility": 0
-						},
-						"2": {
-							"label": "",
-							"visibility": 0
-						},
-						"3": {
-							"label": "",
-							"visibility": 0
-						},
 						"4": "Throttle",
 						"5": "Brakes",
 						"7": "Exterior Lights",
@@ -123,15 +99,10 @@
 					"TCP#Bus"
 				],
 				"channels": {
-					"boolean": {
-						"1": "",
-						"2": "",
-						"3": ""
-					},
+					"boolean": {},
 					"number": {
-						"1": "",
-						"2": "",
-						"3": ""
+						"1": "Module ID (encoded)",
+						"2": "Allocated Channels (encoded)"
 					}
 				}
 			},
@@ -140,10 +111,10 @@
 				"visibility": 2,
 				"channels": {
 					"boolean": {
-						"1": "",
-						"2": "",
-						"3": "",
-						"4": ""
+						"1": "Request Master",
+						"2": "Release Master",
+						"3": "Player in Cab",
+						"4": "Active Cab (False: Front, True: Rear)"
 					}
 				}
 			},
