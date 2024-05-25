@@ -58,7 +58,7 @@
 				"id": 10,
 				"visibility": 0,
 				"inherit": [
-					"TCP#Bus"
+					"System#Bus"
 				],
 				"channels": {
 					"boolean": {
@@ -77,7 +77,7 @@
 				"id": 11,
 				"visibility": 2,
 				"inherit": [
-					"TCP#Bus"
+					"System#Bus"
 				],
 				"channels": {
 					"boolean": {
@@ -96,7 +96,7 @@
 				"id": 12,
 				"visibility": 1,
 				"inherit": [
-					"TCP#Bus"
+					"System#Bus"
 				],
 				"channels": {
 					"boolean": {},

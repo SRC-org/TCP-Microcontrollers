@@ -48,10 +48,55 @@ genNode = n => {
 	}
 }
 
-genNodeInfo = n => {
+genCompositeChannelInfo = (cid, w) => {
+
+	let eChannelInfo = SVG("<g></g>")
+
+	let channels = resolveChannels(cid)
+
+	let y = -22
+	let render = type => {
+		let eIDs = SVG("<text class=\"mono\" transform=\"translate(120 0)\" text-anchor=\"end\" style='fill: #" + database.definitions.nodeColours[type === "boolean" ? "0" : "1"] + "'></text>")
+		let eLabels = SVG("<text class=\"description cDark\" transform=\"translate(150 0)\"></text>")
+
+		let c = []
+		for (let ch in channels[type]) c.push(mergeJSON(channels[type][ch], { channel: Number(ch) }))
+		c = c.filter(v => v.visibility > 1).sort(v => v.channel)
+
+		//if (c.length > 0) y += 45
+		eIDs.attr({y: y + 52})
+		eIDs.font({leading: 1})
+		eLabels.attr({y: y + 52})
+		eLabels.font({leading: 1})
+
+		let d = 0
+		eIDs.text(id => eLabels.text(label => c.forEach(v => wrapText(v.label, textWidth.robotoMedium({fontSize: 35}), w - 150).forEach((line, i) => {
+			let d = i === 0 ? 52 : 45
+			eIDs.font({size: d})
+			eLabels.font({size: d})
+			id.tspan(i === 0 ? type.charAt(0).toUpperCase() + String(v.channel).padStart(2, '0') : "").newLine()
+			label.tspan(line).newLine()
+			y += d
+		}))))
+
+		eChannelInfo.add(eIDs)
+		eChannelInfo.add(eLabels)
+	}
+
+	render("boolean")
+	render("number")
+	y = Math.max(y + 10, 0)
+
+	return {
+		dimensions: { width: w, height: y },
+		data: fixSVG(eChannelInfo.svg())
+	}
+}
+
+genNodeInfo = (n, w) => {
 
 	let eNode = SVG(genNode(n).data)
-	let eInfo = SVG("<text class=\"mono\" transform=\"translate(150 42)\"></text>")
+	let eInfo = SVG("<text class=\"mono cDark2\" transform=\"translate(150 42)\"></text>")
 	let eLabel = SVG("<text class=\"heading cDark\" transform=\"translate(150 100)\"></text>")
 	let eDescription = SVG("<text class=\"description cDark\" transform=\"translate(150 180)\"></text>")
 	let eNodeInfo = SVG("<g></g>")
@@ -61,17 +106,27 @@ genNodeInfo = n => {
 
 	let y = 120
 
-	let wLabel = wrapText(n.label, textWidth.robotoMedium({fontSize: 50}), 645)
+	let wLabel = wrapText(n.label, textWidth.robotoMedium({fontSize: 50}), w - 150)
 	eLabel.font({size: 60, leading: 1})
-	eLabel.text(add => wLabel.map(line => add.tspan(line).newLine()))
+	eLabel.text(add => wLabel.forEach(line => add.tspan(line).newLine()))
 	y += (wLabel.length-1) * 60
 
-	let wDescription = wrapText(n.description, textWidth.robotoMedium({fontSize: 35}), 645)
+	let wDescription = wrapText(n.description, textWidth.robotoMedium({fontSize: 35}), w - 150)
 	if (wDescription.length > 0) y += 60
 	eDescription.attr({y: y - 180})
 	eDescription.font({size: 45, leading: 1})
-	eDescription.text(add => wDescription.map(line => add.tspan(line).newLine()))
+	eDescription.text(add => wDescription.forEach(line => add.tspan(line).newLine()))
 	y += Math.max(wDescription.length - 1, 0) * 45
+	if (wDescription.length > 0) y += 10
+
+	if (n.channels) {
+		y += 40
+		let channelInfo = genCompositeChannelInfo(n.channels, w)
+		let eChannelInfo = SVG(channelInfo.data)
+		eChannelInfo.attr({transform: "translate(0 " + y + ")"})
+		y += channelInfo.dimensions.height
+		eNodeInfo.add(eChannelInfo)
+	}
 
 	eNodeInfo.add(eNode)
 	eNodeInfo.add(eInfo)
@@ -81,7 +136,7 @@ genNodeInfo = n => {
 	if (y < 120) console.log(n.label)
 
 	return {
-		dimensions: { width: 795, height: y },
+		dimensions: { width: w, height: y },
 		data: fixSVG(eNodeInfo.svg())
 	}
 }
@@ -105,8 +160,9 @@ genThumbnail = o => {
 
 	// text
 	let wName = wrapText(o.name, textWidth.robotoBold({fontSize: 80}), 392)
-	eName.attr({dy: -80 * (wName.length-1)})
-	eName.text(add => wName.map(line => add.tspan(line).attr({x: 0, y: 0})))
+	eName.attr({y: -80 * (wName.length-1)})
+	eName.font({size: 80, leading: 1})
+	eName.text(add => wName.forEach(line => add.tspan(line).newLine()))
 	eType.first().text(o.type)
 
 	return {
@@ -127,7 +183,7 @@ genGroupThumbnail = g => {
 	return genThumbnail({
 		name: g.name,
 		group: g.name,
-		type: "group"
+		type: "Group"
 	})
 }
 
@@ -157,14 +213,15 @@ genControllerCard = c => {
 	// text
 	eName.text(c.name)
 	eInfo.text(c.identifier + (c.version ? " v" + c.version : ""))
-	eDescription.attr({dy: -45}).text(add => wrapText(c.description, textWidth.robotoLight({fontSize: 35}), 920).map(line => add.tspan(line).attr({x: 0, y: 0})))
+	eDescription.font({size: 45, leading: 1})
+	eDescription.text(add => wrapText(c.description, textWidth.robotoLight({fontSize: 35}), 840).forEach(line => add.tspan(line).newLine()))
 	eTitleNext.text("Next" + (c.readonly ? " (Readonly)" : ""))
 
 	// microcontroller
-	eMicrocontroller.attr({transform: "translate(" + (1680 - 120 * (c.width - 1)) + ",120)"})
-	let pos = {x: 0, y: 0, width: 120 * c.width, height: 120 * c.length}
-	eMCBackground.attr(pos)
-	eMCBorder.attr(pos)
+	//eMicrocontroller.attr({transform: "translate(120 360)"})
+	let size = {/*x: 0, y: 0, */width: 120 * c.width, height: 120 * c.length}
+	eMCBackground.attr(size)
+	eMCBorder.attr(size)
 
 	// nodes
 	let eNodes = SVG("<g id=\"Nodes\"></g>")
@@ -187,18 +244,19 @@ genControllerNodes = c => {
 	let eInfo = nodesTemplate.find("#Info")
 
 	// text
-	eName.text(c.name)
+	//eName.text(c.name)
 	eInfo.text(c.identifier + (c.version ? " v" + c.version : ""))
 
 	// nodes
+	let nodeInfoWidth = 795
 	let eNodes = SVG("<g id=\"Nodes\" transform=\"translate(120 360)\"></g>")
-	let nodes = ([...c.nodes].sort((a, b) => a.type - b.type || b.mode - a.mode)).map(node => genNodeInfo(node)) // sorting
+	let nodes = ([...c.nodes].sort((a, b) => a.type - b.type || b.mode - a.mode)).map(node => genNodeInfo(node, nodeInfoWidth)) // sorting
 	let wrap = wrapPartition(nodes, node => node.dimensions.height, 90)
 
 	let y = 0, x = 0
 	nodes.forEach((node, i) => {
 		if (i === wrap.i) {
-			x = 795 + 90
+			x = nodeInfoWidth + (1680 - 2 * nodeInfoWidth)
 			y = 0
 		}
 		eNodes.add(SVG(node.data).attr({transform: "translate(" + x + " " + y + ")"}))
@@ -279,4 +337,4 @@ wrapPartition = (elements, sizeFunction, spacing) => {
 	return { a: elements, b: [], i: elements.length - 1, min: min }
 }
 
-module.exports = { genControllerThumbnail, genControllerCard, genControllerNodes, genGroupThumbnail }
+module.exports = { genControllerThumbnail, genControllerCard, genControllerNodes, genGroupThumbnail, genCompositeChannelInfo }

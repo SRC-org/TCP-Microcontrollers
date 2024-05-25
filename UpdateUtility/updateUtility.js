@@ -4,8 +4,8 @@ database = require("../Controllers/database.json")
 
 const { XMLParser/*, XMLBuilder, XMLValidator*/ } = require("fast-xml-parser")
 const { convert } = require("convert-svg-to-png")
-const { genControllerCard, genControllerThumbnail, genControllerNodes, genGroupThumbnail } = require("./mediaElements")
 const readline = require("readline");
+const { genControllerCard, genControllerThumbnail, genControllerNodes, genGroupThumbnail } = require("./mediaElements")
 
 const swPath = process.env.APPDATA + "/Stormworks/data/microprocessors/"
 const cPath = path.join(__dirname, "../Controllers/")
@@ -27,15 +27,15 @@ swXMLParser = new XMLParser({ignoreAttributes: false})
 // -r:	registers a new controller into the database (identifier and group)
 // -c:	copies the files from stormworks data to repository folder
 // -d:	updates database and controllers
-// -i:	generates illustrations and thumbnails from database
+// -g:	generates illustrations, thumbnails and descriptions from database
 // -s: 	updates steam workshop items
-// -e:	export database contents
+// -e:	exports database contents
 
 async function start() {
 	if (args.indexOf("-r") > -1) await execRegister(args.indexOf("-r"))
 	if (args.indexOf("-c") > -1) await execCopy()
 	if (args.indexOf("-d") > -1) await execDatabase()
-	if (args.indexOf("-i") > -1) await execImages()
+	if (args.indexOf("-g") > -1) await execImages()
 	if (args.indexOf("-s") > -1) await execSteam()
 	if (args.indexOf("-e") > -1) await execExport(args.indexOf("-e"))
 }
@@ -100,7 +100,7 @@ async function execDatabase() {
 
 	controllers.forEach(c => {
 		let buffer = fs.readFileSync(c.path + c.file, "utf-8")
-		buffer = buffer.replaceAll(/(?<=description=")([^"]+?) *\/\/ *(?:[^"]+? *\/\/ *)?#(c\d+?)(?=")/gm, (match, desc, tID) => desc + resolveTextID(tID) + " // #" + tID)
+		buffer = buffer.replaceAll(/(?<=description=")(?<Desc>[^"]+?)(?: *\/\/ *[^"]*?)?(?:(?<= *\/\/ *)#(?<ID>[a-z]\d+?))?(?=")/gm, (_, desc, tID) => desc + (tID ? resolveTextID(tID) + " // #" + tID : ""))
 
 		let xml = swXMLParser.parse(buffer)
 		c.data = data.fromXML(xml)
@@ -149,7 +149,7 @@ async function execImages() {
 	})
 
 	// convert to png
-	/*for (let i = 0; i < SVGs.length; i++) {
+	for (let i = 0; i < SVGs.length; i++) {
 		let svg = SVGs[i]
 		let p = convert(svg.data, svg.dimensions)
 		p.then(png =>
@@ -161,17 +161,17 @@ async function execImages() {
 		promises.push(p)
 		if ((i+1) % 9 === 0) (await Promise.all(promises).then(() => promises = []))
 	}
-	await Promise.all(promises).then(() => promises = [])*/
+	await Promise.all(promises).then(() => promises = [])
 
 	// write all files
-	SVGs.map(svg => promises.push(fs.promises.writeFile(svg.path + ".svg", svg.data)))
-	/*PNGs.map(png => promises.push(new Promise((resolve, reject) => {
+	//SVGs.map(svg => promises.push(fs.promises.writeFile(svg.path + ".svg", svg.data)))
+	PNGs.map(png => promises.push(new Promise((resolve, reject) => {
 		const file = fs.createWriteStream(png.path + ".png")
 		file.write(png.data)
 		file.end()
 		file.on("finish", resolve)
 		file.on("error", reject)
-	})))*/
+	})))
 
 	await Promise.all(promises)
 }
@@ -220,14 +220,6 @@ async function execExport(index) {
 	}
 }
 
-/*
- * new regex:
- * /SRC-TCP *\[(.*?)\] *(.*?(?= *v\d| *\.| *\(| *$)) *(\((.*?)\))? *v?([0-9._]*[0-9])?/gm
- *
- * old regex:
- * /(?<=\[)(.*?)(?=\] )(?:\] )(.*?)(?=\.| \(| v[\d\_]*\.xml)(?:(?: \()([a-zA-Z\s]+)(?:\)))?(?: v)?([\d\_]*)?/g
- */
-
 data = {
 	matchInfo: (str) => {
 		return str.matchAll(/SRC-TCP *\[(.*?)\] *(.*?(?= *v\d| *\.| *\(| *$)) *(\((.*?)\))? *v?([0-9._]*[0-9])?/gm).next().value // I will forget how this works tomorrow
@@ -250,12 +242,11 @@ data = {
 		let nodes = []
 		xml.microprocessor.nodes.n.forEach((n) => {
 			n = n.node
-			let desc = (n["@_description"] || " ").match(/(.*?)(?: *\/\/ *.*?#c(\d+))?$/m)
-			// console.log(desc) // debug...
+			let desc = (n["@_description"] || " ").match(/(.*?)(?: *\/\/ *.*?#(c\d+))?$/m)
 			nodes.push({
 				label: n["@_label"] || "",
 				description: desc[1],
-				id: desc[2],
+				channels: reverseTextIDs[desc[2]],
 				mode: (n["@_mode"] === "1"), // true is input, false is output
 				type: Number(n["@_type"]) || 0,
 				position: n.position && {
@@ -280,7 +271,7 @@ reverseTextIDs = (() => {
 	return result
 })()
 
-function resolveTextID (tID) {
+resolveTextID = tID => {
 
 	switch (tID.charAt(0)) {
 		case 'c':
@@ -297,7 +288,7 @@ function resolveTextID (tID) {
 	return ""
 }
 
-function resolveChannels(identifier) {
+resolveChannels = identifier => {
 
 
 	let entry = database.connections.composite[identifier]
