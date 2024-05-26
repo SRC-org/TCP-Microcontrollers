@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="LinkHigher" xmlns="http://www.w3.org/2000/svg" width="1920" height="360" viewBox="0 0 1920 360">
+  <defs>
+    <style>
+
+      .name {
+        font-family: Roboto;
+        font-size: 80px;
+        font-weight: 700;
+      }
+
+      .type {
+        font-family: 'JetBrains Mono';
+        font-size: 50px;
+        font-weight: 500;
+      }
+
+      .cDark {
+        fill: #403e57;
+      }
+
+      .cLight {
+        fill: #e6e6e6;
+      }
+
+    </style>
+  </defs>
+  <rect id="Frame" width="1920" height="360"/>
+  <rect id="Background" class="cLight" x="1050" y="30" width="780" height="300" rx="30" ry="30" transform="translate(2880 360) rotate(180)"/>
+  <text id="Name" class="name cDark" transform="translate(1080 284.95)"><tspan x="0" y="0">Name</tspan></text>
+  <path id="TCPLogo" class="cDark" style="display: none" d="M1725,60v15h-13.18c-4.15,0-7.9,1.67-10.61,4.39l-18.38,18.37-7.23,7.23h34.4v15h-60v-60h15v34.39l25.6-25.61h0c5.42-5.43,12.92-8.79,21.21-8.79h13.18ZM1740,60v15h34.4l-7.23,7.23-18.37,18.37c-2.71,2.72-6.46,4.4-10.61,4.4h-13.18v15h13.18c8.29,0,15.79-3.36,21.21-8.79h0s25.6-25.61,25.6-25.61v34.4h15v-60h-60Z"/>
+  <text id="Type" class="type cLight" transform="translate(960 284.95)"  text-anchor="end"><tspan x="0" y="0">Type</tspan></text>
+  <path id="Arrow" class="cLight" d="M148.6,218.35l-28.6-38.35,28.73-38.35h22.88l-20.41,27.3c-.26.35-.52.67-.78.98-.26.3-.48.63-.65.97h104.13v18.2h-103.87c.17.26.37.54.58.84.22.3.46.63.72.98l20.28,27.43h-23.01Z"/>
+</svg>

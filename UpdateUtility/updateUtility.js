@@ -158,7 +158,10 @@ async function execImages() {
 	if (!fs.existsSync(mPath + "Export/")) fs.mkdirSync(mPath + "Export/")
 	if (!fs.existsSync(mPath + "Export/Thumbnails/")) fs.mkdirSync(mPath + "Export/Thumbnails/")
 	if (!fs.existsSync(mPath + "Export/Cards/")) fs.mkdirSync(mPath + "Export/Cards/")
+	if (!fs.existsSync(mPath + "Export/Layout/")) fs.mkdirSync(mPath + "Export/Layout/")
 	if (!fs.existsSync(mPath + "Export/Nodes/")) fs.mkdirSync(mPath + "Export/Nodes/")
+	if (!fs.existsSync(mPath + "Export/LinkHigher/")) fs.mkdirSync(mPath + "Export/LinkHigher/")
+	if (!fs.existsSync(mPath + "Export/LinkLower/")) fs.mkdirSync(mPath + "Export/LinkLower/")
 	if (!fs.existsSync(mPath + "Export/Desc/")) fs.mkdirSync(mPath + "Export/Desc/")
 
 	let promises = []
@@ -173,8 +176,17 @@ async function execImages() {
 		SVGs.push(mergeJSON(genControllerCard(c), {
 			path: mPath + "Export/Cards/" + c.identifier
 		}))
+		SVGs.push(mergeJSON(genControllerLayout(c), {
+			path: mPath + "Export/Layout/" + c.identifier
+		}))
 		SVGs.push(mergeJSON(genControllerNodes(c), {
 			path: mPath + "Export/Nodes/" + c.identifier
+		}))
+		SVGs.push(mergeJSON(genControllerLink(c, "Higher"), {
+			path: mPath + "Export/LinkHigher/" + c.identifier
+		}))
+		SVGs.push(mergeJSON(genControllerLink(c, "Lower"), {
+			path: mPath + "Export/LinkLower/" + c.identifier
 		}))
 		TXTs.push(mergeJSON(genControllerDesc(c), {
 			path: mPath + "Export/Desc/" + c.identifier

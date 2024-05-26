@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg id="Template" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">
+<svg id="Layout" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
   <defs>
     <style>
 
@@ -27,17 +27,12 @@
         font-weight: 500;
       }
 
-      .nodeBox {
-        stroke: #cacacc;
-        stroke-width: 10px;
-      }
-
       .cBack {
-        fill: #cacacc;
+       fill: #cacacc;
       }
 
       .cDark {
-        fill: #403e57;
+       fill: #403e57;
       }
 
       .cDark2 {
@@ -51,7 +46,6 @@
     </style>
   </defs>
   <rect id="Frame" class="cLight" width="1920" height="1080"/>
-  <text id="Name" class="title cDark" transform="translate(120 239.96)"><tspan x="0" y="0">Nodes</tspan></text>
-  <text id="Info" class="mono cDark2" transform="translate(120 119.68)"><tspan x="0" y="0">Info</tspan></text>
-  <g id="Nodes" transform="translate(120 360)"></g>
+  <text id="Name" class="title cDark" transform="translate(120 239.92)"><tspan x="0" y="0">Layout</tspan></text>
+  <text id="Info" class="mono cDark2" transform="translate(120 120)"><tspan x="0" y="0">Info</tspan></text>
 </svg>

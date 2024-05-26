@@ -15,9 +15,12 @@ registerWindow(window, document)
 // load templates
 let thumbnailTemplate = SVG().svg(fs.readFileSync(mPath + "Templates/Thumbnail.svg").toString())
 let cardTemplate = SVG().svg(fs.readFileSync(mPath + "Templates/Card.svg").toString())
-let groupCardTemplate = SVG().svg(fs.readFileSync(mPath + "Templates/GroupCard.svg").toString())
+let layoutTemplate = SVG().svg(fs.readFileSync(mPath + "Templates/Layout.svg").toString())
 let nodesTemplate = SVG().svg(fs.readFileSync(mPath + "Templates/Nodes.svg").toString())
+let linkHigherTemplate = SVG().svg(fs.readFileSync(mPath + "Templates/LinkHigher.svg").toString())
+let linkLowerTemplate = SVG().svg(fs.readFileSync(mPath + "Templates/LinkLower.svg").toString())
 let controllerDescTemplate = fs.readFileSync(mPath + "Templates/ControllerDescription.txt").toString()
+let groupCardTemplate = SVG().svg(fs.readFileSync(mPath + "Templates/GroupCard.svg").toString())
 let groupDescTemplate = fs.readFileSync(mPath + "Templates/GroupDescription.txt").toString()
 
 
@@ -164,18 +167,21 @@ genDescriptionComponent = (comp, x) => {
  * Final Media
  */
 
-genThumbnail = o => {
+genThumbLike = (o, template) => {
 
 	// elements
-	let eFrame = thumbnailTemplate.find("#Frame")
-	let eName = thumbnailTemplate.find("#Name")
-	let eType = thumbnailTemplate.find("#Type")
+	let eFrame = template.find("#Frame")
+	let eName = template.find("#Name")
+	let eType = template.find("#Type")
+	let eArrow = template.find("#Arrow")
 
 	// colour
 	let colour = database.definitions.groupColours[o.group]
 	eFrame.css({fill: "#" + colour})
 	eType.attr({class: "type"})
+	eArrow?.attr({class: ""})
 	eType.addClass(rgbToHsl(hexToRgb(colour)).l > .5 ? "cDark" : "cLight")
+	eArrow?.addClass(rgbToHsl(hexToRgb(colour)).l > .5 ? "cDark" : "cLight")
 
 	// text
 	let wName = wrapText(o.name, textWidth.robotoBold({fontSize: 80}), 392)
@@ -185,17 +191,27 @@ genThumbnail = o => {
 	eType.first().text(o.type)
 
 	return {
-		dimensions: { width: 512, height: 512 },
-		data: fixSVG(thumbnailTemplate.svg())
+		dimensions: { width: template.first().viewbox().width, height: template.first().viewbox().height },
+		data: fixSVG(template.svg())
 	}
 }
 
+// controller
+
 genControllerThumbnail = c => {
-	return genThumbnail({
+	return genThumbLike({
 		name: c.name,
 		group: c.group,
 		type: c.type
-	})
+	}, thumbnailTemplate)
+}
+
+genControllerLink = (c, dir) => {
+	return genThumbLike({
+		name: c.name,
+		group: c.group,
+		type: c.type
+	}, dir === "Higher" ? linkHigherTemplate : linkLowerTemplate)
 }
 
 genControllerCard = c => {
@@ -245,11 +261,25 @@ genControllerCard = c => {
 	}
 }
 
+genControllerLayout = c => {
+
+	// elements
+	let eInfo = nodesTemplate.find("#Info")
+
+	// text
+	eInfo.text(c.identifier + (c.version ? " v" + c.version : ""))
+
+	return {
+		dimensions: { width: 1920, height: 1080 },
+		data: fixSVG(layoutTemplate.svg())
+	}
+}
+
 genControllerNodes = c => {
 
 	// elements
 	let eFrame = nodesTemplate.find("#Frame")
-	let eBackground = nodesTemplate.find("#Background")
+	//let eBackground = nodesTemplate.find("#Background")
 	//let eLogo = nodesTemplate.find("#TCPLogo")
 	let eName = nodesTemplate.find("#Name")
 	let eInfo = nodesTemplate.find("#Info")
@@ -279,7 +309,7 @@ genControllerNodes = c => {
 	let height = 480 + wrap.min
 	nodesTemplate.first().viewbox(0, 0, 1920, height)
 	eFrame.attr({height: height})
-	eBackground.attr({height: height-60})
+	//eBackground.attr({height: height-60})
 	//eLogo.attr({transform: "translate(0, " + (height - 1080) + ")"})
 
 	return {
@@ -302,12 +332,14 @@ genControllerDesc = c => {
 	}
 }
 
+// group
+
 genGroupThumbnail = g => {
-	return genThumbnail({
+	return genThumbLike({
 		name: g.name,
 		group: g.name,
 		type: "Group"
-	})
+	}, thumbnailTemplate)
 }
 
 genGroupCard = g => {
