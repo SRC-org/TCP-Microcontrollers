@@ -6,11 +6,12 @@
   "scripts": {},
   "author": "Serpentine",
   "dependencies": {
-    "@resvg/resvg-js": "^2.4.1",
+    "@resvg/resvg-js": "^2.6.2",
     "@svgdotjs/svg.js": "^3.1.2",
-    "convert-svg-to-png": "^0.6.4",
+    "dotenv": "^16.4.5",
     "fast-xml-parser": "^4.2.2",
-    "svgdom": "^0.1.14",
-    "text-to-svg": "^3.1.5"
+    "svgdom": "0.1.14",
+    "text-to-svg": "^3.1.5",
+    "vdf-parser": "^1.2.1"
   }
 }

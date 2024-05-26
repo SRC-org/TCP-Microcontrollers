@@ -34,6 +34,10 @@
 			"1": "Developer",
 			"2": "Builder",
 			"3": "User"
+		},
+		"urls": {
+			"images": "https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/",
+			"discord": "https://discord.gg/3Swuqkb8d2"
 		}
 	},
 	"connections": {
@@ -145,23 +149,28 @@
 	"groups": {
 		"System": {
 			"name": "System",
-			"identifier": "[Group] System"
+			"identifier": "[Group] System",
+			"description": ""
 		},
 		"Drivetrain": {
 			"name": "Drivetrain",
-			"identifier": "[Group] Drivetrain"
+			"identifier": "[Group] Drivetrain",
+			"description": ""
 		},
 		"Lighting": {
 			"name": "Lighting",
-			"identifier": "[Group] Lighting"
+			"identifier": "[Group] Lighting",
+			"description": ""
 		},
 		"Decouple": {
 			"name": "Decouple",
-			"identifier": "[Group] Decouple"
+			"identifier": "[Group] Decouple",
+			"description": ""
 		},
 		"Passenger": {
 			"name": "Passenger",
-			"identifier": "[Group] Passenger"
+			"identifier": "[Group] Passenger",
+			"description": ""
 		}
 	},
 	"controllers": {
@@ -236,7 +245,12 @@
 					}
 				}
 			],
-			"readonly": false
+			"readonly": false,
+			"hierarchy": {
+				"higher": [
+					"[Module] Decouple"
+				]
+			}
 		},
 		"[Module] Decouple": {
 			"identifier": "[Module] Decouple",
@@ -289,7 +303,15 @@
 					}
 				}
 			],
-			"readonly": false
+			"readonly": false,
+			"hierarchy": {
+				"higher": [
+					"[System] Hub"
+				],
+				"lower": [
+					"[Interface] Decouple"
+				]
+			}
 		},
 		"[RO Interface] Decouple": {
 			"identifier": "[RO Interface] Decouple",
@@ -332,7 +354,12 @@
 					}
 				}
 			],
-			"readonly": true
+			"readonly": true,
+			"hierarchy": {
+				"higher": [
+					"[RO Module] Decouple"
+				]
+			}
 		},
 		"[RO Module] Decouple": {
 			"identifier": "[RO Module] Decouple",
@@ -365,7 +392,15 @@
 					}
 				}
 			],
-			"readonly": true
+			"readonly": true,
+			"hierarchy": {
+				"higher": [
+					"[System] Main Controller"
+				],
+				"lower": [
+					"[RO Interface] Decouple"
+				]
+			}
 		},
 		"[Interface] Drivetrain": {
 			"identifier": "[Interface] Drivetrain",
@@ -468,7 +503,12 @@
 					}
 				}
 			],
-			"readonly": false
+			"readonly": false,
+			"hierarchy": {
+				"higher": [
+					"[Module] Drivetrain"
+				]
+			}
 		},
 		"[Module] Drivetrain": {
 			"identifier": "[Module] Drivetrain",
@@ -541,7 +581,15 @@
 					}
 				}
 			],
-			"readonly": false
+			"readonly": false,
+			"hierarchy": {
+				"higher": [
+					"[System] Hub"
+				],
+				"lower": [
+					"[Interface] Drivetrain"
+				]
+			}
 		},
 		"[RO Interface] Drivetrain (Brakes Only)": {
 			"identifier": "[RO Interface] Drivetrain (Brakes Only)",
@@ -595,7 +643,12 @@
 					}
 				}
 			],
-			"readonly": true
+			"readonly": true,
+			"hierarchy": {
+				"higher": [
+					"[RO Module] Drivetrain"
+				]
+			}
 		},
 		"[RO Module] Drivetrain": {
 			"identifier": "[RO Module] Drivetrain",
@@ -628,7 +681,15 @@
 					}
 				}
 			],
-			"readonly": true
+			"readonly": true,
+			"hierarchy": {
+				"higher": [
+					"[System] Main Controller"
+				],
+				"lower": [
+					"[RO Interface] Drivetrain (Brakes Only)"
+				]
+			}
 		},
 		"[Extender] Lightbox": {
 			"identifier": "[Extender] Lightbox",
@@ -760,7 +821,13 @@
 					}
 				}
 			],
-			"readonly": false
+			"readonly": false,
+			"hierarchy": {
+				"higher": [
+					"[RO Interface] Exterior Lighting",
+					"[Interface] Exterior Lighting"
+				]
+			}
 		},
 		"[Interface] Exterior Lighting": {
 			"identifier": "[Interface] Exterior Lighting",
@@ -833,7 +900,15 @@
 					}
 				}
 			],
-			"readonly": false
+			"readonly": false,
+			"hierarchy": {
+				"higher": [
+					"[Module] Exterior Lighting"
+				],
+				"lower": [
+					"[Extender] Lightbox"
+				]
+			}
 		},
 		"[Module] Exterior Lighting": {
 			"identifier": "[Module] Exterior Lighting",
@@ -886,7 +961,15 @@
 					}
 				}
 			],
-			"readonly": false
+			"readonly": false,
+			"hierarchy": {
+				"higher": [
+					"[System] Hub"
+				],
+				"lower": [
+					"[Interface] Exterior Lighting"
+				]
+			}
 		},
 		"[RO Interface] Exterior Lighting": {
 			"identifier": "[RO Interface] Exterior Lighting",
@@ -919,7 +1002,15 @@
 					}
 				}
 			],
-			"readonly": true
+			"readonly": true,
+			"hierarchy": {
+				"higher": [
+					"[RO Module] Exterior Lighting"
+				],
+				"lower": [
+					"[Extender] Lightbox"
+				]
+			}
 		},
 		"[RO Module] Exterior Lighting": {
 			"identifier": "[RO Module] Exterior Lighting",
@@ -952,7 +1043,15 @@
 					}
 				}
 			],
-			"readonly": true
+			"readonly": true,
+			"hierarchy": {
+				"higher": [
+					"[System] Main Controller"
+				],
+				"lower": [
+					"[RO Interface] Exterior Lighting"
+				]
+			}
 		},
 		"[Interface] Passenger Doors": {
 			"identifier": "[Interface] Passenger Doors",
@@ -1015,7 +1114,12 @@
 					}
 				}
 			],
-			"readonly": false
+			"readonly": false,
+			"hierarchy": {
+				"higher": [
+					"[Module] Passenger"
+				]
+			}
 		},
 		"[Interface] Passenger Lighting": {
 			"identifier": "[Interface] Passenger Lighting",
@@ -1098,7 +1202,12 @@
 					}
 				}
 			],
-			"readonly": false
+			"readonly": false,
+			"hierarchy": {
+				"higher": [
+					"[Module] Passenger"
+				]
+			}
 		},
 		"[Module] Passenger": {
 			"identifier": "[Module] Passenger",
@@ -1161,7 +1270,16 @@
 					}
 				}
 			],
-			"readonly": false
+			"readonly": false,
+			"hierarchy": {
+				"higher": [
+					"[System] Hub"
+				],
+				"lower": [
+					"[Interface] Passenger Doors",
+					"[Interface] Passenger Lighting"
+				]
+			}
 		},
 		"[RO Interface] Passenger Doors": {
 			"identifier": "[RO Interface] Passenger Doors",
@@ -1194,7 +1312,12 @@
 					}
 				}
 			],
-			"readonly": true
+			"readonly": true,
+			"hierarchy": {
+				"higher": [
+					"[RO Module] Passenger"
+				]
+			}
 		},
 		"[RO Interface] Passenger Lighting": {
 			"identifier": "[RO Interface] Passenger Lighting",
@@ -1247,7 +1370,12 @@
 					}
 				}
 			],
-			"readonly": true
+			"readonly": true,
+			"hierarchy": {
+				"higher": [
+					"[RO Module] Passenger"
+				]
+			}
 		},
 		"[RO Module] Passenger": {
 			"identifier": "[RO Module] Passenger",
@@ -1280,7 +1408,16 @@
 					}
 				}
 			],
-			"readonly": true
+			"readonly": true,
+			"hierarchy": {
+				"higher": [
+					"[System] Main Controller"
+				],
+				"lower": [
+					"[RO Interface] Passenger Doors",
+					"[RO Interface] Passenger Lighting"
+				]
+			}
 		},
 		"[System] Display Controller": {
 			"identifier": "[System] Display Controller",
@@ -1403,7 +1540,8 @@
 					}
 				}
 			],
-			"readonly": false
+			"readonly": false,
+			"hierarchy": {}
 		},
 		"[System] Dual Cab Controller": {
 			"identifier": "[System] Dual Cab Controller",
@@ -1516,7 +1654,8 @@
 					}
 				}
 			],
-			"readonly": false
+			"readonly": false,
+			"hierarchy": {}
 		},
 		"[System] Dual Cab Switchbox": {
 			"identifier": "[System] Dual Cab Switchbox",
@@ -1689,7 +1828,8 @@
 					}
 				}
 			],
-			"readonly": false
+			"readonly": false,
+			"hierarchy": {}
 		},
 		"[System] Hub": {
 			"identifier": "[System] Hub",
@@ -1742,7 +1882,8 @@
 					}
 				}
 			],
-			"readonly": false
+			"readonly": false,
+			"hierarchy": {}
 		},
 		"[System] Main Controller (Slave Only)": {
 			"identifier": "[System] Main Controller (Slave Only)",
@@ -1836,7 +1977,8 @@
 					}
 				}
 			],
-			"readonly": false
+			"readonly": false,
+			"hierarchy": {}
 		},
 		"[System] Main Controller": {
 			"identifier": "[System] Main Controller",
@@ -1999,7 +2141,8 @@
 					}
 				}
 			],
-			"readonly": false
+			"readonly": false,
+			"hierarchy": {}
 		}
 	}
 }

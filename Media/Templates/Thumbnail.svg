@@ -3,9 +3,6 @@
   <defs>
     <style>
 
-      @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100..800');
-      @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900');
-
       .name {
         font-family: Roboto;
         font-size: 80px;
@@ -15,7 +12,7 @@
       .type {
         font-family: 'JetBrains Mono';
         font-size: 50px;
-        font-variation-settings: 'wght' 500;
+        font-weight: 500;
       }
 
       .cDark {

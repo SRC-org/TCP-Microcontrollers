@@ -1,4 +1,4 @@
-fs = require("fs")
+fs = require("fs");
 path = require("path")
 
 const { createSVGWindow } = require("svgdom")
@@ -15,7 +15,11 @@ registerWindow(window, document)
 // load templates
 let thumbnailTemplate = SVG().svg(fs.readFileSync(mPath + "Templates/Thumbnail.svg").toString())
 let cardTemplate = SVG().svg(fs.readFileSync(mPath + "Templates/Card.svg").toString())
+let groupCardTemplate = SVG().svg(fs.readFileSync(mPath + "Templates/GroupCard.svg").toString())
 let nodesTemplate = SVG().svg(fs.readFileSync(mPath + "Templates/Nodes.svg").toString())
+let controllerDescTemplate = fs.readFileSync(mPath + "Templates/ControllerDescription.txt").toString()
+let groupDescTemplate = fs.readFileSync(mPath + "Templates/GroupDescription.txt").toString()
+
 
 // text width calculations
 getTextWidthFunction = font => options => text => textSVG.loadSync(mPath + 'Fonts/' + font).getMetrics(text, options).width
@@ -141,6 +145,21 @@ genNodeInfo = (n, w) => {
 	}
 }
 
+genDescriptionComponent = (comp, x) => {
+	switch (Number(comp.charAt(0))) {
+		case 0: return "[img]" + encodeURI(database.definitions.urls.images + "All/" + comp.substring(1) + ".png") + "[/img]"
+		case 1:
+			let l = encodeURI(database.definitions.urls.images + comp.substring(1) + "/" + x.identifier + ".png")
+			return "[url=" + l + "][img]" + l + "[/img][/url]"
+		case 2:
+			if (comp.substring(1) === "Links") {
+				let gen = (list, type) => list?.map(c => "[url=https://steamcommunity.com/sharedfiles/filedetails/?id=" + database.controllers[c].publishedfileid + "][img]" + encodeURI(database.definitions.urls.images + "Link" + type + "/" + c + ".png") + "[/img][/url]") ?? []
+				return gen(x.hierarchy?.higher, "Higher").concat(gen(x.hierarchy?.lower, "Lower")).reduce((r, c) => r + c + "\n", "")
+			}
+	}
+	return "ERROR for placeholder: {$s" + comp + "}"
+}
+
 /*
  * Final Media
  */
@@ -176,14 +195,6 @@ genControllerThumbnail = c => {
 		name: c.name,
 		group: c.group,
 		type: c.type
-	})
-}
-
-genGroupThumbnail = g => {
-	return genThumbnail({
-		name: g.name,
-		group: g.name,
-		type: "Group"
 	})
 }
 
@@ -277,6 +288,63 @@ genControllerNodes = c => {
 	}
 }
 
+genControllerDesc = c => {
+
+	let desc = controllerDescTemplate
+	desc = desc.replaceAll(/{\$([^}]*?)}/gm, (_, tID) => {
+		let res = resolveTextID(tID)
+		if (typeof res === "function") return res(c)
+		return res
+	})
+
+	return {
+		data: desc
+	}
+}
+
+genGroupThumbnail = g => {
+	return genThumbnail({
+		name: g.name,
+		group: g.name,
+		type: "Group"
+	})
+}
+
+genGroupCard = g => {
+
+	// elements
+	let eFrame = groupCardTemplate.find("#Frame")
+	let eName = groupCardTemplate.find("#Name")
+	let eInfo = groupCardTemplate.find("#Info")
+	let eDescription = groupCardTemplate.find("#Description")
+
+	// colour
+	let colour = database.definitions.groupColours[g.name]
+	eFrame.css({fill: "#" + colour})
+
+	// text
+	let wDescription = wrapText(g.description ?? "", textWidth.robotoLight({fontSize: 35}), 1170)
+	eDescription.font({size: 45, leading: 1})
+	eDescription.text(add => wDescription.forEach(line => add.tspan(line).newLine()))
+	eName.text(g.name)
+	eInfo.text(g.identifier)
+
+	return {
+		dimensions: { width: 1920, height: 1080 },
+		data: fixSVG(groupCardTemplate.svg())
+	}
+}
+
+genGroupDesc = g => {
+
+
+
+	return {
+		data: "test"
+	}
+}
+
+
 /*
  * Helper Functions
  */
@@ -336,5 +404,3 @@ wrapPartition = (elements, sizeFunction, spacing) => {
 
 	return { a: elements, b: [], i: elements.length - 1, min: min }
 }
-
-module.exports = { genControllerThumbnail, genControllerCard, genControllerNodes, genGroupThumbnail, genCompositeChannelInfo }

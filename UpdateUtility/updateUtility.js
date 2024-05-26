@@ -1,11 +1,12 @@
 fs = require("fs")
 path = require("path")
 database = require("../Controllers/database.json")
+require("./mediaElements")
+require("dotenv").config({ path: path.join(__dirname, "./.env") });
 
-const { XMLParser/*, XMLBuilder, XMLValidator*/ } = require("fast-xml-parser")
-const { convert } = require("convert-svg-to-png")
-const readline = require("readline");
-const { genControllerCard, genControllerThumbnail, genControllerNodes, genGroupThumbnail } = require("./mediaElements")
+const { XMLParser } = require("fast-xml-parser")
+const { Resvg } = require('@resvg/resvg-js')
+const readline = require("readline")
 
 const swPath = process.env.APPDATA + "/Stormworks/data/microprocessors/"
 const cPath = path.join(__dirname, "../Controllers/")
@@ -116,6 +117,39 @@ async function execDatabase() {
 
 		mergeJSON(database.controllers[c.data.identifier], c.data)
 	})
+
+	// auto generate hierarchy
+	// for modules and interface (ro and normal) we can auto generate the hierarchies
+
+	for (let g in database.groups) {
+		let lists = {}
+		for (let c in database.controllers) {
+			c = database.controllers[c]
+			if (c.group !== g) continue
+			c.hierarchy = {}
+			lists[c.type] = lists[c.type] || []
+			lists[c.type].push(c.identifier)
+		}
+		lists["Module"]?.forEach(c => {
+			database.controllers[c].hierarchy.higher = ["[System] Hub"]
+			database.controllers[c].hierarchy.lower = lists["Interface"]
+		})
+		lists["RO Module"]?.forEach(c => {
+			database.controllers[c].hierarchy.higher = ["[System] Main Controller"]
+			database.controllers[c].hierarchy.lower = lists["RO Interface"]
+		})
+		lists["Interface"]?.forEach(c => {
+			database.controllers[c].hierarchy.higher = lists["Module"]
+			database.controllers[c].hierarchy.lower = lists["Extender"]
+		})
+		lists["RO Interface"]?.forEach(c => {
+			database.controllers[c].hierarchy.higher = lists["RO Module"]
+			database.controllers[c].hierarchy.lower = lists["Extender"]
+		})
+		lists["Extender"]?.forEach(c => {
+			database.controllers[c].hierarchy.higher = lists["RO Interface"].concat(lists["Interface"])
+		})
+	}
 }
 
 // Images
@@ -125,9 +159,11 @@ async function execImages() {
 	if (!fs.existsSync(mPath + "Export/Thumbnails/")) fs.mkdirSync(mPath + "Export/Thumbnails/")
 	if (!fs.existsSync(mPath + "Export/Cards/")) fs.mkdirSync(mPath + "Export/Cards/")
 	if (!fs.existsSync(mPath + "Export/Nodes/")) fs.mkdirSync(mPath + "Export/Nodes/")
+	if (!fs.existsSync(mPath + "Export/Desc/")) fs.mkdirSync(mPath + "Export/Desc/")
 
 	let promises = []
 	let SVGs = []
+	let TXTs = []
 	let PNGs = []
 
 	Object.values(database.controllers).forEach(c => {
@@ -140,44 +176,44 @@ async function execImages() {
 		SVGs.push(mergeJSON(genControllerNodes(c), {
 			path: mPath + "Export/Nodes/" + c.identifier
 		}))
+		TXTs.push(mergeJSON(genControllerDesc(c), {
+			path: mPath + "Export/Desc/" + c.identifier
+		}))
 	})
 
 	Object.values(database.groups).forEach(g => {
 		SVGs.push(mergeJSON(genGroupThumbnail(g), {
 			path: mPath + "Export/Thumbnails/" + g.identifier
 		}))
+		SVGs.push(mergeJSON(genGroupCard(g), {
+			path: mPath + "Export/Cards/" + g.identifier
+		}))
+		TXTs.push(mergeJSON(genGroupDesc(g), {
+			path: mPath + "Export/Desc/" + g.identifier
+		}))
 	})
 
 	// convert to png
-	for (let i = 0; i < SVGs.length; i++) {
-		let svg = SVGs[i]
-		let p = convert(svg.data, svg.dimensions)
-		p.then(png =>
-			PNGs.push({
-				path: svg.path,
-				data: png
-			})
-		)
-		promises.push(p)
-		if ((i+1) % 9 === 0) (await Promise.all(promises).then(() => promises = []))
-	}
-	await Promise.all(promises).then(() => promises = [])
+	SVGs.forEach(svg => PNGs.push({
+		path: svg.path,
+		data: (new Resvg(svg.data, {
+			font: { loadSystemFonts: true, fontDirs: [mPath + "Fonts/"] },
+			fitTo: { mode: "original" }
+		})).render().asPng()
+	}))
 
 	// write all files
-	//SVGs.map(svg => promises.push(fs.promises.writeFile(svg.path + ".svg", svg.data)))
-	PNGs.map(png => promises.push(new Promise((resolve, reject) => {
-		const file = fs.createWriteStream(png.path + ".png")
-		file.write(png.data)
-		file.end()
-		file.on("finish", resolve)
-		file.on("error", reject)
-	})))
+	//SVGs.forEach(svg => promises.push(fs.promises.writeFile(svg.path + ".svg", svg.data)))
+	PNGs.forEach(png => promises.push(fs.promises.writeFile(png.path + ".png", png.data)))
+	TXTs.forEach(txt => promises.push(fs.promises.writeFile(txt.path + ".txt", txt.data)))
 
 	await Promise.all(promises)
 }
 
 // Steam
 async function execSteam() {
+	console.log(process.env.steamLogin)
+
 	console.log("steam upload not supported yet")
 }
 
@@ -283,13 +319,18 @@ resolveTextID = tID => {
 			}
 			let res = (convert("boolean") + convert("number")).trim()
 			return (res === "") ? "" : " // Channels: " + res
+		case ".":
+			return x => x[tID.substring(1)]
+		case "s":
+			return x => genDescriptionComponent(tID.substring(1), x)
+		case "u":
+			return database.definitions.urls[tID.substring(1)]
 	}
 
 	return ""
 }
 
 resolveChannels = identifier => {
-
 
 	let entry = database.connections.composite[identifier]
 	let resolved = {
