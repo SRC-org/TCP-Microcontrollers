@@ -264,7 +264,7 @@ genControllerCard = c => {
 genControllerLayout = c => {
 
 	// elements
-	let eInfo = nodesTemplate.find("#Info")
+	let eInfo = layoutTemplate.find("#Info")
 
 	// text
 	eInfo.text(c.identifier + (c.version ? " v" + c.version : ""))

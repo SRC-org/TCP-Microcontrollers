@@ -131,11 +131,11 @@ async function execDatabase() {
 			lists[c.type].push(c.identifier)
 		}
 		lists["Module"]?.forEach(c => {
-			database.controllers[c].hierarchy.higher = ["[System] Hub"]
+			database.controllers[c].hierarchy.higher = ["[System] Main Controller", "[System] Hub"]
 			database.controllers[c].hierarchy.lower = lists["Interface"]
 		})
 		lists["RO Module"]?.forEach(c => {
-			database.controllers[c].hierarchy.higher = ["[System] Main Controller"]
+			database.controllers[c].hierarchy.higher = ["[System] Main Controller (Slave Only)"]
 			database.controllers[c].hierarchy.lower = lists["RO Interface"]
 		})
 		lists["Interface"]?.forEach(c => {
@@ -147,7 +147,7 @@ async function execDatabase() {
 			database.controllers[c].hierarchy.lower = lists["Extender"]
 		})
 		lists["Extender"]?.forEach(c => {
-			database.controllers[c].hierarchy.higher = lists["RO Interface"].concat(lists["Interface"])
+			database.controllers[c].hierarchy.higher = lists["Interface"]
 		})
 	}
 }

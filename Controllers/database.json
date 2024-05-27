@@ -306,6 +306,7 @@
 			"readonly": false,
 			"hierarchy": {
 				"higher": [
+					"[System] Main Controller",
 					"[System] Hub"
 				],
 				"lower": [
@@ -395,7 +396,7 @@
 			"readonly": true,
 			"hierarchy": {
 				"higher": [
-					"[System] Main Controller"
+					"[System] Main Controller (Slave Only)"
 				],
 				"lower": [
 					"[RO Interface] Decouple"
@@ -584,6 +585,7 @@
 			"readonly": false,
 			"hierarchy": {
 				"higher": [
+					"[System] Main Controller",
 					"[System] Hub"
 				],
 				"lower": [
@@ -684,7 +686,7 @@
 			"readonly": true,
 			"hierarchy": {
 				"higher": [
-					"[System] Main Controller"
+					"[System] Main Controller (Slave Only)"
 				],
 				"lower": [
 					"[RO Interface] Drivetrain (Brakes Only)"
@@ -824,7 +826,6 @@
 			"readonly": false,
 			"hierarchy": {
 				"higher": [
-					"[RO Interface] Exterior Lighting",
 					"[Interface] Exterior Lighting"
 				]
 			}
@@ -964,6 +965,7 @@
 			"readonly": false,
 			"hierarchy": {
 				"higher": [
+					"[System] Main Controller",
 					"[System] Hub"
 				],
 				"lower": [
@@ -1046,7 +1048,7 @@
 			"readonly": true,
 			"hierarchy": {
 				"higher": [
-					"[System] Main Controller"
+					"[System] Main Controller (Slave Only)"
 				],
 				"lower": [
 					"[RO Interface] Exterior Lighting"
@@ -1273,6 +1275,7 @@
 			"readonly": false,
 			"hierarchy": {
 				"higher": [
+					"[System] Main Controller",
 					"[System] Hub"
 				],
 				"lower": [
@@ -1411,7 +1414,7 @@
 			"readonly": true,
 			"hierarchy": {
 				"higher": [
-					"[System] Main Controller"
+					"[System] Main Controller (Slave Only)"
 				],
 				"lower": [
 					"[RO Interface] Passenger Doors",
