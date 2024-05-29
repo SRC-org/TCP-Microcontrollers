@@ -106,7 +106,7 @@ async function execDatabase() {
 		let xml = swXMLParser.parse(buffer)
 		c.data = data.fromXML(xml)
 
-		fs.writeFileSync(c.path + c.file, buffer)
+		fs.writeFileSync(c.path + c.file, buffer.replace(/\r\n/g, "\n")) // temp
 	})
 
 	controllers.forEach(c => {
