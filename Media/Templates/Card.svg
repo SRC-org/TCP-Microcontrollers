@@ -33,16 +33,6 @@
         font-weight: 500;
       }
 
-      .mcBorder {
-        stroke: #cacacc;
-        stroke-width: 20px;
-      }
-
-      .nodeBox {
-        stroke: #cacacc;
-        stroke-width: 10px;
-      }
-
       .cBack {
         fill: #cacacc;
       }

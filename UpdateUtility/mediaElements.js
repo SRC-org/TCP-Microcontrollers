@@ -29,24 +29,33 @@ getTextWidthFunction = font => options => text => textSVG.loadSync(mPath + 'Font
 textWidth = {
 	robotoLight: getTextWidthFunction('Roboto-Light.ttf'),
 	robotoMedium: getTextWidthFunction('Roboto-Medium.ttf'),
-	robotoBold: getTextWidthFunction('Roboto-Bold.ttf')
+	robotoBold: getTextWidthFunction('Roboto-Bold.ttf'),
+	jetbrainsMonoMedium: getTextWidthFunction('JetBrainsMono-Medium.ttf')
 }
 
 /*
  * Elements
  */
 
-genNode = n => {
+genNode = (n, opt) => {
+
+	opt = {
+		layout: opt?.layout
+	}
+
 	let nodeColour = database.definitions.nodeColours[n.type]
 
-	let eNodeBox = SVG("<rect class=\"cBack nodeBox\" width=\"110\" height=\"110\" rx=\"15\" ry=\"15\"/>")
-	let eNodeIcon = SVG(n.mode ? "<circle style=\"stroke-width: 10px; fill: none; stroke: #" + nodeColour + ";\"  r=\"25\"/>" : "<circle style=\"fill: #" + nodeColour + ";\" r=\"15\"/>\n")
+	let eNodeBox = SVG("<rect " + (opt.layout ? "style=\"display: none\" " : "") + "class=\"cBack\" width=\"120\" height=\"120\" rx=\"20\" ry=\"20\"/>")
+	let eNodeIcon = SVG(n.mode ? "<circle style=\"stroke-width: 10px; fill: " + (opt.layout ? "#e6e6e6" : "none") + "; stroke: #" + nodeColour + ";\"  r=\"25\"/>" : "<circle style=\"fill: #" + nodeColour + ";\" r=\"15\"/>\n")
+	let eNodeConnections = SVG("<g></g>")
 	let eNode = SVG("<g></g>")
 
-	eNodeBox.attr({x: 5, y: 5})
 	eNodeIcon.attr({cx: 60, cy: 60})
 
+	if (opt.layout) for (let c in n.connections) eNodeConnections.add(SVG("<line class=\"layoutLine\" style=\"stroke: #" + nodeColour + "\" x1=\"60\" y1=\"60\" x2=\"" + (60 + decodeDir(c).x * 120 * n.connections[c]) + "\" y2=\"" + (60 + decodeDir(c).y * 120 * n.connections[c]) + "\"/>"))
+
 	eNode.add(eNodeBox)
+	eNode.add(eNodeConnections)
 	eNode.add(eNodeIcon)
 
 	return {
@@ -148,6 +157,63 @@ genNodeInfo = (n, w) => {
 	}
 }
 
+genMicrocontroller = (c, opt) => {
+
+	opt = {
+		width: opt?.width ?? c.width,
+		height: opt?.height ?? c.length,
+		text: opt?.text ?? "",
+		layoutType: opt?.layoutType
+	}
+
+	let rad = opt.layoutType ? 30 : 20
+	let col = database.definitions.groupColours[c.group]
+
+	let eMicrocontroller = SVG("<g transform=\"translate(0 0)\"></g>")
+	let eBackground = SVG("<rect class=\"cBack\" x=\"0\" y=\"0\" rx=\"" + rad + "\" ry=\"" + rad + "\"/>")
+	let eBorder = SVG("<rect class=\"cBack\" x=\"0\" y=\"0\" rx=\"" + rad + "\" ry=\"" + rad + "\"/>")
+	let eNodes = SVG("<g></g>")
+	let eText = SVG("<text class=\"mono cDark\" dominant-baseline=\"middle\" text-anchor=\"middle\"></text>    ")
+
+	let size = {x: 0, y: 0, width: 120 * opt.width, height: 120 * opt.height}
+	eBackground.attr(size)
+	eBorder.attr(size)
+
+	let wText = wrapText(opt?.text, textWidth.jetbrainsMonoMedium({fontSize: 30}), opt.width * 120 - 100)
+	eText.attr({x: 60 * opt.width, y: 60 * opt.height - 40 * (wText.length - 1) / 2})
+	eText.font({size: 40, leading: 1})
+	eText.text(add => wText.forEach(line => add.tspan(line).newLine()))
+
+	let nodes = []
+	if (!opt.layoutType) nodes = c.nodes
+	if ((opt.layoutType === "left" || opt.layoutType === "center") && (c.hierarchy.lower || c.group === "System"))
+		nodes.push(
+			c.name === "Main Controller" || c.readonly || c.type === "Interface" ? undefined : {mode: true, type: 5, position: {x: opt.width - 0.5, z: 0}, connections: {r: 0.5}},
+			c.identifier === "[System] Hub" ? undefined : {mode: false, type: 5, position: {x: opt.width - 0.5, z: 1}, connections: {r: 1.5}}
+		)
+	if ((opt.layoutType === "right" || opt.layoutType === "center") && (c.hierarchy.higher || c.group === "System"))
+		nodes.push(
+			c.readonly || c.type === "Extender" ? undefined : {mode: false, type: 5, position: {x: -0.5, z: 0}, connections: {l: 1.5}},
+			{mode: true, type: 5, position: {x: -0.5, z: 1}, connections: {l: 0.5}}
+		)
+
+	nodes.forEach(node => node ? eNodes.add(SVG(genNode(node, { layout: opt.layoutType }).data).attr({transform: "translate(" + node.position.x*120 + "," + (opt.height - node.position.z - 1)*120 + ")"})) : undefined)
+
+	if (opt.layoutType) eBorder.attr({style:"fill:#" + col})
+	else eBackground.attr({style: "stroke:#cacacc;stroke-width:20px;"})
+	eBorder.attr({x: opt.layoutType === "left" ? -30 : opt.layoutType === "right" ? 30 : 0})
+
+	eMicrocontroller.add(eBorder)
+	eMicrocontroller.add(eBackground)
+	eMicrocontroller.add(eNodes)
+	eMicrocontroller.add(eText)
+
+	return {
+		dimensions: { width: size.width, height: size.height },
+		data: fixSVG(eMicrocontroller.svg())
+	}
+}
+
 genDescriptionComponent = (comp, x) => {
 	switch (Number(comp.charAt(0))) {
 		case 0: return "[img]" + encodeURI(database.definitions.urls.images + "All/" + comp.substring(1) + ".png") + "[/img]"
@@ -225,8 +291,6 @@ genControllerCard = c => {
 	let eROMarker = cardTemplate.find("#ROMarker")
 	let eROText = cardTemplate.find("#ROText")
 	let eMicrocontroller = cardTemplate.find("#Microcontroller")
-	let eMCBackground = cardTemplate.find("#MCBackground")
-	let eMCBorder = cardTemplate.find("#MCBorder")
 
 	// colour
 	let colour = database.definitions.groupColours[c.group]
@@ -245,15 +309,7 @@ genControllerCard = c => {
 	eTitleNext.text("Next" + (c.readonly ? " (Readonly)" : ""))
 
 	// microcontroller
-	//eMicrocontroller.attr({transform: "translate(120 360)"})
-	let size = {/*x: 0, y: 0, */width: 120 * c.width, height: 120 * c.length}
-	eMCBackground.attr(size)
-	eMCBorder.attr(size)
-
-	// nodes
-	let eNodes = SVG("<g id=\"Nodes\"></g>")
-	c.nodes.map(node => eNodes.add(SVG(genNode(node).data).attr({transform: "translate(" + node.position.x*120 + "," + (c.length - node.position.z - 1)*120 + ")"})))
-	eMicrocontroller.find("#Nodes").replace(eNodes)
+	eMicrocontroller.replace(SVG(genMicrocontroller(c).data).id("Microcontroller").attr({transform: "translate(120 360)"}))
 
 	return {
 		dimensions: { width: 1920, height: 1080 },
@@ -265,9 +321,27 @@ genControllerLayout = c => {
 
 	// elements
 	let eInfo = layoutTemplate.find("#Info")
+	let eMCs = SVG("<g id=\"MCs\"></g>")
+	let eLines = SVG("<g id=\"Lines\"></g>")
+
+	let col = database.definitions.nodeColours["5"];
 
 	// text
 	eInfo.text(c.identifier + (c.version ? " v" + c.version : ""))
+
+	let makeMC = (c, w, h, b, x, y) => eMCs.add(SVG(genMicrocontroller(c, {width: w, height: h, text: c.identifier, layoutType: b}).data).attr({transform: "translate(" + x + " " + y + ")"}))
+	makeMC(c, 4, 2, "center", 720, 360);
+	c.hierarchy.higher?.forEach((c, i) => makeMC(database.controllers[c], 3, 2, "left", 120, 360 * (i+1)))
+	c.hierarchy.lower?.forEach((c, i) => makeMC(database.controllers[c], 3, 2, "right", 1440, 360 * (i+1)))
+
+	let addLine = (x, y, l) => eLines.add(SVG("<line class=\"layoutLine\" style=\"stroke: #" + col + "\" x1=\"" + x + "\" y1=\"" + y + "\" x2=\"" + x + "\" y2=\"" + (y + l) + "\"/>"))
+	if (c.hierarchy.higher && !c.readonly && c.type !== "Extender") addLine(540, 540, 360 * (c.hierarchy.higher.length - 1))
+	if (c.hierarchy.higher && c.type !== "Module") addLine(660, 420, 360 * (c.hierarchy.higher.length - 1))
+	if (c.hierarchy.lower && !c.readonly && c.type !== "Interface") addLine(1260, 540, 360 * (c.hierarchy.lower.length - 1))
+	if (c.hierarchy.lower) addLine(1380, 420, 360 * (c.hierarchy.lower.length - 1))
+
+	layoutTemplate.find("#MCs").replace(eMCs)
+	layoutTemplate.find("#Lines").replace(eLines)
 
 	return {
 		dimensions: { width: 1920, height: 1080 },
@@ -402,6 +476,16 @@ rgbToHsl = rgb => {
 		s: s ? (l <= 0.5 ? s / (2 * l - s) : s / (2 - (2 * l - s))) : 0,
 		l: (2 * l - s) / 2
 	}
+}
+
+decodeDir = dir => {
+	switch (dir) {
+		case "l": return {x: -1, y: 0}
+		case "r": return {x: 1, y: 0}
+		case "u": return {x: 0, y: 1}
+		case "d": return {x: 0, y: -1}
+	}
+	return {x: 0, y: 0}
 }
 
 fixSVG = svg => {
