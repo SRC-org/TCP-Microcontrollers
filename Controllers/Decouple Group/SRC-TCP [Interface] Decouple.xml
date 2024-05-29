@@ -2,12 +2,12 @@
 <microprocessor name="SRC-TCP [Interface] Decouple v1.3" description="Connects to decouple module and connectors to decouple cars" width="2" length="3" id_counter="917" id_counter_node="42" sym2="4" sym3="2" sym4="8191" sym5="8194" sym6="9508" sym7="1184" sym8="3232" sym9="11636" sym10="16388" sym11="65528" sym12="16384" sym13="8192">
 	<nodes>
 		<n id="17" component_id="111">
-			<node label="Interface - Module" type="5" description="Communicates with Decouple Module">
+			<node label="Interface -> Module" type="5" description="Communicates with Decouple Module">
 				<position x="1"/>
 			</node>
 		</n>
 		<n id="33" component_id="264">
-			<node label="Module - Interface" mode="1" type="5" description="Communicates with Decouple Module"/>
+			<node label="Module -> Interface" mode="1" type="5" description="Communicates with Decouple Module"/>
 		</n>
 		<n id="37" component_id="760">
 			<node label="UI" mode="1" type="5" description="Connects to instruments or Display Controller">

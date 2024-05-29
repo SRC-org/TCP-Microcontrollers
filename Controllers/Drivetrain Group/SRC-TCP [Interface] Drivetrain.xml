@@ -2,12 +2,12 @@
 <microprocessor name="SRC-TCP [Interface] Drivetrain v1.3" description="Communicates with drive module and UI" width="5" length="2" id_counter="389" id_counter_node="44" sym2="4" sym3="2" sym4="8191" sym5="8194" sym6="9508" sym7="1184" sym8="3232" sym9="11636" sym10="16388" sym11="65528" sym12="16384" sym13="8192">
 	<nodes>
 		<n id="22" component_id="152">
-			<node label="Module - Interface" mode="1" type="5" description="Communicates with Drivetrain Module">
+			<node label="Module -> Interface" mode="1" type="5" description="Communicates with Drivetrain Module">
 				<position z="1"/>
 			</node>
 		</n>
 		<n id="23" component_id="154">
-			<node label="Interface - Module" type="5" description="Communicates with Drivetrain Module"/>
+			<node label="Interface -> Module" type="5" description="Communicates with Drivetrain Module"/>
 		</n>
 		<n id="33" component_id="230">
 			<node label="UI" mode="1" type="5" description="Connects to Instruments/Cab">

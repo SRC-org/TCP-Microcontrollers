@@ -10,17 +10,17 @@
 			</node>
 		</n>
 		<n id="33" component_id="264">
-			<node label="Passenger Door Interface - Module" mode="1" type="5" description="Communicates with Passenger Door Interface">
+			<node label="Passenger Door Interface -> Module" mode="1" type="5" description="Communicates with Passenger Door Interface">
 				<position x="1" z="2"/>
 			</node>
 		</n>
 		<n id="34" component_id="331">
-			<node label="Passenger Lighting Interface - Module" mode="1" type="5" description="Communicates with Passenger Lighting Interface">
+			<node label="Passenger Lighting Interface -> Module" mode="1" type="5" description="Communicates with Passenger Lighting Interface">
 				<position x="1" z="1"/>
 			</node>
 		</n>
 		<n id="35" component_id="334">
-			<node label="Module - Interface" type="5" description="Communicates with all Passenger Interfaces">
+			<node label="Module -> Interface" type="5" description="Communicates with all Passenger Interfaces">
 				<position z="2"/>
 			</node>
 		</n>

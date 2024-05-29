@@ -5,7 +5,7 @@
 			<node label="Main Both" mode="1" type="5" description="Connects to Main Both for information from other cars"/>
 		</n>
 		<n id="35" component_id="334">
-			<node label="Module - Interface" type="5" description="Communicates with lighting interface">
+			<node label="Module -> Interface" type="5" description="Communicates with lighting interface">
 				<position x="1"/>
 			</node>
 		</n>

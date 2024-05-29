@@ -185,7 +185,7 @@
 			"length": "3",
 			"nodes": [
 				{
-					"label": "Interface - Module",
+					"label": "Interface -> Module",
 					"description": "Communicates with Decouple Module",
 					"mode": false,
 					"type": 5,
@@ -195,7 +195,7 @@
 					}
 				},
 				{
-					"label": "Module - Interface",
+					"label": "Module -> Interface",
 					"description": "Communicates with Decouple Module",
 					"mode": true,
 					"type": 5,
@@ -283,7 +283,7 @@
 					}
 				},
 				{
-					"label": "Module - Interface",
+					"label": "Module -> Interface",
 					"description": "Communicates with Decouple Interface",
 					"mode": false,
 					"type": 5,
@@ -293,7 +293,7 @@
 					}
 				},
 				{
-					"label": "Interface - Module",
+					"label": "Interface -> Module",
 					"description": "Communicates with Decouple Interface",
 					"mode": true,
 					"type": 5,
@@ -325,7 +325,7 @@
 			"length": "1",
 			"nodes": [
 				{
-					"label": "Module - Interface",
+					"label": "Module -> Interface",
 					"description": "Communicates with Decouple Module",
 					"mode": true,
 					"type": 5,
@@ -383,7 +383,7 @@
 					}
 				},
 				{
-					"label": "Module - Interface",
+					"label": "Module -> Interface",
 					"description": "Communicates with Decouple Interface",
 					"mode": false,
 					"type": 5,
@@ -414,7 +414,7 @@
 			"length": "2",
 			"nodes": [
 				{
-					"label": "Module - Interface",
+					"label": "Module -> Interface",
 					"description": "Communicates with Drivetrain Module",
 					"mode": true,
 					"type": 5,
@@ -424,7 +424,7 @@
 					}
 				},
 				{
-					"label": "Interface - Module",
+					"label": "Interface -> Module",
 					"description": "Communicates with Drivetrain Module",
 					"mode": false,
 					"type": 5,
@@ -542,7 +542,7 @@
 					}
 				},
 				{
-					"label": "Module - Interface",
+					"label": "Module -> Interface",
 					"description": "Communicates with Drivetrain Interface",
 					"mode": false,
 					"type": 5,
@@ -552,7 +552,7 @@
 					}
 				},
 				{
-					"label": "Interface - Module",
+					"label": "Interface -> Module",
 					"description": "Communicates with Drivetrain Interface",
 					"mode": true,
 					"type": 5,
@@ -605,7 +605,7 @@
 			"length": "2",
 			"nodes": [
 				{
-					"label": "Module - Interface",
+					"label": "Module -> Interface",
 					"description": "Communicates with drivetrain module",
 					"mode": true,
 					"type": 5,
@@ -673,7 +673,7 @@
 					}
 				},
 				{
-					"label": "Module - Interface",
+					"label": "Module -> Interface",
 					"description": "Communicates with Drivetrain Interface",
 					"mode": false,
 					"type": 5,
@@ -841,7 +841,7 @@
 			"length": "3",
 			"nodes": [
 				{
-					"label": "Module - Interface",
+					"label": "Module -> Interface",
 					"description": "Communicates with lighting module",
 					"mode": true,
 					"type": 5,
@@ -851,7 +851,7 @@
 					}
 				},
 				{
-					"label": "Interface - Module",
+					"label": "Interface -> Module",
 					"description": "Communicates with lighting module",
 					"mode": false,
 					"type": 5,
@@ -942,7 +942,7 @@
 					}
 				},
 				{
-					"label": "Interface - Module",
+					"label": "Interface -> Module",
 					"description": "Communicates with lighting interface",
 					"mode": true,
 					"type": 5,
@@ -952,7 +952,7 @@
 					}
 				},
 				{
-					"label": "Module - Interface",
+					"label": "Module -> Interface",
 					"description": "Communicates with lighting interface",
 					"mode": false,
 					"type": 5,
@@ -984,7 +984,7 @@
 			"length": "1",
 			"nodes": [
 				{
-					"label": "Module - Interface",
+					"label": "Module -> Interface",
 					"description": "Communicates with lighting module",
 					"mode": true,
 					"type": 5,
@@ -1035,7 +1035,7 @@
 					}
 				},
 				{
-					"label": "Module - Interface",
+					"label": "Module -> Interface",
 					"description": "Communicates with lighting interface",
 					"mode": false,
 					"type": 5,
@@ -1066,7 +1066,7 @@
 			"length": "3",
 			"nodes": [
 				{
-					"label": "Module - Interface",
+					"label": "Module -> Interface",
 					"description": "Communicates with passenger module",
 					"mode": true,
 					"type": 5,
@@ -1076,7 +1076,7 @@
 					}
 				},
 				{
-					"label": "Interface - Module",
+					"label": "Interface -> Module",
 					"description": "Communicates with passenger module",
 					"mode": false,
 					"type": 5,
@@ -1164,7 +1164,7 @@
 					}
 				},
 				{
-					"label": "Module - Interface",
+					"label": "Module -> Interface",
 					"description": "Communicates with passenger module",
 					"mode": true,
 					"type": 5,
@@ -1174,7 +1174,7 @@
 					}
 				},
 				{
-					"label": "Interface - Module",
+					"label": "Interface -> Module",
 					"description": "Communicates with passenger module",
 					"mode": false,
 					"type": 5,
@@ -1242,7 +1242,7 @@
 					}
 				},
 				{
-					"label": "Passenger Door Interface - Module",
+					"label": "Passenger Door Interface -> Module",
 					"description": "Communicates with Passenger Door Interface",
 					"mode": true,
 					"type": 5,
@@ -1252,7 +1252,7 @@
 					}
 				},
 				{
-					"label": "Passenger Lighting Interface - Module",
+					"label": "Passenger Lighting Interface -> Module",
 					"description": "Communicates with Passenger Lighting Interface",
 					"mode": true,
 					"type": 5,
@@ -1262,7 +1262,7 @@
 					}
 				},
 				{
-					"label": "Module - Interface",
+					"label": "Module -> Interface",
 					"description": "Communicates with all Passenger Interfaces",
 					"mode": false,
 					"type": 5,
@@ -1295,7 +1295,7 @@
 			"length": "1",
 			"nodes": [
 				{
-					"label": "Module - Interface",
+					"label": "Module -> Interface",
 					"description": "Communicates with passenger module",
 					"mode": true,
 					"type": 5,
@@ -1353,7 +1353,7 @@
 					}
 				},
 				{
-					"label": "Module - Interface",
+					"label": "Module -> Interface",
 					"description": "Communicates with passenger module",
 					"mode": true,
 					"type": 5,
@@ -1401,7 +1401,7 @@
 					}
 				},
 				{
-					"label": "Module - Interface",
+					"label": "Module -> Interface",
 					"description": "Communicates with all interfaces",
 					"mode": false,
 					"type": 5,

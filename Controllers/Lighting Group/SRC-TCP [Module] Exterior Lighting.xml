@@ -10,12 +10,12 @@
 			</node>
 		</n>
 		<n id="34" component_id="331">
-			<node label="Interface - Module" mode="1" type="5" description="Communicates with lighting interface">
+			<node label="Interface -> Module" mode="1" type="5" description="Communicates with lighting interface">
 				<position x="1" z="1"/>
 			</node>
 		</n>
 		<n id="35" component_id="334">
-			<node label="Module - Interface" type="5" description="Communicates with lighting interface">
+			<node label="Module -> Interface" type="5" description="Communicates with lighting interface">
 				<position z="1"/>
 			</node>
 		</n>

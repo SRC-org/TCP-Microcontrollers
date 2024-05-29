@@ -2,10 +2,10 @@
 <microprocessor name="SRC-TCP [Interface] Exterior Lighting v1.3" description="Interacts with the lighting module, UI, and lightbox to control exterior lighting" width="2" length="3" id_counter="1254" id_counter_node="63" sym2="4" sym3="2" sym4="8191" sym5="8194" sym6="9508" sym7="1184" sym8="3232" sym9="11636" sym10="16388" sym11="65528" sym12="16384" sym13="8192">
 	<nodes>
 		<n id="33" component_id="264">
-			<node label="Module - Interface" mode="1" type="5" description="Communicates with lighting module"/>
+			<node label="Module -> Interface" mode="1" type="5" description="Communicates with lighting module"/>
 		</n>
 		<n id="34" component_id="301">
-			<node label="Interface - Module" type="5" description="Communicates with lighting module">
+			<node label="Interface -> Module" type="5" description="Communicates with lighting module">
 				<position x="1"/>
 			</node>
 		</n>

@@ -17,10 +17,10 @@
 			</node>
 		</n>
 		<n id="13" component_id="139">
-			<node label="Module - Interface" mode="1" type="5" description="Communicates with passenger module"/>
+			<node label="Module -> Interface" mode="1" type="5" description="Communicates with passenger module"/>
 		</n>
 		<n id="14" component_id="142">
-			<node label="Interface - Module" type="5" description="Communicates with passenger module">
+			<node label="Interface -> Module" type="5" description="Communicates with passenger module">
 				<position x="1"/>
 			</node>
 		</n>

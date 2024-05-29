@@ -10,12 +10,12 @@
 			</node>
 		</n>
 		<n id="31" component_id="313">
-			<node label="Module - Interface" type="5" description="Communicates with Decouple Interface">
+			<node label="Module -> Interface" type="5" description="Communicates with Decouple Interface">
 				<position z="1"/>
 			</node>
 		</n>
 		<n id="36" component_id="389">
-			<node label="Interface - Module" mode="1" type="5" description="Communicates with Decouple Interface">
+			<node label="Interface -> Module" mode="1" type="5" description="Communicates with Decouple Interface">
 				<position x="1" z="1"/>
 			</node>
 		</n>

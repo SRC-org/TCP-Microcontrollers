@@ -12,7 +12,7 @@
 			</node>
 		</n>
 		<n id="13" component_id="139">
-			<node label="Module - Interface" mode="1" type="5" description="Communicates with passenger module"/>
+			<node label="Module -> Interface" mode="1" type="5" description="Communicates with passenger module"/>
 		</n>
 		<n id="15" component_id="194">
 			<node label="Heaters" description="Turns on/off heaters">

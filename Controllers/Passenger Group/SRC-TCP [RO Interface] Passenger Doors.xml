@@ -2,7 +2,7 @@
 <microprocessor name="SRC-TCP [RO Interface] Passenger Doors v1.3" description="Connects to passenger module and door controller. Controls locks and doors" width="2" length="1" id_counter="905" id_counter_node="50" sym2="4" sym3="2" sym4="8191" sym5="8194" sym6="9508" sym7="1184" sym8="3232" sym9="11636" sym10="16388" sym11="65528" sym12="16384" sym13="8192">
 	<nodes>
 		<n id="33" component_id="264">
-			<node label="Module - Interface" mode="1" type="5" description="Communicates with passenger module"/>
+			<node label="Module -> Interface" mode="1" type="5" description="Communicates with passenger module"/>
 		</n>
 		<n id="47" component_id="516">
 			<node label="Door Opener" type="5" description="Communicates with door opener">
