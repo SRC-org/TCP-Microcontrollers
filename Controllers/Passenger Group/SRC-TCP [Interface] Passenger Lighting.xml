@@ -265,7 +265,7 @@ function rgb2hsv(a,b,c)local d,e=math.max(a,b,c),math.min(a,b,c)local f,g,h;h=d;
 					<pos x="-4.5" y="2.5"/>
 					<in1 component_id="225"/>
 					<in2 component_id="77"/>
-					<e text="0.01" value="0.01"/>
+					<e text="0.0015" value="0.0015"/>
 				</object>
 			</c>
 			<c type="17">
@@ -287,7 +287,7 @@ function rgb2hsv(a,b,c)local d,e=math.max(a,b,c),math.min(a,b,c)local f,g,h;h=d;
 					<pos x="-4.5"/>
 					<in1 component_id="226"/>
 					<in2 component_id="309"/>
-					<e text="0.01" value="0.01"/>
+					<e text="0.0015" value="0.0015"/>
 				</object>
 			</c>
 			<c type="17">
@@ -309,7 +309,7 @@ function rgb2hsv(a,b,c)local d,e=math.max(a,b,c),math.min(a,b,c)local f,g,h;h=d;
 					<pos x="-4.5" y="-2.5"/>
 					<in1 component_id="227"/>
 					<in2 component_id="313"/>
-					<e text="0.01" value="0.01"/>
+					<e text="0.0015" value="0.0015"/>
 				</object>
 			</c>
 			<c type="31">
@@ -702,7 +702,7 @@ function rgb2hsv(a,b,c)local d,e=math.max(a,b,c),math.min(a,b,c)local f,g,h;h=d;
 				<pos x="-4.5" y="2.5"/>
 				<in1 component_id="225"/>
 				<in2 component_id="77"/>
-				<e text="0.01" value="0.01"/>
+				<e text="0.0015" value="0.0015"/>
 			</c7>
 			<c8 id="95">
 				<pos x="-4.5" y="0.75"/>
@@ -718,7 +718,7 @@ function rgb2hsv(a,b,c)local d,e=math.max(a,b,c),math.min(a,b,c)local f,g,h;h=d;
 				<pos x="-4.5"/>
 				<in1 component_id="226"/>
 				<in2 component_id="309"/>
-				<e text="0.01" value="0.01"/>
+				<e text="0.0015" value="0.0015"/>
 			</c10>
 			<c11 id="109">
 				<pos x="-4.5" y="-1.75"/>
@@ -734,7 +734,7 @@ function rgb2hsv(a,b,c)local d,e=math.max(a,b,c),math.min(a,b,c)local f,g,h;h=d;
 				<pos x="-4.5" y="-2.5"/>
 				<in1 component_id="227"/>
 				<in2 component_id="313"/>
-				<e text="0.01" value="0.01"/>
+				<e text="0.0015" value="0.0015"/>
 			</c13>
 			<c14 id="225" i="5">
 				<pos x="-6.25" y="3.5"/>

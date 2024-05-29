@@ -128,7 +128,7 @@
 					<pos y="-0.25"/>
 					<in1 component_id="306"/>
 					<in2 component_id="293"/>
-					<e text="0.01" value="0.01"/>
+					<e text="0.0015" value="0.0015"/>
 				</object>
 			</c>
 			<c type="17">
@@ -150,7 +150,7 @@
 					<pos y="-2.75"/>
 					<in1 component_id="307"/>
 					<in2 component_id="310"/>
-					<e text="0.01" value="0.01"/>
+					<e text="0.0015" value="0.0015"/>
 				</object>
 			</c>
 			<c type="17">
@@ -172,7 +172,7 @@
 					<pos y="-5.25"/>
 					<in1 component_id="308"/>
 					<in2 component_id="314"/>
-					<e text="0.01" value="0.01"/>
+					<e text="0.0015" value="0.0015"/>
 				</object>
 			</c>
 			<c type="31">
@@ -364,7 +364,7 @@
 				<pos y="-0.25"/>
 				<in1 component_id="306"/>
 				<in2 component_id="293"/>
-				<e text="0.01" value="0.01"/>
+				<e text="0.0015" value="0.0015"/>
 			</c13>
 			<c14 id="297">
 				<pos y="-2"/>
@@ -380,7 +380,7 @@
 				<pos y="-2.75"/>
 				<in1 component_id="307"/>
 				<in2 component_id="310"/>
-				<e text="0.01" value="0.01"/>
+				<e text="0.0015" value="0.0015"/>
 			</c16>
 			<c17 id="300">
 				<pos y="-4.5"/>
@@ -396,7 +396,7 @@
 				<pos y="-5.25"/>
 				<in1 component_id="308"/>
 				<in2 component_id="314"/>
-				<e text="0.01" value="0.01"/>
+				<e text="0.0015" value="0.0015"/>
 			</c19>
 			<c20 id="306" i="5">
 				<pos x="-1.75" y="0.75"/>
