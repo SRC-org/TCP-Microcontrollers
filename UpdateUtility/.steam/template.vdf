@@ -1,0 +1,10 @@
+"workshopitem"
+{
+ "appid" "573090"
+ "publishedfileid" "{$.publishedfileid}"
+ "contentfolder" "{$.contentfolder}"
+ "previewfile" "{$.previewfile}"
+ "visibility" "2"
+ "title" "SRC-TCP {$.identifier}"
+ "description" "{$.wsDescription}"
+}

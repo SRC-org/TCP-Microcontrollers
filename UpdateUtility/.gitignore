@@ -131,4 +131,5 @@ dist
 
 # temporary folders
 .export/
-.steam/
+.steam/item.vdf
+.steam/content
