@@ -42,8 +42,29 @@
 	},
 	"connections": {
 		"composite": {
+			"Any#MainBoth": {
+				"inherit": [
+					"System#Main->Module"
+				]
+			},
+			"Any#MainRear": {
+				"visibilityLimit": 1,
+				"inherit": [
+					"System#Main->Module"
+				]
+			},
+			"Any#MainFront": {
+				"visibilityLimit": 1,
+				"inherit": [
+					"System#Main->Module"
+				]
+			},
+			"Any#Hubslot/MainInput": {
+				"inherit": [
+					"System#Module->Main"
+				]
+			},
 			"System#Bus": {
-				"id": 0,
 				"visibility": 1,
 				"channels": {
 					"boolean": {
@@ -59,7 +80,6 @@
 				}
 			},
 			"System#Main<->Main": {
-				"id": 10,
 				"visibility": 0,
 				"inherit": [
 					"System#Bus"
@@ -78,8 +98,10 @@
 				}
 			},
 			"System#Main->Module": {
-				"id": 11,
-				"visibility": 2,
+				"visibility": {
+					"in": 1,
+					"out": 2
+				},
 				"inherit": [
 					"System#Bus"
 				],
@@ -97,13 +119,11 @@
 				}
 			},
 			"System#Module->Main": {
-				"id": 12,
 				"visibility": 1,
 				"inherit": [
 					"System#Bus"
 				],
 				"channels": {
-					"boolean": {},
 					"number": {
 						"1": "Module ID (encoded)",
 						"2": "Allocated Channels (encoded)"
@@ -111,7 +131,6 @@
 				}
 			},
 			"System#Cab->Main": {
-				"id": 13,
 				"visibility": 2,
 				"channels": {
 					"boolean": {
@@ -123,15 +142,12 @@
 				}
 			},
 			"Drivetrain#Module->Interface": {
-				"id": 20,
 				"visibility": 1
 			},
 			"Drivetrain#Interface->Module": {
-				"id": 21,
 				"visibility": 1
 			},
 			"Drivetrain#UI": {
-				"id": 22,
 				"visibility": 2,
 				"channels": {
 					"boolean": {
@@ -267,6 +283,7 @@
 					"description": "Outputs information to Hub/Main",
 					"mode": false,
 					"type": 5,
+					"channels": "Any#Hubslot/MainInput",
 					"position": {
 						"x": 0,
 						"z": 0
@@ -277,6 +294,7 @@
 					"description": "Connects to Main Both for information from other cars",
 					"mode": true,
 					"type": 5,
+					"channels": "Any#MainBoth",
 					"position": {
 						"x": 1,
 						"z": 0
@@ -377,6 +395,7 @@
 					"description": "Connects to Main Both for information from other cars",
 					"mode": true,
 					"type": 5,
+					"channels": "Any#MainBoth",
 					"position": {
 						"x": 0,
 						"z": 0
@@ -418,6 +437,7 @@
 					"description": "Communicates with Drivetrain Module",
 					"mode": true,
 					"type": 5,
+					"channels": "Drivetrain#Module->Interface",
 					"position": {
 						"x": 0,
 						"z": 1
@@ -428,6 +448,7 @@
 					"description": "Communicates with Drivetrain Module",
 					"mode": false,
 					"type": 5,
+					"channels": "Drivetrain#Interface->Module",
 					"position": {
 						"x": 0,
 						"z": 0
@@ -438,6 +459,7 @@
 					"description": "Connects to Instruments/Cab",
 					"mode": true,
 					"type": 5,
+					"channels": "Drivetrain#UI",
 					"position": {
 						"x": 1,
 						"z": 1
@@ -526,6 +548,7 @@
 					"description": "Outputs information to Hub/Main",
 					"mode": false,
 					"type": 5,
+					"channels": "Any#Hubslot/MainInput",
 					"position": {
 						"x": 0,
 						"z": 0
@@ -536,6 +559,7 @@
 					"description": "Connects to Main Both for information from other cars",
 					"mode": true,
 					"type": 5,
+					"channels": "Any#MainBoth",
 					"position": {
 						"x": 1,
 						"z": 0
@@ -546,6 +570,7 @@
 					"description": "Communicates with Drivetrain Interface",
 					"mode": false,
 					"type": 5,
+					"channels": "Drivetrain#Module->Interface",
 					"position": {
 						"x": 0,
 						"z": 2
@@ -556,6 +581,7 @@
 					"description": "Communicates with Drivetrain Interface",
 					"mode": true,
 					"type": 5,
+					"channels": "Drivetrain#Interface->Module",
 					"position": {
 						"x": 1,
 						"z": 2
@@ -566,6 +592,7 @@
 					"description": "Connects to Main Front in order to receive information from other cars",
 					"mode": true,
 					"type": 5,
+					"channels": "Any#MainFront",
 					"position": {
 						"x": 0,
 						"z": 1
@@ -576,6 +603,7 @@
 					"description": "Connects to Main Rear in order to receive information from other cars",
 					"mode": true,
 					"type": 5,
+					"channels": "Any#MainRear",
 					"position": {
 						"x": 1,
 						"z": 1
@@ -609,6 +637,7 @@
 					"description": "Communicates with drivetrain module",
 					"mode": true,
 					"type": 5,
+					"channels": "Drivetrain#Module->Interface",
 					"position": {
 						"x": 0,
 						"z": 0
@@ -668,6 +697,7 @@
 					"description": "Connects to Main Both for information from other cars",
 					"mode": true,
 					"type": 5,
+					"channels": "Any#MainBoth",
 					"position": {
 						"x": 0,
 						"z": 0
@@ -678,6 +708,7 @@
 					"description": "Communicates with Drivetrain Interface",
 					"mode": false,
 					"type": 5,
+					"channels": "Drivetrain#Module->Interface",
 					"position": {
 						"x": 1,
 						"z": 0
@@ -928,6 +959,7 @@
 					"description": "Outputs information to Hub/Main",
 					"mode": false,
 					"type": 5,
+					"channels": "Any#Hubslot/MainInput",
 					"position": {
 						"x": 0,
 						"z": 0
@@ -938,6 +970,7 @@
 					"description": "Connects to Main Both for information from other cars",
 					"mode": true,
 					"type": 5,
+					"channels": "Any#MainBoth",
 					"position": {
 						"x": 1,
 						"z": 0
@@ -1031,6 +1064,7 @@
 					"description": "Connects to Main Both for information from other cars",
 					"mode": true,
 					"type": 5,
+					"channels": "Any#MainBoth",
 					"position": {
 						"x": 0,
 						"z": 0
@@ -1228,6 +1262,7 @@
 					"description": "Outputs information to Hub/Main",
 					"mode": false,
 					"type": 5,
+					"channels": "Any#Hubslot/MainInput",
 					"position": {
 						"x": 0,
 						"z": 0
@@ -1238,6 +1273,7 @@
 					"description": "Connects to Main Both for information from other cars",
 					"mode": true,
 					"type": 5,
+					"channels": "Any#MainBoth",
 					"position": {
 						"x": 1,
 						"z": 0
@@ -1397,6 +1433,7 @@
 					"description": "Connects to Main Both for information from other cars",
 					"mode": true,
 					"type": 5,
+					"channels": "Any#MainBoth",
 					"position": {
 						"x": 0,
 						"z": 0
@@ -1603,6 +1640,7 @@
 					"description": "Connects to Main Both in order to receive information from other cars",
 					"mode": true,
 					"type": 5,
+					"channels": "Any#MainBoth",
 					"position": {
 						"x": 0,
 						"z": 0
@@ -1956,6 +1994,7 @@
 					"description": "Transmits information from car(s) in front",
 					"mode": false,
 					"type": 5,
+					"channels": "Any#MainFront",
 					"position": {
 						"x": 3,
 						"z": 1
@@ -1966,6 +2005,7 @@
 					"description": "Transmits information from car(s) in rear",
 					"mode": false,
 					"type": 5,
+					"channels": "Any#MainRear",
 					"position": {
 						"x": 3,
 						"z": 0
@@ -1976,6 +2016,7 @@
 					"description": "Transmits information from master, whichever direction that may be",
 					"mode": false,
 					"type": 5,
+					"channels": "Any#MainBoth",
 					"position": {
 						"x": 2,
 						"z": 1
@@ -2070,6 +2111,7 @@
 					"description": "Transmits information from car(s) in front",
 					"mode": false,
 					"type": 5,
+					"channels": "Any#MainFront",
 					"position": {
 						"x": 4,
 						"z": 2
@@ -2100,6 +2142,7 @@
 					"description": "Transmits information from car(s) in rear",
 					"mode": false,
 					"type": 5,
+					"channels": "Any#MainRear",
 					"position": {
 						"x": 4,
 						"z": 1
@@ -2110,6 +2153,7 @@
 					"description": "Transmits information from master, whichever direction that may be",
 					"mode": false,
 					"type": 5,
+					"channels": "Any#MainBoth",
 					"position": {
 						"x": 3,
 						"z": 2

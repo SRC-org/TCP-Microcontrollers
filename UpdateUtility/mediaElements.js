@@ -64,7 +64,13 @@ genNode = (n, opt) => {
 	}
 }
 
-genCompositeChannelInfo = (cid, w) => {
+genCompositeChannelInfo = (cid, opt) => {
+
+	opt = {
+		width: opt?.width ?? 795,
+		mode: opt?.mode,
+		visibility: opt?.visibility ?? 0
+	}
 
 	let eChannelInfo = SVG("<g></g>")
 
@@ -77,7 +83,7 @@ genCompositeChannelInfo = (cid, w) => {
 
 		let c = []
 		for (let ch in channels[type]) c.push(mergeJSON(channels[type][ch], { channel: Number(ch) }))
-		c = c.filter(v => v.visibility > 1).sort(v => v.channel)
+		c = c.filter(v => (opt.mode ? v.visibility.in : v.visibility.out) > opt.visibility).sort(v => v.channel)
 
 		//if (c.length > 0) y += 45
 		eIDs.attr({y: y + 52})
@@ -86,7 +92,7 @@ genCompositeChannelInfo = (cid, w) => {
 		eLabels.font({leading: 1})
 
 		let d = 0
-		eIDs.text(id => eLabels.text(label => c.forEach(v => wrapText(v.label, textWidth.robotoMedium({fontSize: 35}), w - 150).forEach((line, i) => {
+		eIDs.text(id => eLabels.text(label => c.forEach(v => wrapText(v.label, textWidth.robotoMedium({fontSize: 35}), opt.width - 150).forEach((line, i) => {
 			let d = i === 0 ? 52 : 45
 			eIDs.font({size: d})
 			eLabels.font({size: d})
@@ -104,12 +110,17 @@ genCompositeChannelInfo = (cid, w) => {
 	y = Math.max(y + 10, 0)
 
 	return {
-		dimensions: { width: w, height: y },
+		dimensions: { width: opt.width, height: y },
 		data: fixSVG(eChannelInfo.svg())
 	}
 }
 
-genNodeInfo = (n, w) => {
+genNodeInfo = (n, opt) => {
+
+	opt = {
+		width: opt?.width ?? 795,
+		visibility: opt?.visibility ?? 0
+	}
 
 	let eNode = SVG(genNode(n).data)
 	let eInfo = SVG("<text class=\"mono cDark2\" transform=\"translate(150 42)\"></text>")
@@ -122,12 +133,12 @@ genNodeInfo = (n, w) => {
 
 	let y = 120
 
-	let wLabel = wrapText(n.label, textWidth.robotoMedium({fontSize: 50}), w - 150)
+	let wLabel = wrapText(n.label, textWidth.robotoMedium({fontSize: 50}), opt.width - 150)
 	eLabel.font({size: 60, leading: 1})
 	eLabel.text(add => wLabel.forEach(line => add.tspan(line).newLine()))
 	y += (wLabel.length-1) * 60
 
-	let wDescription = wrapText(n.description, textWidth.robotoMedium({fontSize: 35}), w - 150)
+	let wDescription = wrapText(n.description, textWidth.robotoMedium({fontSize: 35}), opt.width - 150)
 	if (wDescription.length > 0) y += 60
 	eDescription.attr({y: y - 180})
 	eDescription.font({size: 45, leading: 1})
@@ -137,10 +148,10 @@ genNodeInfo = (n, w) => {
 
 	if (n.channels) {
 		y += 40
-		let channelInfo = genCompositeChannelInfo(n.channels, w)
+		let channelInfo = genCompositeChannelInfo(n.channels, { width: opt.width, mode: n.mode, visibility: opt.visibility })
 		let eChannelInfo = SVG(channelInfo.data)
 		eChannelInfo.attr({transform: "translate(0 " + y + ")"})
-		y += channelInfo.dimensions.height
+		y += channelInfo.dimensions.height !== 0 ? channelInfo.dimensions.height : -40
 		eNodeInfo.add(eChannelInfo)
 	}
 
@@ -152,7 +163,7 @@ genNodeInfo = (n, w) => {
 	if (y < 120) console.log(n.label)
 
 	return {
-		dimensions: { width: w, height: y },
+		dimensions: { width: opt.width, height: y },
 		data: fixSVG(eNodeInfo.svg())
 	}
 }
@@ -365,7 +376,7 @@ genControllerNodes = c => {
 	// nodes
 	let nodeInfoWidth = 795
 	let eNodes = SVG("<g id=\"Nodes\" transform=\"translate(120 360)\"></g>")
-	let nodes = ([...c.nodes].sort((a, b) => a.type - b.type || b.mode - a.mode)).map(node => genNodeInfo(node, nodeInfoWidth)) // sorting
+	let nodes = ([...c.nodes].sort((a, b) => a.type - b.type || b.mode - a.mode)).map(node => genNodeInfo(node, { width: nodeInfoWidth, visibility: 1 })) // sorting
 	let wrap = wrapPartition(nodes, node => node.dimensions.height, 90)
 
 	let y = 0, x = 0

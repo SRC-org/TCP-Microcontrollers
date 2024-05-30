@@ -5,7 +5,7 @@ require("./mediaElements")
 require("dotenv").config({ path: path.join(__dirname, "./.env") });
 
 const { execSync } = require('child_process');
-const { XMLParser } = require("fast-xml-parser")
+const { XMLParser, XMLBuilder } = require("fast-xml-parser")
 const { Resvg } = require('@resvg/resvg-js')
 const readline = require("readline")
 
@@ -23,6 +23,7 @@ const rl = readline.createInterface({
 const prompt = (query) => new Promise((resolve) => rl.question(query, resolve));
 
 swXMLParser = new XMLParser({ignoreAttributes: false})
+swXMLBuilder = new XMLBuilder({ignoreAttributes: false, format: true, indentBy: "\t", suppressEmptyNode: true, suppressBooleanAttributes: false, processEntities: true})
 //swXMLBuilder = new XMLBuilder()
 
 // node updateUtility -args
@@ -97,27 +98,27 @@ async function execDatabase() {
 	let promises = []
 	let controllers = []
 	dirs.forEach(dir => fs.readdirSync(cPath + dir + "/").filter(file => file.startsWith("SRC-TCP") && file.endsWith(".xml")).forEach(file => controllers.push({
-			path: cPath + dir + "/",
-			file: file,
-			nameData: mergeJSON(data.fromName(file), {group: dir})
+		path: cPath + dir + "/",
+		file: file,
+		group: dir.replace(" Group", ""),
+		nameData: data.fromName(file)
 	})))
 
 	controllers.forEach(c => {
 		let buffer = fs.readFileSync(c.path + c.file, "utf-8")
-		buffer = buffer.replaceAll(/(?<=description=")(?<Desc>[^"]+?)(?: *\/\/ *[^"]*?)?(?:(?<= *\/\/ *)#(?<ID>[a-z]\d+?))?(?=")/gm, (_, desc, tID) => desc + (tID ? resolveTextID(tID) + " // #" + tID : ""))
+		buffer = buffer.replaceAll(/(?<=description=")(?<desc>.+?) *\/\/ *.*?(?=")/gm, (_, desc) => desc) // clean
+
+		//console.log(c.group)
 
 		let xml = swXMLParser.parse(buffer)
-		c.data = data.fromXML(xml)
+		c.data = mergeJSON({group: c.group}, data.fromXML(xml, c.group))
+		// TODO: print channel list in controller xml (
+		// buffer = swXMLBuilder.build(xml)
 
-		fs.writeFileSync(c.path + c.file, buffer.replace(/\r\n/g, "\n")) // temp
-	})
-
-	controllers.forEach(c => {
-		if (c.nameData.identifier !== c.data.identifier)
-			return console.log("\x1b[33m%s\x1b[0m", "identifier mismatch: \"" + c.nameData.identifier + "\" (filename) // \"" + c.data.identifier + "\" (name in xml file)")
-		//if (database.controllers[c.data.identifier] === undefined) database.controllers[c.data.identifier] =  {}
-
+		if (c.nameData.identifier !== c.data.identifier) return console.log("\x1b[33m%s\x1b[0m", "identifier mismatch: \"" + c.nameData.identifier + "\" (filename) // \"" + c.data.identifier + "\" (name in xml file)")
 		database.controllers[c.data.identifier] = mergeJSON(database.controllers[c.data.identifier] ?? {}, c.data)
+
+		fs.writeFileSync(c.path + c.file, buffer.replace(/\r\n/g, "\n"))
 	})
 
 	// auto generate hierarchy
@@ -226,7 +227,6 @@ async function execImages() {
 
 // Steam
 async function execSteam() {
-	console.log(process.env.steamLogin)
 
 	let sPath = path.join(__dirname, ".steam/")
 	if (!fs.existsSync(sPath)) fs.mkdirSync(sPath)
@@ -273,8 +273,9 @@ async function execExport(index) {
 	let groups = {};
 
 	for (let identifier in database.connections.composite) {
-		let group = identifier.match(/^[^#]*/)[0]
-		if (!groups[group]) groups[group] = {
+		let domain = identifier.match(/^[^#]*/)[0]
+		if (!database.groups[domain]) continue;
+		if (!groups[domain]) groups[domain] = {
 			header1: "channel",
 			header2: "",
 			entries: Array(32).fill().map((v, i) => "" + (i+1))
@@ -282,13 +283,13 @@ async function execExport(index) {
 
 		let channels = resolveChannels(identifier);
 		let pushChannels = type => {
-			groups[group].header2 += "," + type
+			groups[domain].header2 += "," + type
 			for (let i = 0; i < 32; i++) {
-				groups[group].entries[i] += "," + (channels[type][i+1]?.label ?? "")
+				groups[domain].entries[i] += "," + (channels[type][i+1]?.label ?? "")
 			}
 		}
 
-		groups[group].header1 += "," + identifier.match(/(?<=#).*/)[0] + ","
+		groups[domain].header1 += "," + identifier.match(/(?<=#).*/)[0] + ","
 		pushChannels("boolean")
 		pushChannels("number")
 	}
@@ -320,17 +321,21 @@ data = {
 	fromDatabase: (identifier) => {
 		return database.controllers[identifier]
 	},
-	fromXML: (xml) => {
+	fromXML: (xml, group) => {
 		let nodes = []
 		xml.microprocessor.nodes.n.forEach((n) => {
 			n = n.node
-			let desc = (n["@_description"] || " ").match(/(.*?)(?: *\/\/ *.*?#(c\d+))?$/m)
+			let label = n["@_label"] || ""
+			let desc = (n["@_description"] || " ").match(/.*?(?= *\/\/ *|$)/)[0]
+			let mode = (n["@_mode"] === "1")
+			let type = Number(n["@_type"]) || 0
+			let channels = [group, "Any"].map(d => (c => database.connections.composite[c] ? c : undefined)(d + "#" + label.replaceAll(" ", ""))).reduce((p, c) => p ?? c, undefined)
 			nodes.push({
 				label: n["@_label"] || "",
-				description: desc[1],
-				channels: reverseTextIDs[desc[2]],
-				mode: (n["@_mode"] === "1"), // true is input, false is output
-				type: Number(n["@_type"]) || 0,
+				description: desc,
+				mode: mode, // true is input, false is output
+				type: type,
+				channels: channels,
 				position: n.position && {
 					x: Number(n.position["@_x"]) || 0,
 					z: Number(n.position["@_z"]) || 0
@@ -347,11 +352,11 @@ data = {
 	}
 }
 
-reverseTextIDs = (() => {
+/*reverseTextIDs = (() => {
 	let result = {}
 	for (let identifier in database.connections.composite) result["c"+database.connections.composite[identifier].id] = identifier
 	return result
-})()
+})()*/
 
 placeholders = (buffer, x) => {
 	return buffer.replaceAll(/{\$([^}]*?)}/gm, (_, tID) => {
@@ -364,7 +369,7 @@ placeholders = (buffer, x) => {
 resolveTextID = tID => {
 
 	switch (tID.charAt(0)) {
-		case 'c':
+		/*case 'c':
 			let c = resolveChannels(reverseTextIDs[tID])
 			let convert = (type) => {
 				let res = []
@@ -372,7 +377,7 @@ resolveTextID = tID => {
 				return res.filter(v => v.visibility > 1).sort((a,b) => a.channel - b.channel).reduce((prev, curr) => prev += type.charAt(0).toUpperCase() + curr.channel + ": " + curr.label + "; ", "")
 			}
 			let res = (convert("boolean") + convert("number")).trim()
-			return (res === "") ? "" : " // Channels: " + res
+			return (res === "") ? "" : " // Channels: " + res*/
 		case ".":
 			return x => x[tID.substring(1)]
 		case "s":
@@ -392,15 +397,15 @@ resolveChannels = identifier => {
 		number: {}
 	}
 
-	let expandChannels = type => {
-		if (entry.channels) for (let ch in entry.channels[type]) {
-			let channel = entry.channels[type][ch]
-			resolved[type][ch] = {
-				label: typeof channel === "string" ? channel : channel.label,
-				visibility: typeof channel === "string" ? entry.visibility : channel.visibility
-			}
-		}
-	}
+	let expandVis = (vis, def) => typeof vis === "number" ? { in: vis, out: vis } : { in: vis?.in ?? def, out: vis?.out ?? def }
+
+	let vis = expandVis(entry.visibility, 0)
+	let visLimit = expandVis(entry.visibilityLimit, 3)
+
+	let expandChannels = type => Object.entries(entry.channels ? entry.channels[type] ?? {} : {}).forEach(ch => resolved[type][ch[0]] = {
+		label: typeof ch[1] === "string" ? ch[1] : ch[1].label ?? "",
+		visibility: typeof ch[1] === "string" ? vis : expandVis(ch[1].visibility, 0)
+	})
 
 	expandChannels("boolean")
 	expandChannels("number")
@@ -410,6 +415,14 @@ resolveChannels = identifier => {
 		resolved.boolean = mergeJSON(inherited.boolean, resolved.boolean)
 		resolved.number = mergeJSON(inherited.number, resolved.number)
 	})
+
+	let applyLimit = type => Object.values(resolved[type]).forEach(ch => ch.visibility = {
+		in: Math.min(ch.visibility.in, visLimit.in),
+		out: Math.min(ch.visibility.out, visLimit.out)
+	})
+
+	applyLimit("boolean")
+	applyLimit("number")
 
 	return resolved
 }
