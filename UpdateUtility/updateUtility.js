@@ -4,6 +4,7 @@ database = require("../Controllers/database.json")
 require("./mediaElements")
 require("dotenv").config({ path: path.join(__dirname, "./.env") });
 
+const { execSync } = require('child_process');
 const { XMLParser } = require("fast-xml-parser")
 const { Resvg } = require('@resvg/resvg-js')
 const readline = require("readline")
@@ -33,7 +34,7 @@ swXMLParser = new XMLParser({ignoreAttributes: false})
 // -e:	exports database contents
 
 async function start() {
-	if (args.indexOf("-r") > -1) await execRegister(args.indexOf("-r"))
+	//if (args.indexOf("-r") > -1) await execRegister(args.indexOf("-r"))
 	if (args.indexOf("-c") > -1) await execCopy()
 	if (args.indexOf("-d") > -1) await execDatabase()
 	if (args.indexOf("-g") > -1) await execImages()
@@ -42,7 +43,7 @@ async function start() {
 }
 
 // Register
-async function execRegister(index) {
+/*async function execRegister(index) {
 	let wrongFormat = () => console.log("\x1b[33m%s\x1b[0m", "wrong format, please use: -r controller1,controller2,... group1,group2,...")
 
 	let arg1 = args[index+1], arg2  = args[index+2]
@@ -60,12 +61,14 @@ async function execRegister(index) {
 		}
 		if (!fs.existsSync(cPath + g + " Group/")) fs.mkdirSync(cPath + g + " Group/")
 	})
-}
+}*/
 
 // Copy
 async function execCopy() {
 	let files = fs.readdirSync(swPath).filter(file => file.startsWith("SRC-TCP") && file.endsWith(".xml"))
 	let promises = []
+
+	if (files.length === 0) return console.log("No controllers to be copied")
 
 	console.log("The following controllers will be copied to the repository folder:")
 	files.forEach((s, i) => {
@@ -78,7 +81,7 @@ async function execCopy() {
 		let fData = data.fromName(file)
 		let dData = data.fromDatabase(fData.identifier)
 		if (!dData || !dData.group) // unknown group
-			return console.log("\x1b[33m%s\x1b[0m", "unknown group for controller: \"" + fData.identifier + "\", controller was not copied, please register it using -r")
+			return console.log("\x1b[33m%s\x1b[0m", "unknown group for controller: \"" + fData.identifier + "\", controller was not copied, please copy it manually")
 		/*if (dData.version && dData.version !== fData.version) // replace old version if present
 			promises.push(fs.promises.unlink(cPath + dData.group + " Group/SRC-TCP " + fData.identifier + " v" + dData.version.replaceAll(".", "_") + ".xml"))*/
 		//dData.version = fData.version // update version in database
@@ -96,7 +99,7 @@ async function execDatabase() {
 	dirs.forEach(dir => fs.readdirSync(cPath + dir + "/").filter(file => file.startsWith("SRC-TCP") && file.endsWith(".xml")).forEach(file => controllers.push({
 			path: cPath + dir + "/",
 			file: file,
-			nameData: data.fromName(file)
+			nameData: mergeJSON(data.fromName(file), {group: dir})
 	})))
 
 	controllers.forEach(c => {
@@ -112,10 +115,9 @@ async function execDatabase() {
 	controllers.forEach(c => {
 		if (c.nameData.identifier !== c.data.identifier)
 			return console.log("\x1b[33m%s\x1b[0m", "identifier mismatch: \"" + c.nameData.identifier + "\" (filename) // \"" + c.data.identifier + "\" (name in xml file)")
-		if (database.controllers[c.data.identifier] === undefined)
-			return console.log("\x1b[33m%s\x1b[0m", "controller with no database entry: \"" + c.data.identifier + "\", please register it using -r")
+		//if (database.controllers[c.data.identifier] === undefined) database.controllers[c.data.identifier] =  {}
 
-		mergeJSON(database.controllers[c.data.identifier], c.data)
+		database.controllers[c.data.identifier] = mergeJSON(database.controllers[c.data.identifier] ?? {}, c.data)
 	})
 
 	// auto generate hierarchy
@@ -226,7 +228,39 @@ async function execImages() {
 async function execSteam() {
 	console.log(process.env.steamLogin)
 
-	console.log("steam upload not supported yet")
+	let sPath = path.join(__dirname, ".steam/")
+	if (!fs.existsSync(sPath)) fs.mkdirSync(sPath)
+	if (!fs.existsSync(sPath + "content/")) fs.mkdirSync(sPath + "content/")
+
+	let controllers = Object.values(database.controllers).filter(c => c.publishedfileid)
+	if (controllers.length === 0) return;
+
+	let vdfTemplate = fs.readFileSync(sPath + "template.vdf", "utf-8")
+
+	for (const c of controllers) {
+		if (fs.existsSync(sPath + "content/")) fs.rmSync(sPath + "content/", {recursive: true})
+		if (!fs.existsSync(sPath + "content/")) fs.mkdirSync(sPath + "content/")
+
+		let desc = fs.readFileSync(mPath + "Export/Desc/" + c.identifier + ".txt", "utf-8")
+		let vdf = placeholders(vdfTemplate, mergeJSON(c, {
+			publishedfileid: c.publishedfileid,
+			contentfolder: sPath + "content/",
+			previewfile: mPath + "Export/Thumbnails/" + c.identifier + ".png",
+			wsDescription: desc
+		}))
+
+		let promises = []
+		promises.push(fs.promises.copyFile(cPath + c.group + " Group/SRC-TCP " + c.identifier + ".xml", sPath + "content/SRC-TCP " + c.identifier + ".xml"))
+		promises.push(fs.promises.writeFile(sPath + "item.vdf", vdf,"utf-8"))
+		await Promise.all(promises)
+
+		if (await prompt("Upload controller: " + c.identifier + " [y/n] ") !== 'y') continue
+
+		let res = execSync(process.env.steamCMDPath + "steamcmd.exe +login \"" + process.env.steamLogin + "\" \"" + process.env.steamPassword + "\" +workshop_build_item \"" + sPath + "item.vdf\" +quit", {stdio: "inherit"})
+		console.log("")
+	}
+
+	if (fs.existsSync(sPath + "content/")) fs.rmSync(sPath + "content/", {recursive: true})
 }
 
 async function execExport(index) {
@@ -319,6 +353,14 @@ reverseTextIDs = (() => {
 	return result
 })()
 
+placeholders = (buffer, x) => {
+	return buffer.replaceAll(/{\$([^}]*?)}/gm, (_, tID) => {
+		let res = resolveTextID(tID)
+		if (typeof res === "function") return res(x)
+		return res
+	})
+}
+
 resolveTextID = tID => {
 
 	switch (tID.charAt(0)) {
@@ -373,8 +415,9 @@ resolveChannels = identifier => {
 }
 
 mergeJSON = (old, updated) => {
-	for (let attr in updated) old[attr] = updated[attr]
-	return old
+	let res = JSON.parse(JSON.stringify(old))
+	for (let attr in updated) res[attr] = updated[attr]
+	return res
 }
 
 // run

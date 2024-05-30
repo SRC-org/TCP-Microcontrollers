@@ -395,11 +395,7 @@ genControllerNodes = c => {
 genControllerDesc = c => {
 
 	let desc = controllerDescTemplate
-	desc = desc.replaceAll(/{\$([^}]*?)}/gm, (_, tID) => {
-		let res = resolveTextID(tID)
-		if (typeof res === "function") return res(c)
-		return res
-	})
+	desc = placeholders(desc, c)
 
 	return {
 		data: desc
