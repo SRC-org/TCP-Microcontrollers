@@ -2,10 +2,10 @@
 <microprocessor name="SRC-TCP [Interface] Exterior Lighting v1.3" description="Interacts with the lighting module, UI, and lightbox to control exterior lighting" width="2" length="3" id_counter="1254" id_counter_node="63" sym2="4" sym3="2" sym4="8191" sym5="8194" sym6="9508" sym7="1184" sym8="3232" sym9="11636" sym10="16388" sym11="65528" sym12="16384" sym13="8192">
 	<nodes>
 		<n id="33" component_id="264">
-			<node label="Module -> Interface" mode="1" type="5" description="Communicates with lighting module"/>
+			<node label="Module -&gt; Interface" mode="1" type="5" description="Communicates with lighting module"/>
 		</n>
 		<n id="34" component_id="301">
-			<node label="Interface -> Module" type="5" description="Communicates with lighting module">
+			<node label="Interface -&gt; Module" type="5" description="Communicates with lighting module">
 				<position x="1"/>
 			</node>
 		</n>
@@ -575,8 +575,8 @@
 				</object>
 			</c>
 			<c type="56">
-				<object id="1210" script='colors={w={85,90,90},w2={70,75,75},b={10,10,10},b2={8,8,8},acc={69,12,10}}
-tog = {"Auto",false,"Head",false,"High",false,"Work",false,"Warn",false,"Deco",false}
+				<object id="1210" script="colors={w={85,90,90},w2={70,75,75},b={10,10,10},b2={8,8,8},acc={69,12,10}}
+tog = {&quot;Auto&quot;,false,&quot;Head&quot;,false,&quot;High&quot;,false,&quot;Work&quot;,false,&quot;Warn&quot;,false,&quot;Deco&quot;,false}
 o = 2
 
 function touch(x,y,w,h) return t.x&gt;=x and t.y&gt;=y and t.x&lt;x+w and t.y&lt;y+h end
@@ -650,7 +650,7 @@ function onDraw()
  end
 		end
 	end
-end'>
+end">
 					<pos x="-22.25" y="14"/>
 					<in1 component_id="351"/>
 				</object>
@@ -1183,8 +1183,8 @@ end'>
 				<in4 component_id="1078"/>
 				<in5 component_id="1077"/>
 			</c69>
-			<c70 id="1210" script='colors={w={85,90,90},w2={70,75,75},b={10,10,10},b2={8,8,8},acc={69,12,10}}
-tog = {"Auto",false,"Head",false,"High",false,"Work",false,"Warn",false,"Deco",false}
+			<c70 id="1210" script="colors={w={85,90,90},w2={70,75,75},b={10,10,10},b2={8,8,8},acc={69,12,10}}
+tog = {&quot;Auto&quot;,false,&quot;Head&quot;,false,&quot;High&quot;,false,&quot;Work&quot;,false,&quot;Warn&quot;,false,&quot;Deco&quot;,false}
 o = 2
 
 function touch(x,y,w,h) return t.x&gt;=x and t.y&gt;=y and t.x&lt;x+w and t.y&lt;y+h end
@@ -1258,7 +1258,7 @@ function onDraw()
  end
 		end
 	end
-end'>
+end">
 				<pos x="-22.25" y="14"/>
 				<in1 component_id="351"/>
 			</c70>
@@ -1353,4 +1353,3 @@ end'>
 		<group_states/>
 	</group>
 </microprocessor>
-

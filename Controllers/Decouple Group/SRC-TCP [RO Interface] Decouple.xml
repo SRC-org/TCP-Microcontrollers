@@ -2,7 +2,7 @@
 <microprocessor name="SRC-TCP [RO Interface] Decouple v1.3" description="Enables the (remote) decoupling of specific cars." width="3" length="1" id_counter="911" id_counter_node="43" sym2="4" sym3="2" sym4="8191" sym5="8194" sym6="9508" sym7="1184" sym8="3232" sym9="11636" sym10="16388" sym11="65528" sym12="16384" sym13="8192">
 	<nodes>
 		<n id="33" component_id="264">
-			<node label="Module -> Interface" mode="1" type="5" description="Communicates with Decouple Module"/>
+			<node label="Module -&gt; Interface" mode="1" type="5" description="Communicates with Decouple Module"/>
 		</n>
 		<n id="38" component_id="770">
 			<node label="Decouple Front" description="Connects to front coupler to disconnect">
@@ -308,4 +308,3 @@
 		<group_states/>
 	</group>
 </microprocessor>
-

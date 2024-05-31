@@ -2181,7 +2181,7 @@
 				},
 				{
 					"label": "Cab Controller",
-					"description": " ",
+					"description": "",
 					"mode": true,
 					"type": 5,
 					"position": {

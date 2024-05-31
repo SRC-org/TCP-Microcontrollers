@@ -62,8 +62,8 @@
 		</data>
 		<components>
 			<c type="56">
-				<object id="205" script='colors={w={85,90,90},w2={70,75,75},b={10,10,10},b2={8,8,8},acc={69,12,10}}
-m={"ExtLight","Decouple","IntLight","Door","-","-","-","-"}
+				<object id="205" script="colors={w={85,90,90},w2={70,75,75},b={10,10,10},b2={8,8,8},acc={69,12,10}}
+m={&quot;ExtLight&quot;,&quot;Decouple&quot;,&quot;IntLight&quot;,&quot;Door&quot;,&quot;-&quot;,&quot;-&quot;,&quot;-&quot;,&quot;-&quot;}
 im={}
 menu=true
 scr=0
@@ -248,7 +248,7 @@ function onDraw()
 	dLogo(w-13,2)
 end
 
-function clamp(a,b,c)return math.min(math.max(a,b),c)end;function cScr(d)local e=math.floor((d-28)/12)local f=-e;for g=1,#m,1 do if im[g]then f=f+1 end end;return e,f end;function dSTS()w2=w/2;setC(theme.bg2)dRF(0,9,w,h-9)setC(theme.fg)dR(w2-6,16,11,7)dL(w2+2,22,w2+5,22)setC(theme.acc)dRF(w2-10,12,3,3)dRF(w2+7,12,3,3)dRF(w2-10,25,3,3)dRF(w2+7,25,3,3)setC(theme.bg2)dRF(w2-10,12,2,2)dRF(w2+8,12,2,2)dRF(w2-10,26,2,2)dRF(w2+8,26,2,2)end'>
+function clamp(a,b,c)return math.min(math.max(a,b),c)end;function cScr(d)local e=math.floor((d-28)/12)local f=-e;for g=1,#m,1 do if im[g]then f=f+1 end end;return e,f end;function dSTS()w2=w/2;setC(theme.bg2)dRF(0,9,w,h-9)setC(theme.fg)dR(w2-6,16,11,7)dL(w2+2,22,w2+5,22)setC(theme.acc)dRF(w2-10,12,3,3)dRF(w2+7,12,3,3)dRF(w2-10,25,3,3)dRF(w2+7,25,3,3)setC(theme.bg2)dRF(w2-10,12,2,2)dRF(w2+8,12,2,2)dRF(w2-10,26,2,2)dRF(w2+8,26,2,2)end">
 					<pos x="-8.75" y="1.25"/>
 					<in1 component_id="250"/>
 					<in2 component_id="257"/>
@@ -488,8 +488,8 @@ end">
 		</components_bridge>
 		<groups/>
 		<component_states>
-			<c0 id="205" script='colors={w={85,90,90},w2={70,75,75},b={10,10,10},b2={8,8,8},acc={69,12,10}}
-m={"ExtLight","Decouple","IntLight","Door","-","-","-","-"}
+			<c0 id="205" script="colors={w={85,90,90},w2={70,75,75},b={10,10,10},b2={8,8,8},acc={69,12,10}}
+m={&quot;ExtLight&quot;,&quot;Decouple&quot;,&quot;IntLight&quot;,&quot;Door&quot;,&quot;-&quot;,&quot;-&quot;,&quot;-&quot;,&quot;-&quot;}
 im={}
 menu=true
 scr=0
@@ -674,7 +674,7 @@ function onDraw()
 	dLogo(w-13,2)
 end
 
-function clamp(a,b,c)return math.min(math.max(a,b),c)end;function cScr(d)local e=math.floor((d-28)/12)local f=-e;for g=1,#m,1 do if im[g]then f=f+1 end end;return e,f end;function dSTS()w2=w/2;setC(theme.bg2)dRF(0,9,w,h-9)setC(theme.fg)dR(w2-6,16,11,7)dL(w2+2,22,w2+5,22)setC(theme.acc)dRF(w2-10,12,3,3)dRF(w2+7,12,3,3)dRF(w2-10,25,3,3)dRF(w2+7,25,3,3)setC(theme.bg2)dRF(w2-10,12,2,2)dRF(w2+8,12,2,2)dRF(w2-10,26,2,2)dRF(w2+8,26,2,2)end'>
+function clamp(a,b,c)return math.min(math.max(a,b),c)end;function cScr(d)local e=math.floor((d-28)/12)local f=-e;for g=1,#m,1 do if im[g]then f=f+1 end end;return e,f end;function dSTS()w2=w/2;setC(theme.bg2)dRF(0,9,w,h-9)setC(theme.fg)dR(w2-6,16,11,7)dL(w2+2,22,w2+5,22)setC(theme.acc)dRF(w2-10,12,3,3)dRF(w2+7,12,3,3)dRF(w2-10,25,3,3)dRF(w2+7,25,3,3)setC(theme.bg2)dRF(w2-10,12,2,2)dRF(w2+8,12,2,2)dRF(w2-10,26,2,2)dRF(w2+8,26,2,2)end">
 				<pos x="-8.75" y="1.25"/>
 				<in1 component_id="250"/>
 				<in2 component_id="257"/>
@@ -850,4 +850,3 @@ end">
 		<group_states/>
 	</group>
 </microprocessor>
-

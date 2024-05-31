@@ -2697,8 +2697,7 @@
 				</object>
 			</c>
 			<c type="56">
-				<object id="1191" script='
-X_OFFSET = 1
+				<object id="1191" script="X_OFFSET = 1
 Y_OFFSET = 1
 
 HEADING_HEIGHT = 8
@@ -2707,7 +2706,7 @@ LINE_HEIGHT = 8
 myAmountOfModules = 0
 moduleFlag = {}
 
-MODULE_NAMES = {"Drive Mod", "Light Mod", "Passenger Mod", "Cam Mod", "Audio Mod", "Warnings/Status Mod","Decouple Mod","Pantograph mod","Power Mode Mod"}
+MODULE_NAMES = {&quot;Drive Mod&quot;, &quot;Light Mod&quot;, &quot;Passenger Mod&quot;, &quot;Cam Mod&quot;, &quot;Audio Mod&quot;, &quot;Warnings/Status Mod&quot;,&quot;Decouple Mod&quot;,&quot;Pantograph mod&quot;,&quot;Power Mode Mod&quot;}
 
 for i=1,32 do
 	moduleFlag[i] = false
@@ -2721,7 +2720,7 @@ end
 
 function onDraw()
 	screen.setColor(30,30,255)
-	screen.drawTextBox(0, Y_OFFSET, screen.getWidth(), HEADING_HEIGHT, "Detected Modules", 0, 0)
+	screen.drawTextBox(0, Y_OFFSET, screen.getWidth(), HEADING_HEIGHT, &quot;Detected Modules&quot;, 0, 0)
 	screen.setColor(30,30,30)
 	
     -- print all modules onto the screen
@@ -2729,16 +2728,15 @@ function onDraw()
 		if moduleFlag[i] then
 			text = MODULE_NAMES[i]
 			if text == nil then
-				text = "???"
+				text = &quot;???&quot;
 			end
-			screen.drawText(X_OFFSET+1, Y_OFFSET + HEADING_HEIGHT + myAmountOfModules * LINE_HEIGHT, "[" .. i .. "] " ..text)
+			screen.drawText(X_OFFSET+1, Y_OFFSET + HEADING_HEIGHT + myAmountOfModules * LINE_HEIGHT, &quot;[&quot; .. i .. &quot;] &quot; ..text)
 			myAmountOfModules = myAmountOfModules + 1
 		end
 	end
 	
 	myAmountOfModules = 0
-end
-'>
+end">
 					<pos x="6.5" y="2.25"/>
 					<in1 component_id="1193"/>
 				</object>
@@ -5892,8 +5890,7 @@ end
 				<pos x="-17.5" y="9.75"/>
 				<in1 component_id="1102"/>
 			</c383>
-			<c384 id="1191" script='
-X_OFFSET = 1
+			<c384 id="1191" script="X_OFFSET = 1
 Y_OFFSET = 1
 
 HEADING_HEIGHT = 8
@@ -5902,7 +5899,7 @@ LINE_HEIGHT = 8
 myAmountOfModules = 0
 moduleFlag = {}
 
-MODULE_NAMES = {"Drive Mod", "Light Mod", "Passenger Mod", "Cam Mod", "Audio Mod", "Warnings/Status Mod","Decouple Mod","Pantograph mod","Power Mode Mod"}
+MODULE_NAMES = {&quot;Drive Mod&quot;, &quot;Light Mod&quot;, &quot;Passenger Mod&quot;, &quot;Cam Mod&quot;, &quot;Audio Mod&quot;, &quot;Warnings/Status Mod&quot;,&quot;Decouple Mod&quot;,&quot;Pantograph mod&quot;,&quot;Power Mode Mod&quot;}
 
 for i=1,32 do
 	moduleFlag[i] = false
@@ -5916,7 +5913,7 @@ end
 
 function onDraw()
 	screen.setColor(30,30,255)
-	screen.drawTextBox(0, Y_OFFSET, screen.getWidth(), HEADING_HEIGHT, "Detected Modules", 0, 0)
+	screen.drawTextBox(0, Y_OFFSET, screen.getWidth(), HEADING_HEIGHT, &quot;Detected Modules&quot;, 0, 0)
 	screen.setColor(30,30,30)
 	
     -- print all modules onto the screen
@@ -5924,16 +5921,15 @@ function onDraw()
 		if moduleFlag[i] then
 			text = MODULE_NAMES[i]
 			if text == nil then
-				text = "???"
+				text = &quot;???&quot;
 			end
-			screen.drawText(X_OFFSET+1, Y_OFFSET + HEADING_HEIGHT + myAmountOfModules * LINE_HEIGHT, "[" .. i .. "] " ..text)
+			screen.drawText(X_OFFSET+1, Y_OFFSET + HEADING_HEIGHT + myAmountOfModules * LINE_HEIGHT, &quot;[&quot; .. i .. &quot;] &quot; ..text)
 			myAmountOfModules = myAmountOfModules + 1
 		end
 	end
 	
 	myAmountOfModules = 0
-end
-'>
+end">
 				<pos x="6.5" y="2.25"/>
 				<in1 component_id="1193"/>
 			</c384>
@@ -6840,4 +6836,3 @@ end
 		<group_states/>
 	</group>
 </microprocessor>
-

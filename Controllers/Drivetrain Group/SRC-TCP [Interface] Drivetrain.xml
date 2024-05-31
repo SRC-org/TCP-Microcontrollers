@@ -2,12 +2,12 @@
 <microprocessor name="SRC-TCP [Interface] Drivetrain v1.3" description="Communicates with drive module and UI" width="5" length="2" id_counter="389" id_counter_node="44" sym2="4" sym3="2" sym4="8191" sym5="8194" sym6="9508" sym7="1184" sym8="3232" sym9="11636" sym10="16388" sym11="65528" sym12="16384" sym13="8192">
 	<nodes>
 		<n id="22" component_id="152">
-			<node label="Module -> Interface" mode="1" type="5" description="Communicates with Drivetrain Module">
+			<node label="Module -&gt; Interface" mode="1" type="5" description="Communicates with Drivetrain Module">
 				<position z="1"/>
 			</node>
 		</n>
 		<n id="23" component_id="154">
-			<node label="Interface -> Module" type="5" description="Communicates with Drivetrain Module"/>
+			<node label="Interface -&gt; Module" type="5" description="Communicates with Drivetrain Module"/>
 		</n>
 		<n id="33" component_id="230">
 			<node label="UI" mode="1" type="5" description="Connects to Instruments/Cab">
@@ -264,7 +264,7 @@
 				</object>
 			</c>
 			<c type="56">
-				<object id="328" script='s,scr,i,o,m=self,screen,input,output,math
+				<object id="328" script="s,scr,i,o,m=self,screen,input,output,math
 pgn,pgb,gn,gb,sn,sb=property.getNumber,property.getBool,i.getNumber,i.getBool,o.setNumber,o.setBool
 abs=m.abs
 					
@@ -288,7 +288,7 @@ return clamp(error*s.p+s.integral,min,max)
 end}
 end
 
-mult=pgn("Acceleration Multiplier")
+mult=pgn(&quot;Acceleration Multiplier&quot;)
 piVal=pid(mult*0.003,mult*0.000003)
 a=1
 b=1
@@ -345,7 +345,7 @@ sn(1,thr)
 sn(2,rpsd)
 sn(3,a)
 sn(4,targetTemp)
-end'>
+end">
 					<pos x="0.5" y="-10.75"/>
 					<in1 component_id="329"/>
 				</object>
@@ -809,7 +809,7 @@ end'>
 				<pos x="-4.75" y="-14.75"/>
 				<in1 component_id="293"/>
 			</c32>
-			<c33 id="328" script='s,scr,i,o,m=self,screen,input,output,math
+			<c33 id="328" script="s,scr,i,o,m=self,screen,input,output,math
 pgn,pgb,gn,gb,sn,sb=property.getNumber,property.getBool,i.getNumber,i.getBool,o.setNumber,o.setBool
 abs=m.abs
 					
@@ -833,7 +833,7 @@ return clamp(error*s.p+s.integral,min,max)
 end}
 end
 
-mult=pgn("Acceleration Multiplier")
+mult=pgn(&quot;Acceleration Multiplier&quot;)
 piVal=pid(mult*0.003,mult*0.000003)
 a=1
 b=1
@@ -890,7 +890,7 @@ sn(1,thr)
 sn(2,rpsd)
 sn(3,a)
 sn(4,targetTemp)
-end'>
+end">
 				<pos x="0.5" y="-10.75"/>
 				<in1 component_id="329"/>
 			</c33>
@@ -1112,4 +1112,3 @@ end'>
 		<group_states/>
 	</group>
 </microprocessor>
-

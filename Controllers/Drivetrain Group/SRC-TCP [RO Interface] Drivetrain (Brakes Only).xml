@@ -2,7 +2,7 @@
 <microprocessor name="SRC-TCP [RO Interface] Drivetrain (Brakes Only) v1.3" description="Handles brakes and wheelslip with built-in ABS." width="2" length="2" id_counter="323" id_counter_node="45" sym2="4" sym3="2" sym4="8191" sym5="8194" sym6="9508" sym7="1184" sym8="3232" sym9="11636" sym10="16388" sym11="65528" sym12="16384" sym13="8192">
 	<nodes>
 		<n id="22" component_id="152">
-			<node label="Module -> Interface" mode="1" type="5" description="Communicates with drivetrain module"/>
+			<node label="Module -&gt; Interface" mode="1" type="5" description="Communicates with drivetrain module"/>
 		</n>
 		<n id="35" component_id="278">
 			<node label="Brake" type="1" description="Outputs brakes to wheels">
@@ -227,4 +227,3 @@
 		<group_states/>
 	</group>
 </microprocessor>
-

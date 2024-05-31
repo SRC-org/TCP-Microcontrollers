@@ -10,12 +10,12 @@
 			</node>
 		</n>
 		<n id="31" component_id="313">
-			<node label="Module -> Interface" type="5" description="Communicates with Drivetrain Interface">
+			<node label="Module -&gt; Interface" type="5" description="Communicates with Drivetrain Interface">
 				<position z="2"/>
 			</node>
 		</n>
 		<n id="32" component_id="315">
-			<node label="Interface -> Module" mode="1" type="5" description="Communicates with Drivetrain Interface">
+			<node label="Interface -&gt; Module" mode="1" type="5" description="Communicates with Drivetrain Interface">
 				<position x="1" z="2"/>
 			</node>
 		</n>
@@ -495,4 +495,3 @@
 		<group_states/>
 	</group>
 </microprocessor>
-

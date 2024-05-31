@@ -17,10 +17,10 @@
 			</node>
 		</n>
 		<n id="13" component_id="139">
-			<node label="Module -> Interface" mode="1" type="5" description="Communicates with passenger module"/>
+			<node label="Module -&gt; Interface" mode="1" type="5" description="Communicates with passenger module"/>
 		</n>
 		<n id="14" component_id="142">
-			<node label="Interface -> Module" type="5" description="Communicates with passenger module">
+			<node label="Interface -&gt; Module" type="5" description="Communicates with passenger module">
 				<position x="1"/>
 			</node>
 		</n>
@@ -42,7 +42,7 @@
 		</data>
 		<components>
 			<c type="56">
-				<object id="37" script='colors={w={85,90,90},w2={70,75,75},b={10,10,10},b2={8,8,8},acc={69,12,10}}
+				<object id="37" script="colors={w={85,90,90},w2={70,75,75},b={10,10,10},b2={8,8,8},acc={69,12,10}}
 col={a=0.5,b=0.5,c=0.5} --rgb
 
 function touch(x,y,w,h) return t.x&gt;=x and t.y&gt;=y and t.x&lt;x+w and t.y&lt;y+h end
@@ -150,7 +150,7 @@ function onDraw()
 		dRF(6,24,19,9)
 		setC(theme.bg2)
 	end
-	dT(9,26,"l")
+	dT(9,26,&quot;l&quot;)
 	if not light then setC(theme.acc) end
 	dLgt(15,27)
 	
@@ -160,7 +160,7 @@ function onDraw()
 		dRF(6,36,19,9)
 		setC(theme.bg2)
 	end
-	dT(9,38,"h")
+	dT(9,38,&quot;h&quot;)
 	if not heater then setC(theme.acc) end
 	dHeat(15,39)
 	
@@ -170,7 +170,7 @@ function onDraw()
 		dRF(6,48,19,9)
 		setC(theme.bg2)
 	end
-	dT(9,50,mode and "hsv" or "rgb")
+	dT(9,50,mode and &quot;hsv&quot; or &quot;rgb&quot;)
 
 	o=math.max(w/2-14,29)
 	setC(theme.bg)
@@ -208,7 +208,7 @@ end
 
 function clamp(v,x,y) return math.min(math.max(v,x),y) end
 function unpack(x) return x.a,x.b,x.c end
-function rgb2hsv(a,b,c)local d,e=math.max(a,b,c),math.min(a,b,c)local f,g,h;h=d;local i=d-e;if d==0 then g=0 else g=i/d end;if d==e then f=0 else if d==a then f=(b-c)/i;if b&lt;c then f=f+6 end elseif d==b then f=(c-a)/i+2 elseif d==c then f=(a-b)/i+4 end;f=f/6 end;return{a=f,b=g,c=h}end;function hsv2rgb(f,g,h)local a,b,c;local j=math.floor(f*6)local k=f*6-j;local l=h*(1-g)local m=h*(1-k*g)local n=h*(1-(1-k)*g)j=j%6;if j==0 then a,b,c=h,n,l elseif j==1 then a,b,c=m,h,l elseif j==2 then a,b,c=l,h,n elseif j==3 then a,b,c=l,m,h elseif j==4 then a,b,c=n,l,h elseif j==5 then a,b,c=h,l,m end;return{a=a,b=b,c=c}end'>
+function rgb2hsv(a,b,c)local d,e=math.max(a,b,c),math.min(a,b,c)local f,g,h;h=d;local i=d-e;if d==0 then g=0 else g=i/d end;if d==e then f=0 else if d==a then f=(b-c)/i;if b&lt;c then f=f+6 end elseif d==b then f=(c-a)/i+2 elseif d==c then f=(a-b)/i+4 end;f=f/6 end;return{a=f,b=g,c=h}end;function hsv2rgb(f,g,h)local a,b,c;local j=math.floor(f*6)local k=f*6-j;local l=h*(1-g)local m=h*(1-k*g)local n=h*(1-(1-k)*g)j=j%6;if j==0 then a,b,c=h,n,l elseif j==1 then a,b,c=m,h,l elseif j==2 then a,b,c=l,h,n elseif j==3 then a,b,c=l,m,h elseif j==4 then a,b,c=n,l,h elseif j==5 then a,b,c=h,l,m end;return{a=a,b=b,c=c}end">
 					<pos x="-6.25" y="5.75"/>
 					<in1 component_id="20"/>
 				</object>
@@ -493,7 +493,7 @@ function rgb2hsv(a,b,c)local d,e=math.max(a,b,c),math.min(a,b,c)local f,g,h;h=d;
 		</components_bridge>
 		<groups/>
 		<component_states>
-			<c0 id="37" script='colors={w={85,90,90},w2={70,75,75},b={10,10,10},b2={8,8,8},acc={69,12,10}}
+			<c0 id="37" script="colors={w={85,90,90},w2={70,75,75},b={10,10,10},b2={8,8,8},acc={69,12,10}}
 col={a=0.5,b=0.5,c=0.5} --rgb
 
 function touch(x,y,w,h) return t.x&gt;=x and t.y&gt;=y and t.x&lt;x+w and t.y&lt;y+h end
@@ -601,7 +601,7 @@ function onDraw()
 		dRF(6,24,19,9)
 		setC(theme.bg2)
 	end
-	dT(9,26,"l")
+	dT(9,26,&quot;l&quot;)
 	if not light then setC(theme.acc) end
 	dLgt(15,27)
 	
@@ -611,7 +611,7 @@ function onDraw()
 		dRF(6,36,19,9)
 		setC(theme.bg2)
 	end
-	dT(9,38,"h")
+	dT(9,38,&quot;h&quot;)
 	if not heater then setC(theme.acc) end
 	dHeat(15,39)
 	
@@ -621,7 +621,7 @@ function onDraw()
 		dRF(6,48,19,9)
 		setC(theme.bg2)
 	end
-	dT(9,50,mode and "hsv" or "rgb")
+	dT(9,50,mode and &quot;hsv&quot; or &quot;rgb&quot;)
 
 	o=math.max(w/2-14,29)
 	setC(theme.bg)
@@ -659,7 +659,7 @@ end
 
 function clamp(v,x,y) return math.min(math.max(v,x),y) end
 function unpack(x) return x.a,x.b,x.c end
-function rgb2hsv(a,b,c)local d,e=math.max(a,b,c),math.min(a,b,c)local f,g,h;h=d;local i=d-e;if d==0 then g=0 else g=i/d end;if d==e then f=0 else if d==a then f=(b-c)/i;if b&lt;c then f=f+6 end elseif d==b then f=(c-a)/i+2 elseif d==c then f=(a-b)/i+4 end;f=f/6 end;return{a=f,b=g,c=h}end;function hsv2rgb(f,g,h)local a,b,c;local j=math.floor(f*6)local k=f*6-j;local l=h*(1-g)local m=h*(1-k*g)local n=h*(1-(1-k)*g)j=j%6;if j==0 then a,b,c=h,n,l elseif j==1 then a,b,c=m,h,l elseif j==2 then a,b,c=l,h,n elseif j==3 then a,b,c=l,m,h elseif j==4 then a,b,c=n,l,h elseif j==5 then a,b,c=h,l,m end;return{a=a,b=b,c=c}end'>
+function rgb2hsv(a,b,c)local d,e=math.max(a,b,c),math.min(a,b,c)local f,g,h;h=d;local i=d-e;if d==0 then g=0 else g=i/d end;if d==e then f=0 else if d==a then f=(b-c)/i;if b&lt;c then f=f+6 end elseif d==b then f=(c-a)/i+2 elseif d==c then f=(a-b)/i+4 end;f=f/6 end;return{a=f,b=g,c=h}end;function hsv2rgb(f,g,h)local a,b,c;local j=math.floor(f*6)local k=f*6-j;local l=h*(1-g)local m=h*(1-k*g)local n=h*(1-(1-k)*g)j=j%6;if j==0 then a,b,c=h,n,l elseif j==1 then a,b,c=m,h,l elseif j==2 then a,b,c=l,h,n elseif j==3 then a,b,c=l,m,h elseif j==4 then a,b,c=n,l,h elseif j==5 then a,b,c=h,l,m end;return{a=a,b=b,c=c}end">
 				<pos x="-6.25" y="5.75"/>
 				<in1 component_id="20"/>
 			</c0>
@@ -866,4 +866,3 @@ function rgb2hsv(a,b,c)local d,e=math.max(a,b,c),math.min(a,b,c)local f,g,h;h=d;
 		<group_states/>
 	</group>
 </microprocessor>
-

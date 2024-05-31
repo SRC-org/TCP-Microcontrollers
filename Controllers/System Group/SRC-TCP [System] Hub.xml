@@ -5,17 +5,17 @@
 			<node label="Main Input" type="5" description="To Main Input on Main Controller (or other hub if chaining)"/>
 		</n>
 		<n id="29" component_id="298">
-			<node label="Slot 1" mode="1" type="5" description="Allows the connection of any module as long as it's ID and channels are defined. Also allows for chaining hubs">
+			<node label="Slot 1" mode="1" type="5" description="Allows the connection of any module as long as it&apos;s ID and channels are defined. Also allows for chaining hubs">
 				<position z="1"/>
 			</node>
 		</n>
 		<n id="33" component_id="305">
-			<node label="Slot 2" mode="1" type="5" description="Allows the connection of any module as long as it's ID and channels are defined. Also allows for chaining hubs">
+			<node label="Slot 2" mode="1" type="5" description="Allows the connection of any module as long as it&apos;s ID and channels are defined. Also allows for chaining hubs">
 				<position z="2"/>
 			</node>
 		</n>
 		<n id="37" component_id="316">
-			<node label="Slot 3" mode="1" type="5" description="Allows the connection of any module as long as it's ID and channels are defined. Also allows for chaining hubs">
+			<node label="Slot 3" mode="1" type="5" description="Allows the connection of any module as long as it&apos;s ID and channels are defined. Also allows for chaining hubs">
 				<position z="3"/>
 			</node>
 		</n>
@@ -7925,4 +7925,3 @@
 		<group_states/>
 	</group>
 </microprocessor>
-
