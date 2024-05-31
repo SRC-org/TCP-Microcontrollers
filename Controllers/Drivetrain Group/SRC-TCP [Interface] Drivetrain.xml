@@ -10,7 +10,7 @@
 			<node label="Interface -&gt; Module" type="5" description="Communicates with Drivetrain Module"/>
 		</n>
 		<n id="33" component_id="230">
-			<node label="UI" mode="1" type="5" description="Connects to Instruments/Cab">
+			<node label="UI" mode="1" type="5" description="Connects to Instruments/Cab // Channels: B1: Wheel Slip; B2: Remote Engine Activation (Toggle); N1: Brakes (0-1); N2: Throttle (0-maxSpeed);">
 				<position x="1" z="1"/>
 			</node>
 		</n>

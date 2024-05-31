@@ -55,7 +55,7 @@
 			</node>
 		</n>
 		<n id="17" component_id="246">
-			<node label="Main Both" type="5" description="Transmits information from master, whichever direction that may be">
+			<node label="Main Both" type="5" description="Transmits information from master, whichever direction that may be // Channels: B1: I am master; B2: Master exists; B3: I am inverted; N1: Number of cars; N2: Master ID; N3: My ID;">
 				<position x="3" z="2"/>
 			</node>
 		</n>

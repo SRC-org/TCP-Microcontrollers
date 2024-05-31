@@ -79,8 +79,8 @@ async function execCopy() {
 	if (await prompt("Do you want to proceed [y/n] ") !== 'y') return;
 
 	files.forEach((file) => {
-		let fData = data.fromName(file)
-		let dData = data.fromDatabase(fData.identifier)
+		let fData = interpretName(file)
+		let dData = database.controllers[fData.identifier]
 		if (!dData || !dData.group) // unknown group
 			return console.log("\x1b[33m%s\x1b[0m", "unknown group for controller: \"" + fData.identifier + "\", controller was not copied, please copy it manually")
 		/*if (dData.version && dData.version !== fData.version) // replace old version if present
@@ -101,7 +101,7 @@ async function execDatabase() {
 		path: cPath + dir + "/",
 		file: file,
 		group: dir.replace(" Group", ""),
-		nameData: data.fromName(file)
+		identifier: interpretName(file).identifier
 	})))
 
 	controllers.forEach(c => {
@@ -111,11 +111,41 @@ async function execDatabase() {
 		//console.log(c.group)
 
 		let xml = swXMLParser.parse(buffer)
-		c.data = mergeJSON({group: c.group}, data.fromXML(xml, c.group))
-		// TODO: print channel list in controller xml (
-		// buffer = swXMLBuilder.build(xml)
 
-		if (c.nameData.identifier !== c.data.identifier) return console.log("\x1b[33m%s\x1b[0m", "identifier mismatch: \"" + c.nameData.identifier + "\" (filename) // \"" + c.data.identifier + "\" (name in xml file)")
+		let nodes = []
+		xml.microprocessor.nodes.n.forEach((n) => {
+			n = n.node
+			let label = n["@_label"] || ""
+			let desc = (n["@_description"] || "")
+			let mode = (n["@_mode"] === "1")
+			let type = Number(n["@_type"]) || 0
+			let channels = [c.group, "Any"].map(d => (c => database.connections.composite[c] ? c : undefined)(d + "#" + label.replaceAll(" ", ""))).reduce((p, c) => p ?? c, undefined)
+			if (channels) n["@_description"] = placeholders(n["@_description"] + " // {$c" + (mode ? "i" : "o") + channels + "}")
+			nodes.push({
+				label: n["@_label"] || "",
+				description: desc,
+				mode: mode, // true is input, false is output
+				type: type,
+				channels: channels,
+				position: n.position && {
+					x: Number(n.position["@_x"]) || 0,
+					z: Number(n.position["@_z"]) || 0
+				} || {x: 0, z: 0}
+			})
+		})
+
+		c.data = mergeJSON(interpretName(xml.microprocessor["@_name"]), {
+			group: c.group,
+			description: xml.microprocessor["@_description"],
+			width: xml.microprocessor["@_width"],
+			length: xml.microprocessor["@_length"],
+			nodes: nodes
+		})
+
+		buffer = swXMLBuilder.build(xml)
+		buffer = buffer.replaceAll(" \/\/ \"", "\"") // fix empty channel lists
+
+		if (c.identifier !== c.data.identifier) return console.log("\x1b[33m%s\x1b[0m", "identifier mismatch: \"" + c.identifier + "\" (filename) // \"" + c.data.identifier + "\" (name in xml file)")
 		database.controllers[c.data.identifier] = mergeJSON(database.controllers[c.data.identifier] ?? {}, c.data)
 
 		fs.writeFileSync(c.path + c.file, buffer.replace(/\r\n/g, "\n"))
@@ -303,90 +333,38 @@ async function execExport(index) {
 	}
 }
 
-data = {
-	matchInfo: (str) => {
-		return str.matchAll(/SRC-TCP *\[(.*?)\] *(.*?(?= *v\d| *\.| *\(| *$)) *(\((.*?)\))? *v?([0-9._]*[0-9])?/gm).next().value // I will forget how this works tomorrow
-	},
-	fromName: (name) => {
-		let info = data.matchInfo(name)
-		return {
-			identifier: "[" + info[1] + "] " + info[2] + (info[3] ? " (" + info[4] + ")" : ""),
-			type: info[1],
-			name: info[2],
-			readonly: info[1].indexOf("RO") > -1,
-			modifier: info[4],
-			version: (info[5] ? info[5].replaceAll("_", ".") : undefined)
-		}
-	},
-	fromDatabase: (identifier) => {
-		return database.controllers[identifier]
-	},
-	fromXML: (xml, group) => {
-		let nodes = []
-		xml.microprocessor.nodes.n.forEach((n) => {
-			n = n.node
-			let label = n["@_label"] || ""
-			let desc = (n["@_description"] || " ").match(/.*?(?= *\/\/ *|$)/)[0]
-			let mode = (n["@_mode"] === "1")
-			let type = Number(n["@_type"]) || 0
-			let channels = [group, "Any"].map(d => (c => database.connections.composite[c] ? c : undefined)(d + "#" + label.replaceAll(" ", ""))).reduce((p, c) => p ?? c, undefined)
-			nodes.push({
-				label: n["@_label"] || "",
-				description: desc,
-				mode: mode, // true is input, false is output
-				type: type,
-				channels: channels,
-				position: n.position && {
-					x: Number(n.position["@_x"]) || 0,
-					z: Number(n.position["@_z"]) || 0
-				} || {x: 0, z: 0}
-			})
-		})
-
-		return mergeJSON(data.fromName(xml.microprocessor["@_name"]), {
-			description: xml.microprocessor["@_description"],
-			width: xml.microprocessor["@_width"],
-			length: xml.microprocessor["@_length"],
-			nodes: nodes
-		})
+interpretName = name => {
+	let info = name.matchAll(/SRC-TCP *\[(.*?)\] *(.*?(?= *v\d| *\.| *\(| *$)) *(\((.*?)\))? *v?([0-9._]*[0-9])?/gm).next().value
+	return {
+		identifier: "[" + info[1] + "] " + info[2] + (info[3] ? " (" + info[4] + ")" : ""),
+		type: info[1],
+		name: info[2],
+		readonly: info[1].indexOf("RO") > -1,
+		modifier: info[4],
+		version: (info[5] ? info[5].replaceAll("_", ".") : undefined)
 	}
 }
 
-/*reverseTextIDs = (() => {
-	let result = {}
-	for (let identifier in database.connections.composite) result["c"+database.connections.composite[identifier].id] = identifier
-	return result
-})()*/
-
-placeholders = (buffer, x) => {
-	return buffer.replaceAll(/{\$([^}]*?)}/gm, (_, tID) => {
-		let res = resolveTextID(tID)
-		if (typeof res === "function") return res(x)
-		return res
-	})
-}
-
-resolveTextID = tID => {
-
-	switch (tID.charAt(0)) {
-		/*case 'c':
-			let c = resolveChannels(reverseTextIDs[tID])
+placeholders = (buffer, x) => buffer.replaceAll(/{\$([^}]*?)}/gm, (_, placeholder) => (res => typeof res === "function" ? res(x) : res)(resolvePlaceholder(placeholder)))
+resolvePlaceholder = placeholder => {
+	let t = placeholder.charAt(0)
+	placeholder = placeholder.substring(1)
+	switch (t) {
+		case 'c':
+			let mode = placeholder.charAt(0) === 'i'
+			let c = resolveChannels(placeholder.substring(1))
 			let convert = (type) => {
 				let res = []
 				for (let ch in c[type])	res.push(mergeJSON(c[type][ch], { channel: ch }))
-				return res.filter(v => v.visibility > 1).sort((a,b) => a.channel - b.channel).reduce((prev, curr) => prev += type.charAt(0).toUpperCase() + curr.channel + ": " + curr.label + "; ", "")
+				return res.filter(v => (mode ? v.visibility.in : v.visibility.out) > 1).sort((a,b) => a.channel - b.channel).reduce((prev, curr) => prev += type.charAt(0).toUpperCase() + curr.channel + ": " + curr.label + "; ", "")
 			}
 			let res = (convert("boolean") + convert("number")).trim()
-			return (res === "") ? "" : " // Channels: " + res*/
-		case ".":
-			return x => x[tID.substring(1)]
-		case "s":
-			return x => genDescriptionComponent(tID.substring(1), x)
-		case "u":
-			return database.definitions.urls[tID.substring(1)]
+			return (res === "") ? "" : "Channels: " + res
+		case ".": return x => x[placeholder]
+		case "s": return x => genDescriptionComponent(placeholder, x)
+		case "u": return database.definitions.urls[placeholder]
+		default: return ""
 	}
-
-	return ""
 }
 
 resolveChannels = identifier => {
