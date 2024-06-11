@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<microprocessor name="SRC-TCP [System] Dual Cab Controller v1.3" description="Manages Dual Cab" width="5" length="2" id_counter="507" id_counter_node="65" sym2="4" sym3="2" sym4="8191" sym5="8194" sym6="9508" sym7="1184" sym8="3232" sym9="11636" sym10="16388" sym11="65528" sym12="16384" sym13="8192">
+<microprocessor name="SRC-TCP [System] Dual Cab Controller v1.3" description="Manages Dual Cab" width="6" length="2" id_counter="515" id_counter_node="67" sym2="4" sym3="2" sym4="8191" sym5="8194" sym6="9508" sym7="1184" sym8="3232" sym9="11636" sym10="16388" sym11="65528" sym12="16384" sym13="8192">
 	<nodes>
 		<n id="37" component_id="413">
 			<node label="Front Master Request" mode="1" description="Request master button from front cab">
@@ -49,6 +49,16 @@
 				<position x="3" z="1"/>
 			</node>
 		</n>
+		<n id="66" component_id="508">
+			<node label="Lock Front Master" mode="1" description="The input signal to be processed.">
+				<position x="5"/>
+			</node>
+		</n>
+		<n id="67" component_id="509">
+			<node label="Lock Rear Master" mode="1" description="The input signal to be processed.">
+				<position x="5" z="1"/>
+			</node>
+		</n>
 	</nodes>
 	<group>
 		<data>
@@ -59,13 +69,13 @@
 			<c type="25">
 				<object id="425">
 					<pos x="5.25" y="1.25"/>
-					<in1 component_id="426"/>
-					<in2 component_id="413"/>
+					<in1 component_id="510"/>
+					<in2 component_id="511"/>
 				</object>
 			</c>
 			<c type="29">
 				<object id="479">
-					<pos x="5.25" y="2.25"/>
+					<pos x="5.25" y="3"/>
 					<in1 component_id="478"/>
 				</object>
 			</c>
@@ -86,19 +96,20 @@
 			<c type="2">
 				<object id="500">
 					<pos x="5.25" y="0.25"/>
-					<in1 component_id="426"/>
-					<in2 component_id="413"/>
+					<in1 component_id="510"/>
+					<in2 component_id="511"/>
 				</object>
 			</c>
 			<c type="41">
-				<object id="501" count="6">
-					<pos x="7" y="-2.25"/>
+				<object id="501" count="7">
+					<pos x="7" y="-2.5"/>
 					<in1 component_id="500"/>
 					<in2 component_id="507"/>
 					<in3 component_id="506"/>
 					<in4 component_id="480"/>
 					<in5 component_id="479"/>
 					<in6 component_id="425"/>
+					<in7 component_id="515"/>
 				</object>
 			</c>
 			<c type="46">
@@ -119,16 +130,41 @@
 					<in4 component_id="480"/>
 				</object>
 			</c>
+			<c type="46">
+				<object id="510" e="x&amp;!(y&amp;z)">
+					<pos x="3.5" y="1.75"/>
+					<in1 component_id="426"/>
+					<in2 component_id="508"/>
+					<in3 component_id="481"/>
+				</object>
+			</c>
+			<c type="46">
+				<object id="511" e="x&amp;!(y&amp;z)">
+					<pos x="3.5" y="0.5"/>
+					<in1 component_id="413"/>
+					<in2 component_id="509"/>
+					<in3 component_id="480"/>
+				</object>
+			</c>
+			<c type="46">
+				<object id="515" e="(x&amp;y)|(z&amp;w)">
+					<pos x="1.75" y="-3.25"/>
+					<in1 component_id="508"/>
+					<in2 component_id="481"/>
+					<in3 component_id="509"/>
+					<in4 component_id="480"/>
+				</object>
+			</c>
 		</components>
 		<components_bridge>
 			<c>
 				<object id="413">
-					<pos x="3.5" y="1"/>
+					<pos y="2"/>
 				</object>
 			</c>
 			<c>
 				<object id="426">
-					<pos x="3.5" y="1.5"/>
+					<pos y="2.5"/>
 				</object>
 			</c>
 			<c type="1">
@@ -145,7 +181,7 @@
 			</c>
 			<c type="4">
 				<object id="478">
-					<pos x="3.5" y="2.25"/>
+					<pos x="3.5" y="3"/>
 				</object>
 			</c>
 			<c>
@@ -174,16 +210,26 @@
 					<pos x="3.5" y="-2"/>
 				</object>
 			</c>
+			<c>
+				<object id="508">
+					<pos y="0.75"/>
+				</object>
+			</c>
+			<c>
+				<object id="509">
+					<pos y="0.25"/>
+				</object>
+			</c>
 		</components_bridge>
 		<groups/>
 		<component_states>
 			<c0 id="425">
 				<pos x="5.25" y="1.25"/>
-				<in1 component_id="426"/>
-				<in2 component_id="413"/>
+				<in1 component_id="510"/>
+				<in2 component_id="511"/>
 			</c0>
 			<c1 id="479">
-				<pos x="5.25" y="2.25"/>
+				<pos x="5.25" y="3"/>
 				<in1 component_id="478"/>
 			</c1>
 			<c2 id="480">
@@ -198,17 +244,18 @@
 			</c3>
 			<c4 id="500">
 				<pos x="5.25" y="0.25"/>
-				<in1 component_id="426"/>
-				<in2 component_id="413"/>
+				<in1 component_id="510"/>
+				<in2 component_id="511"/>
 			</c4>
-			<c5 id="501" count="6">
-				<pos x="7" y="-2.25"/>
+			<c5 id="501" count="7">
+				<pos x="7" y="-2.5"/>
 				<in1 component_id="500"/>
 				<in2 component_id="507"/>
 				<in3 component_id="506"/>
 				<in4 component_id="480"/>
 				<in5 component_id="479"/>
 				<in6 component_id="425"/>
+				<in7 component_id="515"/>
 			</c5>
 			<c6 id="506" e="(x&amp;z)|(y&amp;w)">
 				<pos x="5.25" y="-2.25"/>
@@ -224,13 +271,32 @@
 				<in3 component_id="481"/>
 				<in4 component_id="480"/>
 			</c7>
+			<c8 id="510" e="x&amp;!(y&amp;z)">
+				<pos x="3.5" y="1.75"/>
+				<in1 component_id="426"/>
+				<in2 component_id="508"/>
+				<in3 component_id="481"/>
+			</c8>
+			<c9 id="511" e="x&amp;!(y&amp;z)">
+				<pos x="3.5" y="0.5"/>
+				<in1 component_id="413"/>
+				<in2 component_id="509"/>
+				<in3 component_id="480"/>
+			</c9>
+			<c10 id="515" e="(x&amp;y)|(z&amp;w)">
+				<pos x="1.75" y="-3.25"/>
+				<in1 component_id="508"/>
+				<in2 component_id="481"/>
+				<in3 component_id="509"/>
+				<in4 component_id="480"/>
+			</c10>
 		</component_states>
 		<component_bridge_states>
 			<c0 id="413">
-				<pos x="3.5" y="1"/>
+				<pos y="2"/>
 			</c0>
 			<c1 id="426">
-				<pos x="3.5" y="1.5"/>
+				<pos y="2.5"/>
 			</c1>
 			<c2 id="453">
 				<pos x="8.75" y="1.5"/>
@@ -241,7 +307,7 @@
 				<in1 component_id="480"/>
 			</c3>
 			<c4 id="478">
-				<pos x="3.5" y="2.25"/>
+				<pos x="3.5" y="3"/>
 			</c4>
 			<c5 id="493">
 				<pos x="3.5" y="-0.75"/>
@@ -259,7 +325,14 @@
 			<c9 id="499">
 				<pos x="3.5" y="-2"/>
 			</c9>
+			<c10 id="508">
+				<pos y="0.75"/>
+			</c10>
+			<c11 id="509">
+				<pos y="0.25"/>
+			</c11>
 		</component_bridge_states>
 		<group_states/>
 	</group>
 </microprocessor>
+
