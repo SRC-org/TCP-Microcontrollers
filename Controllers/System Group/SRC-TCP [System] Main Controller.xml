@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<microprocessor name="SRC-TCP [System] Main Controller v1.3" description="The base for everything. Hubs or Modules can be connected to it." width="5" length="3" id_counter="1396" id_counter_node="21" sym2="4" sym3="2" sym4="8191" sym5="8194" sym6="9508" sym7="1184" sym8="3232" sym9="11636" sym10="16388" sym11="65528" sym12="16384" sym13="8192">
+<microprocessor name="SRC-TCP [System] Main Controller v1.3" description="The base for everything. Hubs or Modules can be connected to it." width="5" length="3" id_counter="1398" id_counter_node="21" sym2="4" sym3="2" sym4="8191" sym5="8194" sym6="9508" sym7="1184" sym8="3232" sym9="11636" sym10="16388" sym11="65528" sym12="16384" sym13="8192">
 	<nodes>
 		<n id="6" component_id="46">
 			<node label="Front Coupler" mode="1" type="5" description="Connects to front coupler">
@@ -55,7 +55,7 @@
 			</node>
 		</n>
 		<n id="17" component_id="246">
-			<node label="Main Both" type="5" description="Transmits information from master, whichever direction that may be // Channels: B1: I am master; B2: Master exists; B3: I am inverted; N1: Number of cars; N2: Master ID; N3: My ID;">
+			<node label="Main Both" type="5" description="Transmits information from master, whichever direction that may be // Channels: B1: I am master; B2: Master exists; B3: I am inv">
 				<position x="3" z="2"/>
 			</node>
 		</n>
@@ -246,7 +246,7 @@
 			<c type="1">
 				<object id="96">
 					<pos x="13.25" y="7.5"/>
-					<in1 component_id="93"/>
+					<in1 component_id="1397"/>
 					<in2 component_id="64"/>
 				</object>
 			</c>
@@ -293,7 +293,7 @@
 			<c>
 				<object id="104">
 					<pos x="7.5" y="7.25"/>
-					<in1 component_id="93"/>
+					<in1 component_id="1397"/>
 				</object>
 			</c>
 			<c type="1">
@@ -306,7 +306,7 @@
 			<c type="44">
 				<object id="106" l="i lock master" on="yes" off="no">
 					<pos x="6" y="6.75"/>
-					<in1 component_id="93"/>
+					<in1 component_id="1397"/>
 				</object>
 			</c>
 			<c type="40">
@@ -2697,7 +2697,7 @@
 				</object>
 			</c>
 			<c type="56">
-				<object id="1191" script="X_OFFSET = 1
+				<object id="1191" script='X_OFFSET = 1
 Y_OFFSET = 1
 
 HEADING_HEIGHT = 8
@@ -2706,7 +2706,7 @@ LINE_HEIGHT = 8
 myAmountOfModules = 0
 moduleFlag = {}
 
-MODULE_NAMES = {&quot;Drive Mod&quot;, &quot;Light Mod&quot;, &quot;Passenger Mod&quot;, &quot;Cam Mod&quot;, &quot;Audio Mod&quot;, &quot;Warnings/Status Mod&quot;,&quot;Decouple Mod&quot;,&quot;Pantograph mod&quot;,&quot;Power Mode Mod&quot;}
+MODULE_NAMES = {"Drive Mod", "Light Mod", "Passenger Mod", "Cam Mod", "Audio Mod", "Warnings/Status Mod","Decouple Mod","Pantograph mod","Power Mode Mod"}
 
 for i=1,32 do
 	moduleFlag[i] = false
@@ -2720,7 +2720,7 @@ end
 
 function onDraw()
 	screen.setColor(30,30,255)
-	screen.drawTextBox(0, Y_OFFSET, screen.getWidth(), HEADING_HEIGHT, &quot;Detected Modules&quot;, 0, 0)
+	screen.drawTextBox(0, Y_OFFSET, screen.getWidth(), HEADING_HEIGHT, "Detected Modules", 0, 0)
 	screen.setColor(30,30,30)
 	
     -- print all modules onto the screen
@@ -2728,15 +2728,15 @@ function onDraw()
 		if moduleFlag[i] then
 			text = MODULE_NAMES[i]
 			if text == nil then
-				text = &quot;???&quot;
+				text = "???"
 			end
-			screen.drawText(X_OFFSET+1, Y_OFFSET + HEADING_HEIGHT + myAmountOfModules * LINE_HEIGHT, &quot;[&quot; .. i .. &quot;] &quot; ..text)
+			screen.drawText(X_OFFSET+1, Y_OFFSET + HEADING_HEIGHT + myAmountOfModules * LINE_HEIGHT, "[" .. i .. "] " ..text)
 			myAmountOfModules = myAmountOfModules + 1
 		end
 	end
 	
 	myAmountOfModules = 0
-end">
+end'>
 					<pos x="6.5" y="2.25"/>
 					<in1 component_id="1193"/>
 				</object>
@@ -3956,6 +3956,19 @@ end">
 					<in3 component_id="1379"/>
 				</object>
 			</c>
+			<c type="2">
+				<object id="1397">
+					<pos x="4.5" y="7"/>
+					<in1 component_id="93"/>
+					<in2 component_id="1398"/>
+				</object>
+			</c>
+			<c type="29">
+				<object id="1398" i="6">
+					<pos x="3" y="6.75"/>
+					<in1 component_id="1383"/>
+				</object>
+			</c>
 		</components>
 		<components_bridge>
 			<c type="4">
@@ -4004,7 +4017,7 @@ end">
 			</c>
 			<c>
 				<object id="93">
-					<pos x="6" y="7.25"/>
+					<pos x="3" y="7.25"/>
 				</object>
 			</c>
 			<c>
@@ -4159,7 +4172,7 @@ end">
 			</c23>
 			<c24 id="96">
 				<pos x="13.25" y="7.5"/>
-				<in1 component_id="93"/>
+				<in1 component_id="1397"/>
 				<in2 component_id="64"/>
 			</c24>
 			<c25 id="97" l="i am master" on="yes" off="no">
@@ -4192,7 +4205,7 @@ end">
 			</c30>
 			<c31 id="104">
 				<pos x="7.5" y="7.25"/>
-				<in1 component_id="93"/>
+				<in1 component_id="1397"/>
 			</c31>
 			<c32 id="105">
 				<pos x="9" y="7.75"/>
@@ -4201,7 +4214,7 @@ end">
 			</c32>
 			<c33 id="106" l="i lock master" on="yes" off="no">
 				<pos x="6" y="6.75"/>
-				<in1 component_id="93"/>
+				<in1 component_id="1397"/>
 			</c33>
 			<c34 id="107" count="4">
 				<pos x="14.25" y="-8.5"/>
@@ -5890,7 +5903,7 @@ end">
 				<pos x="-17.5" y="9.75"/>
 				<in1 component_id="1102"/>
 			</c383>
-			<c384 id="1191" script="X_OFFSET = 1
+			<c384 id="1191" script='X_OFFSET = 1
 Y_OFFSET = 1
 
 HEADING_HEIGHT = 8
@@ -5899,7 +5912,7 @@ LINE_HEIGHT = 8
 myAmountOfModules = 0
 moduleFlag = {}
 
-MODULE_NAMES = {&quot;Drive Mod&quot;, &quot;Light Mod&quot;, &quot;Passenger Mod&quot;, &quot;Cam Mod&quot;, &quot;Audio Mod&quot;, &quot;Warnings/Status Mod&quot;,&quot;Decouple Mod&quot;,&quot;Pantograph mod&quot;,&quot;Power Mode Mod&quot;}
+MODULE_NAMES = {"Drive Mod", "Light Mod", "Passenger Mod", "Cam Mod", "Audio Mod", "Warnings/Status Mod","Decouple Mod","Pantograph mod","Power Mode Mod"}
 
 for i=1,32 do
 	moduleFlag[i] = false
@@ -5913,7 +5926,7 @@ end
 
 function onDraw()
 	screen.setColor(30,30,255)
-	screen.drawTextBox(0, Y_OFFSET, screen.getWidth(), HEADING_HEIGHT, &quot;Detected Modules&quot;, 0, 0)
+	screen.drawTextBox(0, Y_OFFSET, screen.getWidth(), HEADING_HEIGHT, "Detected Modules", 0, 0)
 	screen.setColor(30,30,30)
 	
     -- print all modules onto the screen
@@ -5921,15 +5934,15 @@ function onDraw()
 		if moduleFlag[i] then
 			text = MODULE_NAMES[i]
 			if text == nil then
-				text = &quot;???&quot;
+				text = "???"
 			end
-			screen.drawText(X_OFFSET+1, Y_OFFSET + HEADING_HEIGHT + myAmountOfModules * LINE_HEIGHT, &quot;[&quot; .. i .. &quot;] &quot; ..text)
+			screen.drawText(X_OFFSET+1, Y_OFFSET + HEADING_HEIGHT + myAmountOfModules * LINE_HEIGHT, "[" .. i .. "] " ..text)
 			myAmountOfModules = myAmountOfModules + 1
 		end
 	end
 	
 	myAmountOfModules = 0
-end">
+end'>
 				<pos x="6.5" y="2.25"/>
 				<in1 component_id="1193"/>
 			</c384>
@@ -6778,6 +6791,15 @@ end">
 				<in2 component_id="130"/>
 				<in3 component_id="1379"/>
 			</c569>
+			<c570 id="1397">
+				<pos x="4.5" y="7"/>
+				<in1 component_id="93"/>
+				<in2 component_id="1398"/>
+			</c570>
+			<c571 id="1398" i="6">
+				<pos x="3" y="6.75"/>
+				<in1 component_id="1383"/>
+			</c571>
 		</component_states>
 		<component_bridge_states>
 			<c0 id="46">
@@ -6809,7 +6831,7 @@ end">
 				<in1 component_id="215"/>
 			</c7>
 			<c8 id="93">
-				<pos x="6" y="7.25"/>
+				<pos x="3" y="7.25"/>
 			</c8>
 			<c9 id="188">
 				<pos x="-3.5" y="-5.25"/>
@@ -6836,3 +6858,4 @@ end">
 		<group_states/>
 	</group>
 </microprocessor>
+
