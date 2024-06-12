@@ -10,7 +10,7 @@
 			</node>
 		</n>
 		<n id="42" component_id="351">
-			<node label="UI" mode="1" type="5" description="Connects to Instruments or Display Controller">
+			<node label="UI" mode="1" type="5" description="Connects to Instruments or Display Controller // Channels: B4: Decrement start position (push); B5: Increment start position (push); B6: Decrement end position (push); B7: Increment end position (push); B8: Unlock left doors (toggle); B9: Unlock right doors (toggle); B10: Open selected doors (toggle);">
 				<position z="2"/>
 			</node>
 		</n>

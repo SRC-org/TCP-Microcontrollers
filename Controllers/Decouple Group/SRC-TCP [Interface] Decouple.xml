@@ -10,7 +10,7 @@
 			<node label="Module -&gt; Interface" mode="1" type="5" description="Communicates with Decouple Module"/>
 		</n>
 		<n id="37" component_id="760">
-			<node label="UI" mode="1" type="5" description="Connects to instruments or Display Controller">
+			<node label="UI" mode="1" type="5" description="Connects to instruments or Display Controller // Channels: B4: Decouple (push); N5: Car to decouple;">
 				<position z="2"/>
 			</node>
 		</n>

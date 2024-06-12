@@ -101,7 +101,7 @@ async function execDatabase() {
 		path: cPath + dir + "/",
 		file: file,
 		group: dir.replace(" Group", ""),
-		identifier: interpretName(file).identifier
+		nameData: interpretName(file)
 	})))
 
 	controllers.forEach(c => {
@@ -119,7 +119,7 @@ async function execDatabase() {
 			let desc = (n["@_description"] || "")
 			let mode = (n["@_mode"] === "1")
 			let type = Number(n["@_type"]) || 0
-			let channels = [c.group, "Any"].map(d => (c => database.connections.composite[c] ? c : undefined)(d + "#" + label.replaceAll(" ", ""))).reduce((p, c) => p ?? c, undefined)
+			let channels = [c.group + "." + c.nameData.name.replaceAll(" ", ""), c.group, "Any"].map(d => (c => (database.connections.composite[c] ?? database.connections.redirects[c]) ? c : undefined)(d + "#" + label.replaceAll(" ", ""))).reduce((p, c) => p ?? c, undefined)
 			if (channels) n["@_description"] = placeholders(n["@_description"] + " // {$c" + (mode ? "i" : "o") + channels + "}")
 			nodes.push({
 				label: n["@_label"] || "",
@@ -145,7 +145,7 @@ async function execDatabase() {
 		buffer = swXMLBuilder.build(xml)
 		buffer = buffer.replaceAll(" \/\/ \"", "\"") // fix empty channel lists
 
-		if (c.identifier !== c.data.identifier) return console.log("\x1b[33m%s\x1b[0m", "identifier mismatch: \"" + c.identifier + "\" (filename) // \"" + c.data.identifier + "\" (name in xml file)")
+		if (c.nameData.identifier !== c.data.identifier) return console.log("\x1b[33m%s\x1b[0m", "identifier mismatch: \"" + c.identifier + "\" (filename) // \"" + c.data.identifier + "\" (name in xml file)")
 		database.controllers[c.data.identifier] = mergeJSON(database.controllers[c.data.identifier] ?? {}, c.data)
 
 		fs.writeFileSync(c.path + c.file, buffer.replace(/\r\n/g, "\n"))
@@ -369,7 +369,7 @@ resolvePlaceholder = placeholder => {
 
 resolveChannels = identifier => {
 
-	let entry = database.connections.composite[identifier]
+	let entry = database.connections.composite[identifier] ?? database.connections.redirects[identifier]
 	let resolved = {
 		boolean: {},
 		number: {}

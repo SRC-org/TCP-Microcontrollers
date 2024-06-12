@@ -2,12 +2,12 @@
 <microprocessor name="SRC-TCP [Interface] Passenger Lighting v1.3" description="Connects to passenger module. Controls lights in passenger cars" width="2" length="4" id_counter="345" id_counter_node="17" sym2="4" sym3="2" sym4="8191" sym5="8194" sym6="9508" sym7="1184" sym8="3232" sym9="11636" sym10="16388" sym11="65528" sym12="16384" sym13="8192">
 	<nodes>
 		<n id="7" component_id="18">
-			<node label="RGB Lights" type="5" description="Ouputs RGB values to RGB lights">
+			<node label="RGB Lights" type="5" description="Ouputs RGB values to RGB lights // Channels: N1: Red (0-1); N2: Green (0-1); N3: Blue (0-1);">
 				<position z="2"/>
 			</node>
 		</n>
 		<n id="8" component_id="20">
-			<node label="UI" mode="1" type="5" description="Connects to instruments or display controller">
+			<node label="UI" mode="1" type="5" description="Connects to instruments or display controller // Channels: B4: Enable lights (toggle); B5: RGB (off) / HSV (on) (toggle); B6: Heaters (toggle); N7: Red / Hue (0-1); N8: Green / Saturation (0-1); N9: Blue / Value (0-1);">
 				<position z="3"/>
 			</node>
 		</n>

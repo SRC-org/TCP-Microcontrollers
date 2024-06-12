@@ -10,7 +10,7 @@
 			</node>
 		</n>
 		<n id="42" component_id="351">
-			<node label="UI" mode="1" type="5" description="Connects to Instruments or Display Controller">
+			<node label="UI" mode="1" type="5" description="Connects to Instruments or Display Controller // Channels: B4: Auto Lights (toggle); B5: Head Lights (toggle); B6: High Beams (toggle); B7: Work Lights (toggle); B8: Hazard Lights (toggle); B9: Decorative Lights (toggle);">
 				<position z="1"/>
 			</node>
 		</n>
