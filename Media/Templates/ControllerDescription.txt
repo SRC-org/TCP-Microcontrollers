@@ -1,4 +1,6 @@
-[url={$udiscord}]{$s0NewToTCP}[/url]
-{$s1Nodes}
-{$s1Layout}
-{$s2Links}
+{$.description}
+
+[url={$udiscord}][img]{$maNewToTCP}[/img][/url]
+[img]{$mcNodes}[/img]
+[img]{$mcLayout}[/img]
+{$msLinks}

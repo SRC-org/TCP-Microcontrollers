@@ -184,7 +184,7 @@ genMicrocontroller = (c, opt) => {
 	let eBackground = SVG("<rect class=\"cBack\" x=\"0\" y=\"0\" rx=\"" + rad + "\" ry=\"" + rad + "\"/>")
 	let eBorder = SVG("<rect class=\"cBack\" x=\"0\" y=\"0\" rx=\"" + rad + "\" ry=\"" + rad + "\"/>")
 	let eNodes = SVG("<g></g>")
-	let eText = SVG("<text class=\"mono cDark\" dominant-baseline=\"middle\" text-anchor=\"middle\"></text>    ")
+	let eText = SVG("<text class=\"mono cDark\" dominant-baseline=\"middle\" text-anchor=\"middle\"></text>")
 
 	let size = {x: 0, y: 0, width: 120 * opt.width, height: 120 * opt.height}
 	eBackground.attr(size)
@@ -226,18 +226,17 @@ genMicrocontroller = (c, opt) => {
 }
 
 genDescriptionComponent = (comp, x) => {
-	switch (Number(comp.charAt(0))) {
-		case 0: return "[img]" + encodeURI(database.definitions.urls.images + "All/" + comp.substring(1) + ".png") + "[/img]"
-		case 1:
-			let l = encodeURI(database.definitions.urls.images + comp.substring(1) + "/" + x.identifier + ".png")
-			return "[url=" + l + "][img]" + l + "[/img][/url]"
-		case 2:
+	switch (comp.charAt(0)) {
+		case "a": return encodeURI(database.definitions.urls.images + "All/" + comp.substring(1) + ".png")
+		case "c":
+			return encodeURI(database.definitions.urls.images + comp.substring(1) + "/" + x.identifier + ".png")
+		case "s":
 			if (comp.substring(1) === "Links") {
 				let gen = (list, type) => list?.map(c => "[url=https://steamcommunity.com/sharedfiles/filedetails/?id=" + database.controllers[c].publishedfileid + "][img]" + encodeURI(database.definitions.urls.images + "Link" + type + "/" + c + ".png") + "[/img][/url]") ?? []
 				return gen(x.hierarchy?.higher, "Higher").concat(gen(x.hierarchy?.lower, "Lower")).reduce((r, c) => r + c + "\n", "")
 			}
 	}
-	return "ERROR for placeholder: {$s" + comp + "}"
+	return "ERROR for placeholder: {$m" + comp + "}"
 }
 
 /*

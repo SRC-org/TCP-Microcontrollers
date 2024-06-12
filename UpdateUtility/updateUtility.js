@@ -27,7 +27,6 @@ swXMLBuilder = new XMLBuilder({ignoreAttributes: false, format: true, indentBy: 
 //swXMLBuilder = new XMLBuilder()
 
 // node updateUtility -args
-// -r:	registers a new controller into the database (identifier and group)
 // -c:	copies the files from stormworks data to repository folder
 // -d:	updates database and controllers
 // -g:	generates illustrations, thumbnails and descriptions from database
@@ -35,34 +34,12 @@ swXMLBuilder = new XMLBuilder({ignoreAttributes: false, format: true, indentBy: 
 // -e:	exports database contents
 
 async function start() {
-	//if (args.indexOf("-r") > -1) await execRegister(args.indexOf("-r"))
 	if (args.indexOf("-c") > -1) await execCopy()
 	if (args.indexOf("-d") > -1) await execDatabase()
 	if (args.indexOf("-g") > -1) await execImages()
 	if (args.indexOf("-s") > -1) await execSteam()
 	if (args.indexOf("-e") > -1) await execExport(args.indexOf("-e"))
 }
-
-// Register
-/*async function execRegister(index) {
-	let wrongFormat = () => console.log("\x1b[33m%s\x1b[0m", "wrong format, please use: -r controller1,controller2,... group1,group2,...")
-
-	let arg1 = args[index+1], arg2  = args[index+2]
-	if (!(arg1 && arg2 && !arg1.startsWith("-") && !arg2.startsWith("-"))) return wrongFormat()
-
-	let controllers = arg1.split(","), groups = arg2.split(",")
-	if (controllers.length !== groups.length) return wrongFormat()
-
-	controllers.forEach((c, i) => {
-		if (c === "" || groups[i] === "") return wrongFormat()
-		let g = groups[i]
-		database.controllers[c] = {
-			identifier: c,
-			group: g
-		}
-		if (!fs.existsSync(cPath + g + " Group/")) fs.mkdirSync(cPath + g + " Group/")
-	})
-}*/
 
 // Copy
 async function execCopy() {
@@ -83,10 +60,6 @@ async function execCopy() {
 		let dData = database.controllers[fData.identifier]
 		if (!dData || !dData.group) // unknown group
 			return console.log("\x1b[33m%s\x1b[0m", "unknown group for controller: \"" + fData.identifier + "\", controller was not copied, please copy it manually")
-		/*if (dData.version && dData.version !== fData.version) // replace old version if present
-			promises.push(fs.promises.unlink(cPath + dData.group + " Group/SRC-TCP " + fData.identifier + " v" + dData.version.replaceAll(".", "_") + ".xml"))*/
-		//dData.version = fData.version // update version in database
-		//promises.push(fs.promises.copyFile(swPath + "/" + file, cPath + dData.group + " Group/" + file)) // copy file
 		promises.push(fs.promises.copyFile(swPath + "/" + file, cPath + dData.group + " Group/SRC-TCP " + fData.identifier + ".xml")) // copy file
 	})
 	await Promise.all(promises)
@@ -108,16 +81,14 @@ async function execDatabase() {
 		let buffer = fs.readFileSync(c.path + c.file, "utf-8")
 		buffer = buffer.replaceAll(/(?<=description=")(?<desc>.+?) *\/\/ *.*?(?=")/gm, (_, desc) => desc) // clean
 
-		//console.log(c.group)
-
 		let xml = swXMLParser.parse(buffer)
 
 		let nodes = []
 		xml.microprocessor.nodes.n.forEach((n) => {
 			n = n.node
 			let label = n["@_label"] || ""
-			let desc = (n["@_description"] || "")
-			let mode = (n["@_mode"] === "1")
+			let desc = n["@_description"] || ""
+			let mode = n["@_mode"] === "1"
 			let type = Number(n["@_type"]) || 0
 			let channels = [c.group + "." + c.nameData.name.replaceAll(" ", ""), c.group, "Any"].map(d => (c => (database.connections.composite[c] ?? database.connections.redirects[c]) ? c : undefined)(d + "#" + label.replaceAll(" ", ""))).reduce((p, c) => p ?? c, undefined)
 			if (channels) n["@_description"] = placeholders(n["@_description"] + " // {$c" + (mode ? "i" : "o") + channels + "}")
@@ -153,7 +124,6 @@ async function execDatabase() {
 
 	// auto generate hierarchy
 	// for modules and interface (ro and normal) we can auto generate the hierarchies
-
 	for (let g in database.groups) {
 		let lists = {}
 		for (let c in database.controllers) {
@@ -361,7 +331,7 @@ resolvePlaceholder = placeholder => {
 			let res = (convert("boolean") + convert("number")).trim()
 			return (res === "") ? "" : "Channels: " + res
 		case ".": return x => x[placeholder]
-		case "s": return x => genDescriptionComponent(placeholder, x)
+		case "m": return x => genDescriptionComponent(placeholder, x)
 		case "u": return database.definitions.urls[placeholder]
 		default: return ""
 	}
