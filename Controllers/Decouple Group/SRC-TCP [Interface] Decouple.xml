@@ -72,8 +72,8 @@ function onTick()
 	myID = gN(10)
 	
 	-- manual
-	manDec = gB(4)
 	manCar = gN(7)
+	manDec = gB(4) and manCar ~= myID
 	
 	if night then
 		theme={bg=colors.b,bg2=colors.b2,fg=colors.w,acc=colors.acc}
@@ -103,7 +103,7 @@ function onTick()
 		detach = detach+1
 	end
 	
-	if manDec and manCar ~= myID then detach = manCar &lt; myID and manCar or manCar-1 end -- update with manual
+	if manDec then detach = manCar &lt; myID and manCar or manCar-1 end -- update with manual val
 
 	detach = clamp(detach,minD,maxD) -- is this necessary?
 	
@@ -535,8 +535,8 @@ function onTick()
 	myID = gN(10)
 	
 	-- manual
-	manDec = gB(4)
 	manCar = gN(7)
+	manDec = gB(4) and manCar ~= myID
 	
 	if night then
 		theme={bg=colors.b,bg2=colors.b2,fg=colors.w,acc=colors.acc}
@@ -566,7 +566,7 @@ function onTick()
 		detach = detach+1
 	end
 	
-	if manDec and manCar ~= myID then detach = manCar &lt; myID and manCar or manCar-1 end -- update with manual
+	if manDec then detach = manCar &lt; myID and manCar or manCar-1 end -- update with manual val
 
 	detach = clamp(detach,minD,maxD) -- is this necessary?
 	
