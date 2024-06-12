@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<microprocessor name="SRC-TCP [Interface] Decouple v1.3" description="Connects to decouple module and connectors to decouple cars" width="2" length="3" id_counter="917" id_counter_node="42" sym2="4" sym3="2" sym4="8191" sym5="8194" sym6="9508" sym7="1184" sym8="3232" sym9="11636" sym10="16388" sym11="65528" sym12="16384" sym13="8192">
+<microprocessor name="SRC-TCP [Interface] Decouple v1.3" description="Connects to decouple module and connectors to decouple cars" width="2" length="3" id_counter="923" id_counter_node="42" sym2="4" sym3="2" sym4="8191" sym5="8194" sym6="9508" sym7="1184" sym8="3232" sym9="11636" sym10="16388" sym11="65528" sym12="16384" sym13="8192">
 	<nodes>
 		<n id="17" component_id="111">
 			<node label="Interface -&gt; Module" type="5" description="Communicates with Decouple Module">
@@ -10,7 +10,7 @@
 			<node label="Module -&gt; Interface" mode="1" type="5" description="Communicates with Decouple Module"/>
 		</n>
 		<n id="37" component_id="760">
-			<node label="UI" mode="1" type="5" description="Connects to instruments or Display Controller // Channels: B4: Decouple (push); N5: Car to decouple;">
+			<node label="UI" mode="1" type="5" description="Connects to instruments or Display Controller // Channels: B4: Decouple (push); N7: Car to decouple;">
 				<position z="2"/>
 			</node>
 		</n>
@@ -38,7 +38,7 @@
 		<components>
 			<c type="40">
 				<object id="768" count="1">
-					<pos x="13" y="0.25"/>
+					<pos x="13" y="-0.5"/>
 					<in1 component_id="865" node_index="1"/>
 				</object>
 			</c>
@@ -64,12 +64,16 @@ function onTick()
 	t={x=gN(3),y=gN(4)}
 	
 	night = gB(3)
-	nTCPFront = gB(7)
-	nTCPRear = gB(8)
-	--decouple = gB(4)
-	numWagons = gN(7)
-	masterID = gN(8)
-	myID = gN(9)
+	nTCPFront = gB(5)
+	nTCPRear = gB(6)
+	
+	numWagons = gN(8)
+	masterID = gN(9)
+	myID = gN(10)
+	
+	-- manual
+	manDec = gB(4)
+	manCar = gN(7)
 	
 	if night then
 		theme={bg=colors.b,bg2=colors.b2,fg=colors.w,acc=colors.acc}
@@ -91,18 +95,20 @@ function onTick()
 	sLeft = detach &gt; minD or pLeft
 	sRight = detach &lt; maxD or pRight
 
-	if (onPress(d.w/2-16,36,7,9) or gB(5)) and detach &gt; minD then
+	if (onPress(d.w/2-16,36,7,9)) and detach &gt; minD then
 		detach = detach-1
 	end
 	
-	if (onPress(d.w/2+9,36,7,9) or gB(6)) and detach &lt; maxD then
+	if (onPress(d.w/2+9,36,7,9)) and detach &lt; maxD then
 		detach = detach+1
 	end
+	
+	if manDec and manCar ~= myID then detach = manCar &lt; myID and manCar or manCar-1 end -- update with manual
 
 	detach = clamp(detach,minD,maxD) -- is this necessary?
 	
 	sN(1,detach+1)
-	sB(1,onTouch(d.w/2-22,48,44,9))
+	sB(1,onTouch(d.w/2-22,48,44,9) or manDec)
 	sB(2,detach == myID or detach+1 == myID)
 	
 	pNumWagons = numWagons
@@ -209,19 +215,19 @@ function onDraw()
 end
 
 function clamp(v,x,y) return math.min(math.max(v,x),y) end">
-					<pos x="4.25" y="0.75"/>
+					<pos x="4.25"/>
 					<in1 component_id="820"/>
 				</object>
 			</c>
 			<c type="31">
 				<object id="812">
-					<pos x="6" y="1"/>
+					<pos x="6" y="0.25"/>
 					<in1 component_id="806"/>
 				</object>
 			</c>
 			<c type="40">
-				<object id="820" count="3" offset="6">
-					<pos x="2.5" y="0.25"/>
+				<object id="820" count="3" offset="7">
+					<pos x="2.5" y="-0.5"/>
 					<inc component_id="886"/>
 					<in1 component_id="834"/>
 					<in2 component_id="835"/>
@@ -230,26 +236,20 @@ function clamp(v,x,y) return math.min(math.max(v,x),y) end">
 			</c>
 			<c type="29">
 				<object id="822">
-					<pos x="6" y="-0.5"/>
+					<pos x="6" y="-1.25"/>
 					<in1 component_id="806"/>
 				</object>
 			</c>
 			<c type="26">
 				<object id="823" ct="0.3" dt="0">
-					<pos x="7.75"/>
-					<in1 component_id="874"/>
+					<pos x="7.75" y="-0.75"/>
+					<in1 component_id="919"/>
 				</object>
 			</c>
 			<c type="48">
 				<object id="824">
-					<pos x="7.75" y="0.5"/>
+					<pos x="7.75" y="-0.25"/>
 					<in1 component_id="823"/>
-				</object>
-			</c>
-			<c type="29">
-				<object id="827" i="3">
-					<pos x="0.75" y="-0.75"/>
-					<in1 component_id="760"/>
 				</object>
 			</c>
 			<c type="29">
@@ -356,21 +356,21 @@ function clamp(v,x,y) return math.min(math.max(v,x),y) end">
 			</c>
 			<c type="21">
 				<object id="865">
-					<pos x="11.25" y="0.25"/>
+					<pos x="11.25" y="-0.5"/>
 					<in1 component_id="866"/>
 					<in2 component_id="868"/>
 				</object>
 			</c>
 			<c type="22">
 				<object id="866">
-					<pos x="9.5" y="0.5"/>
+					<pos x="9.5" y="-0.25"/>
 					<in1 component_id="812"/>
 					<in3 component_id="824"/>
 				</object>
 			</c>
 			<c type="29">
 				<object id="868" i="1">
-					<pos x="6" y="0.25"/>
+					<pos x="6" y="-0.5"/>
 					<in1 component_id="806"/>
 				</object>
 			</c>
@@ -388,14 +388,6 @@ function clamp(v,x,y) return math.min(math.max(v,x),y) end">
 					<in3 component_id="870"/>
 				</object>
 			</c>
-			<c type="46">
-				<object id="874" e="(x|y)&amp;z">
-					<pos x="7.75" y="-1.25"/>
-					<in1 component_id="822"/>
-					<in2 component_id="827"/>
-					<in3 component_id="870"/>
-				</object>
-			</c>
 			<c type="19">
 				<object id="879" name="Time to stay disconnected">
 					<pos x="6" y="-5.75"/>
@@ -406,14 +398,14 @@ function clamp(v,x,y) return math.min(math.max(v,x),y) end">
 				</object>
 			</c>
 			<c type="43">
-				<object id="880" l="External Decouple Value" m="1">
-					<pos x="11.25" y="-1.25"/>
+				<object id="880" l="value going to other cars" m="1">
+					<pos x="11.25" y="-2"/>
 					<in1 component_id="865" node_index="1"/>
 				</object>
 			</c>
 			<c type="43">
-				<object id="881" l="Internal Decouple Value" m="1">
-					<pos x="11.25" y="-0.5"/>
+				<object id="881" l="value going to itself" m="1">
+					<pos x="11.25" y="-1.25"/>
 					<in1 component_id="865"/>
 				</object>
 			</c>
@@ -424,8 +416,8 @@ function clamp(v,x,y) return math.min(math.max(v,x),y) end">
 				</object>
 			</c>
 			<c type="41">
-				<object id="886" count="2" offset="6">
-					<pos x="0.75" y="0.5"/>
+				<object id="886" count="2" offset="4">
+					<pos x="0.75" y="-0.25"/>
 					<inc component_id="760"/>
 					<in1 component_id="913"/>
 					<in2 component_id="913"/>
@@ -455,7 +447,7 @@ function clamp(v,x,y) return math.min(math.max(v,x),y) end">
 			</c>
 			<c type="16">
 				<object id="913">
-					<pos x="-1" y="0.5"/>
+					<pos x="-1" y="-0.25"/>
 				</object>
 			</c>
 			<c type="17">
@@ -464,11 +456,18 @@ function clamp(v,x,y) return math.min(math.max(v,x),y) end">
 					<in1 component_id="836"/>
 				</object>
 			</c>
+			<c type="1">
+				<object id="919">
+					<pos x="7.75" y="-1.5"/>
+					<in1 component_id="822"/>
+					<in2 component_id="870"/>
+				</object>
+			</c>
 		</components>
 		<components_bridge>
 			<c type="5">
 				<object id="111">
-					<pos x="14.75" y="0.5"/>
+					<pos x="14.75" y="-0.25"/>
 					<in1 component_id="768"/>
 				</object>
 			</c>
@@ -479,7 +478,7 @@ function clamp(v,x,y) return math.min(math.max(v,x),y) end">
 			</c>
 			<c type="4">
 				<object id="760">
-					<pos x="-1" y="1"/>
+					<pos x="-1" y="0.25"/>
 				</object>
 			</c>
 			<c type="1">
@@ -496,7 +495,7 @@ function clamp(v,x,y) return math.min(math.max(v,x),y) end">
 			</c>
 			<c type="7">
 				<object id="819">
-					<pos x="4.25" y="1.5"/>
+					<pos x="4.25" y="0.75"/>
 					<in1 component_id="806" node_index="1"/>
 				</object>
 			</c>
@@ -504,7 +503,7 @@ function clamp(v,x,y) return math.min(math.max(v,x),y) end">
 		<groups/>
 		<component_states>
 			<c0 id="768" count="1">
-				<pos x="13" y="0.25"/>
+				<pos x="13" y="-0.5"/>
 				<in1 component_id="865" node_index="1"/>
 			</c0>
 			<c1 id="806" script="colors={w={85,90,90},w2={70,75,75},b={10,10,10},b2={8,8,8},acc={69,12,10}}
@@ -528,12 +527,16 @@ function onTick()
 	t={x=gN(3),y=gN(4)}
 	
 	night = gB(3)
-	nTCPFront = gB(7)
-	nTCPRear = gB(8)
-	--decouple = gB(4)
-	numWagons = gN(7)
-	masterID = gN(8)
-	myID = gN(9)
+	nTCPFront = gB(5)
+	nTCPRear = gB(6)
+	
+	numWagons = gN(8)
+	masterID = gN(9)
+	myID = gN(10)
+	
+	-- manual
+	manDec = gB(4)
+	manCar = gN(7)
 	
 	if night then
 		theme={bg=colors.b,bg2=colors.b2,fg=colors.w,acc=colors.acc}
@@ -555,18 +558,20 @@ function onTick()
 	sLeft = detach &gt; minD or pLeft
 	sRight = detach &lt; maxD or pRight
 
-	if (onPress(d.w/2-16,36,7,9) or gB(5)) and detach &gt; minD then
+	if (onPress(d.w/2-16,36,7,9)) and detach &gt; minD then
 		detach = detach-1
 	end
 	
-	if (onPress(d.w/2+9,36,7,9) or gB(6)) and detach &lt; maxD then
+	if (onPress(d.w/2+9,36,7,9)) and detach &lt; maxD then
 		detach = detach+1
 	end
+	
+	if manDec and manCar ~= myID then detach = manCar &lt; myID and manCar or manCar-1 end -- update with manual
 
 	detach = clamp(detach,minD,maxD) -- is this necessary?
 	
 	sN(1,detach+1)
-	sB(1,onTouch(d.w/2-22,48,44,9))
+	sB(1,onTouch(d.w/2-22,48,44,9) or manDec)
 	sB(2,detach == myID or detach+1 == myID)
 	
 	pNumWagons = numWagons
@@ -673,197 +678,192 @@ function onDraw()
 end
 
 function clamp(v,x,y) return math.min(math.max(v,x),y) end">
-				<pos x="4.25" y="0.75"/>
+				<pos x="4.25"/>
 				<in1 component_id="820"/>
 			</c1>
 			<c2 id="812">
-				<pos x="6" y="1"/>
+				<pos x="6" y="0.25"/>
 				<in1 component_id="806"/>
 			</c2>
-			<c3 id="820" count="3" offset="6">
-				<pos x="2.5" y="0.25"/>
+			<c3 id="820" count="3" offset="7">
+				<pos x="2.5" y="-0.5"/>
 				<inc component_id="886"/>
 				<in1 component_id="834"/>
 				<in2 component_id="835"/>
 				<in3 component_id="836"/>
 			</c3>
 			<c4 id="822">
-				<pos x="6" y="-0.5"/>
+				<pos x="6" y="-1.25"/>
 				<in1 component_id="806"/>
 			</c4>
 			<c5 id="823" ct="0.3" dt="0">
-				<pos x="7.75"/>
-				<in1 component_id="874"/>
+				<pos x="7.75" y="-0.75"/>
+				<in1 component_id="919"/>
 			</c5>
 			<c6 id="824">
-				<pos x="7.75" y="0.5"/>
+				<pos x="7.75" y="-0.25"/>
 				<in1 component_id="823"/>
 			</c6>
-			<c7 id="827" i="3">
-				<pos x="0.75" y="-0.75"/>
-				<in1 component_id="760"/>
-			</c7>
-			<c8 id="833" i="2">
+			<c7 id="833" i="2">
 				<pos x="2.5" y="-1.75"/>
 				<in1 component_id="264"/>
-			</c8>
-			<c9 id="834">
+			</c7>
+			<c8 id="834">
 				<pos x="0.75" y="-2.5"/>
 				<in1 component_id="264"/>
-			</c9>
-			<c10 id="835" i="1">
+			</c8>
+			<c9 id="835" i="1">
 				<pos x="0.75" y="-3"/>
 				<in1 component_id="264"/>
-			</c10>
-			<c11 id="836" i="2">
+			</c9>
+			<c10 id="836" i="2">
 				<pos x="0.75" y="-3.5"/>
 				<in1 component_id="264"/>
-			</c11>
-			<c12 id="837" i="3">
+			</c10>
+			<c11 id="837" i="3">
 				<pos x="0.75" y="-4"/>
 				<in1 component_id="264"/>
-			</c12>
-			<c13 id="839" l="My ID">
+			</c11>
+			<c12 id="839" l="My ID">
 				<pos x="-1" y="-3.75"/>
 				<in1 component_id="836"/>
-			</c13>
-			<c14 id="841" l="Number of wagons">
+			</c12>
+			<c13 id="841" l="Number of wagons">
 				<pos x="-1" y="-2.75"/>
 				<in1 component_id="834"/>
-			</c14>
-			<c15 id="843">
+			</c13>
+			<c14 id="843">
 				<pos x="7.75" y="-3.25"/>
 				<in1 component_id="845"/>
 				<in2 component_id="879"/>
-			</c15>
-			<c16 id="844">
+			</c14>
+			<c15 id="844">
 				<pos x="7.75" y="-4"/>
 				<in1 component_id="845"/>
 				<in2 component_id="879"/>
-			</c16>
-			<c17 id="845">
+			</c15>
+			<c16 id="845">
 				<pos x="6" y="-3.25"/>
 				<in1 component_id="852"/>
 				<in2 component_id="843"/>
-			</c17>
-			<c18 id="847">
+			</c16>
+			<c17 id="847">
 				<pos x="7.75" y="-5"/>
 				<in1 component_id="849"/>
 				<in2 component_id="879"/>
-			</c18>
-			<c19 id="848">
+			</c17>
+			<c18 id="848">
 				<pos x="7.75" y="-5.75"/>
 				<in1 component_id="849"/>
 				<in2 component_id="879"/>
-			</c19>
-			<c20 id="849">
+			</c18>
+			<c19 id="849">
 				<pos x="6" y="-5"/>
 				<in1 component_id="853"/>
 				<in2 component_id="847"/>
-			</c20>
-			<c21 id="852" e="((!x&amp;y)|(x&amp;z))&amp;w">
+			</c19>
+			<c20 id="852" e="((!x&amp;y)|(x&amp;z))&amp;w">
 				<pos x="4.25" y="-3.75"/>
 				<in1 component_id="833"/>
 				<in2 component_id="906"/>
 				<in3 component_id="907"/>
 				<in4 component_id="917"/>
-			</c21>
-			<c22 id="853" e="((x&amp;y)|(!x&amp;z))&amp;w">
+			</c20>
+			<c21 id="853" e="((x&amp;y)|(!x&amp;z))&amp;w">
 				<pos x="4.25" y="-5.5"/>
 				<in1 component_id="833"/>
 				<in2 component_id="906"/>
 				<in3 component_id="907"/>
 				<in4 component_id="917"/>
-			</c22>
-			<c23 id="865">
-				<pos x="11.25" y="0.25"/>
+			</c21>
+			<c22 id="865">
+				<pos x="11.25" y="-0.5"/>
 				<in1 component_id="866"/>
 				<in2 component_id="868"/>
-			</c23>
-			<c24 id="866">
-				<pos x="9.5" y="0.5"/>
+			</c22>
+			<c23 id="866">
+				<pos x="9.5" y="-0.25"/>
 				<in1 component_id="812"/>
 				<in3 component_id="824"/>
-			</c24>
-			<c25 id="868" i="1">
-				<pos x="6" y="0.25"/>
+			</c23>
+			<c24 id="868" i="1">
+				<pos x="6" y="-0.5"/>
 				<in1 component_id="806"/>
-			</c25>
-			<c26 id="870">
+			</c24>
+			<c25 id="870">
 				<pos x="0.75" y="-1.5"/>
 				<in1 component_id="264"/>
-			</c26>
-			<c27 id="871">
+			</c25>
+			<c26 id="871">
 				<pos x="0.75" y="-5"/>
 				<in1 component_id="865"/>
 				<in2 component_id="837"/>
 				<in3 component_id="870"/>
-			</c27>
-			<c28 id="874" e="(x|y)&amp;z">
-				<pos x="7.75" y="-1.25"/>
-				<in1 component_id="822"/>
-				<in2 component_id="827"/>
-				<in3 component_id="870"/>
-			</c28>
-			<c29 id="879" name="Time to stay disconnected">
+			</c26>
+			<c27 id="879" name="Time to stay disconnected">
 				<pos x="6" y="-5.75"/>
 				<min text="1" value="1"/>
 				<max text="10" value="10"/>
 				<int text="1" value="1"/>
 				<v text="3" value="3"/>
-			</c29>
-			<c30 id="880" l="External Decouple Value" m="1">
-				<pos x="11.25" y="-1.25"/>
+			</c27>
+			<c28 id="880" l="value going to other cars" m="1">
+				<pos x="11.25" y="-2"/>
 				<in1 component_id="865" node_index="1"/>
-			</c30>
-			<c31 id="881" l="Internal Decouple Value" m="1">
-				<pos x="11.25" y="-0.5"/>
+			</c28>
+			<c29 id="881" l="value going to itself" m="1">
+				<pos x="11.25" y="-1.25"/>
 				<in1 component_id="865"/>
-			</c31>
-			<c32 id="842" l="Received decouple number" m="1">
+			</c29>
+			<c30 id="842" l="Received decouple number" m="1">
 				<pos x="-1" y="-4.25"/>
 				<in1 component_id="837"/>
-			</c32>
-			<c33 id="886" count="2" offset="6">
-				<pos x="0.75" y="0.5"/>
+			</c30>
+			<c31 id="886" count="2" offset="4">
+				<pos x="0.75" y="-0.25"/>
 				<inc component_id="760"/>
 				<in1 component_id="913"/>
 				<in2 component_id="913"/>
-			</c33>
-			<c34 id="906">
+			</c31>
+			<c32 id="906">
 				<pos x="2.5" y="-3.5"/>
 				<in1 component_id="871"/>
 				<in2 component_id="836"/>
 				<e text="0.0001" value="0.0001"/>
-			</c34>
-			<c35 id="907">
+			</c32>
+			<c33 id="907">
 				<pos x="2.5" y="-5.5"/>
 				<in1 component_id="836"/>
 				<in2 component_id="908"/>
 				<e text="0.0001" value="0.0001"/>
-			</c35>
-			<c36 id="908" e="x-1">
+			</c33>
+			<c34 id="908" e="x-1">
 				<pos x="0.75" y="-5.5"/>
 				<in1 component_id="871"/>
-			</c36>
-			<c37 id="913">
-				<pos x="-1" y="0.5"/>
-			</c37>
-			<c38 id="917">
+			</c34>
+			<c35 id="913">
+				<pos x="-1" y="-0.25"/>
+			</c35>
+			<c36 id="917">
 				<pos x="2.5" y="-4.5"/>
 				<in1 component_id="836"/>
-			</c38>
+			</c36>
+			<c37 id="919">
+				<pos x="7.75" y="-1.5"/>
+				<in1 component_id="822"/>
+				<in2 component_id="870"/>
+			</c37>
 		</component_states>
 		<component_bridge_states>
 			<c0 id="111">
-				<pos x="14.75" y="0.5"/>
+				<pos x="14.75" y="-0.25"/>
 				<in1 component_id="768"/>
 			</c0>
 			<c1 id="264">
 				<pos x="-1" y="-1.75"/>
 			</c1>
 			<c2 id="760">
-				<pos x="-1" y="1"/>
+				<pos x="-1" y="0.25"/>
 			</c2>
 			<c3 id="770">
 				<pos x="9.5" y="-3.75"/>
@@ -874,7 +874,7 @@ function clamp(v,x,y) return math.min(math.max(v,x),y) end">
 				<in1 component_id="848"/>
 			</c4>
 			<c5 id="819">
-				<pos x="4.25" y="1.5"/>
+				<pos x="4.25" y="0.75"/>
 				<in1 component_id="806" node_index="1"/>
 			</c5>
 		</component_bridge_states>

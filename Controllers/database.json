@@ -204,7 +204,7 @@
 						"4": "Decouple (push)"
 					},
 					"number": {
-						"5": "Car to decouple"
+						"7": "Car to decouple"
 					}
 				}
 			},
@@ -1715,7 +1715,7 @@
 			"name": "Dual Cab Controller",
 			"version": "1.3",
 			"description": "Manages Dual Cab",
-			"width": "5",
+			"width": "6",
 			"length": "2",
 			"nodes": [
 				{
@@ -1744,7 +1744,7 @@
 					"mode": false,
 					"type": 0,
 					"position": {
-						"x": 4,
+						"x": 5,
 						"z": 0
 					}
 				},
@@ -1754,7 +1754,7 @@
 					"mode": false,
 					"type": 0,
 					"position": {
-						"x": 4,
+						"x": 5,
 						"z": 1
 					}
 				},
@@ -1805,13 +1805,33 @@
 					"mode": true,
 					"type": 0,
 					"position": {
-						"x": 3,
+						"x": 4,
 						"z": 0
 					}
 				},
 				{
 					"label": "In Rear Cab",
-					"description": "Rront cab is occupied",
+					"description": "Rear cab is occupied",
+					"mode": true,
+					"type": 0,
+					"position": {
+						"x": 4,
+						"z": 1
+					}
+				},
+				{
+					"label": "Front Master Lock",
+					"description": "Lock master button from front cab",
+					"mode": true,
+					"type": 0,
+					"position": {
+						"x": 3,
+						"z": 0
+					}
+				},
+				{
+					"label": "Rear Master Lock",
+					"description": "Lock master button from rear cab",
 					"mode": true,
 					"type": 0,
 					"position": {
