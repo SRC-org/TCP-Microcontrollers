@@ -46,7 +46,8 @@
 				"visibility": 1,
 				"channels": {
 					"boolean": {
-						"5": "Request E-Brake (Slave -> Master)"
+						"4": "Remote Engine Enable",
+						"5": "Request Emergency (Slave -> Master)"
 					},
 					"number": {
 						"4": "Throttle",
@@ -111,27 +112,55 @@
 						"1": "Request Master (push)",
 						"2": "Release Master (push)",
 						"3": "Lock Master (toggle)",
-						"4": "Player In Cab (toggle)",
+						"4": "Player In Cab",
 						"5": "Cab Direction (f: front, t: rear)"
 					}
 				}
 			},
 			"Drivetrain#Module->Interface": {
-				"visibility": 1
+				"visibility": 1,
+				"channels": {
+					"boolean": {
+						"1": "I Am Master",
+						"2": "Master Exists",
+						"3": "I Am Inverted",
+						"4": "Remote Engine Enable",
+						"5": "Emergency Request"
+					},
+					"number": {
+						"1": "Number of cars",
+						"2": "Master ID",
+						"3": "My ID",
+						"4": "Throttle (0-maxSpeed)",
+						"5": "Brakes (0-1)"
+					}
+				}
 			},
 			"Drivetrain#Interface->Module": {
-				"visibility": 1
+				"visibility": 1,
+				"channels": {
+					"boolean": {
+						"1": "Enable Engines",
+						"2": "Request Emergency"
+					},
+					"number": {
+						"1": "Throttle (0-maxSpeed)",
+						"2": "Brakes (0-1)"
+					}
+				}
 			},
 			"Drivetrain#UI": {
 				"visibility": 2,
 				"channels": {
 					"boolean": {
 						"1": "Wheel Slip",
-						"2": "Remote Engine Activation (Toggle)"
+						"2": "Emergency Set (push)",
+						"3": "Emergency Reset (push)",
+						"4": "Remote Engine Activation (toggle)"
 					},
 					"number": {
-						"1": "Brakes (0-1)",
-						"2": "Throttle (0-maxSpeed)"
+						"1": "Throttle (0-maxSpeed)",
+						"2": "Brakes (0-1)"
 					}
 				}
 			},

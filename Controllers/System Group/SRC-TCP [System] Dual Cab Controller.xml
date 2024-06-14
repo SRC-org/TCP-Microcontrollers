@@ -20,12 +20,12 @@
 			</node>
 		</n>
 		<n id="68" component_id="518">
-			<node label="Cab A" mode="1" type="5" description="Connects to cab or cab controller for master and direction handling // Channels: B1: Request Master (push); B2: Release Master (push); B3: Lock Master (toggle); B4: Player In Cab (toggle); B5: Cab Direction (f: front, t: rear);">
+			<node label="Cab A" mode="1" type="5" description="Connects to cab or cab controller for master and direction handling // Channels: B1: Request Master (push); B2: Release Master (push); B3: Lock Master (toggle); B4: Player In Cab; B5: Cab Direction (f: front, t: rear);">
 				<position x="1"/>
 			</node>
 		</n>
 		<n id="69" component_id="519">
-			<node label="Cab B" mode="1" type="5" description="Connects to cab or cab controller for master and direction handling // Channels: B1: Request Master (push); B2: Release Master (push); B3: Lock Master (toggle); B4: Player In Cab (toggle); B5: Cab Direction (f: front, t: rear);">
+			<node label="Cab B" mode="1" type="5" description="Connects to cab or cab controller for master and direction handling // Channels: B1: Request Master (push); B2: Release Master (push); B3: Lock Master (toggle); B4: Player In Cab; B5: Cab Direction (f: front, t: rear);">
 				<position x="1" z="1"/>
 			</node>
 		</n>
