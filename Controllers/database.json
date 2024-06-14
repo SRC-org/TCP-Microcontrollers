@@ -41,60 +41,6 @@
 		}
 	},
 	"connections": {
-		"redirects": {
-			"Any#MainBoth": {
-				"inherit": [
-					"System#Main->Module"
-				]
-			},
-			"Any#MainRear": {
-				"visibilityLimit": 1,
-				"inherit": [
-					"System#Main->Module"
-				]
-			},
-			"Any#MainFront": {
-				"visibilityLimit": 1,
-				"inherit": [
-					"System#Main->Module"
-				]
-			},
-			"Any#Hubslot/MainInput": {
-				"inherit": [
-					"System#Module->Main"
-				]
-			},
-			"System#Cab": {
-				"inherit": [
-					"System#Cab->Main"
-				]
-			},
-			"System#CabA": {
-				"inherit": [
-					"System#Cab->Main"
-				]
-			},
-			"System#CabB": {
-				"inherit": [
-					"System#Cab->Main"
-				]
-			},
-			"System#CabController": {
-				"inherit": [
-					"System#Cab->Main"
-				]
-			},
-			"Passenger.PassengerLighting#Interface->Module": {
-				"inherit": [
-					"Passenger#LightingInterface->Module"
-				]
-			},
-			"Passenger.PassengerDoors#Interface->Module": {
-				"inherit": [
-					"Passenger#DoorsInterface->Module"
-				]
-			}
-		},
 		"primary": {
 			"System#Bus": {
 				"visibility": 1,
@@ -113,9 +59,7 @@
 			},
 			"System#Main<->Main": {
 				"visibility": 0,
-				"inherit": [
-					"System#Bus"
-				],
+				"inherit": "System#Bus",
 				"channels": {
 					"boolean": {
 						"1": "",
@@ -152,9 +96,7 @@
 			},
 			"System#Module->Main": {
 				"visibility": 1,
-				"inherit": [
-					"System#Bus"
-				],
+				"inherit": "System#Bus",
 				"channels": {
 					"number": {
 						"1": "Module ID (encoded)",
@@ -166,11 +108,11 @@
 				"visibility": 2,
 				"channels": {
 					"boolean": {
-						"1": "Request Master",
-						"2": "Release Master",
-						"3": "Lock Master",
-						"4": "Player in Cab",
-						"5": "Cab Direction (F: Front, T: Rear)"
+						"1": "Request Master (push)",
+						"2": "Release Master (push)",
+						"3": "Lock Master (toggle)",
+						"4": "Player In Cab (toggle)",
+						"5": "Cab Direction (f: front, t: rear)"
 					}
 				}
 			},
@@ -211,9 +153,6 @@
 						"9": "Decorative Lights (toggle)"
 					}
 				}
-			},
-			"Lighting#FrontRGB": {
-				"visibility": 2
 			},
 			"Decouple#Module->Interface": {
 				"visibility": 1
@@ -271,6 +210,30 @@
 				}
 			},
 			"Passenger#RGBLights": {
+				"visibility": 2,
+				"inherit": "Any#RGB"
+			}
+		},
+		"redirects": {
+			"Any#MainBoth": "System#Main->Module",
+			"Any#MainRear": {
+				"visibilityLimit": 1,
+				"inherit": "System#Main->Module"
+			},
+			"Any#MainFront": {
+				"visibilityLimit": 1,
+				"inherit": "System#Main->Module"
+			},
+			"Any#Hubslot/MainInput": "System#Module->Main",
+			"System#Cab": "System#Cab->Main",
+			"System#CabA": "System#Cab->Main",
+			"System#CabB": "System#Cab->Main",
+			"System#CabController": "System#Cab->Main",
+			"Passenger.PassengerLighting#Interface->Module": "Passenger#LightingInterface->Module",
+			"Passenger.PassengerDoors#Interface->Module": "Passenger#DoorsInterface->Module"
+		},
+		"common": {
+			"Any#RGB": {
 				"visibility": 2,
 				"channels": {
 					"number": {
@@ -967,7 +930,6 @@
 					"description": "Front RGB Lights. Combined Headlights/Taillights",
 					"mode": false,
 					"type": 5,
-					"channels": "Lighting#FrontRGB",
 					"position": {
 						"x": 1,
 						"z": 0
@@ -1821,8 +1783,8 @@
 			"length": "4",
 			"nodes": [
 				{
-					"label": "Front 1",
-					"description": "Input from front cab",
+					"label": "A 1",
+					"description": "Input from Cab A",
 					"mode": true,
 					"type": 5,
 					"position": {
@@ -1831,8 +1793,8 @@
 					}
 				},
 				{
-					"label": "Rear 1",
-					"description": "Input from rear cab",
+					"label": "B 1",
+					"description": "Input from Cab B",
 					"mode": true,
 					"type": 5,
 					"position": {
@@ -1851,8 +1813,8 @@
 					}
 				},
 				{
-					"label": "Front 2",
-					"description": "Input from front cab",
+					"label": "A 2",
+					"description": "Input from Cab A",
 					"mode": true,
 					"type": 5,
 					"position": {
@@ -1861,8 +1823,8 @@
 					}
 				},
 				{
-					"label": "Rear 2",
-					"description": "Input from rear cab",
+					"label": "B 2",
+					"description": "Input from Cab B",
 					"mode": true,
 					"type": 5,
 					"position": {
@@ -1881,8 +1843,8 @@
 					}
 				},
 				{
-					"label": "Front 3",
-					"description": "Input from front cab",
+					"label": "A 3",
+					"description": "Input from Cab A",
 					"mode": true,
 					"type": 5,
 					"position": {
@@ -1891,8 +1853,8 @@
 					}
 				},
 				{
-					"label": "Rear 3",
-					"description": "Input from rear cab",
+					"label": "B 3",
+					"description": "Input from Cab B",
 					"mode": true,
 					"type": 5,
 					"position": {
@@ -1911,8 +1873,8 @@
 					}
 				},
 				{
-					"label": "Front 4",
-					"description": "Input from front cab",
+					"label": "A 4",
+					"description": "Input from Cab A",
 					"mode": true,
 					"type": 5,
 					"position": {
@@ -1921,8 +1883,8 @@
 					}
 				},
 				{
-					"label": "Rear 4",
-					"description": "Input from rear cab",
+					"label": "B 4",
+					"description": "Input from Cab B",
 					"mode": true,
 					"type": 5,
 					"position": {
@@ -1941,8 +1903,8 @@
 					}
 				},
 				{
-					"label": "Front 5",
-					"description": "Input from front cab",
+					"label": "A 5",
+					"description": "Input from Cab A",
 					"mode": true,
 					"type": 5,
 					"position": {
@@ -1951,8 +1913,8 @@
 					}
 				},
 				{
-					"label": "Rear 5",
-					"description": "Input from rear cab",
+					"label": "B 5",
+					"description": "Input from Cab B",
 					"mode": true,
 					"type": 5,
 					"position": {

@@ -2,12 +2,12 @@
 <microprocessor name="SRC-TCP [System] Dual Cab Switchbox v1.3" description="Composite Switchbox for UIs and instruments from both cabs" width="5" length="4" id_counter="530" id_counter_node="65" sym2="4" sym3="2" sym4="8191" sym5="8194" sym6="9508" sym7="1184" sym8="3232" sym9="11636" sym10="16388" sym11="65528" sym12="16384" sym13="8192">
 	<nodes>
 		<n id="38" component_id="415">
-			<node label="Front 1" mode="1" type="5" description="Input from front cab">
+			<node label="A 1" mode="1" type="5" description="Input from Cab A">
 				<position z="1"/>
 			</node>
 		</n>
 		<n id="40" component_id="420">
-			<node label="Rear 1" mode="1" type="5" description="Input from rear cab">
+			<node label="B 1" mode="1" type="5" description="Input from Cab B">
 				<position z="2"/>
 			</node>
 		</n>
@@ -17,12 +17,12 @@
 			</node>
 		</n>
 		<n id="43" component_id="428">
-			<node label="Front 2" mode="1" type="5" description="Input from front cab">
+			<node label="A 2" mode="1" type="5" description="Input from Cab A">
 				<position x="1" z="1"/>
 			</node>
 		</n>
 		<n id="44" component_id="430">
-			<node label="Rear 2" mode="1" type="5" description="Input from rear cab">
+			<node label="B 2" mode="1" type="5" description="Input from Cab B">
 				<position x="1" z="2"/>
 			</node>
 		</n>
@@ -32,12 +32,12 @@
 			</node>
 		</n>
 		<n id="46" component_id="435">
-			<node label="Front 3" mode="1" type="5" description="Input from front cab">
+			<node label="A 3" mode="1" type="5" description="Input from Cab A">
 				<position x="2" z="1"/>
 			</node>
 		</n>
 		<n id="47" component_id="437">
-			<node label="Rear 3" mode="1" type="5" description="Input from rear cab">
+			<node label="B 3" mode="1" type="5" description="Input from Cab B">
 				<position x="2" z="2"/>
 			</node>
 		</n>
@@ -47,12 +47,12 @@
 			</node>
 		</n>
 		<n id="49" component_id="442">
-			<node label="Front 4" mode="1" type="5" description="Input from front cab">
+			<node label="A 4" mode="1" type="5" description="Input from Cab A">
 				<position x="3" z="1"/>
 			</node>
 		</n>
 		<n id="50" component_id="444">
-			<node label="Rear 4" mode="1" type="5" description="Input from rear cab">
+			<node label="B 4" mode="1" type="5" description="Input from Cab B">
 				<position x="3" z="2"/>
 			</node>
 		</n>
@@ -62,12 +62,12 @@
 			</node>
 		</n>
 		<n id="54" component_id="456">
-			<node label="Front 5" mode="1" type="5" description="Input from front cab">
+			<node label="A 5" mode="1" type="5" description="Input from Cab A">
 				<position x="4" z="1"/>
 			</node>
 		</n>
 		<n id="55" component_id="458">
-			<node label="Rear 5" mode="1" type="5" description="Input from rear cab">
+			<node label="B 5" mode="1" type="5" description="Input from Cab B">
 				<position x="4" z="2"/>
 			</node>
 		</n>
@@ -77,7 +77,7 @@
 			</node>
 		</n>
 		<n id="60" component_id="478">
-			<node label="Cab Controller" mode="1" type="5" description="Connects to associated cab controller // Channels: B1: Request Master; B2: Release Master; B3: Lock Master; B4: Player in Cab; B5: Cab Direction (F: Front, T: Rear);"/>
+			<node label="Cab Controller" mode="1" type="5" description="Connects to associated cab controller // Channels: B1: Request Master (push); B2: Release Master (push); B3: Lock Master (toggle); B4: Player In Cab (toggle); B5: Cab Direction (f: front, t: rear);"/>
 		</n>
 	</nodes>
 	<group>

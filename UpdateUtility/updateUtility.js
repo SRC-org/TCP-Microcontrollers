@@ -337,9 +337,10 @@ resolvePlaceholder = placeholder => {
 	}
 }
 
-resolveChannels = identifier => {
+resolveChannels = entry => {
 
-	let entry = database.connections.primary[identifier] ?? database.connections.redirects[identifier]
+	if (typeof entry === "string") return resolveChannels(Object.values(database.connections).map(x => x[entry]).filter(x => x !== undefined)[0]) // or instead of .filter use .reduce((p, c) => p ?? c, undefined))
+
 	let resolved = {
 		boolean: {},
 		number: {}
@@ -358,8 +359,9 @@ resolveChannels = identifier => {
 	expandChannels("boolean")
 	expandChannels("number")
 
-	entry.inherit?.forEach(identifier => {
-		let inherited = resolveChannels(identifier)
+	let inherit = typeof entry.inherit === "undefined" ? [] : Array.isArray(entry.inherit) ? entry.inherit : [entry.inherit]
+	inherit.forEach(inherited => {
+		inherited = resolveChannels(inherited)
 		resolved.boolean = mergeJSON(inherited.boolean, resolved.boolean)
 		resolved.number = mergeJSON(inherited.number, resolved.number)
 	})
