@@ -228,13 +228,9 @@
 				"visibility": 2,
 				"channels": {
 					"boolean": {
-						"4": "Decrement start position (push)",
-						"5": "Increment start position (push)",
-						"6": "Decrement end position (push)",
-						"7": "Increment end position (push)",
-						"8": "Unlock left doors (toggle)",
-						"9": "Unlock right doors (toggle)",
-						"10": "Open selected doors (toggle)"
+						"4": "Unlock left doors (toggle)",
+						"5": "Unlock right doors (toggle)",
+						"6": "Open selected doors (toggle)"
 					}
 				}
 			},

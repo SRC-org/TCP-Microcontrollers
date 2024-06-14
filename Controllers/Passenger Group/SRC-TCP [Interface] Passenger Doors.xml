@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<microprocessor name="SRC-TCP [Interface] Passenger Doors v1.3" description="Connects to passenger module and door controller. Controls locks and doors" width="2" length="3" id_counter="919" id_counter_node="50" sym6="4984" sym7="5144" sym8="6184" sym9="7880">
+<microprocessor name="SRC-TCP [Interface] Passenger Doors v1.3" description="Connects to passenger module and door controller. Controls locks and doors" width="2" length="3" id_counter="927" id_counter_node="50" sym6="4984" sym7="5144" sym8="6184" sym9="7880">
 	<nodes>
 		<n id="33" component_id="264">
 			<node label="Module -&gt; Interface" mode="1" type="5" description="Communicates with passenger module"/>
@@ -33,132 +33,72 @@
 		<components>
 			<c type="31">
 				<object id="310">
-					<pos x="-16.75" y="0.75"/>
+					<pos x="-13.25" y="4.25"/>
 					<in1 component_id="264"/>
 				</object>
 			</c>
 			<c type="31">
 				<object id="312" i="2">
-					<pos x="-7.5" y="4.5"/>
+					<pos x="-13.25" y="3.25"/>
 					<in1 component_id="264"/>
 				</object>
 			</c>
 			<c type="29">
 				<object id="314">
-					<pos x="-19.5" y="1.75"/>
+					<pos x="-13.25" y="6"/>
 					<in1 component_id="264"/>
 				</object>
 			</c>
 			<c type="29">
 				<object id="315" i="1">
-					<pos x="-19.5" y="0.75"/>
+					<pos x="-13.25" y="5.5"/>
 					<in1 component_id="264"/>
 				</object>
 			</c>
 			<c type="29">
 				<object id="316" i="2">
-					<pos x="-19.5"/>
+					<pos x="-13.25" y="5"/>
 					<in1 component_id="264"/>
 				</object>
 			</c>
 			<c type="44">
 				<object id="379" l="Permission To Open L" on="Granted" off="Denied">
-					<pos x="11.25" y="2.5"/>
-					<in1 component_id="656"/>
+					<pos x="-6.25" y="1.25"/>
+					<in1 component_id="921"/>
 				</object>
 			</c>
 			<c type="44">
 				<object id="380" l="Permission To Open R" on="Granted" off="Denied">
-					<pos x="11.25" y="0.5"/>
-					<in1 component_id="657"/>
+					<pos x="-6.25"/>
+					<in1 component_id="922"/>
 				</object>
 			</c>
 			<c type="29">
 				<object id="411" i="3">
-					<pos x="-19.5" y="-1.75"/>
+					<pos x="-13.25" y="2.5"/>
 					<in1 component_id="264"/>
 				</object>
 			</c>
 			<c type="29">
 				<object id="412" i="4">
-					<pos x="-1.5" y="1.75"/>
+					<pos x="-13.25" y="1.75"/>
 					<in1 component_id="264"/>
 				</object>
 			</c>
 			<c type="29">
 				<object id="413" i="5">
-					<pos x="-1.5" y="0.5"/>
+					<pos x="-13.25" y="0.5"/>
 					<in1 component_id="264"/>
-				</object>
-			</c>
-			<c type="44">
-				<object id="483" l="Am Master?" on="True" off="False">
-					<pos x="-18.25" y="1.75"/>
-					<in1 component_id="314"/>
-				</object>
-			</c>
-			<c type="1">
-				<object id="506">
-					<pos x="3.5" y="0.5"/>
-					<in1 component_id="412"/>
-					<in2 component_id="316"/>
-				</object>
-			</c>
-			<c type="2">
-				<object id="507">
-					<pos x="5.5" y="0.25"/>
-					<in1 component_id="506"/>
-					<in2 component_id="508"/>
-				</object>
-			</c>
-			<c type="1">
-				<object id="508">
-					<pos x="3.5" y="-0.25"/>
-					<in1 component_id="413"/>
-					<in2 component_id="509"/>
-				</object>
-			</c>
-			<c>
-				<object id="509">
-					<pos x="1.25" y="-0.25"/>
-					<in1 component_id="316"/>
-				</object>
-			</c>
-			<c type="1">
-				<object id="510">
-					<pos x="3.5" y="2.25"/>
-					<in1 component_id="413"/>
-					<in2 component_id="316"/>
-				</object>
-			</c>
-			<c type="2">
-				<object id="511">
-					<pos x="5.5" y="2"/>
-					<in1 component_id="510"/>
-					<in2 component_id="512"/>
-				</object>
-			</c>
-			<c type="1">
-				<object id="512">
-					<pos x="3.5" y="1.5"/>
-					<in1 component_id="412"/>
-					<in2 component_id="513"/>
-				</object>
-			</c>
-			<c>
-				<object id="513">
-					<pos x="1.25" y="1.5"/>
-					<in1 component_id="316"/>
 				</object>
 			</c>
 			<c type="41">
 				<object id="520" count="6">
-					<pos x="16.5" y="-3.25"/>
+					<pos x="-2.75" y="4.75"/>
 					<in1 component_id="314"/>
 					<in2 component_id="315"/>
 					<in3 component_id="316"/>
-					<in4 component_id="897"/>
-					<in5 component_id="898"/>
+					<in4 component_id="923"/>
+					<in5 component_id="924"/>
 					<in6 component_id="411"/>
 				</object>
 			</c>
@@ -215,24 +155,24 @@ function onTick()
 	sL2 = last &gt; first or pL2
 	sR2 = last &lt; numWagons or pR2
 	
-	if (onPress(d.w/2-28,36,7,9) or gB(4)) and first &gt; 1 then
+	if (onPress(d.w/2-28,36,7,9)) and first &gt; 1 then
 		first = first - 1
 	end
-	if (onPress(d.w/2-12,36,7,9) or gB(5)) and first &lt; last then
+	if (onPress(d.w/2-12,36,7,9)) and first &lt; last then
 		first = first + 1
 	end
-	if (onPress(d.w/2+5,36,7,9) or gB(6)) and last &gt; first then
+	if (onPress(d.w/2+5,36,7,9)) and last &gt; first then
 		last = last - 1
 	end
-	if (onPress(d.w/2+21,36,7,9) or gB(7)) and last &lt; numWagons then
+	if (onPress(d.w/2+21,36,7,9)) and last &lt; numWagons then
 		last = last + 1
 	end
 	
-	sB(1,door or gB(10))
+	sB(1,door or gB(6))
 	sN(1,first)
 	sN(2,last)
-	sB(2,left or gB(8))
-	sB(3,right or gB(9))
+	sB(2,left or gB(4))
+	sB(3,right or gB(5))
 	
 	pre=gB(1)
 end
@@ -302,66 +242,40 @@ function onDraw()
 end
 
 function clamp(v,x,y) return math.min(math.max(v,x),y) end">
-					<pos x="-19.25" y="10.75"/>
+					<pos x="-9.75" y="7"/>
 					<in1 component_id="659"/>
 				</object>
 			</c>
 			<c type="44">
 				<object id="530" l="Master Opening" on="True" off="False">
-					<pos x="-19.5" y="-1.25"/>
+					<pos x="-15" y="2.5"/>
 					<in1 component_id="411"/>
-				</object>
-			</c>
-			<c type="43">
-				<object id="569" l="My ID">
-					<pos x="-7.5" y="5"/>
-					<in1 component_id="312"/>
-				</object>
-			</c>
-			<c type="43">
-				<object id="570" l="Num of Wagons">
-					<pos x="-16.75"/>
-					<in1 component_id="310"/>
 				</object>
 			</c>
 			<c type="18">
 				<object id="654">
-					<pos x="-1.5" y="3"/>
+					<pos x="-11.5" y="-2.75"/>
 					<in1 component_id="312"/>
 					<in2 component_id="807"/>
 				</object>
 			</c>
 			<c type="17">
 				<object id="655">
-					<pos x="-1.5" y="7.5"/>
+					<pos x="-11.5" y="-0.5"/>
 					<in1 component_id="312"/>
 					<in2 component_id="806"/>
 				</object>
 			</c>
-			<c type="1">
-				<object id="656">
-					<pos x="11.25" y="1.75"/>
-					<in1 component_id="663"/>
-					<in2 component_id="511"/>
-				</object>
-			</c>
-			<c type="1">
-				<object id="657">
-					<pos x="11.25" y="1"/>
-					<in1 component_id="663"/>
-					<in2 component_id="507"/>
-				</object>
-			</c>
 			<c type="40">
 				<object id="659" count="1" offset="7">
-					<pos x="-21" y="10.75"/>
-					<inc component_id="911"/>
+					<pos x="-11.5" y="7"/>
+					<inc component_id="351"/>
 					<in1 component_id="310"/>
 				</object>
 			</c>
 			<c type="46">
 				<object id="663" e="(x|y)&amp;(z|w)">
-					<pos x="2.75" y="5"/>
+					<pos x="-9.75" y="-1"/>
 					<in1 component_id="655"/>
 					<in2 component_id="664"/>
 					<in3 component_id="665"/>
@@ -370,7 +284,7 @@ function clamp(v,x,y) return math.min(math.max(v,x),y) end">
 			</c>
 			<c type="42">
 				<object id="664">
-					<pos x="-1.5" y="6.75"/>
+					<pos x="-11.5" y="-1.25"/>
 					<in1 component_id="312"/>
 					<in2 component_id="806"/>
 					<e text="0.0001" value="0.0001"/>
@@ -378,204 +292,115 @@ function clamp(v,x,y) return math.min(math.max(v,x),y) end">
 			</c>
 			<c type="42">
 				<object id="665">
-					<pos x="-1.5" y="3.75"/>
+					<pos x="-11.5" y="-2"/>
 					<in1 component_id="312"/>
 					<in2 component_id="807"/>
 					<e text="0.0001" value="0.0001"/>
 				</object>
 			</c>
 			<c type="43">
-				<object id="666" l="high">
-					<pos x="-1.5" y="2.25"/>
-					<in1 component_id="807"/>
+				<object id="666" l="low">
+					<pos x="-15" y="-0.75"/>
+					<in1 component_id="806"/>
 				</object>
 			</c>
 			<c type="43">
-				<object id="667" l="low">
-					<pos x="-1.5" y="6"/>
-					<in1 component_id="806"/>
+				<object id="667" l="high">
+					<pos x="-15" y="-2.25"/>
+					<in1 component_id="807"/>
 				</object>
 			</c>
 			<c type="31">
 				<object id="806" i="3">
-					<pos x="-7.5" y="6"/>
+					<pos x="-13.25" y="-0.5"/>
 					<in1 component_id="264"/>
 				</object>
 			</c>
 			<c type="31">
 				<object id="807" i="4">
-					<pos x="-7.5" y="3.75"/>
+					<pos x="-13.25" y="-2"/>
 					<in1 component_id="264"/>
 				</object>
 			</c>
-			<c type="41">
-				<object id="809" count="1" offset="3">
-					<pos x="-17.5" y="10.75"/>
-					<inc component_id="526"/>
-					<in1/>
+			<c type="31">
+				<object id="920" i="1">
+					<pos x="-13.25" y="3.75"/>
+					<in1 component_id="264"/>
 				</object>
 			</c>
-			<c type="40">
-				<object id="849" count="4">
-					<pos x="-2.75" y="12.5"/>
-					<inc component_id="850"/>
-					<in1 component_id="852"/>
-					<in2 component_id="853"/>
-					<in3 component_id="854"/>
-					<in4 component_id="855"/>
+			<c type="46">
+				<object id="921" e="((!z&amp;x)|(z&amp;y))&amp;w">
+					<pos x="-8" y="1"/>
+					<in1 component_id="412"/>
+					<in2 component_id="413"/>
+					<in3 component_id="316"/>
+					<in4 component_id="663"/>
 				</object>
 			</c>
-			<c type="41">
-				<object id="850" count="1">
-					<pos x="-4.5" y="14"/>
-					<in1 component_id="851"/>
+			<c type="46">
+				<object id="922" e="((!z&amp;x)|(z&amp;y))&amp;w">
+					<pos x="-8" y="-0.25"/>
+					<in1 component_id="413"/>
+					<in2 component_id="412"/>
+					<in3 component_id="316"/>
+					<in4 component_id="663"/>
 				</object>
 			</c>
-			<c type="2">
-				<object id="851">
-					<pos x="-6.25" y="13.75"/>
-					<in1 component_id="656"/>
-					<in2 component_id="657"/>
-				</object>
-			</c>
-			<c type="45">
-				<object id="852" e="floor(x/(10^1))%10">
-					<pos x="-4.5" y="13.5"/>
-				</object>
-			</c>
-			<c type="45">
-				<object id="853" e="floor(x/(10^0))%10">
-					<pos x="-4.5" y="13"/>
-				</object>
-			</c>
-			<c type="45">
-				<object id="854" e="floor(x/(10^1))%10">
-					<pos x="-4.5" y="12.5"/>
-				</object>
-			</c>
-			<c type="45">
-				<object id="855" e="floor(x/(10^0))%10">
-					<pos x="-4.5" y="12"/>
-				</object>
-			</c>
-			<c type="2">
-				<object id="897">
-					<pos x="13.25" y="1.75"/>
-					<in1 component_id="656"/>
-					<in2 component_id="904"/>
-				</object>
-			</c>
-			<c type="2">
-				<object id="898">
-					<pos x="13.25" y="1"/>
-					<in1 component_id="657"/>
-					<in2 component_id="904"/>
-				</object>
-			</c>
-			<c>
-				<object id="899">
-					<pos x="9.75" y="-0.25"/>
-					<in1 component_id="315"/>
-				</object>
-			</c>
-			<c type="1">
-				<object id="904">
-					<pos x="11.25" y="-0.5"/>
-					<in1 component_id="899"/>
-					<in2 component_id="905"/>
-				</object>
-			</c>
-			<c>
-				<object id="905">
-					<pos x="9.75" y="-0.75"/>
+			<c type="46">
+				<object id="923" e="z|!(x|y)">
+					<pos x="-4.5" y="1.5"/>
 					<in1 component_id="314"/>
+					<in2 component_id="315"/>
+					<in3 component_id="921"/>
 				</object>
 			</c>
-			<c type="41">
-				<object id="911" count="4" offset="3">
-					<pos x="-22.75" y="10"/>
-					<inc component_id="351"/>
-					<in1 component_id="912"/>
-					<in2 component_id="915"/>
-					<in3 component_id="914"/>
-					<in4 component_id="913"/>
+			<c type="46">
+				<object id="924" e="z|!(x|y)">
+					<pos x="-4.5" y="0.25"/>
+					<in1 component_id="314"/>
+					<in2 component_id="315"/>
+					<in3 component_id="922"/>
 				</object>
 			</c>
-			<c type="48">
-				<object id="912">
-					<pos x="-24.5" y="10.75"/>
-					<in1 component_id="916"/>
+			<c type="44">
+				<object id="925" l="Left Doors" on="Unlocked" off="Locked">
+					<pos x="-2.75" y="2.25"/>
+					<in1 component_id="923"/>
 				</object>
 			</c>
-			<c type="48">
-				<object id="913">
-					<pos x="-24.5" y="9.25"/>
-					<in1 component_id="919"/>
-				</object>
-			</c>
-			<c type="48">
-				<object id="914">
-					<pos x="-24.5" y="9.75"/>
-					<in1 component_id="918"/>
-				</object>
-			</c>
-			<c type="48">
-				<object id="915">
-					<pos x="-24.5" y="10.25"/>
-					<in1 component_id="917"/>
-				</object>
-			</c>
-			<c type="29">
-				<object id="916" i="3">
-					<pos x="-26.25" y="10.75"/>
-					<in1 component_id="351"/>
-				</object>
-			</c>
-			<c type="29">
-				<object id="917" i="4">
-					<pos x="-26.25" y="10.25"/>
-					<in1 component_id="351"/>
-				</object>
-			</c>
-			<c type="29">
-				<object id="918" i="5">
-					<pos x="-26.25" y="9.75"/>
-					<in1 component_id="351"/>
-				</object>
-			</c>
-			<c type="29">
-				<object id="919" i="6">
-					<pos x="-26.25" y="9.25"/>
-					<in1 component_id="351"/>
+			<c type="44">
+				<object id="926" l="Right Doors" on="Unlocked" off="Locked">
+					<pos x="-2.75" y="1"/>
+					<in1 component_id="924"/>
 				</object>
 			</c>
 		</components>
 		<components_bridge>
 			<c type="4">
 				<object id="264">
-					<pos x="-28.5" y="4.25"/>
+					<pos x="-15" y="6"/>
 				</object>
 			</c>
 			<c type="5">
 				<object id="301">
-					<pos x="-15.75" y="11"/>
-					<in1 component_id="809"/>
+					<pos x="-8" y="7.25"/>
+					<in1 component_id="526"/>
 				</object>
 			</c>
 			<c type="4">
 				<object id="351">
-					<pos x="-28" y="11"/>
+					<pos x="-13.25" y="7.25"/>
 				</object>
 			</c>
 			<c type="7">
 				<object id="354">
-					<pos x="-19.25" y="10.25"/>
+					<pos x="-9.75" y="6.5"/>
 					<in1 component_id="526" node_index="1"/>
 				</object>
 			</c>
 			<c type="5">
 				<object id="516">
-					<pos x="18.75" y="-2.25"/>
+					<pos x="-1" y="6.25"/>
 					<in1 component_id="520"/>
 				</object>
 			</c>
@@ -583,97 +408,55 @@ function clamp(v,x,y) return math.min(math.max(v,x),y) end">
 		<groups/>
 		<component_states>
 			<c0 id="310">
-				<pos x="-16.75" y="0.75"/>
+				<pos x="-13.25" y="4.25"/>
 				<in1 component_id="264"/>
 			</c0>
 			<c1 id="312" i="2">
-				<pos x="-7.5" y="4.5"/>
+				<pos x="-13.25" y="3.25"/>
 				<in1 component_id="264"/>
 			</c1>
 			<c2 id="314">
-				<pos x="-19.5" y="1.75"/>
+				<pos x="-13.25" y="6"/>
 				<in1 component_id="264"/>
 			</c2>
 			<c3 id="315" i="1">
-				<pos x="-19.5" y="0.75"/>
+				<pos x="-13.25" y="5.5"/>
 				<in1 component_id="264"/>
 			</c3>
 			<c4 id="316" i="2">
-				<pos x="-19.5"/>
+				<pos x="-13.25" y="5"/>
 				<in1 component_id="264"/>
 			</c4>
 			<c5 id="379" l="Permission To Open L" on="Granted" off="Denied">
-				<pos x="11.25" y="2.5"/>
-				<in1 component_id="656"/>
+				<pos x="-6.25" y="1.25"/>
+				<in1 component_id="921"/>
 			</c5>
 			<c6 id="380" l="Permission To Open R" on="Granted" off="Denied">
-				<pos x="11.25" y="0.5"/>
-				<in1 component_id="657"/>
+				<pos x="-6.25"/>
+				<in1 component_id="922"/>
 			</c6>
 			<c7 id="411" i="3">
-				<pos x="-19.5" y="-1.75"/>
+				<pos x="-13.25" y="2.5"/>
 				<in1 component_id="264"/>
 			</c7>
 			<c8 id="412" i="4">
-				<pos x="-1.5" y="1.75"/>
+				<pos x="-13.25" y="1.75"/>
 				<in1 component_id="264"/>
 			</c8>
 			<c9 id="413" i="5">
-				<pos x="-1.5" y="0.5"/>
+				<pos x="-13.25" y="0.5"/>
 				<in1 component_id="264"/>
 			</c9>
-			<c10 id="483" l="Am Master?" on="True" off="False">
-				<pos x="-18.25" y="1.75"/>
-				<in1 component_id="314"/>
-			</c10>
-			<c11 id="506">
-				<pos x="3.5" y="0.5"/>
-				<in1 component_id="412"/>
-				<in2 component_id="316"/>
-			</c11>
-			<c12 id="507">
-				<pos x="5.5" y="0.25"/>
-				<in1 component_id="506"/>
-				<in2 component_id="508"/>
-			</c12>
-			<c13 id="508">
-				<pos x="3.5" y="-0.25"/>
-				<in1 component_id="413"/>
-				<in2 component_id="509"/>
-			</c13>
-			<c14 id="509">
-				<pos x="1.25" y="-0.25"/>
-				<in1 component_id="316"/>
-			</c14>
-			<c15 id="510">
-				<pos x="3.5" y="2.25"/>
-				<in1 component_id="413"/>
-				<in2 component_id="316"/>
-			</c15>
-			<c16 id="511">
-				<pos x="5.5" y="2"/>
-				<in1 component_id="510"/>
-				<in2 component_id="512"/>
-			</c16>
-			<c17 id="512">
-				<pos x="3.5" y="1.5"/>
-				<in1 component_id="412"/>
-				<in2 component_id="513"/>
-			</c17>
-			<c18 id="513">
-				<pos x="1.25" y="1.5"/>
-				<in1 component_id="316"/>
-			</c18>
-			<c19 id="520" count="6">
-				<pos x="16.5" y="-3.25"/>
+			<c10 id="520" count="6">
+				<pos x="-2.75" y="4.75"/>
 				<in1 component_id="314"/>
 				<in2 component_id="315"/>
 				<in3 component_id="316"/>
-				<in4 component_id="897"/>
-				<in5 component_id="898"/>
+				<in4 component_id="923"/>
+				<in5 component_id="924"/>
 				<in6 component_id="411"/>
-			</c19>
-			<c20 id="526" script="colors={w={85,90,90},w2={70,75,75},b={10,10,10},b2={8,8,8},acc={69,12,10}}
+			</c10>
+			<c11 id="526" script="colors={w={85,90,90},w2={70,75,75},b={10,10,10},b2={8,8,8},acc={69,12,10}}
 first=1
 last=1
 
@@ -725,24 +508,24 @@ function onTick()
 	sL2 = last &gt; first or pL2
 	sR2 = last &lt; numWagons or pR2
 	
-	if (onPress(d.w/2-28,36,7,9) or gB(4)) and first &gt; 1 then
+	if (onPress(d.w/2-28,36,7,9)) and first &gt; 1 then
 		first = first - 1
 	end
-	if (onPress(d.w/2-12,36,7,9) or gB(5)) and first &lt; last then
+	if (onPress(d.w/2-12,36,7,9)) and first &lt; last then
 		first = first + 1
 	end
-	if (onPress(d.w/2+5,36,7,9) or gB(6)) and last &gt; first then
+	if (onPress(d.w/2+5,36,7,9)) and last &gt; first then
 		last = last - 1
 	end
-	if (onPress(d.w/2+21,36,7,9) or gB(7)) and last &lt; numWagons then
+	if (onPress(d.w/2+21,36,7,9)) and last &lt; numWagons then
 		last = last + 1
 	end
 	
-	sB(1,door or gB(10))
+	sB(1,door or gB(6))
 	sN(1,first)
 	sN(2,last)
-	sB(2,left or gB(8))
-	sB(3,right or gB(9))
+	sB(2,left or gB(4))
+	sB(3,right or gB(5))
 	
 	pre=gB(1)
 end
@@ -812,196 +595,119 @@ function onDraw()
 end
 
 function clamp(v,x,y) return math.min(math.max(v,x),y) end">
-				<pos x="-19.25" y="10.75"/>
+				<pos x="-9.75" y="7"/>
 				<in1 component_id="659"/>
-			</c20>
-			<c21 id="530" l="Master Opening" on="True" off="False">
-				<pos x="-19.5" y="-1.25"/>
+			</c11>
+			<c12 id="530" l="Master Opening" on="True" off="False">
+				<pos x="-15" y="2.5"/>
 				<in1 component_id="411"/>
-			</c21>
-			<c22 id="569" l="My ID">
-				<pos x="-7.5" y="5"/>
-				<in1 component_id="312"/>
-			</c22>
-			<c23 id="570" l="Num of Wagons">
-				<pos x="-16.75"/>
-				<in1 component_id="310"/>
-			</c23>
-			<c24 id="654">
-				<pos x="-1.5" y="3"/>
+			</c12>
+			<c13 id="654">
+				<pos x="-11.5" y="-2.75"/>
 				<in1 component_id="312"/>
 				<in2 component_id="807"/>
-			</c24>
-			<c25 id="655">
-				<pos x="-1.5" y="7.5"/>
+			</c13>
+			<c14 id="655">
+				<pos x="-11.5" y="-0.5"/>
 				<in1 component_id="312"/>
 				<in2 component_id="806"/>
-			</c25>
-			<c26 id="656">
-				<pos x="11.25" y="1.75"/>
-				<in1 component_id="663"/>
-				<in2 component_id="511"/>
-			</c26>
-			<c27 id="657">
-				<pos x="11.25" y="1"/>
-				<in1 component_id="663"/>
-				<in2 component_id="507"/>
-			</c27>
-			<c28 id="659" count="1" offset="7">
-				<pos x="-21" y="10.75"/>
-				<inc component_id="911"/>
+			</c14>
+			<c15 id="659" count="1" offset="7">
+				<pos x="-11.5" y="7"/>
+				<inc component_id="351"/>
 				<in1 component_id="310"/>
-			</c28>
-			<c29 id="663" e="(x|y)&amp;(z|w)">
-				<pos x="2.75" y="5"/>
+			</c15>
+			<c16 id="663" e="(x|y)&amp;(z|w)">
+				<pos x="-9.75" y="-1"/>
 				<in1 component_id="655"/>
 				<in2 component_id="664"/>
 				<in3 component_id="665"/>
 				<in4 component_id="654"/>
-			</c29>
-			<c30 id="664">
-				<pos x="-1.5" y="6.75"/>
+			</c16>
+			<c17 id="664">
+				<pos x="-11.5" y="-1.25"/>
 				<in1 component_id="312"/>
 				<in2 component_id="806"/>
 				<e text="0.0001" value="0.0001"/>
-			</c30>
-			<c31 id="665">
-				<pos x="-1.5" y="3.75"/>
+			</c17>
+			<c18 id="665">
+				<pos x="-11.5" y="-2"/>
 				<in1 component_id="312"/>
 				<in2 component_id="807"/>
 				<e text="0.0001" value="0.0001"/>
-			</c31>
-			<c32 id="666" l="high">
-				<pos x="-1.5" y="2.25"/>
-				<in1 component_id="807"/>
-			</c32>
-			<c33 id="667" l="low">
-				<pos x="-1.5" y="6"/>
+			</c18>
+			<c19 id="666" l="low">
+				<pos x="-15" y="-0.75"/>
 				<in1 component_id="806"/>
-			</c33>
-			<c34 id="806" i="3">
-				<pos x="-7.5" y="6"/>
+			</c19>
+			<c20 id="667" l="high">
+				<pos x="-15" y="-2.25"/>
+				<in1 component_id="807"/>
+			</c20>
+			<c21 id="806" i="3">
+				<pos x="-13.25" y="-0.5"/>
 				<in1 component_id="264"/>
-			</c34>
-			<c35 id="807" i="4">
-				<pos x="-7.5" y="3.75"/>
+			</c21>
+			<c22 id="807" i="4">
+				<pos x="-13.25" y="-2"/>
 				<in1 component_id="264"/>
-			</c35>
-			<c36 id="809" count="1" offset="3">
-				<pos x="-17.5" y="10.75"/>
-				<inc component_id="526"/>
-				<in1/>
-			</c36>
-			<c37 id="849" count="4">
-				<pos x="-2.75" y="12.5"/>
-				<inc component_id="850"/>
-				<in1 component_id="852"/>
-				<in2 component_id="853"/>
-				<in3 component_id="854"/>
-				<in4 component_id="855"/>
-			</c37>
-			<c38 id="850" count="1">
-				<pos x="-4.5" y="14"/>
-				<in1 component_id="851"/>
-			</c38>
-			<c39 id="851">
-				<pos x="-6.25" y="13.75"/>
-				<in1 component_id="656"/>
-				<in2 component_id="657"/>
-			</c39>
-			<c40 id="852" e="floor(x/(10^1))%10">
-				<pos x="-4.5" y="13.5"/>
-			</c40>
-			<c41 id="853" e="floor(x/(10^0))%10">
-				<pos x="-4.5" y="13"/>
-			</c41>
-			<c42 id="854" e="floor(x/(10^1))%10">
-				<pos x="-4.5" y="12.5"/>
-			</c42>
-			<c43 id="855" e="floor(x/(10^0))%10">
-				<pos x="-4.5" y="12"/>
-			</c43>
-			<c44 id="897">
-				<pos x="13.25" y="1.75"/>
-				<in1 component_id="656"/>
-				<in2 component_id="904"/>
-			</c44>
-			<c45 id="898">
-				<pos x="13.25" y="1"/>
-				<in1 component_id="657"/>
-				<in2 component_id="904"/>
-			</c45>
-			<c46 id="899">
-				<pos x="9.75" y="-0.25"/>
-				<in1 component_id="315"/>
-			</c46>
-			<c47 id="904">
-				<pos x="11.25" y="-0.5"/>
-				<in1 component_id="899"/>
-				<in2 component_id="905"/>
-			</c47>
-			<c48 id="905">
-				<pos x="9.75" y="-0.75"/>
+			</c22>
+			<c23 id="920" i="1">
+				<pos x="-13.25" y="3.75"/>
+				<in1 component_id="264"/>
+			</c23>
+			<c24 id="921" e="((!z&amp;x)|(z&amp;y))&amp;w">
+				<pos x="-8" y="1"/>
+				<in1 component_id="412"/>
+				<in2 component_id="413"/>
+				<in3 component_id="316"/>
+				<in4 component_id="663"/>
+			</c24>
+			<c25 id="922" e="((!z&amp;x)|(z&amp;y))&amp;w">
+				<pos x="-8" y="-0.25"/>
+				<in1 component_id="413"/>
+				<in2 component_id="412"/>
+				<in3 component_id="316"/>
+				<in4 component_id="663"/>
+			</c25>
+			<c26 id="923" e="z|!(x|y)">
+				<pos x="-4.5" y="1.5"/>
 				<in1 component_id="314"/>
-			</c48>
-			<c49 id="911" count="4" offset="3">
-				<pos x="-22.75" y="10"/>
-				<inc component_id="351"/>
-				<in1 component_id="912"/>
-				<in2 component_id="915"/>
-				<in3 component_id="914"/>
-				<in4 component_id="913"/>
-			</c49>
-			<c50 id="912">
-				<pos x="-24.5" y="10.75"/>
-				<in1 component_id="916"/>
-			</c50>
-			<c51 id="913">
-				<pos x="-24.5" y="9.25"/>
-				<in1 component_id="919"/>
-			</c51>
-			<c52 id="914">
-				<pos x="-24.5" y="9.75"/>
-				<in1 component_id="918"/>
-			</c52>
-			<c53 id="915">
-				<pos x="-24.5" y="10.25"/>
-				<in1 component_id="917"/>
-			</c53>
-			<c54 id="916" i="3">
-				<pos x="-26.25" y="10.75"/>
-				<in1 component_id="351"/>
-			</c54>
-			<c55 id="917" i="4">
-				<pos x="-26.25" y="10.25"/>
-				<in1 component_id="351"/>
-			</c55>
-			<c56 id="918" i="5">
-				<pos x="-26.25" y="9.75"/>
-				<in1 component_id="351"/>
-			</c56>
-			<c57 id="919" i="6">
-				<pos x="-26.25" y="9.25"/>
-				<in1 component_id="351"/>
-			</c57>
+				<in2 component_id="315"/>
+				<in3 component_id="921"/>
+			</c26>
+			<c27 id="924" e="z|!(x|y)">
+				<pos x="-4.5" y="0.25"/>
+				<in1 component_id="314"/>
+				<in2 component_id="315"/>
+				<in3 component_id="922"/>
+			</c27>
+			<c28 id="925" l="Left Doors" on="Unlocked" off="Locked">
+				<pos x="-2.75" y="2.25"/>
+				<in1 component_id="923"/>
+			</c28>
+			<c29 id="926" l="Right Doors" on="Unlocked" off="Locked">
+				<pos x="-2.75" y="1"/>
+				<in1 component_id="924"/>
+			</c29>
 		</component_states>
 		<component_bridge_states>
 			<c0 id="264">
-				<pos x="-28.5" y="4.25"/>
+				<pos x="-15" y="6"/>
 			</c0>
 			<c1 id="301">
-				<pos x="-15.75" y="11"/>
-				<in1 component_id="809"/>
+				<pos x="-8" y="7.25"/>
+				<in1 component_id="526"/>
 			</c1>
 			<c2 id="351">
-				<pos x="-28" y="11"/>
+				<pos x="-13.25" y="7.25"/>
 			</c2>
 			<c3 id="354">
-				<pos x="-19.25" y="10.25"/>
+				<pos x="-9.75" y="6.5"/>
 				<in1 component_id="526" node_index="1"/>
 			</c3>
 			<c4 id="516">
-				<pos x="18.75" y="-2.25"/>
+				<pos x="-1" y="6.25"/>
 				<in1 component_id="520"/>
 			</c4>
 		</component_bridge_states>
