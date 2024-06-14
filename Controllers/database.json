@@ -64,6 +64,26 @@
 					"System#Module->Main"
 				]
 			},
+			"System#Cab": {
+				"inherit": [
+					"System#Cab->Main"
+				]
+			},
+			"System#CabA": {
+				"inherit": [
+					"System#Cab->Main"
+				]
+			},
+			"System#CabB": {
+				"inherit": [
+					"System#Cab->Main"
+				]
+			},
+			"System#CabController": {
+				"inherit": [
+					"System#Cab->Main"
+				]
+			},
 			"Passenger.PassengerLighting#Interface->Module": {
 				"inherit": [
 					"Passenger#LightingInterface->Module"
@@ -75,7 +95,7 @@
 				]
 			}
 		},
-		"composite": {
+		"primary": {
 			"System#Bus": {
 				"visibility": 1,
 				"channels": {
@@ -148,8 +168,9 @@
 					"boolean": {
 						"1": "Request Master",
 						"2": "Release Master",
-						"3": "Player in Cab",
-						"4": "Active Cab (False: Front, True: Rear)"
+						"3": "Lock Master",
+						"4": "Player in Cab",
+						"5": "Cab Direction (F: Front, T: Rear)"
 					}
 				}
 			},
@@ -190,6 +211,9 @@
 						"9": "Decorative Lights (toggle)"
 					}
 				}
+			},
+			"Lighting#FrontRGB": {
+				"visibility": 2
 			},
 			"Decouple#Module->Interface": {
 				"visibility": 1
@@ -943,6 +967,7 @@
 					"description": "Front RGB Lights. Combined Headlights/Taillights",
 					"mode": false,
 					"type": 5,
+					"channels": "Lighting#FrontRGB",
 					"position": {
 						"x": 1,
 						"z": 0
@@ -1715,46 +1740,26 @@
 			"name": "Dual Cab Controller",
 			"version": "1.3",
 			"description": "Manages Dual Cab",
-			"width": "6",
+			"width": "3",
 			"length": "2",
 			"nodes": [
 				{
-					"label": "Front Master Request",
-					"description": "Request master button from front cab",
-					"mode": true,
+					"label": "A Controlling",
+					"description": "Cab A is in control",
+					"mode": false,
 					"type": 0,
 					"position": {
-						"x": 1,
+						"x": 2,
 						"z": 0
 					}
 				},
 				{
-					"label": "Rear Master Request",
-					"description": "Request master button from rear cab",
-					"mode": true,
-					"type": 0,
-					"position": {
-						"x": 1,
-						"z": 1
-					}
-				},
-				{
-					"label": "Front Controlling",
-					"description": "Front cab is in control",
+					"label": "B Controlling",
+					"description": "Cab B is in control",
 					"mode": false,
 					"type": 0,
 					"position": {
-						"x": 5,
-						"z": 0
-					}
-				},
-				{
-					"label": "Rear Controlling",
-					"description": "Rear cab is in control",
-					"mode": false,
-					"type": 0,
-					"position": {
-						"x": 5,
+						"x": 2,
 						"z": 1
 					}
 				},
@@ -1770,26 +1775,6 @@
 					}
 				},
 				{
-					"label": "Rear Master Release",
-					"description": "Release master button from rear cab",
-					"mode": true,
-					"type": 0,
-					"position": {
-						"x": 2,
-						"z": 1
-					}
-				},
-				{
-					"label": "Front Master Release",
-					"description": "Release master button from front cab",
-					"mode": true,
-					"type": 0,
-					"position": {
-						"x": 2,
-						"z": 0
-					}
-				},
-				{
 					"label": "To Main and Switchbox",
 					"description": "Cab information for main controller and dual cab switchbox",
 					"mode": false,
@@ -1800,42 +1785,24 @@
 					}
 				},
 				{
-					"label": "In Front Cab",
-					"description": "Front cab is occupied",
+					"label": "Cab A",
+					"description": "Connects to cab or cab controller for master and direction handling",
 					"mode": true,
-					"type": 0,
+					"type": 5,
+					"channels": "System#CabA",
 					"position": {
-						"x": 4,
+						"x": 1,
 						"z": 0
 					}
 				},
 				{
-					"label": "In Rear Cab",
-					"description": "Rear cab is occupied",
+					"label": "Cab B",
+					"description": "Connects to cab or cab controller for master and direction handling",
 					"mode": true,
-					"type": 0,
+					"type": 5,
+					"channels": "System#CabB",
 					"position": {
-						"x": 4,
-						"z": 1
-					}
-				},
-				{
-					"label": "Front Master Lock",
-					"description": "Lock master button from front cab",
-					"mode": true,
-					"type": 0,
-					"position": {
-						"x": 3,
-						"z": 0
-					}
-				},
-				{
-					"label": "Rear Master Lock",
-					"description": "Lock master button from rear cab",
-					"mode": true,
-					"type": 0,
-					"position": {
-						"x": 3,
+						"x": 1,
 						"z": 1
 					}
 				}
@@ -1855,7 +1822,7 @@
 			"nodes": [
 				{
 					"label": "Front 1",
-					"description": "Connects to the interface",
+					"description": "Input from front cab",
 					"mode": true,
 					"type": 5,
 					"position": {
@@ -1885,7 +1852,7 @@
 				},
 				{
 					"label": "Front 2",
-					"description": "Connects to the interface",
+					"description": "Input from front cab",
 					"mode": true,
 					"type": 5,
 					"position": {
@@ -1915,7 +1882,7 @@
 				},
 				{
 					"label": "Front 3",
-					"description": "Connects to the interface",
+					"description": "Input from front cab",
 					"mode": true,
 					"type": 5,
 					"position": {
@@ -1945,7 +1912,7 @@
 				},
 				{
 					"label": "Front 4",
-					"description": "Connects to the interface",
+					"description": "Input from front cab",
 					"mode": true,
 					"type": 5,
 					"position": {
@@ -1975,7 +1942,7 @@
 				},
 				{
 					"label": "Front 5",
-					"description": "Connects to the interface",
+					"description": "Input from front cab",
 					"mode": true,
 					"type": 5,
 					"position": {
@@ -2005,9 +1972,10 @@
 				},
 				{
 					"label": "Cab Controller",
-					"description": "Connects to the cab controller to recieve relevant information",
+					"description": "Connects to associated cab controller",
 					"mode": true,
 					"type": 5,
+					"channels": "System#CabController",
 					"position": {
 						"x": 0,
 						"z": 0
@@ -2177,7 +2145,7 @@
 			"version": "1.3",
 			"description": "The base for everything. Hubs or Modules can be connected to it.",
 			"width": "5",
-			"length": "3",
+			"length": "2",
 			"nodes": [
 				{
 					"label": "Front Coupler",
@@ -2186,7 +2154,7 @@
 					"type": 5,
 					"position": {
 						"x": 1,
-						"z": 2
+						"z": 1
 					}
 				},
 				{
@@ -2196,7 +2164,7 @@
 					"type": 5,
 					"position": {
 						"x": 0,
-						"z": 2
+						"z": 1
 					}
 				},
 				{
@@ -2206,7 +2174,7 @@
 					"type": 5,
 					"position": {
 						"x": 1,
-						"z": 1
+						"z": 0
 					}
 				},
 				{
@@ -2216,26 +2184,6 @@
 					"type": 5,
 					"position": {
 						"x": 0,
-						"z": 1
-					}
-				},
-				{
-					"label": "Main Controller status",
-					"description": "Status of controller. Used for debugging",
-					"mode": false,
-					"type": 5,
-					"position": {
-						"x": 0,
-						"z": 0
-					}
-				},
-				{
-					"label": "Request Master (Push)",
-					"description": "Requests master from other cars. Master must not be locked",
-					"mode": true,
-					"type": 0,
-					"position": {
-						"x": 2,
 						"z": 0
 					}
 				},
@@ -2246,7 +2194,7 @@
 					"type": 5,
 					"position": {
 						"x": 3,
-						"z": 1
+						"z": 0
 					}
 				},
 				{
@@ -2257,27 +2205,7 @@
 					"channels": "Any#MainFront",
 					"position": {
 						"x": 4,
-						"z": 2
-					}
-				},
-				{
-					"label": "Lock Master (Toggle)",
-					"description": "Toggle to prevent other cars from claiming master",
-					"mode": true,
-					"type": 0,
-					"position": {
-						"x": 3,
-						"z": 0
-					}
-				},
-				{
-					"label": "Player in Cab",
-					"description": "If on and autoconnect is enabled, this controller will be made master",
-					"mode": true,
-					"type": 0,
-					"position": {
-						"x": 1,
-						"z": 0
+						"z": 1
 					}
 				},
 				{
@@ -2288,7 +2216,7 @@
 					"channels": "Any#MainRear",
 					"position": {
 						"x": 4,
-						"z": 1
+						"z": 0
 					}
 				},
 				{
@@ -2299,37 +2227,18 @@
 					"channels": "Any#MainBoth",
 					"position": {
 						"x": 3,
-						"z": 2
-					}
-				},
-				{
-					"label": "Release Master (Push)",
-					"description": "Releases master control (if master and not locked)",
-					"mode": true,
-					"type": 0,
-					"position": {
-						"x": 4,
-						"z": 0
-					}
-				},
-				{
-					"label": "debug",
-					"description": "Used for debugging",
-					"mode": false,
-					"type": 6,
-					"position": {
-						"x": 2,
 						"z": 1
 					}
 				},
 				{
-					"label": "Cab Controller",
-					"description": "",
+					"label": "Cab",
+					"description": "Connects to cab or cab controller for master and direction handling",
 					"mode": true,
 					"type": 5,
+					"channels": "System#Cab",
 					"position": {
 						"x": 2,
-						"z": 2
+						"z": 1
 					}
 				}
 			],

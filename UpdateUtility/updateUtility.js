@@ -90,7 +90,7 @@ async function execDatabase() {
 			let desc = n["@_description"] || ""
 			let mode = n["@_mode"] === "1"
 			let type = Number(n["@_type"]) || 0
-			let channels = [c.group + "." + c.nameData.name.replaceAll(" ", ""), c.group, "Any"].map(d => (c => (database.connections.composite[c] ?? database.connections.redirects[c]) ? c : undefined)(d + "#" + label.replaceAll(" ", ""))).reduce((p, c) => p ?? c, undefined)
+			let channels = [c.group + "." + c.nameData.name.replaceAll(" ", ""), c.group, "Any"].map(d => (c => (database.connections.primary[c] ?? database.connections.redirects[c]) ? c : undefined)(d + "#" + label.replaceAll(" ", ""))).reduce((p, c) => p ?? c, undefined)
 			if (channels) n["@_description"] = placeholders(n["@_description"] + " // {$c" + (mode ? "i" : "o") + channels + "}")
 			nodes.push({
 				label: n["@_label"] || "",
@@ -272,7 +272,7 @@ async function execExport(index) {
 
 	let groups = {};
 
-	for (let identifier in database.connections.composite) {
+	for (let identifier in database.connections.primary) {
 		let domain = identifier.match(/^[^#]*/)[0]
 		if (!database.groups[domain]) continue;
 		if (!groups[domain]) groups[domain] = {
@@ -339,7 +339,7 @@ resolvePlaceholder = placeholder => {
 
 resolveChannels = identifier => {
 
-	let entry = database.connections.composite[identifier] ?? database.connections.redirects[identifier]
+	let entry = database.connections.primary[identifier] ?? database.connections.redirects[identifier]
 	let resolved = {
 		boolean: {},
 		number: {}

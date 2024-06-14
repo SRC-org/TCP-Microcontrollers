@@ -1,62 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<microprocessor name="SRC-TCP [System] Dual Cab Controller v1.3" description="Manages Dual Cab" width="6" length="2" id_counter="515" id_counter_node="67" sym2="4" sym3="2" sym4="8191" sym5="8194" sym6="9508" sym7="1184" sym8="3232" sym9="11636" sym10="16388" sym11="65528" sym12="16384" sym13="8192">
+<microprocessor name="SRC-TCP [System] Dual Cab Controller v1.3" description="Manages Dual Cab" width="3" length="2" id_counter="538" id_counter_node="69" sym2="4" sym3="2" sym4="8191" sym5="8194" sym6="9508" sym7="1184" sym8="3232" sym9="11636" sym10="16388" sym11="65528" sym12="16384" sym13="8192">
 	<nodes>
-		<n id="37" component_id="413">
-			<node label="Front Master Request" mode="1" description="Request master button from front cab">
-				<position x="1"/>
-			</node>
-		</n>
-		<n id="42" component_id="426">
-			<node label="Rear Master Request" mode="1" description="Request master button from rear cab">
-				<position x="1" z="1"/>
-			</node>
-		</n>
 		<n id="52" component_id="453">
-			<node label="Front Controlling" description="Front cab is in control">
-				<position x="5"/>
+			<node label="A Controlling" description="Cab A is in control">
+				<position x="2"/>
 			</node>
 		</n>
 		<n id="53" component_id="454">
-			<node label="Rear Controlling" description="Rear cab is in control">
-				<position x="5" z="1"/>
+			<node label="B Controlling" description="Cab B is in control">
+				<position x="2" z="1"/>
 			</node>
 		</n>
 		<n id="60" component_id="478">
 			<node label="Main Both" mode="1" type="5" description="Connects to Main Both in order to receive information from other cars"/>
-		</n>
-		<n id="61" component_id="493">
-			<node label="Rear Master Release" mode="1" description="Release master button from rear cab">
-				<position x="2" z="1"/>
-			</node>
-		</n>
-		<n id="62" component_id="494">
-			<node label="Front Master Release" mode="1" description="Release master button from front cab">
-				<position x="2"/>
-			</node>
 		</n>
 		<n id="63" component_id="497">
 			<node label="To Main and Switchbox" type="5" description="Cab information for main controller and dual cab switchbox">
 				<position z="1"/>
 			</node>
 		</n>
-		<n id="64" component_id="498">
-			<node label="In Front Cab" mode="1" description="Front cab is occupied">
-				<position x="4"/>
+		<n id="68" component_id="518">
+			<node label="Cab A" mode="1" type="5" description="Connects to cab or cab controller for master and direction handling // Channels: B1: Request Master; B2: Release Master; B3: Lock Master; B4: Player in Cab; B5: Cab Direction (F: Front, T: Rear);">
+				<position x="1"/>
 			</node>
 		</n>
-		<n id="65" component_id="499">
-			<node label="In Rear Cab" mode="1" description="Rear cab is occupied">
-				<position x="4" z="1"/>
-			</node>
-		</n>
-		<n id="66" component_id="508">
-			<node label="Front Master Lock" mode="1" description="Lock master button from front cab">
-				<position x="3"/>
-			</node>
-		</n>
-		<n id="67" component_id="509">
-			<node label="Rear Master Lock" mode="1" description="Lock master button from rear cab">
-				<position x="3" z="1"/>
+		<n id="69" component_id="519">
+			<node label="Cab B" mode="1" type="5" description="Connects to cab or cab controller for master and direction handling // Channels: B1: Request Master; B2: Release Master; B3: Lock Master; B4: Player in Cab; B5: Cab Direction (F: Front, T: Rear);">
+				<position x="1" z="1"/>
 			</node>
 		</n>
 	</nodes>
@@ -75,7 +45,7 @@
 			</c>
 			<c type="29">
 				<object id="479">
-					<pos x="5.25" y="3"/>
+					<pos x="5.25" y="2.25"/>
 					<in1 component_id="478"/>
 				</object>
 			</c>
@@ -95,78 +65,161 @@
 			</c>
 			<c type="2">
 				<object id="500">
-					<pos x="5.25" y="0.25"/>
+					<pos x="5.25" y="-0.25"/>
 					<in1 component_id="510"/>
 					<in2 component_id="511"/>
 				</object>
 			</c>
 			<c type="41">
-				<object id="501" count="7">
-					<pos x="7" y="-2.5"/>
+				<object id="501" count="6">
+					<pos x="7" y="-2.25"/>
 					<in1 component_id="500"/>
 					<in2 component_id="507"/>
-					<in3 component_id="506"/>
-					<in4 component_id="480"/>
-					<in5 component_id="479"/>
-					<in6 component_id="425"/>
-					<in7 component_id="515"/>
+					<in3 component_id="515"/>
+					<in4 component_id="506"/>
+					<in5 component_id="538"/>
+					<in6 component_id="480"/>
 				</object>
 			</c>
 			<c type="46">
 				<object id="506" e="(x&amp;z)|(y&amp;w)">
-					<pos x="5.25" y="-2.25"/>
-					<in1 component_id="498"/>
-					<in2 component_id="499"/>
+					<pos x="5.25" y="-4"/>
+					<in1 component_id="523"/>
+					<in2 component_id="527"/>
 					<in3 component_id="481"/>
 					<in4 component_id="480"/>
 				</object>
 			</c>
 			<c type="46">
 				<object id="507" e="(x&amp;z)|(y&amp;w)">
-					<pos x="5.25" y="-1"/>
-					<in1 component_id="494"/>
-					<in2 component_id="493"/>
+					<pos x="5.25" y="-1.5"/>
+					<in1 component_id="521"/>
+					<in2 component_id="525"/>
 					<in3 component_id="481"/>
 					<in4 component_id="480"/>
 				</object>
 			</c>
 			<c type="46">
 				<object id="510" e="x&amp;!(y&amp;z)">
-					<pos x="3.5" y="1.75"/>
-					<in1 component_id="426"/>
-					<in2 component_id="508"/>
+					<pos x="3.5" y="0.75"/>
+					<in1 component_id="524"/>
+					<in2 component_id="522"/>
 					<in3 component_id="481"/>
 				</object>
 			</c>
 			<c type="46">
 				<object id="511" e="x&amp;!(y&amp;z)">
-					<pos x="3.5" y="0.5"/>
-					<in1 component_id="413"/>
-					<in2 component_id="509"/>
+					<pos x="3.5" y="-0.5"/>
+					<in1 component_id="520"/>
+					<in2 component_id="526"/>
 					<in3 component_id="480"/>
 				</object>
 			</c>
 			<c type="46">
 				<object id="515" e="(x&amp;y)|(z&amp;w)">
-					<pos x="1.75" y="-3.25"/>
-					<in1 component_id="508"/>
+					<pos x="5.25" y="-2.75"/>
+					<in1 component_id="522"/>
 					<in2 component_id="481"/>
-					<in3 component_id="509"/>
+					<in3 component_id="526"/>
+					<in4 component_id="480"/>
+				</object>
+			</c>
+			<c type="29">
+				<object id="520">
+					<pos x="1.75" y="1.5"/>
+					<in1 component_id="518"/>
+				</object>
+			</c>
+			<c type="29">
+				<object id="521" i="1">
+					<pos x="1.75" y="-0.75"/>
+					<in1 component_id="518"/>
+				</object>
+			</c>
+			<c type="29">
+				<object id="522" i="2">
+					<pos x="1.75" y="-2"/>
+					<in1 component_id="518"/>
+				</object>
+			</c>
+			<c type="29">
+				<object id="523" i="3">
+					<pos x="1.75" y="-3.25"/>
+					<in1 component_id="518"/>
+				</object>
+			</c>
+			<c type="29">
+				<object id="524">
+					<pos x="1.75" y="1"/>
+					<in1 component_id="519"/>
+				</object>
+			</c>
+			<c type="29">
+				<object id="525" i="1">
+					<pos x="1.75" y="-1.25"/>
+					<in1 component_id="519"/>
+				</object>
+			</c>
+			<c type="29">
+				<object id="526" i="2">
+					<pos x="1.75" y="-2.5"/>
+					<in1 component_id="519"/>
+				</object>
+			</c>
+			<c type="29">
+				<object id="527" i="3">
+					<pos x="1.75" y="-3.75"/>
+					<in1 component_id="519"/>
+				</object>
+			</c>
+			<c type="29">
+				<object id="528" i="4">
+					<pos x="1.75" y="-5"/>
+					<in1 component_id="518"/>
+				</object>
+			</c>
+			<c type="29">
+				<object id="529" i="4">
+					<pos x="1.75" y="-5.75"/>
+					<in1 component_id="519"/>
+				</object>
+			</c>
+			<c type="2">
+				<object id="530">
+					<pos x="3.5" y="-6"/>
+					<in1 component_id="529"/>
+					<in2 component_id="531"/>
+				</object>
+			</c>
+			<c type="33">
+				<object id="531" n="Assume Standard Cab Orientation" on="On" off="Off" v="true">
+					<pos y="-6"/>
+				</object>
+			</c>
+			<c type="1">
+				<object id="532">
+					<pos x="3.5" y="-5.25"/>
+					<in1 component_id="528"/>
+					<in2 component_id="534"/>
+				</object>
+			</c>
+			<c>
+				<object id="534">
+					<pos y="-5.25"/>
+					<in1 component_id="531"/>
+				</object>
+			</c>
+			<c type="46">
+				<object id="538" e="(x&amp;y)|(z&amp;w)">
+					<pos x="5.25" y="-5.75"/>
+					<in1 component_id="532"/>
+					<in2 component_id="481"/>
+					<in3 component_id="530"/>
 					<in4 component_id="480"/>
 				</object>
 			</c>
 		</components>
 		<components_bridge>
-			<c>
-				<object id="413">
-					<pos y="2"/>
-				</object>
-			</c>
-			<c>
-				<object id="426">
-					<pos y="2.5"/>
-				</object>
-			</c>
 			<c type="1">
 				<object id="453">
 					<pos x="8.75" y="1.5"/>
@@ -181,17 +234,7 @@
 			</c>
 			<c type="4">
 				<object id="478">
-					<pos x="3.5" y="3"/>
-				</object>
-			</c>
-			<c>
-				<object id="493">
-					<pos x="3.5" y="-0.75"/>
-				</object>
-			</c>
-			<c>
-				<object id="494">
-					<pos x="3.5" y="-0.25"/>
+					<pos x="3.5" y="2.25"/>
 				</object>
 			</c>
 			<c type="5">
@@ -200,24 +243,14 @@
 					<in1 component_id="501"/>
 				</object>
 			</c>
-			<c>
-				<object id="498">
-					<pos x="3.5" y="-1.5"/>
+			<c type="4">
+				<object id="518">
+					<pos y="1.5"/>
 				</object>
 			</c>
-			<c>
-				<object id="499">
-					<pos x="3.5" y="-2"/>
-				</object>
-			</c>
-			<c>
-				<object id="508">
-					<pos y="0.75"/>
-				</object>
-			</c>
-			<c>
-				<object id="509">
-					<pos y="0.25"/>
+			<c type="4">
+				<object id="519">
+					<pos y="1"/>
 				</object>
 			</c>
 		</components_bridge>
@@ -229,7 +262,7 @@
 				<in2 component_id="511"/>
 			</c0>
 			<c1 id="479">
-				<pos x="5.25" y="3"/>
+				<pos x="5.25" y="2.25"/>
 				<in1 component_id="478"/>
 			</c1>
 			<c2 id="480">
@@ -243,94 +276,139 @@
 				<in2 component_id="425" node_index="1"/>
 			</c3>
 			<c4 id="500">
-				<pos x="5.25" y="0.25"/>
+				<pos x="5.25" y="-0.25"/>
 				<in1 component_id="510"/>
 				<in2 component_id="511"/>
 			</c4>
-			<c5 id="501" count="7">
-				<pos x="7" y="-2.5"/>
+			<c5 id="501" count="6">
+				<pos x="7" y="-2.25"/>
 				<in1 component_id="500"/>
 				<in2 component_id="507"/>
-				<in3 component_id="506"/>
-				<in4 component_id="480"/>
-				<in5 component_id="479"/>
-				<in6 component_id="425"/>
-				<in7 component_id="515"/>
+				<in3 component_id="515"/>
+				<in4 component_id="506"/>
+				<in5 component_id="538"/>
+				<in6 component_id="480"/>
 			</c5>
 			<c6 id="506" e="(x&amp;z)|(y&amp;w)">
-				<pos x="5.25" y="-2.25"/>
-				<in1 component_id="498"/>
-				<in2 component_id="499"/>
+				<pos x="5.25" y="-4"/>
+				<in1 component_id="523"/>
+				<in2 component_id="527"/>
 				<in3 component_id="481"/>
 				<in4 component_id="480"/>
 			</c6>
 			<c7 id="507" e="(x&amp;z)|(y&amp;w)">
-				<pos x="5.25" y="-1"/>
-				<in1 component_id="494"/>
-				<in2 component_id="493"/>
+				<pos x="5.25" y="-1.5"/>
+				<in1 component_id="521"/>
+				<in2 component_id="525"/>
 				<in3 component_id="481"/>
 				<in4 component_id="480"/>
 			</c7>
 			<c8 id="510" e="x&amp;!(y&amp;z)">
-				<pos x="3.5" y="1.75"/>
-				<in1 component_id="426"/>
-				<in2 component_id="508"/>
+				<pos x="3.5" y="0.75"/>
+				<in1 component_id="524"/>
+				<in2 component_id="522"/>
 				<in3 component_id="481"/>
 			</c8>
 			<c9 id="511" e="x&amp;!(y&amp;z)">
-				<pos x="3.5" y="0.5"/>
-				<in1 component_id="413"/>
-				<in2 component_id="509"/>
+				<pos x="3.5" y="-0.5"/>
+				<in1 component_id="520"/>
+				<in2 component_id="526"/>
 				<in3 component_id="480"/>
 			</c9>
 			<c10 id="515" e="(x&amp;y)|(z&amp;w)">
-				<pos x="1.75" y="-3.25"/>
-				<in1 component_id="508"/>
+				<pos x="5.25" y="-2.75"/>
+				<in1 component_id="522"/>
 				<in2 component_id="481"/>
-				<in3 component_id="509"/>
+				<in3 component_id="526"/>
 				<in4 component_id="480"/>
 			</c10>
+			<c11 id="520">
+				<pos x="1.75" y="1.5"/>
+				<in1 component_id="518"/>
+			</c11>
+			<c12 id="521" i="1">
+				<pos x="1.75" y="-0.75"/>
+				<in1 component_id="518"/>
+			</c12>
+			<c13 id="522" i="2">
+				<pos x="1.75" y="-2"/>
+				<in1 component_id="518"/>
+			</c13>
+			<c14 id="523" i="3">
+				<pos x="1.75" y="-3.25"/>
+				<in1 component_id="518"/>
+			</c14>
+			<c15 id="524">
+				<pos x="1.75" y="1"/>
+				<in1 component_id="519"/>
+			</c15>
+			<c16 id="525" i="1">
+				<pos x="1.75" y="-1.25"/>
+				<in1 component_id="519"/>
+			</c16>
+			<c17 id="526" i="2">
+				<pos x="1.75" y="-2.5"/>
+				<in1 component_id="519"/>
+			</c17>
+			<c18 id="527" i="3">
+				<pos x="1.75" y="-3.75"/>
+				<in1 component_id="519"/>
+			</c18>
+			<c19 id="528" i="4">
+				<pos x="1.75" y="-5"/>
+				<in1 component_id="518"/>
+			</c19>
+			<c20 id="529" i="4">
+				<pos x="1.75" y="-5.75"/>
+				<in1 component_id="519"/>
+			</c20>
+			<c21 id="530">
+				<pos x="3.5" y="-6"/>
+				<in1 component_id="529"/>
+				<in2 component_id="531"/>
+			</c21>
+			<c22 id="531" n="Assume Standard Cab Orientation" on="On" off="Off" v="true">
+				<pos y="-6"/>
+			</c22>
+			<c23 id="532">
+				<pos x="3.5" y="-5.25"/>
+				<in1 component_id="528"/>
+				<in2 component_id="534"/>
+			</c23>
+			<c24 id="534">
+				<pos y="-5.25"/>
+				<in1 component_id="531"/>
+			</c24>
+			<c25 id="538" e="(x&amp;y)|(z&amp;w)">
+				<pos x="5.25" y="-5.75"/>
+				<in1 component_id="532"/>
+				<in2 component_id="481"/>
+				<in3 component_id="530"/>
+				<in4 component_id="480"/>
+			</c25>
 		</component_states>
 		<component_bridge_states>
-			<c0 id="413">
-				<pos y="2"/>
-			</c0>
-			<c1 id="426">
-				<pos y="2.5"/>
-			</c1>
-			<c2 id="453">
+			<c0 id="453">
 				<pos x="8.75" y="1.5"/>
 				<in1 component_id="481"/>
-			</c2>
-			<c3 id="454">
+			</c0>
+			<c1 id="454">
 				<pos x="8.75" y="0.75"/>
 				<in1 component_id="480"/>
-			</c3>
-			<c4 id="478">
-				<pos x="3.5" y="3"/>
-			</c4>
-			<c5 id="493">
-				<pos x="3.5" y="-0.75"/>
-			</c5>
-			<c6 id="494">
-				<pos x="3.5" y="-0.25"/>
-			</c6>
-			<c7 id="497">
+			</c1>
+			<c2 id="478">
+				<pos x="3.5" y="2.25"/>
+			</c2>
+			<c3 id="497">
 				<pos x="8.75" y="-0.75"/>
 				<in1 component_id="501"/>
-			</c7>
-			<c8 id="498">
-				<pos x="3.5" y="-1.5"/>
-			</c8>
-			<c9 id="499">
-				<pos x="3.5" y="-2"/>
-			</c9>
-			<c10 id="508">
-				<pos y="0.75"/>
-			</c10>
-			<c11 id="509">
-				<pos y="0.25"/>
-			</c11>
+			</c3>
+			<c4 id="518">
+				<pos y="1.5"/>
+			</c4>
+			<c5 id="519">
+				<pos y="1"/>
+			</c5>
 		</component_bridge_states>
 		<group_states/>
 	</group>
