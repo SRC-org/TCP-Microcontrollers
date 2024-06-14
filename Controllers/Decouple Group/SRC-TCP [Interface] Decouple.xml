@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<microprocessor name="SRC-TCP [Interface] Decouple v1.3" description="Connects to decouple module and connectors to decouple cars" width="2" length="3" id_counter="923" id_counter_node="42" sym2="4" sym3="2" sym4="8191" sym5="8194" sym6="9508" sym7="1184" sym8="3232" sym9="11636" sym10="16388" sym11="65528" sym12="16384" sym13="8192">
+<microprocessor name="SRC-TCP [Interface] Decouple v1.3" description="Connects to decouple module and connectors to decouple cars" width="2" length="3" id_counter="923" id_counter_node="42"  sym6="4984" sym7="5144" sym8="6184" sym9="7880">
 	<nodes>
 		<n id="17" component_id="111">
 			<node label="Interface -&gt; Module" type="5" description="Communicates with Decouple Module">
