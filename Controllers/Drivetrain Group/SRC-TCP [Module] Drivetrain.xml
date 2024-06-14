@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<microprocessor name="SRC-TCP [Module] Drivetrain v1.3" description="Communicates with main, other trains, and the drive interface" width="2" length="3" id_counter="403" id_counter_node="35"  sym6="4984" sym7="5144" sym8="6184" sym9="7880">
+<microprocessor name="SRC-TCP [Module] Drivetrain v1.3" description="Communicates with main, other trains, and the drive interface" width="2" length="3" id_counter="403" id_counter_node="35" sym6="4984" sym7="5144" sym8="6184" sym9="7880">
 	<nodes>
 		<n id="19" component_id="265">
 			<node label="Hub slot/Main Input" type="5" description="Outputs information to Hub/Main"/>

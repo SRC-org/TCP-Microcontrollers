@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<microprocessor name="SRC-TCP [Interface] Passenger Doors v1.3" description="Connects to passenger module and door controller. Controls locks and doors" width="2" length="3" id_counter="919" id_counter_node="50"  sym6="4984" sym7="5144" sym8="6184" sym9="7880">
+<microprocessor name="SRC-TCP [Interface] Passenger Doors v1.3" description="Connects to passenger module and door controller. Controls locks and doors" width="2" length="3" id_counter="919" id_counter_node="50" sym6="4984" sym7="5144" sym8="6184" sym9="7880">
 	<nodes>
 		<n id="33" component_id="264">
 			<node label="Module -&gt; Interface" mode="1" type="5" description="Communicates with passenger module"/>
@@ -10,7 +10,7 @@
 			</node>
 		</n>
 		<n id="42" component_id="351">
-			<node label="UI" mode="1" type="5" description="Connects to Instruments or Display Controller // Channels: B4: Decrement start position (push); B5: Increment start position (push); B6: Decrement end position (push); B7: Increment end position (push); B8: Unlock left doors (toggle); B9: Unlock right doors (toggle); B10: Open selected doors (toggle);">
+			<node label="UI" mode="1" type="5" description="Connects to Instruments or Display Controller // Channels: B4: Unlock left doors (toggle); B5: Unlock right doors (toggle); B6: Open selected doors (toggle);">
 				<position z="2"/>
 			</node>
 		</n>

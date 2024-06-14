@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<microprocessor name="SRC-TCP [Interface] Passenger Lighting v1.3" description="Connects to passenger module. Controls lights in passenger cars" width="2" length="4" id_counter="345" id_counter_node="17"  sym6="4984" sym7="5144" sym8="6184" sym9="7880">
+<microprocessor name="SRC-TCP [Interface] Passenger Lighting v1.3" description="Connects to passenger module. Controls lights in passenger cars" width="2" length="4" id_counter="345" id_counter_node="17" sym6="4984" sym7="5144" sym8="6184" sym9="7880">
 	<nodes>
 		<n id="7" component_id="18">
 			<node label="RGB Lights" type="5" description="Ouputs RGB values to RGB lights // Channels: N1: Red (0-1); N2: Green (0-1); N3: Blue (0-1);">
