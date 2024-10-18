@@ -156,7 +156,9 @@
 						"1": "Wheel Slip",
 						"2": "Emergency Set (push)",
 						"3": "Emergency Reset (push)",
-						"4": "Remote Engine Activation (toggle)"
+						"4": "Remote Engine Activation (toggle)",
+						"5": "Passenger Emergency Set (push)",
+						"6": "Parking Brake Disable"
 					},
 					"number": {
 						"1": "Throttle (0-maxSpeed)",
