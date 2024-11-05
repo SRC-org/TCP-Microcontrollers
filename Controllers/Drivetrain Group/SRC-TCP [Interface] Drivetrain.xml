@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<microprocessor name="SRC-TCP [Interface] Drivetrain v1.3" description="Communicates with drive module and UI" width="5" length="2" id_counter="439" id_counter_node="45" sym6="4984" sym7="5144" sym8="6184" sym9="7880">
+<microprocessor name="SRC-TCP [Interface] Drivetrain v1.3" description="Communicates with drive module and UI" width="5" length="2" id_counter="444" id_counter_node="45" sym6="4984" sym7="5144" sym8="6184" sym9="7880">
 	<nodes>
 		<n id="22" component_id="152">
 			<node label="Module -&gt; Interface" mode="1" type="5" description="Communicates with Drivetrain Module">
@@ -45,7 +45,7 @@
 			</node>
 		</n>
 		<n id="45" component_id="396">
-			<node label="UI Return" type="5" description="N1: Target speed- N2: Target brakes- B1: Emergency return- B2: Remote Engine">
+			<node label="UI Return" type="5">
 				<position x="1"/>
 			</node>
 		</n>
@@ -402,21 +402,21 @@ end'>
 				</object>
 			</c>
 			<c type="48">
-				<object id="379" m="0">
-					<pos x="-2.5" y="-21"/>
-					<in1 component_id="170"/>
+				<object id="379">
+					<pos x="-3.75" y="-21.25"/>
+					<in1 component_id="223"/>
 				</object>
 			</c>
 			<c type="2">
 				<object id="380">
 					<pos x="-1.25" y="-21.5"/>
-					<in1 component_id="379"/>
+					<in1 component_id="443"/>
 					<in2 component_id="382"/>
 				</object>
 			</c>
 			<c type="48">
 				<object id="382">
-					<pos x="-2.5" y="-21.5"/>
+					<pos x="-2.5" y="-21.75"/>
 					<in1 component_id="386"/>
 				</object>
 			</c>
@@ -559,7 +559,7 @@ end'>
 					<in1 component_id="390"/>
 					<in2 component_id="421"/>
 					<in3 component_id="398"/>
-					<in4 component_id="407"/>
+					<in4 component_id="440"/>
 				</object>
 			</c>
 			<c type="46">
@@ -684,7 +684,7 @@ end'>
 			<c type="44">
 				<object id="387" l="Is emergency" on="Yes" off="No">
 					<pos x="15.5" y="-7"/>
-					<in1 component_id="421"/>
+					<in1 component_id="422"/>
 				</object>
 			</c>
 			<c type="44">
@@ -733,6 +733,39 @@ end'>
 					<pos x="15.5" y="-10"/>
 					<in1 component_id="432"/>
 					<in2 component_id="438"/>
+				</object>
+			</c>
+			<c type="1">
+				<object id="440">
+					<pos y="-19.25"/>
+					<in1 component_id="407"/>
+					<in2 component_id="442"/>
+				</object>
+			</c>
+			<c type="3">
+				<object id="441">
+					<pos x="-1.25" y="-20"/>
+					<in1 component_id="170"/>
+					<in2 component_id="223"/>
+				</object>
+			</c>
+			<c>
+				<object id="442">
+					<pos y="-19.75"/>
+					<in1 component_id="441"/>
+				</object>
+			</c>
+			<c type="2">
+				<object id="443">
+					<pos x="-2.5" y="-21.25"/>
+					<in1 component_id="444"/>
+					<in2 component_id="379"/>
+				</object>
+			</c>
+			<c type="48">
+				<object id="444" m="0">
+					<pos x="-3.75" y="-20.75"/>
+					<in1 component_id="170"/>
 				</object>
 			</c>
 		</components>
@@ -1060,17 +1093,17 @@ end'>
 				<pos x="-3" y="-18.25"/>
 				<in1 component_id="384"/>
 			</c39>
-			<c40 id="379" m="0">
-				<pos x="-2.5" y="-21"/>
-				<in1 component_id="170"/>
+			<c40 id="379">
+				<pos x="-3.75" y="-21.25"/>
+				<in1 component_id="223"/>
 			</c40>
 			<c41 id="380">
 				<pos x="-1.25" y="-21.5"/>
-				<in1 component_id="379"/>
+				<in1 component_id="443"/>
 				<in2 component_id="382"/>
 			</c41>
 			<c42 id="382">
-				<pos x="-2.5" y="-21.5"/>
+				<pos x="-2.5" y="-21.75"/>
 				<in1 component_id="386"/>
 			</c42>
 			<c43 id="383">
@@ -1173,7 +1206,7 @@ end'>
 				<in1 component_id="390"/>
 				<in2 component_id="421"/>
 				<in3 component_id="398"/>
-				<in4 component_id="407"/>
+				<in4 component_id="440"/>
 			</c62>
 			<c63 id="403" e="x|y">
 				<pos x="9.25" y="-19.75"/>
@@ -1260,7 +1293,7 @@ end'>
 			</c80>
 			<c81 id="387" l="Is emergency" on="Yes" off="No">
 				<pos x="15.5" y="-7"/>
-				<in1 component_id="421"/>
+				<in1 component_id="422"/>
 			</c81>
 			<c82 id="439" l="Remote Engine" on="On" off="Off">
 				<pos x="15.5" y="-7.5"/>
@@ -1296,6 +1329,29 @@ end'>
 				<in1 component_id="432"/>
 				<in2 component_id="438"/>
 			</c88>
+			<c89 id="440">
+				<pos y="-19.25"/>
+				<in1 component_id="407"/>
+				<in2 component_id="442"/>
+			</c89>
+			<c90 id="441">
+				<pos x="-1.25" y="-20"/>
+				<in1 component_id="170"/>
+				<in2 component_id="223"/>
+			</c90>
+			<c91 id="442">
+				<pos y="-19.75"/>
+				<in1 component_id="441"/>
+			</c91>
+			<c92 id="443">
+				<pos x="-2.5" y="-21.25"/>
+				<in1 component_id="444"/>
+				<in2 component_id="379"/>
+			</c92>
+			<c93 id="444" m="0">
+				<pos x="-3.75" y="-20.75"/>
+				<in1 component_id="170"/>
+			</c93>
 		</component_states>
 		<component_bridge_states>
 			<c0 id="152">
