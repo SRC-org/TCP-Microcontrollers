@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<microprocessor name="SRC-TCP [Interface] Drivetrain v1.3" description="Communicates with drive module and UI" width="5" length="2" id_counter="449" id_counter_node="45" sym6="4984" sym7="5144" sym8="6184" sym9="7880">
+<microprocessor name="SRC-TCP [Interface] Drivetrain v1.3" description="Communicates with drive module and UI" width="5" length="2" id_counter="450" id_counter_node="45" sym6="4984" sym7="5144" sym8="6184" sym9="7880">
 	<nodes>
 		<n id="22" component_id="152">
 			<node label="Module -&gt; Interface" mode="1" type="5" description="Communicates with Drivetrain Module">
@@ -382,16 +382,17 @@ end'>
 				</object>
 			</c>
 			<c type="41">
-				<object id="371" count="2">
-					<pos x="7.5" y="-10.75"/>
-					<in1 component_id="242"/>
+				<object id="371" count="3" offset="3">
+					<pos x="7.5" y="-11"/>
+					<in1 component_id="422"/>
 					<in2 component_id="415"/>
+					<in3 component_id="242"/>
 				</object>
 			</c>
 			<c type="2">
 				<object id="374">
 					<pos x="-3" y="-17.25"/>
-					<in1 component_id="166"/>
+					<in1 component_id="372"/>
 					<in2 component_id="242"/>
 				</object>
 			</c>
@@ -471,11 +472,12 @@ end'>
 				</object>
 			</c>
 			<c type="41">
-				<object id="397" count="2">
-					<pos x="11" y="-20"/>
+				<object id="397" count="3">
+					<pos x="11" y="-20.25"/>
 					<inc component_id="436"/>
 					<in1 component_id="446"/>
 					<in2 component_id="374"/>
+					<in3 component_id="450"/>
 				</object>
 			</c>
 			<c type="49">
@@ -633,7 +635,7 @@ end'>
 			</c>
 			<c type="44">
 				<object id="387" l="Is emergency" on="Yes" off="No">
-					<pos x="9.25" y="-19.25"/>
+					<pos x="7.5" y="-19"/>
 					<in1 component_id="422"/>
 				</object>
 			</c>
@@ -717,6 +719,13 @@ end'>
 					<in2 component_id="378"/>
 					<in3 component_id="414"/>
 					<in4 component_id="425"/>
+				</object>
+			</c>
+			<c type="2">
+				<object id="450">
+					<pos x="9.25" y="-19.25"/>
+					<in1 component_id="166"/>
+					<in2 component_id="422"/>
 				</object>
 			</c>
 		</components>
@@ -1030,14 +1039,15 @@ end'>
 				<pos x="-6.5" y="-9.5"/>
 				<in1 component_id="152"/>
 			</c36>
-			<c37 id="371" count="2">
-				<pos x="7.5" y="-10.75"/>
-				<in1 component_id="242"/>
+			<c37 id="371" count="3" offset="3">
+				<pos x="7.5" y="-11"/>
+				<in1 component_id="422"/>
 				<in2 component_id="415"/>
+				<in3 component_id="242"/>
 			</c37>
 			<c38 id="374">
 				<pos x="-3" y="-17.25"/>
-				<in1 component_id="166"/>
+				<in1 component_id="372"/>
 				<in2 component_id="242"/>
 			</c38>
 			<c39 id="378">
@@ -1093,11 +1103,12 @@ end'>
 				<in1 component_id="324"/>
 				<in2 component_id="392"/>
 			</c49>
-			<c50 id="397" count="2">
-				<pos x="11" y="-20"/>
+			<c50 id="397" count="3">
+				<pos x="11" y="-20.25"/>
 				<inc component_id="436"/>
 				<in1 component_id="446"/>
 				<in2 component_id="374"/>
+				<in3 component_id="450"/>
 			</c50>
 			<c51 id="398">
 				<pos x="4" y="-20.5"/>
@@ -1207,7 +1218,7 @@ end'>
 				<in1 component_id="420"/>
 			</c73>
 			<c74 id="387" l="Is emergency" on="Yes" off="No">
-				<pos x="9.25" y="-19.25"/>
+				<pos x="7.5" y="-19"/>
 				<in1 component_id="422"/>
 			</c74>
 			<c75 id="439" l="Remote Engine" on="On" off="Off">
@@ -1270,6 +1281,11 @@ end'>
 				<in3 component_id="414"/>
 				<in4 component_id="425"/>
 			</c85>
+			<c86 id="450">
+				<pos x="9.25" y="-19.25"/>
+				<in1 component_id="166"/>
+				<in2 component_id="422"/>
+			</c86>
 		</component_states>
 		<component_bridge_states>
 			<c0 id="152">
