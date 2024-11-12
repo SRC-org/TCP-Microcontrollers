@@ -166,6 +166,20 @@
 					}
 				}
 			},
+			"Drivetrain#UIReturn": {
+				"visibility": 2,
+				"channels": {
+					"boolean":{
+						"1": "Emergency Pending",
+						"2": "Remote Engine",
+						"3": "Emergency Status"
+					},
+					"number":{
+						"1": "Target Speed",
+						"2": "Target Brakes"
+					}
+				}
+			},
 			"Lighting#Module->Interface": {
 				"visibility": 1
 			},
