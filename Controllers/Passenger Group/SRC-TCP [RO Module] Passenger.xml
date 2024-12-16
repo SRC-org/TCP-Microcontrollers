@@ -117,9 +117,9 @@ function onTick()
 	sN(5,dec(10,6)) -- last
 	
 	-- lighting
-	sN(6,dec(16,5)/7) -- r
-	sN(7,dec(21,5)/7) -- g
-	sN(8,dec(27,5)/7) -- b
+	sN(6,dec(16,3)/7) -- r
+	sN(7,dec(19,3)/7) -- g
+	sN(8,dec(22,3)/7) -- b
 	
 
 end
@@ -236,9 +236,9 @@ function onTick()
 	sN(5,dec(10,6)) -- last
 	
 	-- lighting
-	sN(6,dec(16,5)/7) -- r
-	sN(7,dec(21,5)/7) -- g
-	sN(8,dec(27,5)/7) -- b
+	sN(6,dec(16,3)/7) -- r
+	sN(7,dec(19,3)/7) -- g
+	sN(8,dec(22,3)/7) -- b
 	
 
 end
@@ -273,4 +273,3 @@ end">
 		<group_states/>
 	</group>
 </microprocessor>
-
