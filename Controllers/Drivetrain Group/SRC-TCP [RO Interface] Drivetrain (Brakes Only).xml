@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<microprocessor name="SRC-TCP [RO Interface] Drivetrain (Brakes Only) v1.3" description="Handles brakes and wheelslip with built-in ABS." width="2" length="2" id_counter="323" id_counter_node="45" sym6="4984" sym7="5144" sym8="6184" sym9="7880">
+<microprocessor name="SRC-TCP [RO Interface] Drivetrain (Brakes Only) v1.3" description="Handles brakes and wheelslip with built-in ABS." width="2" length="2" id_counter="326" id_counter_node="45" sym6="4984" sym7="5144" sym8="6184" sym9="7880">
 	<nodes>
 		<n id="22" component_id="152">
 			<node label="Module -&gt; Interface" mode="1" type="5" description="Communicates with drivetrain module"/>
@@ -68,22 +68,16 @@
 				<object id="307">
 					<pos x="1.75" y="-5.5"/>
 					<in1 component_id="225"/>
-					<in2 component_id="308"/>
-				</object>
-			</c>
-			<c>
-				<object id="308">
-					<pos y="-5.5"/>
-					<in1 component_id="302"/>
+					<in2 component_id="325"/>
 				</object>
 			</c>
 			<c type="33">
-				<object id="309" n="ABS" on="On" off="Off" v="true">
+				<object id="309" n="ABS" on="Enabled" off="Disabled" v="true">
 					<pos x="5.25" y="-5.75"/>
 				</object>
 			</c>
 			<c type="44">
-				<object id="310" l="ABS" on="ENABLED" off="DISABLED">
+				<object id="310" l="ABS" on="Enabled" off="Disabled">
 					<pos x="5.25" y="-6.25"/>
 					<in1 component_id="309"/>
 				</object>
@@ -118,6 +112,24 @@
 					<pos x="7" y="-5"/>
 				</object>
 			</c>
+			<c type="33">
+				<object id="324" n="Auto Parking Brake" on="Enabled" off="Disabled" v="true">
+					<pos x="-1.75" y="-5.5"/>
+				</object>
+			</c>
+			<c type="46">
+				<object id="325" e="!(!x|y)">
+					<pos y="-6.25"/>
+					<in1 component_id="324"/>
+					<in2 component_id="302"/>
+				</object>
+			</c>
+			<c type="44">
+				<object id="326" l="Auto Parking Brake" on="Enabled" off="Disabled">
+					<pos x="1.75" y="-6"/>
+					<in1 component_id="325"/>
+				</object>
+			</c>
 		</components>
 		<components_bridge>
 			<c type="4">
@@ -138,7 +150,7 @@
 			</c>
 			<c>
 				<object id="302">
-					<pos x="-1.75" y="-5.5"/>
+					<pos x="-1.75" y="-6"/>
 				</object>
 			</c>
 		</components_bridge>
@@ -173,25 +185,21 @@
 			<c6 id="307">
 				<pos x="1.75" y="-5.5"/>
 				<in1 component_id="225"/>
-				<in2 component_id="308"/>
+				<in2 component_id="325"/>
 			</c6>
-			<c7 id="308">
-				<pos y="-5.5"/>
-				<in1 component_id="302"/>
-			</c7>
-			<c8 id="309" n="ABS" on="On" off="Off" v="true">
+			<c7 id="309" n="ABS" on="Enabled" off="Disabled" v="true">
 				<pos x="5.25" y="-5.75"/>
-			</c8>
-			<c9 id="310" l="ABS" on="ENABLED" off="DISABLED">
+			</c7>
+			<c8 id="310" l="ABS" on="Enabled" off="Disabled">
 				<pos x="5.25" y="-6.25"/>
 				<in1 component_id="309"/>
-			</c9>
-			<c10 id="311">
+			</c8>
+			<c9 id="311">
 				<pos x="7" y="-5.75"/>
 				<in1 component_id="301"/>
 				<in2 component_id="309"/>
-			</c10>
-			<c11 id="312" m="1">
+			</c9>
+			<c10 id="312" m="1">
 				<pos x="8.75" y="-5.5"/>
 				<in1 component_id="314"/>
 				<in3 component_id="311"/>
@@ -199,15 +207,27 @@
 				<i text="0.01" value="0.01"/>
 				<min text="0"/>
 				<max text="1" value="1"/>
-			</c11>
-			<c12 id="313" e="clamp(x*y,0,1)">
+			</c10>
+			<c11 id="313" e="clamp(x*y,0,1)">
 				<pos x="10.5" y="-5.25"/>
 				<in1 component_id="79"/>
 				<in2 component_id="312"/>
-			</c12>
-			<c13 id="314">
+			</c11>
+			<c12 id="314">
 				<pos x="7" y="-5"/>
+			</c12>
+			<c13 id="324" n="Auto Parking Brake" on="Enabled" off="Disabled" v="true">
+				<pos x="-1.75" y="-5.5"/>
 			</c13>
+			<c14 id="325" e="!(!x|y)">
+				<pos y="-6.25"/>
+				<in1 component_id="324"/>
+				<in2 component_id="302"/>
+			</c14>
+			<c15 id="326" l="Auto Parking Brake" on="Enabled" off="Disabled">
+				<pos x="1.75" y="-6"/>
+				<in1 component_id="325"/>
+			</c15>
 		</component_states>
 		<component_bridge_states>
 			<c0 id="152">
@@ -221,9 +241,10 @@
 				<pos x="5.25" y="-5.25"/>
 			</c2>
 			<c3 id="302">
-				<pos x="-1.75" y="-5.5"/>
+				<pos x="-1.75" y="-6"/>
 			</c3>
 		</component_bridge_states>
 		<group_states/>
 	</group>
 </microprocessor>
+
