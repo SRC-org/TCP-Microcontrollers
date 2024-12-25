@@ -77,7 +77,7 @@
 			</node>
 		</n>
 		<n id="60" component_id="478">
-			<node label="Cab Controller" mode="1" type="5" description="Connects to associated cab controller // Channels: B1: Request Master (push); B2: Release Master (push); B3: Lock Master (toggle); B4: Player In Cab; B5: Cab Direction (f: front, t: rear);"/>
+			<node label="Cab Controller" mode="1" type="5" description="Connects to associated cab controller"/>
 		</n>
 	</nodes>
 	<group>

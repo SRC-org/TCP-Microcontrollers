@@ -117,6 +117,15 @@
 					}
 				}
 			},
+			"System#CabController->Main": {
+				"visibility": 1,
+				"inherit": "System#Cab->Main",
+				"channels": {
+					"boolean": {
+						"6": "Active Cab"
+					}
+				}
+			},
 			"Drivetrain#Module->Interface": {
 				"visibility": 1,
 				"channels": {
@@ -169,12 +178,12 @@
 			"Drivetrain#UIReturn": {
 				"visibility": 2,
 				"channels": {
-					"boolean":{
+					"boolean": {
 						"1": "Emergency Pending",
 						"2": "Remote Engine",
 						"3": "Emergency Status"
 					},
-					"number":{
+					"number": {
 						"1": "Target Speed",
 						"2": "Target Brakes"
 					}
@@ -269,7 +278,14 @@
 			"System#Cab": "System#Cab->Main",
 			"System#CabA": "System#Cab->Main",
 			"System#CabB": "System#Cab->Main",
-			"System#CabController": "System#Cab->Main",
+			"System#CabController": {
+				"visibilityLimit": 1,
+				"inherit": "System#CabController->Main"
+			},
+			"System#ToMainandSwitchbox": {
+				"visibilityLimit": 1,
+				"inherit": "System#CabController->Main"
+			},
 			"Passenger.PassengerLighting#Interface->Module": "Passenger#LightingInterface->Module",
 			"Passenger.PassengerDoors#Interface->Module": "Passenger#DoorsInterface->Module"
 		},
@@ -653,6 +669,17 @@
 					"type": 0,
 					"position": {
 						"x": 2,
+						"z": 0
+					}
+				},
+				{
+					"label": "UI Return",
+					"description": "undefined",
+					"mode": false,
+					"type": 5,
+					"channels": "Drivetrain#UIReturn",
+					"position": {
+						"x": 1,
 						"z": 0
 					}
 				}
@@ -1297,6 +1324,9 @@
 			"hierarchy": {
 				"higher": [
 					"[Module] Passenger"
+				],
+				"lower": [
+					"[Extender] Passenger Door Opener"
 				]
 			}
 		},
@@ -1389,6 +1419,9 @@
 			"hierarchy": {
 				"higher": [
 					"[Module] Passenger"
+				],
+				"lower": [
+					"[Extender] Passenger Door Opener"
 				]
 			}
 		},
@@ -1476,8 +1509,8 @@
 			"name": "Passenger Doors",
 			"version": "1.3",
 			"description": "Connects to passenger module and door controller. Controls locks and doors",
-			"width": "2",
-			"length": "1",
+			"width": "1",
+			"length": "2",
 			"nodes": [
 				{
 					"label": "Module -> Interface",
@@ -1496,8 +1529,8 @@
 					"mode": false,
 					"type": 5,
 					"position": {
-						"x": 1,
-						"z": 0
+						"x": 0,
+						"z": 1
 					}
 				}
 			],
@@ -1505,6 +1538,9 @@
 			"hierarchy": {
 				"higher": [
 					"[RO Module] Passenger"
+				],
+				"lower": [
+					"[Extender] Passenger Door Opener"
 				]
 			}
 		},
@@ -1565,6 +1601,9 @@
 			"hierarchy": {
 				"higher": [
 					"[RO Module] Passenger"
+				],
+				"lower": [
+					"[Extender] Passenger Door Opener"
 				]
 			}
 		},
@@ -1782,6 +1821,7 @@
 					"description": "Cab information for main controller and dual cab switchbox",
 					"mode": false,
 					"type": 5,
+					"channels": "System#ToMainandSwitchbox",
 					"position": {
 						"x": 0,
 						"z": 1
@@ -2247,6 +2287,44 @@
 			],
 			"readonly": false,
 			"hierarchy": {}
+		},
+		"[Extender] Passenger Door Opener": {
+			"identifier": "[Extender] Passenger Door Opener",
+			"type": "Extender",
+			"name": "Passenger Door Opener",
+			"readonly": false,
+			"group": "Passenger",
+			"description": "A template controller for passenger door control",
+			"width": "2",
+			"length": "2",
+			"nodes": [
+				{
+					"label": "Door Button",
+					"description": "From the door button. Note that this will not work unless the door is unlocked",
+					"mode": true,
+					"type": 0,
+					"position": {
+						"x": 1,
+						"z": 0
+					}
+				},
+				{
+					"label": "From Door Opener",
+					"description": "Communicates with the Passenger Doors Interface\"",
+					"mode": true,
+					"type": 5,
+					"position": {
+						"x": 0,
+						"z": 0
+					}
+				}
+			],
+			"hierarchy": {
+				"higher": [
+					"[Interface] Passenger Doors",
+					"[Interface] Passenger Lighting"
+				]
+			}
 		}
 	}
 }

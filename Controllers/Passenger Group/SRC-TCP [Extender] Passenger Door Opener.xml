@@ -7,7 +7,7 @@
 			</node>
 		</n>
 		<n id="6" component_id="47">
-			<node label="From Door Opener" mode="1" type="5" description='Communicates with the Passenger Doors Interface"'/>
+			<node label="From Door Opener" mode="1" type="5" description="Communicates with the Passenger Doors Interface&quot;"/>
 		</n>
 	</nodes>
 	<group>
@@ -225,4 +225,3 @@
 		<group_states/>
 	</group>
 </microprocessor>
-

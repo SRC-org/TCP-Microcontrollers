@@ -90,6 +90,7 @@ async function execDatabase() {
 			let desc = n["@_description"] || ""
 			let mode = n["@_mode"] === "1"
 			let type = Number(n["@_type"]) || 0
+			// TODO: improve handling of automatic channel documentation generation (option for manual + check common too) or smth like that
 			let channels = [c.group + "." + c.nameData.name.replaceAll(" ", ""), c.group, "Any"].map(d => (c => (database.connections.primary[c] ?? database.connections.redirects[c]) ? c : undefined)(d + "#" + label.replaceAll(" ", ""))).reduce((p, c) => p ?? c, undefined)
 			if (channels) n["@_description"] = placeholders(n["@_description"] + " // {$c" + (mode ? "i" : "o") + channels + "}")
 			nodes.push({
@@ -285,7 +286,7 @@ async function execExport(index) {
 		let pushChannels = type => {
 			groups[domain].header2 += "," + type
 			for (let i = 0; i < 32; i++) {
-				groups[domain].entries[i] += "," + (channels[type][i+1]?.label ?? "")
+				groups[domain].entries[i] += "," + "\"" + (channels[type][i+1]?.label ?? "") + "\""
 			}
 		}
 

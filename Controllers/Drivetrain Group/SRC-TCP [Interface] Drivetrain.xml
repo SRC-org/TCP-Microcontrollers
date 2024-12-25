@@ -10,7 +10,7 @@
 			<node label="Interface -&gt; Module" type="5" description="Communicates with Drivetrain Module"/>
 		</n>
 		<n id="33" component_id="230">
-			<node label="UI" mode="1" type="5" description="Connects to Instruments/Cab // Channels: B1: Wheel Slip; B2: Emergency Set (push); B3: Emergency Reset (push); B4: Remote Engine">
+			<node label="UI" mode="1" type="5" description="Connects to Instruments/Cab // Channels: B1: Wheel Slip; B2: Emergency Set (push); B3: Emergency Reset (push); B4: Remote Engine Activation (toggle); B5: Passenger Emergency Set (push); B6: Parking Brake Disable; N1: Throttle (0-maxSpeed); N2: Brakes (0-1);">
 				<position x="1" z="1"/>
 			</node>
 		</n>
@@ -45,7 +45,7 @@
 			</node>
 		</n>
 		<n id="45" component_id="396">
-			<node label="UI Return" type="5">
+			<node label="UI Return" type="5" description="undefined // Channels: B1: Emergency Pending; B2: Remote Engine; B3: Emergency Status; N1: Target Speed; N2: Target Brakes;">
 				<position x="1"/>
 			</node>
 		</n>
@@ -182,7 +182,7 @@
 				</object>
 			</c>
 			<c type="56">
-				<object id="328" script='s,scr,i,o,m=self,screen,input,output,math
+				<object id="328" script="s,scr,i,o,m=self,screen,input,output,math
 pgn,pgb,gn,gb,sn,sb=property.getNumber,property.getBool,i.getNumber,i.getBool,o.setNumber,o.setBool
 abs=m.abs
 			
@@ -209,8 +209,8 @@ return clamp(error*s.p+s.integral,min,max)
 end}
 end
 
-mult=pgn("Acceleration Multiplier")
-siz=pgn("Wheel Size")
+mult=pgn(&quot;Acceleration Multiplier&quot;)
+siz=pgn(&quot;Wheel Size&quot;)
 piVal=pid(mult*0.003,mult*0.000003)
 a=1
 b=1
@@ -262,7 +262,7 @@ sn(2,rpsd)
 sn(3,a)
 sn(4,targetTemp)
 sn(5,tinteg)
-end'>
+end">
 					<pos x="0.5" y="-10.75"/>
 					<in1 component_id="329"/>
 				</object>
@@ -882,7 +882,7 @@ end'>
 				<pos x="-4.75" y="-14.75"/>
 				<in1 component_id="293"/>
 			</c18>
-			<c19 id="328" script='s,scr,i,o,m=self,screen,input,output,math
+			<c19 id="328" script="s,scr,i,o,m=self,screen,input,output,math
 pgn,pgb,gn,gb,sn,sb=property.getNumber,property.getBool,i.getNumber,i.getBool,o.setNumber,o.setBool
 abs=m.abs
 			
@@ -909,8 +909,8 @@ return clamp(error*s.p+s.integral,min,max)
 end}
 end
 
-mult=pgn("Acceleration Multiplier")
-siz=pgn("Wheel Size")
+mult=pgn(&quot;Acceleration Multiplier&quot;)
+siz=pgn(&quot;Wheel Size&quot;)
 piVal=pid(mult*0.003,mult*0.000003)
 a=1
 b=1
@@ -962,7 +962,7 @@ sn(2,rpsd)
 sn(3,a)
 sn(4,targetTemp)
 sn(5,tinteg)
-end'>
+end">
 				<pos x="0.5" y="-10.75"/>
 				<in1 component_id="329"/>
 			</c19>
@@ -1339,4 +1339,3 @@ end'>
 		<group_states/>
 	</group>
 </microprocessor>
-
