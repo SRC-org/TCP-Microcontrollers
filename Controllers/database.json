@@ -1326,7 +1326,7 @@
 					"[Module] Passenger"
 				],
 				"lower": [
-					"[Extender] Passenger Door Opener"
+					"[Extender] Door Opener"
 				]
 			}
 		},
@@ -1421,7 +1421,7 @@
 					"[Module] Passenger"
 				],
 				"lower": [
-					"[Extender] Passenger Door Opener"
+					"[Extender] Door Opener"
 				]
 			}
 		},
@@ -1540,7 +1540,7 @@
 					"[RO Module] Passenger"
 				],
 				"lower": [
-					"[Extender] Passenger Door Opener"
+					"[Extender] Door Opener"
 				]
 			}
 		},
@@ -1603,7 +1603,7 @@
 					"[RO Module] Passenger"
 				],
 				"lower": [
-					"[Extender] Passenger Door Opener"
+					"[Extender] Door Opener"
 				]
 			}
 		},
@@ -2288,10 +2288,10 @@
 			"readonly": false,
 			"hierarchy": {}
 		},
-		"[Extender] Passenger Door Opener": {
-			"identifier": "[Extender] Passenger Door Opener",
+		"[Extender] Door Opener": {
+			"identifier": "[Extender] Door Opener",
 			"type": "Extender",
-			"name": "Passenger Door Opener",
+			"name": "Door Opener",
 			"readonly": false,
 			"group": "Passenger",
 			"description": "A template controller for passenger door control",
