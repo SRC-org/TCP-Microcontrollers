@@ -249,12 +249,12 @@
 						"12": "Decorative Lights (toggle)"
 					},
 					"number": {
-						"1": "Front R",
-						"2": "Front G",
-						"3": "Front B",
-						"4": "Rear R",
-						"5": "Rear G",
-						"6": "Rear B"
+						"1": "Front Light Red (0-1)",
+						"2": "Front Light Green (0-1)",
+						"3": "Front Light Blue (0-1)",
+						"4": "Rear Light Red (0-1)",
+						"5": "Rear Light Green (0-1)",
+						"6": "Rear Light Blue (0-1)"
 					}
 				}
 			},
