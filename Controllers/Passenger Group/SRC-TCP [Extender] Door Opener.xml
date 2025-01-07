@@ -7,7 +7,7 @@
 			</node>
 		</n>
 		<n id="6" component_id="47">
-			<node label="From Passenger Doors Interface" mode="1" type="5" description="Communicates with the Passenger Doors Interface // Channels: B4: Unlock Left Doors (toggle); B5: Unlock Right Doors (toggle); B6"/>
+			<node label="From Passenger Doors Interface" mode="1" type="5" description="Communicates with the Passenger Doors Interface // Channels: B4: Unlock Left Doors (toggle); B5: Unlock Right Doors (toggle); B6: Open Selected Doors (toggle);"/>
 		</n>
 		<n id="14" component_id="114">
 			<node label="Open Unlocked Door" description="Enabled when door is unlocked and set to open.">
@@ -240,4 +240,3 @@
 		<group_states/>
 	</group>
 </microprocessor>
-

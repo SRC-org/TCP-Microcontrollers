@@ -373,9 +373,9 @@
 				"visibility": 2,
 				"channels": {
 					"boolean": {
-						"4": "Unlock left doors (toggle)",
-						"5": "Unlock right doors (toggle)",
-						"6": "Open selected doors (toggle)"
+						"4": "Unlock Left Doors (toggle)",
+						"5": "Unlock Right Doors (toggle)",
+						"6": "Open Selected Doors (toggle)"
 					}
 				}
 			},
@@ -797,7 +797,7 @@
 				},
 				{
 					"label": "UI Return",
-					"description": "",
+					"description": "undefined",
 					"mode": false,
 					"type": 5,
 					"channels": "Drivetrain#UIReturn",
@@ -2012,7 +2012,7 @@
 				},
 				{
 					"label": "UI 1",
-					"description": "Connects to the Exterior Lighting Interface",
+					"description": "Switched output from the cabs",
 					"mode": false,
 					"type": 5,
 					"position": {
@@ -2042,7 +2042,7 @@
 				},
 				{
 					"label": "UI 2",
-					"description": "Connects to the Decouple Interface",
+					"description": "Switched output from the cabs",
 					"mode": false,
 					"type": 5,
 					"position": {
@@ -2072,7 +2072,7 @@
 				},
 				{
 					"label": "UI 3",
-					"description": "Connects to the Interior Lighting Interface",
+					"description": "Switched output from the cabs",
 					"mode": false,
 					"type": 5,
 					"position": {
@@ -2102,7 +2102,7 @@
 				},
 				{
 					"label": "UI 4",
-					"description": "Connects to the Doors Interface",
+					"description": "Switched output from the cabs",
 					"mode": false,
 					"type": 5,
 					"position": {
@@ -2132,7 +2132,7 @@
 				},
 				{
 					"label": "UI 5",
-					"description": "Connects to the Drivetrain Interface",
+					"description": "Switched output from the cabs",
 					"mode": false,
 					"type": 5,
 					"position": {
@@ -2444,6 +2444,16 @@
 					"position": {
 						"x": 0,
 						"z": 0
+					}
+				},
+				{
+					"label": "Open Unlocked Door",
+					"description": "Enabled when door is unlocked and set to open.",
+					"mode": false,
+					"type": 0,
+					"position": {
+						"x": 0,
+						"z": 1
 					}
 				}
 			],

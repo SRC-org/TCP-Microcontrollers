@@ -12,7 +12,7 @@
 			</node>
 		</n>
 		<n id="41" component_id="423">
-			<node label="UI 1" type="5" description="Connects to the Exterior Lighting Interface">
+			<node label="UI 1" type="5" description="Switched output from the cabs">
 				<position z="3"/>
 			</node>
 		</n>
@@ -27,7 +27,7 @@
 			</node>
 		</n>
 		<n id="45" component_id="433">
-			<node label="UI 2" type="5" description="Connects to the Decouple Interface">
+			<node label="UI 2" type="5" description="Switched output from the cabs">
 				<position x="1" z="3"/>
 			</node>
 		</n>
@@ -42,7 +42,7 @@
 			</node>
 		</n>
 		<n id="48" component_id="440">
-			<node label="UI 3" type="5" description="Connects to the Interior Lighting Interface">
+			<node label="UI 3" type="5" description="Switched output from the cabs">
 				<position x="2" z="3"/>
 			</node>
 		</n>
@@ -57,7 +57,7 @@
 			</node>
 		</n>
 		<n id="51" component_id="447">
-			<node label="UI 4" type="5" description="Connects to the Doors Interface">
+			<node label="UI 4" type="5" description="Switched output from the cabs">
 				<position x="3" z="3"/>
 			</node>
 		</n>
@@ -72,7 +72,7 @@
 			</node>
 		</n>
 		<n id="56" component_id="461">
-			<node label="UI 5" type="5" description="Connects to the Drivetrain Interface">
+			<node label="UI 5" type="5" description="Switched output from the cabs">
 				<position x="4" z="3"/>
 			</node>
 		</n>
