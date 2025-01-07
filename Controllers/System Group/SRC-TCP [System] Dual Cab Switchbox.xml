@@ -2,77 +2,77 @@
 <microprocessor name="SRC-TCP [System] Dual Cab Switchbox v1.3" description="Composite Switchbox for UIs and instruments from both cabs" width="5" length="4" id_counter="530" id_counter_node="65" sym6="4984" sym7="5144" sym8="6184" sym9="7880">
 	<nodes>
 		<n id="38" component_id="415">
-			<node label="A 1" mode="1" type="5" description="Input from Cab A">
+			<node label="Cab A UI 1" mode="1" type="5" description="Input from Cab A">
 				<position z="1"/>
 			</node>
 		</n>
 		<n id="40" component_id="420">
-			<node label="B 1" mode="1" type="5" description="Input from Cab B">
+			<node label="Cab B UI 1" mode="1" type="5" description="Input from Cab B">
 				<position z="2"/>
 			</node>
 		</n>
 		<n id="41" component_id="423">
-			<node label="Out 1" type="5" description="Connects to the interface">
+			<node label="UI 1" type="5" description="Connects to the Exterior Lighting Interface">
 				<position z="3"/>
 			</node>
 		</n>
 		<n id="43" component_id="428">
-			<node label="A 2" mode="1" type="5" description="Input from Cab A">
+			<node label="Cab A UI 2" mode="1" type="5" description="Input from Cab A">
 				<position x="1" z="1"/>
 			</node>
 		</n>
 		<n id="44" component_id="430">
-			<node label="B 2" mode="1" type="5" description="Input from Cab B">
+			<node label="Cab B UI 2" mode="1" type="5" description="Input from Cab B">
 				<position x="1" z="2"/>
 			</node>
 		</n>
 		<n id="45" component_id="433">
-			<node label="Out 2" type="5" description="Connects to the interface">
+			<node label="UI 2" type="5" description="Connects to the Decouple Interface">
 				<position x="1" z="3"/>
 			</node>
 		</n>
 		<n id="46" component_id="435">
-			<node label="A 3" mode="1" type="5" description="Input from Cab A">
+			<node label="Cab A UI 3" mode="1" type="5" description="Input from Cab A">
 				<position x="2" z="1"/>
 			</node>
 		</n>
 		<n id="47" component_id="437">
-			<node label="B 3" mode="1" type="5" description="Input from Cab B">
+			<node label="Cab B UI 3" mode="1" type="5" description="Input from Cab B">
 				<position x="2" z="2"/>
 			</node>
 		</n>
 		<n id="48" component_id="440">
-			<node label="Out 3" type="5" description="Connects to the interface">
+			<node label="UI 3" type="5" description="Connects to the Interior Lighting Interface">
 				<position x="2" z="3"/>
 			</node>
 		</n>
 		<n id="49" component_id="442">
-			<node label="A 4" mode="1" type="5" description="Input from Cab A">
+			<node label="Cab A UI 4" mode="1" type="5" description="Input from Cab A">
 				<position x="3" z="1"/>
 			</node>
 		</n>
 		<n id="50" component_id="444">
-			<node label="B 4" mode="1" type="5" description="Input from Cab B">
+			<node label="Cab B UI 4" mode="1" type="5" description="Input from Cab B">
 				<position x="3" z="2"/>
 			</node>
 		</n>
 		<n id="51" component_id="447">
-			<node label="Out 4" type="5" description="Connects to the interface">
+			<node label="UI 4" type="5" description="Connects to the Doors Interface">
 				<position x="3" z="3"/>
 			</node>
 		</n>
 		<n id="54" component_id="456">
-			<node label="A 5" mode="1" type="5" description="Input from Cab A">
+			<node label="Cab A UI 5" mode="1" type="5" description="Input from Cab A">
 				<position x="4" z="1"/>
 			</node>
 		</n>
 		<n id="55" component_id="458">
-			<node label="B 5" mode="1" type="5" description="Input from Cab B">
+			<node label="Cab B UI 5" mode="1" type="5" description="Input from Cab B">
 				<position x="4" z="2"/>
 			</node>
 		</n>
 		<n id="56" component_id="461">
-			<node label="Out 5" type="5" description="Connects to the interface">
+			<node label="UI 5" type="5" description="Connects to the Drivetrain Interface">
 				<position x="4" z="3"/>
 			</node>
 		</n>

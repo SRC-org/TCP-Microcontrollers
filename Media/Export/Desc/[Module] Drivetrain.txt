@@ -1,4 +1,4 @@
-Communicates with main, other trains, and the drive interface
+Communicates between the Main Controller and Drivetrain Interface
 
 [url=https://discord.gg/3Swuqkb8d2][img]https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/All/NewToTCP.png[/img][/url]
 [img]https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/Nodes/%5BModule%5D%20Drivetrain.png[/img]

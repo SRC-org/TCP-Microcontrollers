@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<microprocessor name="SRC-TCP [System] Hub v1.0" description="Can be used to connect multiple modules to the main controller. Slot 1 will override slot 2, etc." width="1" length="4" id_counter="2450" id_counter_node="41" sym6="4984" sym7="5144" sym8="6184" sym9="7880">
+<microprocessor name="SRC-TCP [System] Hub v1.0" description="Can be used to connect multiple modules to the main controller. Multiple Hubs can be chained" width="1" length="4" id_counter="2450" id_counter_node="41" sym6="4984" sym7="5144" sym8="6184" sym9="7880">
 	<nodes>
 		<n id="20" component_id="293">
 			<node label="Main Input" type="5" description="To Main Input on Main Controller (or other hub if chaining)"/>

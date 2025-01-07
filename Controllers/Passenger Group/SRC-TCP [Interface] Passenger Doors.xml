@@ -20,7 +20,7 @@
 			</node>
 		</n>
 		<n id="47" component_id="516">
-			<node label="Door Opener" type="5" description="Communicates with door opener">
+			<node label="Door Opener" type="5" description="Communicates with door opener // Channels: B4: Unlock Left Doors (toggle); B5: Unlock Right Doors (toggle); B6: Open Selected Doors (toggle);">
 				<position z="1"/>
 			</node>
 		</n>

@@ -1,4 +1,4 @@
-Interacts with the lighting module, UI, and lightbox to control exterior lighting
+Controls exterior lights on the train
 
 [url=https://discord.gg/3Swuqkb8d2][img]https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/All/NewToTCP.png[/img][/url]
 [img]https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/Nodes/%5BRO%20Interface%5D%20Exterior%20Lighting.png[/img]

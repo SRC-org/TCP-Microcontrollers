@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<microprocessor name="SRC-TCP [RO Interface] Exterior Lighting v1.3" description="Interacts with the lighting module, UI, and lightbox to control exterior lighting" width="2" length="1" id_counter="1312" id_counter_node="63" sym6="4984" sym7="5144" sym8="6184" sym9="7880">
+<microprocessor name="SRC-TCP [RO Interface] Exterior Lighting v1.3" description="Controls exterior lights on the train" width="2" length="1" id_counter="1312" id_counter_node="63" sym6="4984" sym7="5144" sym8="6184" sym9="7880">
 	<nodes>
 		<n id="33" component_id="264">
 			<node label="Module -&gt; Interface" mode="1" type="5" description="Communicates with lighting module"/>
 		</n>
 		<n id="57" component_id="920">
-			<node label="Lightbox Extender &amp; Instrument Panel" type="5" description="Outputs information to both the Lightbox Extender and Instrument Panels">
+			<node label="Lightbox Extender &amp; Instrument Panel" type="5" description="Outputs information to both the Lightbox Extender and Instrument Panels // Channels: B4: Front Headlights (toggle); B5: Rear Headlights (toggle); B6: Front Taillights (toggle); B7: Rear Taillights (toggle; B8: Front Highbeams (toggle); B9: Rear Highbeams (toggle); B10: Work Lights (toggle); B11: Warning Lights (toggle); B12: Decorative Lights (toggle); N1: Front R; N2: Front G; N3: Front B; N4: Rear R; N5: Rear G; N6: Rear B;">
 				<position x="1"/>
 			</node>
 		</n>
@@ -97,6 +97,7 @@
 				<object id="1257" count="12">
 					<pos x="21.5" y="-2.5"/>
 					<inc component_id="1261"/>
+					<in1/>
 					<in2 disabled="true"/>
 					<in3 disabled="true"/>
 					<in4 component_id="1258"/>
@@ -591,6 +592,7 @@
 			<c12 id="1257" count="12">
 				<pos x="21.5" y="-2.5"/>
 				<inc component_id="1261"/>
+				<in1/>
 				<in2 disabled="true"/>
 				<in3 disabled="true"/>
 				<in4 component_id="1258"/>

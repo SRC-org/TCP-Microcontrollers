@@ -1,3 +1,4 @@
 .idea/
 Media/Fonts/*
-Media/Export/*/*.svg
+Media/Export/*/*.svg# stupid macOS
+.DS_Store

@@ -1,5 +1,6 @@
 fs = require("fs")
 path = require("path")
+os = require("os")
 database = require("../Controllers/database.json")
 require("./mediaElements")
 require("dotenv").config({ path: path.join(__dirname, "./.env") });
@@ -9,7 +10,15 @@ const { XMLParser, XMLBuilder } = require("fast-xml-parser")
 const { Resvg } = require('@resvg/resvg-js')
 const readline = require("readline")
 
-const swPath = process.env.APPDATA + "/Stormworks/data/microprocessors/"
+let appdataPath = process.env.APPDATA
+if (os.platform() === "win32") {
+	appdataPath = process.env.APPDATA
+} else if (os.platform() === "darwin") {
+	appdataPath = os.homedir() + "/Library/Application Support"
+} else if (os.platform() === "linux") {
+	appdataPath = os.homeDir() + "/.local/share"
+}
+const swPath = appdataPath + "/Stormworks/data/microprocessors/"
 const cPath = path.join(__dirname, "../Controllers/")
 //const dPath = path.join(__dirname, "../Design/")
 const mPath = path.join(__dirname, "../Media/")

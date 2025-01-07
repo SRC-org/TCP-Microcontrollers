@@ -1,4 +1,4 @@
-Can be used to connect multiple modules to the main controller. Slot 1 will override slot 2, etc.
+Can be used to connect multiple modules to the main controller. Multiple Hubs can be chained
 
 [url=https://discord.gg/3Swuqkb8d2][img]https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/All/NewToTCP.png[/img][/url]
 [img]https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/Nodes/%5BSystem%5D%20Hub.png[/img]

@@ -140,7 +140,7 @@
 						"1": "Number of cars",
 						"2": "Master ID",
 						"3": "My ID",
-						"4": "Throttle (0-maxSpeed)",
+						"4": "Throttle (m/s, 0-maxSpeed)",
 						"5": "Brakes (0-1)"
 					}
 				}
@@ -149,12 +149,13 @@
 				"visibility": 1,
 				"channels": {
 					"boolean": {
-						"1": "Enable Engines",
-						"2": "Request Emergency"
+						"4": "Emergency Enabled",
+						"5": "Emergency Requested",
+						"6": "Remote Engine Activated"
 					},
 					"number": {
-						"1": "Throttle (0-maxSpeed)",
-						"2": "Brakes (0-1)"
+						"1": "Current Set Speed (m/s)",
+						"2": "Current Brakes"
 					}
 				}
 			},
@@ -190,10 +191,35 @@
 				}
 			},
 			"Lighting#Module->Interface": {
-				"visibility": 1
+				"visibility": 1,
+				"channels": {
+					"boolean": {
+						"3": "Relative Orientation (f: normal, t: flipped)",
+						"4": "Headlights",
+						"5": "Taillights",
+						"6": "High Beams",
+						"7": "Work Lights",
+						"8": "Warning Lights",
+						"9": "Decorative Lights",
+						"10": "Reverse"
+					},
+					"number": {
+						"1": "Number Of Cars",
+						"3": "My Car ID"
+					}
+				}
 			},
 			"Lighting#Interface->Module": {
-				"visibility": 1
+				"visibility": 1,
+				"channels": {
+					"1": "Auto Lights",
+					"2": "Head Lights",
+					"3": "High Beams",
+					"4": "Work Lights",
+					"5": "Warning Lights",
+					"6": "Decorative Lights",
+					"7": "Reverse"
+				}
 			},
 			"Lighting#UI": {
 				"visibility": 2,
@@ -208,11 +234,53 @@
 					}
 				}
 			},
+			"Lighting#Extender": {
+				"visibility": 2,
+				"channels": {
+					"boolean": {
+						"4": "Front Headlights (toggle)",
+						"5": "Rear Headlights (toggle)",
+						"6": "Front Taillights (toggle)",
+						"7": "Rear Taillights (toggle",
+						"8": "Front Highbeams (toggle)",
+						"9": "Rear Highbeams (toggle)",
+						"10": "Work Lights (toggle)",
+						"11": "Warning Lights (toggle)",
+						"12": "Decorative Lights (toggle)"
+					},
+					"number": {
+						"1": "Front R",
+						"2": "Front G",
+						"3": "Front B",
+						"4": "Rear R",
+						"5": "Rear G",
+						"6": "Rear B"
+					}
+				}
+			},
 			"Decouple#Module->Interface": {
-				"visibility": 1
+				"visibility": 1,
+				"channels": {
+					"boolean": {
+						"1": "I Am Master",
+						"2": "Master Exists",
+						"3": "I Am Inverted"
+					},
+					"number": {
+						"1": "Number Of Cars",
+						"2": "Master Car ID",
+						"3": "My Car ID",
+						"4": "Decouple Index"
+					}
+				}
 			},
 			"Decouple#Interface->Module": {
-				"visibility": 1
+				"visibility": 1,
+				"channels": {
+					"number": {
+						"1": "Decouple Index"
+					}
+				}
 			},
 			"Decouple#UI": {
 				"visibility": 2,
@@ -225,14 +293,66 @@
 					}
 				}
 			},
+			"Passenger.PassengerDoors#Extender": {
+				"visibility": 2,
+				"channels": {
+					"boolean": {
+						"4": "Unlock Left Doors (toggle)",
+						"5": "Unlock Right Doors (toggle)",
+						"6": "Open Selected Doors (toggle)"
+					}
+				}
+			},
 			"Passenger#Module->Interface": {
-				"visibility": 1
+				"visibility": 1,
+				"channels": {
+					"boolean": {
+						"1": "I Am Master",
+						"2": "Master Exists",
+						"3": "I Am Inverted",
+						"4": "Unlock Left Doors (toggle)",
+						"5": "Unlock Right Doors (toggle)",
+						"6": "Open Selected Doors (toggle)",
+						"7": "Enable HVAC"
+					},
+					"number": {
+						"1": "Number of cars",
+						"2": "Master ID",
+						"3": "My ID",
+						"4": "Enabled Doors Minimum Threshold",
+						"5": "Enabled Doors Maximum Threshold",
+						"6": "Interior Light Red",
+						"7": "Interior Light Green",
+						"8": "Interior Light Blue"
+					}
+				}
 			},
 			"Passenger#LightingInterface->Module": {
-				"visibility": 1
+				"visibility": 1,
+				"channels": {
+					"boolean": {
+						"1": "Unlock Left Doors (toggle)",
+						"2": "Unlock Right Doors (toggle)",
+						"3": "Open Selected Doors (toggle)"
+					},
+					"number": {
+						"1": "Enabled Doors Minimum Threshold",
+						"2": "Enabled Doors Maximum Threshold"
+					}
+				}
 			},
 			"Passenger#DoorsInterface->Module": {
-				"visibility": 1
+				"visibility": 1,
+				"channels": {
+					"boolean": {
+						"1": "Enable HVAC"
+					},
+					"number": {
+						"1": "Interior Light Red",
+						"2": "Interior Light Green",
+						"3": "Interior Light Blue"
+					}
+				}
 			},
 			"Passenger.PassengerLighting#UI": {
 				"visibility": 2,
@@ -287,7 +407,10 @@
 				"inherit": "System#CabController->Main"
 			},
 			"Passenger.PassengerLighting#Interface->Module": "Passenger#LightingInterface->Module",
-			"Passenger.PassengerDoors#Interface->Module": "Passenger#DoorsInterface->Module"
+			"Passenger.PassengerDoors#Interface->Module": "Passenger#DoorsInterface->Module",
+			"Passenger.PassengerDoors#DoorOpener": "Passenger.PassengerDoors#Extender",
+			"Passenger.DoorOpener#FromPassengerDoorsInterface": "Passenger.PassengerDoors#Extender",
+			"Lighting.ExteriorLighting#LightboxExtender&InstrumentPanel": "Lighting#Extender"
 		},
 		"common": {
 			"Any#RGB": {
@@ -575,7 +698,7 @@
 			"type": "Interface",
 			"name": "Drivetrain",
 			"version": "1.3",
-			"description": "Communicates with drive module and UI",
+			"description": "Controls brakes and drivetrain systems",
 			"width": "5",
 			"length": "2",
 			"nodes": [
@@ -674,7 +797,7 @@
 				},
 				{
 					"label": "UI Return",
-					"description": "undefined",
+					"description": "",
 					"mode": false,
 					"type": 5,
 					"channels": "Drivetrain#UIReturn",
@@ -697,7 +820,7 @@
 			"type": "Module",
 			"name": "Drivetrain",
 			"version": "1.3",
-			"description": "Communicates with main, other trains, and the drive interface",
+			"description": "Communicates between the Main Controller and Drivetrain Interface",
 			"width": "2",
 			"length": "3",
 			"nodes": [
@@ -1069,6 +1192,7 @@
 					"description": "Outputs information to both the Lightbox Extender and Instrument Panels",
 					"mode": false,
 					"type": 5,
+					"channels": "Lighting.ExteriorLighting#LightboxExtender&InstrumentPanel",
 					"position": {
 						"x": 1,
 						"z": 1
@@ -1177,7 +1301,7 @@
 			"type": "RO Interface",
 			"name": "Exterior Lighting",
 			"version": "1.3",
-			"description": "Interacts with the lighting module, UI, and lightbox to control exterior lighting",
+			"description": "Controls exterior lights on the train",
 			"width": "2",
 			"length": "1",
 			"nodes": [
@@ -1197,6 +1321,7 @@
 					"description": "Outputs information to both the Lightbox Extender and Instrument Panels",
 					"mode": false,
 					"type": 5,
+					"channels": "Lighting.ExteriorLighting#LightboxExtender&InstrumentPanel",
 					"position": {
 						"x": 1,
 						"z": 0
@@ -1314,6 +1439,7 @@
 					"description": "Communicates with door opener",
 					"mode": false,
 					"type": 5,
+					"channels": "Passenger.PassengerDoors#DoorOpener",
 					"position": {
 						"x": 0,
 						"z": 1
@@ -1509,8 +1635,8 @@
 			"name": "Passenger Doors",
 			"version": "1.3",
 			"description": "Connects to passenger module and door controller. Controls locks and doors",
-			"width": "1",
-			"length": "2",
+			"width": "2",
+			"length": "1",
 			"nodes": [
 				{
 					"label": "Module -> Interface",
@@ -1528,9 +1654,10 @@
 					"description": "Communicates with door opener",
 					"mode": false,
 					"type": 5,
+					"channels": "Passenger.PassengerDoors#DoorOpener",
 					"position": {
-						"x": 0,
-						"z": 1
+						"x": 1,
+						"z": 0
 					}
 				}
 			],
@@ -1630,7 +1757,7 @@
 				},
 				{
 					"label": "Module -> Interface",
-					"description": "Communicates with all interfaces",
+					"description": "Communicates with all Passenger Interfaces",
 					"mode": false,
 					"type": 5,
 					"channels": "Passenger#Module->Interface",
@@ -1781,7 +1908,7 @@
 			"type": "System",
 			"name": "Dual Cab Controller",
 			"version": "1.3",
-			"description": "Manages Dual Cab",
+			"description": "Allows multiple cabs to request master on the same locomotive",
 			"width": "3",
 			"length": "2",
 			"nodes": [
@@ -1864,7 +1991,7 @@
 			"length": "4",
 			"nodes": [
 				{
-					"label": "A 1",
+					"label": "Cab A UI 1",
 					"description": "Input from Cab A",
 					"mode": true,
 					"type": 5,
@@ -1874,7 +2001,7 @@
 					}
 				},
 				{
-					"label": "B 1",
+					"label": "Cab B UI 1",
 					"description": "Input from Cab B",
 					"mode": true,
 					"type": 5,
@@ -1884,8 +2011,8 @@
 					}
 				},
 				{
-					"label": "Out 1",
-					"description": "Connects to the interface",
+					"label": "UI 1",
+					"description": "Connects to the Exterior Lighting Interface",
 					"mode": false,
 					"type": 5,
 					"position": {
@@ -1894,7 +2021,7 @@
 					}
 				},
 				{
-					"label": "A 2",
+					"label": "Cab A UI 2",
 					"description": "Input from Cab A",
 					"mode": true,
 					"type": 5,
@@ -1904,7 +2031,7 @@
 					}
 				},
 				{
-					"label": "B 2",
+					"label": "Cab B UI 2",
 					"description": "Input from Cab B",
 					"mode": true,
 					"type": 5,
@@ -1914,8 +2041,8 @@
 					}
 				},
 				{
-					"label": "Out 2",
-					"description": "Connects to the interface",
+					"label": "UI 2",
+					"description": "Connects to the Decouple Interface",
 					"mode": false,
 					"type": 5,
 					"position": {
@@ -1924,7 +2051,7 @@
 					}
 				},
 				{
-					"label": "A 3",
+					"label": "Cab A UI 3",
 					"description": "Input from Cab A",
 					"mode": true,
 					"type": 5,
@@ -1934,7 +2061,7 @@
 					}
 				},
 				{
-					"label": "B 3",
+					"label": "Cab B UI 3",
 					"description": "Input from Cab B",
 					"mode": true,
 					"type": 5,
@@ -1944,8 +2071,8 @@
 					}
 				},
 				{
-					"label": "Out 3",
-					"description": "Connects to the interface",
+					"label": "UI 3",
+					"description": "Connects to the Interior Lighting Interface",
 					"mode": false,
 					"type": 5,
 					"position": {
@@ -1954,7 +2081,7 @@
 					}
 				},
 				{
-					"label": "A 4",
+					"label": "Cab A UI 4",
 					"description": "Input from Cab A",
 					"mode": true,
 					"type": 5,
@@ -1964,7 +2091,7 @@
 					}
 				},
 				{
-					"label": "B 4",
+					"label": "Cab B UI 4",
 					"description": "Input from Cab B",
 					"mode": true,
 					"type": 5,
@@ -1974,8 +2101,8 @@
 					}
 				},
 				{
-					"label": "Out 4",
-					"description": "Connects to the interface",
+					"label": "UI 4",
+					"description": "Connects to the Doors Interface",
 					"mode": false,
 					"type": 5,
 					"position": {
@@ -1984,7 +2111,7 @@
 					}
 				},
 				{
-					"label": "A 5",
+					"label": "Cab A UI 5",
 					"description": "Input from Cab A",
 					"mode": true,
 					"type": 5,
@@ -1994,7 +2121,7 @@
 					}
 				},
 				{
-					"label": "B 5",
+					"label": "Cab B UI 5",
 					"description": "Input from Cab B",
 					"mode": true,
 					"type": 5,
@@ -2004,8 +2131,8 @@
 					}
 				},
 				{
-					"label": "Out 5",
-					"description": "Connects to the interface",
+					"label": "UI 5",
+					"description": "Connects to the Drivetrain Interface",
 					"mode": false,
 					"type": 5,
 					"position": {
@@ -2034,7 +2161,7 @@
 			"type": "System",
 			"name": "Hub",
 			"version": "1.0",
-			"description": "Can be used to connect multiple modules to the main controller. Slot 1 will override slot 2, etc.",
+			"description": "Can be used to connect multiple modules to the main controller. Multiple Hubs can be chained",
 			"width": "1",
 			"length": "4",
 			"nodes": [
@@ -2300,7 +2427,7 @@
 			"nodes": [
 				{
 					"label": "Door Button",
-					"description": "From the door button. Note that this will not work unless the door is unlocked",
+					"description": "From the door button. Only works when the door is unlocked",
 					"mode": true,
 					"type": 0,
 					"position": {
@@ -2309,10 +2436,11 @@
 					}
 				},
 				{
-					"label": "From Door Opener",
-					"description": "Communicates with the Passenger Doors Interface\"",
+					"label": "From Passenger Doors Interface",
+					"description": "Communicates with the Passenger Doors Interface",
 					"mode": true,
 					"type": 5,
+					"channels": "Passenger.DoorOpener#FromPassengerDoorsInterface",
 					"position": {
 						"x": 0,
 						"z": 0
