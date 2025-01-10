@@ -35,7 +35,7 @@
 			</node>
 		</n>
 		<n id="17" component_id="246">
-			<node label="Main Both" type="5" description="Transmits information from master, whichever direction that may be // Channels: B1: I am master; B2: Master exists; B3: I am inv">
+			<node label="Main Both" type="5" description="Transmits information from master, whichever direction that may be // Channels: B1: I am master; B2: Master exists; B3: I am inverted; N1: Number of cars; N2: Master ID; N3: My ID;">
 				<position x="2" z="1"/>
 			</node>
 		</n>
@@ -3451,8 +3451,7 @@ function onTick()
 	sB(2,IsInverted)
 	sB(3,Master_Key_Accepted)
 		
-end
-">
+end">
 					<pos x="-8.5" y="0.75"/>
 					<in1 component_id="1383"/>
 				</object>
@@ -6091,8 +6090,7 @@ function onTick()
 	sB(2,IsInverted)
 	sB(3,Master_Key_Accepted)
 		
-end
-">
+end">
 				<pos x="-8.5" y="0.75"/>
 				<in1 component_id="1383"/>
 			</c498>
@@ -6255,4 +6253,3 @@ end
 		<group_states/>
 	</group>
 </microprocessor>
-

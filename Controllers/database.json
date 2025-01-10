@@ -1728,9 +1728,6 @@
 			"hierarchy": {
 				"higher": [
 					"[RO Module] Passenger"
-				],
-				"lower": [
-					"[Extender] Door Opener"
 				]
 			}
 		},
@@ -2459,8 +2456,7 @@
 			],
 			"hierarchy": {
 				"higher": [
-					"[Interface] Passenger Doors",
-					"[Interface] Passenger Lighting"
+					"[Interface] Passenger Doors"
 				]
 			}
 		}

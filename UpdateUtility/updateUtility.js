@@ -36,14 +36,13 @@ swXMLBuilder = new XMLBuilder({ignoreAttributes: false, format: true, indentBy: 
 //swXMLBuilder = new XMLBuilder()
 
 // node updateUtility -args
-// -c:	copies the files from stormworks data to repository folder
 // -d:	updates database and controllers
 // -g:	generates illustrations, thumbnails and descriptions from database
 // -s: 	updates steam workshop items
 // -e:	exports database contents
 
 async function start() {
-	if (args.indexOf("-c") > -1) await execCopy()
+	//if (args.indexOf("-c") > -1) await execCopy()
 	if (args.indexOf("-d") > -1) await execDatabase()
 	if (args.indexOf("-g") > -1) await execImages()
 	if (args.indexOf("-s") > -1) await execSteam()
@@ -51,7 +50,7 @@ async function start() {
 }
 
 // Copy
-async function execCopy() {
+/*async function execCopy() {
 	let files = fs.readdirSync(swPath).filter(file => file.startsWith("SRC-TCP") && file.endsWith(".xml"))
 	let promises = []
 
@@ -72,7 +71,7 @@ async function execCopy() {
 		promises.push(fs.promises.copyFile(swPath + "/" + file, cPath + dData.group + " Group/SRC-TCP " + fData.identifier + ".xml")) // copy file
 	})
 	await Promise.all(promises)
-}
+}*/
 
 // Database
 async function execDatabase() {
@@ -153,14 +152,14 @@ async function execDatabase() {
 		})
 		lists["Interface"]?.forEach(c => {
 			database.controllers[c].hierarchy.higher = lists["Module"]
-			database.controllers[c].hierarchy.lower = lists["Extender"]
+			database.controllers[c].hierarchy.lower = (c.name === "Passenger Lighting") ? [] : lists["Extender"]
 		})
 		lists["RO Interface"]?.forEach(c => {
 			database.controllers[c].hierarchy.higher = lists["RO Module"]
-			database.controllers[c].hierarchy.lower = lists["Extender"]
+			database.controllers[c].hierarchy.lower = (interpretName(c).name === "Passenger Lighting") ? undefined : lists["Extender"]
 		})
 		lists["Extender"]?.forEach(c => {
-			database.controllers[c].hierarchy.higher = lists["Interface"]
+			database.controllers[c].hierarchy.higher = lists["Interface"].filter(c => interpretName(c).name !== "Passenger Lighting")
 		})
 	}
 }
@@ -189,7 +188,7 @@ async function execImages() {
 		SVGs.push(mergeJSON(genControllerCard(c), {
 			path: mPath + "Export/Cards/" + c.identifier
 		}))
-		SVGs.push(mergeJSON(genControllerLayout(c), {
+		if (c.group !== "System") SVGs.push(mergeJSON(genControllerLayout(c), {
 			path: mPath + "Export/Layout/" + c.identifier
 		}))
 		SVGs.push(mergeJSON(genControllerNodes(c), {
@@ -314,7 +313,8 @@ async function execExport(index) {
 }
 
 interpretName = name => {
-	let info = name.matchAll(/SRC-TCP *\[(.*?)\] *(.*?(?= *v\d| *\.| *\(| *$)) *(\((.*?)\))? *v?([0-9._]*[0-9])?/gm).next().value
+	//let info = name.matchAll(/SRC-TCP *\[(.*?)\] *(.*?(?= *v\d| *\.| *\(| *$)) *(\((.*?)\))? *v?([0-9._]*[0-9])?/gm).next().value
+	let info = name.matchAll(/\[(.*?)\] *(.*?(?= *v\d| *\.| *\(| *$)) *(\((.*?)\))? *v?([0-9._]*[0-9])?/gm).next().value
 	return {
 		identifier: "[" + info[1] + "] " + info[2] + (info[3] ? " (" + info[4] + ")" : ""),
 		type: info[1],
