@@ -242,7 +242,7 @@ async function execSteam() {
 	if (!fs.existsSync(sPath)) fs.mkdirSync(sPath)
 	if (!fs.existsSync(sPath + "content/")) fs.mkdirSync(sPath + "content/")
 
-	let controllers = Object.values(database.controllers).filter(c => c.publishedfileid)
+	let controllers = Object.values(database.controllers)//.filter(c => c.publishedfileid)
 	if (controllers.length === 0) return;
 
 	let vdfTemplate = fs.readFileSync(sPath + "template.vdf", "utf-8")
