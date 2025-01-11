@@ -37,7 +37,8 @@
 		},
 		"urls": {
 			"images": "https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/",
-			"discord": "https://discord.gg/3Swuqkb8d2"
+			"discord": "https://discord.gg/3Swuqkb8d2",
+			"guide": "https://steamcommunity.com/sharedfiles/filedetails/?id=3365767211"
 		}
 	},
 	"connections": {
@@ -960,8 +961,7 @@
 				"higher": [
 					"[RO Module] Drivetrain"
 				]
-			},
-			"publishedfileid": 2931481370
+			}
 		},
 		"[RO Module] Drivetrain": {
 			"identifier": "[RO Module] Drivetrain",
@@ -1004,8 +1004,7 @@
 				"lower": [
 					"[RO Interface] Drivetrain (Brakes Only)"
 				]
-			},
-			"publishedfileid": 2931480927
+			}
 		},
 		"[Extender] Lightbox": {
 			"identifier": "[Extender] Lightbox",

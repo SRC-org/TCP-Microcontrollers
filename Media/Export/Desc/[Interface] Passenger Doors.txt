@@ -1,7 +1,7 @@
 Connects to passenger module and door controller. Controls locks and doors
 
-[url=https://discord.gg/3Swuqkb8d2][img]https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/All/NewToTCP.png[/img][/url]
-[img]https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/Nodes/%5BInterface%5D%20Passenger%20Doors.png[/img]
-[img]https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/Layout/%5BInterface%5D%20Passenger%20Doors.png[/img]
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3365767211][img]https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/All/NewToTCP.png[/img][/url]
+[url=https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/Nodes/%5BInterface%5D%20Passenger%20Doors.png][img]https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/Nodes/%5BInterface%5D%20Passenger%20Doors.png[/img][/url]
+[url=https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/Layout/%5BInterface%5D%20Passenger%20Doors.png][img]https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/Layout/%5BInterface%5D%20Passenger%20Doors.png[/img][/url]
 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=undefined][img]https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/LinkHigher/%5BModule%5D%20Passenger.png[/img][/url]
 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=undefined][img]https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/LinkLower/%5BExtender%5D%20Door%20Opener.png[/img][/url]

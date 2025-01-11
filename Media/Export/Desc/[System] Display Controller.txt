@@ -1,5 +1,5 @@
 Manages all screen interfaces so they can be displayed on one screen
 
-[url=https://discord.gg/3Swuqkb8d2][img]https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/All/NewToTCP.png[/img][/url]
-[img]https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/Nodes/%5BSystem%5D%20Display%20Controller.png[/img]
-[img]https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/Layout/%5BSystem%5D%20Display%20Controller.png[/img]
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3365767211][img]https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/All/NewToTCP.png[/img][/url]
+[url=https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/Nodes/%5BSystem%5D%20Display%20Controller.png][img]https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/Nodes/%5BSystem%5D%20Display%20Controller.png[/img][/url]
+[url=https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/Layout/%5BSystem%5D%20Display%20Controller.png][img]https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/Layout/%5BSystem%5D%20Display%20Controller.png[/img][/url]

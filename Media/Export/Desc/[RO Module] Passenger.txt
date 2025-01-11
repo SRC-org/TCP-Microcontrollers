@@ -1,8 +1,8 @@
 Module for controlling passenger functions such as doors and lighting
 
-[url=https://discord.gg/3Swuqkb8d2][img]https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/All/NewToTCP.png[/img][/url]
-[img]https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/Nodes/%5BRO%20Module%5D%20Passenger.png[/img]
-[img]https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/Layout/%5BRO%20Module%5D%20Passenger.png[/img]
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3365767211][img]https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/All/NewToTCP.png[/img][/url]
+[url=https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/Nodes/%5BRO%20Module%5D%20Passenger.png][img]https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/Nodes/%5BRO%20Module%5D%20Passenger.png[/img][/url]
+[url=https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/Layout/%5BRO%20Module%5D%20Passenger.png][img]https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/Layout/%5BRO%20Module%5D%20Passenger.png[/img][/url]
 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=undefined][img]https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/LinkHigher/%5BSystem%5D%20Main%20Controller%20(Slave%20Only).png[/img][/url]
 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=undefined][img]https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/LinkLower/%5BRO%20Interface%5D%20Passenger%20Doors.png[/img][/url]
 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=undefined][img]https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/LinkLower/%5BRO%20Interface%5D%20Passenger%20Lighting.png[/img][/url]
