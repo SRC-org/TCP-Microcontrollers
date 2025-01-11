@@ -533,7 +533,8 @@
 				"higher": [
 					"[Module] Decouple"
 				]
-			}
+			},
+			"workshopID": ""
 		},
 		"[Module] Decouple": {
 			"identifier": "[Module] Decouple",
@@ -599,7 +600,8 @@
 				"lower": [
 					"[Interface] Decouple"
 				]
-			}
+			},
+			"workshopID": ""
 		},
 		"[RO Interface] Decouple": {
 			"identifier": "[RO Interface] Decouple",
@@ -648,7 +650,8 @@
 				"higher": [
 					"[RO Module] Decouple"
 				]
-			}
+			},
+			"workshopID": ""
 		},
 		"[RO Module] Decouple": {
 			"identifier": "[RO Module] Decouple",
@@ -691,7 +694,8 @@
 				"lower": [
 					"[RO Interface] Decouple"
 				]
-			}
+			},
+			"workshopID": ""
 		},
 		"[Interface] Drivetrain": {
 			"identifier": "[Interface] Drivetrain",
@@ -813,7 +817,8 @@
 				"higher": [
 					"[Module] Drivetrain"
 				]
-			}
+			},
+			"workshopID": ""
 		},
 		"[Module] Drivetrain": {
 			"identifier": "[Module] Drivetrain",
@@ -901,7 +906,8 @@
 				"lower": [
 					"[Interface] Drivetrain"
 				]
-			}
+			},
+			"workshopID": ""
 		},
 		"[RO Interface] Drivetrain (Brakes Only)": {
 			"identifier": "[RO Interface] Drivetrain (Brakes Only)",
@@ -961,7 +967,8 @@
 				"higher": [
 					"[RO Module] Drivetrain"
 				]
-			}
+			},
+			"workshopID": ""
 		},
 		"[RO Module] Drivetrain": {
 			"identifier": "[RO Module] Drivetrain",
@@ -1004,7 +1011,8 @@
 				"lower": [
 					"[RO Interface] Drivetrain (Brakes Only)"
 				]
-			}
+			},
+			"workshopID": ""
 		},
 		"[Extender] Lightbox": {
 			"identifier": "[Extender] Lightbox",
@@ -1141,7 +1149,8 @@
 				"higher": [
 					"[Interface] Exterior Lighting"
 				]
-			}
+			},
+			"workshopID": ""
 		},
 		"[Interface] Exterior Lighting": {
 			"identifier": "[Interface] Exterior Lighting",
@@ -1226,7 +1235,8 @@
 				"lower": [
 					"[Extender] Lightbox"
 				]
-			}
+			},
+			"workshopID": ""
 		},
 		"[Module] Exterior Lighting": {
 			"identifier": "[Module] Exterior Lighting",
@@ -1292,7 +1302,8 @@
 				"lower": [
 					"[Interface] Exterior Lighting"
 				]
-			}
+			},
+			"workshopID": ""
 		},
 		"[RO Interface] Exterior Lighting": {
 			"identifier": "[RO Interface] Exterior Lighting",
@@ -1335,7 +1346,8 @@
 				"lower": [
 					"[Extender] Lightbox"
 				]
-			}
+			},
+			"workshopID": ""
 		},
 		"[RO Module] Exterior Lighting": {
 			"identifier": "[RO Module] Exterior Lighting",
@@ -1378,7 +1390,8 @@
 				"lower": [
 					"[RO Interface] Exterior Lighting"
 				]
-			}
+			},
+			"workshopID": ""
 		},
 		"[Interface] Passenger Doors": {
 			"identifier": "[Interface] Passenger Doors",
@@ -1453,7 +1466,8 @@
 				"lower": [
 					"[Extender] Door Opener"
 				]
-			}
+			},
+			"workshopID": ""
 		},
 		"[Interface] Passenger Lighting": {
 			"identifier": "[Interface] Passenger Lighting",
@@ -1548,7 +1562,8 @@
 				"lower": [
 					"[Extender] Door Opener"
 				]
-			}
+			},
+			"workshopID": ""
 		},
 		"[Module] Passenger": {
 			"identifier": "[Module] Passenger",
@@ -1625,7 +1640,8 @@
 					"[Interface] Passenger Doors",
 					"[Interface] Passenger Lighting"
 				]
-			}
+			},
+			"workshopID": ""
 		},
 		"[RO Interface] Passenger Doors": {
 			"identifier": "[RO Interface] Passenger Doors",
@@ -1668,7 +1684,8 @@
 				"lower": [
 					"[Extender] Door Opener"
 				]
-			}
+			},
+			"workshopID": ""
 		},
 		"[RO Interface] Passenger Lighting": {
 			"identifier": "[RO Interface] Passenger Lighting",
@@ -1728,7 +1745,8 @@
 				"higher": [
 					"[RO Module] Passenger"
 				]
-			}
+			},
+			"workshopID": ""
 		},
 		"[RO Module] Passenger": {
 			"identifier": "[RO Module] Passenger",
@@ -1772,7 +1790,8 @@
 					"[RO Interface] Passenger Doors",
 					"[RO Interface] Passenger Lighting"
 				]
-			}
+			},
+			"workshopID": ""
 		},
 		"[System] Display Controller": {
 			"identifier": "[System] Display Controller",
@@ -1896,7 +1915,8 @@
 				}
 			],
 			"readonly": false,
-			"hierarchy": {}
+			"hierarchy": {},
+			"workshopID": ""
 		},
 		"[System] Dual Cab Controller": {
 			"identifier": "[System] Dual Cab Controller",
@@ -1974,7 +1994,8 @@
 				}
 			],
 			"readonly": false,
-			"hierarchy": {}
+			"hierarchy": {},
+			"workshopID": ""
 		},
 		"[System] Dual Cab Switchbox": {
 			"identifier": "[System] Dual Cab Switchbox",
@@ -2149,7 +2170,8 @@
 				}
 			],
 			"readonly": false,
-			"hierarchy": {}
+			"hierarchy": {},
+			"workshopID": ""
 		},
 		"[System] Hub": {
 			"identifier": "[System] Hub",
@@ -2203,7 +2225,8 @@
 				}
 			],
 			"readonly": false,
-			"hierarchy": {}
+			"hierarchy": {},
+			"workshopID": ""
 		},
 		"[System] Main Controller (Slave Only)": {
 			"identifier": "[System] Main Controller (Slave Only)",
@@ -2301,7 +2324,8 @@
 				}
 			],
 			"readonly": false,
-			"hierarchy": {}
+			"hierarchy": {},
+			"workshopID": ""
 		},
 		"[System] Main Controller": {
 			"identifier": "[System] Main Controller",
@@ -2409,7 +2433,8 @@
 				}
 			],
 			"readonly": false,
-			"hierarchy": {}
+			"hierarchy": {},
+			"workshopID": ""
 		},
 		"[Extender] Door Opener": {
 			"identifier": "[Extender] Door Opener",

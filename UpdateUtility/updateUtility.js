@@ -244,7 +244,7 @@ async function execSteam() {
 	fs.mkdirSync(sPath + "temp/")
 
 	// filter controllers
-	let controllers = Object.values(database.controllers).filter(c => c.workshopID)
+	let controllers = Object.values(database.controllers).filter(c => c.workshopID && c.workshopID !== "")
 	if (controllers.length === 0) return;
 
 	let vdfTemplate = fs.readFileSync(sPath + "template.vdf", "utf-8")
