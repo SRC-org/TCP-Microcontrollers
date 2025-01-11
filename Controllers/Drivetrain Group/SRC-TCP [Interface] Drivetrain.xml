@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<microprocessor name="SRC-TCP [Interface] Drivetrain v1.3" description="Controls brakes and drivetrain systems" width="5" length="2" id_counter="450" id_counter_node="45" sym6="4984" sym7="5144" sym8="6184" sym9="7880">
+<microprocessor name="SRC-TCP [Interface] Drivetrain v1.3" description="Controls brakes and drivetrain systems" width="5" length="2" id_counter="456" id_counter_node="45" sym6="4984" sym7="5144" sym8="6184" sym9="7880">
 	<nodes>
 		<n id="22" component_id="152">
 			<node label="Module -&gt; Interface" mode="1" type="5" description="Communicates with Drivetrain Module">
@@ -182,7 +182,7 @@
 				</object>
 			</c>
 			<c type="56">
-				<object id="328" script="s,scr,i,o,m=self,screen,input,output,math
+				<object id="328" script='s,scr,i,o,m=self,screen,input,output,math
 pgn,pgb,gn,gb,sn,sb=property.getNumber,property.getBool,i.getNumber,i.getBool,o.setNumber,o.setBool
 abs=m.abs
 			
@@ -209,8 +209,8 @@ return clamp(error*s.p+s.integral,min,max)
 end}
 end
 
-mult=pgn(&quot;Acceleration Multiplier&quot;)
-siz=pgn(&quot;Wheel Size&quot;)
+mult=pgn("Acceleration Multiplier")
+siz=pgn("Wheel Size")
 piVal=pid(mult*0.003,mult*0.000003)
 a=1
 b=1
@@ -263,7 +263,7 @@ sn(2,rpsd)
 sn(3,a)
 sn(4,targetTemp)
 sn(5,tinteg)
-end">
+end'>
 					<pos x="0.5" y="-10.75"/>
 					<in1 component_id="329"/>
 				</object>
@@ -598,10 +598,11 @@ end">
 				</object>
 			</c>
 			<c type="40">
-				<object id="436" count="2">
+				<object id="436" count="3">
 					<pos x="11" y="-19"/>
 					<in1 component_id="363"/>
 					<in2 component_id="79"/>
+					<in3 component_id="451"/>
 				</object>
 			</c>
 			<c type="33">
@@ -726,6 +727,47 @@ end">
 					<pos x="9.25" y="-19.25"/>
 					<in1 component_id="166"/>
 					<in2 component_id="422"/>
+				</object>
+			</c>
+			<c type="22">
+				<object id="451">
+					<pos x="9.25" y="-21.5"/>
+					<in1 component_id="453"/>
+					<in2 component_id="455"/>
+					<in3 component_id="422"/>
+				</object>
+			</c>
+			<c type="22">
+				<object id="452">
+					<pos x="5.75" y="-23"/>
+					<in1 component_id="454"/>
+					<in3 component_id="421"/>
+				</object>
+			</c>
+			<c type="15">
+				<object id="453">
+					<pos x="7.5" y="-21"/>
+					<n text="2" value="2"/>
+				</object>
+			</c>
+			<c type="15">
+				<object id="454">
+					<pos x="4" y="-22.5"/>
+					<n text="1" value="1"/>
+				</object>
+			</c>
+			<c type="22">
+				<object id="455">
+					<pos x="9.25" y="-23"/>
+					<in1 component_id="456"/>
+					<in2 component_id="452"/>
+					<in3 component_id="166"/>
+				</object>
+			</c>
+			<c type="15">
+				<object id="456">
+					<pos x="7.5" y="-22.5"/>
+					<n text="3" value="3"/>
 				</object>
 			</c>
 		</components>
@@ -875,7 +917,7 @@ end">
 				<pos x="-4.75" y="-14.75"/>
 				<in1 component_id="293"/>
 			</c18>
-			<c19 id="328" script="s,scr,i,o,m=self,screen,input,output,math
+			<c19 id="328" script='s,scr,i,o,m=self,screen,input,output,math
 pgn,pgb,gn,gb,sn,sb=property.getNumber,property.getBool,i.getNumber,i.getBool,o.setNumber,o.setBool
 abs=m.abs
 			
@@ -902,8 +944,8 @@ return clamp(error*s.p+s.integral,min,max)
 end}
 end
 
-mult=pgn(&quot;Acceleration Multiplier&quot;)
-siz=pgn(&quot;Wheel Size&quot;)
+mult=pgn("Acceleration Multiplier")
+siz=pgn("Wheel Size")
 piVal=pid(mult*0.003,mult*0.000003)
 a=1
 b=1
@@ -956,7 +998,7 @@ sn(2,rpsd)
 sn(3,a)
 sn(4,targetTemp)
 sn(5,tinteg)
-end">
+end'>
 				<pos x="0.5" y="-10.75"/>
 				<in1 component_id="329"/>
 			</c19>
@@ -1193,10 +1235,11 @@ end">
 				<pos x="2.25" y="-10.5"/>
 				<in1 component_id="328"/>
 			</c67>
-			<c68 id="436" count="2">
+			<c68 id="436" count="3">
 				<pos x="11" y="-19"/>
 				<in1 component_id="363"/>
 				<in2 component_id="79"/>
+				<in3 component_id="451"/>
 			</c68>
 			<c69 id="437" n="Show debug" on="Yes" off="No">
 				<pos x="-6.5" y="-10.75"/>
@@ -1286,6 +1329,35 @@ end">
 				<in1 component_id="166"/>
 				<in2 component_id="422"/>
 			</c86>
+			<c87 id="451">
+				<pos x="9.25" y="-21.5"/>
+				<in1 component_id="453"/>
+				<in2 component_id="455"/>
+				<in3 component_id="422"/>
+			</c87>
+			<c88 id="452">
+				<pos x="5.75" y="-23"/>
+				<in1 component_id="454"/>
+				<in3 component_id="421"/>
+			</c88>
+			<c89 id="453">
+				<pos x="7.5" y="-21"/>
+				<n text="2" value="2"/>
+			</c89>
+			<c90 id="454">
+				<pos x="4" y="-22.5"/>
+				<n text="1" value="1"/>
+			</c90>
+			<c91 id="455">
+				<pos x="9.25" y="-23"/>
+				<in1 component_id="456"/>
+				<in2 component_id="452"/>
+				<in3 component_id="166"/>
+			</c91>
+			<c92 id="456">
+				<pos x="7.5" y="-22.5"/>
+				<n text="3" value="3"/>
+			</c92>
 		</component_states>
 		<component_bridge_states>
 			<c0 id="152">
@@ -1327,3 +1399,4 @@ end">
 		<group_states/>
 	</group>
 </microprocessor>
+
