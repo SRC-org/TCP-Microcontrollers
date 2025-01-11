@@ -2,6 +2,3 @@ Communicates with main and drive interface.
 
 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3365767211][img]https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/All/NewToTCP.png[/img][/url]
 [url=https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/Nodes/%5BRO%20Module%5D%20Drivetrain.png][img]https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/Nodes/%5BRO%20Module%5D%20Drivetrain.png[/img][/url]
-[url=https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/Layout/%5BRO%20Module%5D%20Drivetrain.png][img]https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/Layout/%5BRO%20Module%5D%20Drivetrain.png[/img][/url]
-[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3405499329][img]https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/LinkHigher/%5BSystem%5D%20Main%20Controller%20(Slave%20Only).png[/img][/url]
-[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3405497010][img]https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/LinkLower/%5BRO%20Interface%5D%20Drivetrain%20(Brakes%20Only).png[/img][/url]

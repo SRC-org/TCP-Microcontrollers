@@ -2,7 +2,3 @@ Communicates between the Main Controller and Drivetrain Interface
 
 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3365767211][img]https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/All/NewToTCP.png[/img][/url]
 [url=https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/Nodes/%5BModule%5D%20Drivetrain.png][img]https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/Nodes/%5BModule%5D%20Drivetrain.png[/img][/url]
-[url=https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/Layout/%5BModule%5D%20Drivetrain.png][img]https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/Layout/%5BModule%5D%20Drivetrain.png[/img][/url]
-[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3405499447][img]https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/LinkHigher/%5BSystem%5D%20Main%20Controller.png[/img][/url]
-[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3405499192][img]https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/LinkHigher/%5BSystem%5D%20Hub.png[/img][/url]
-[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3405496762][img]https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/LinkLower/%5BInterface%5D%20Drivetrain.png[/img][/url]

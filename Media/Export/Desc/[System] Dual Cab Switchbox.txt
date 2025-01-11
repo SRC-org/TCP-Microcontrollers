@@ -2,4 +2,3 @@ Composite Switchbox for UIs and instruments from both cabs
 
 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3365767211][img]https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/All/NewToTCP.png[/img][/url]
 [url=https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/Nodes/%5BSystem%5D%20Dual%20Cab%20Switchbox.png][img]https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/Nodes/%5BSystem%5D%20Dual%20Cab%20Switchbox.png[/img][/url]
-[url=https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/Layout/%5BSystem%5D%20Dual%20Cab%20Switchbox.png][img]https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/Layout/%5BSystem%5D%20Dual%20Cab%20Switchbox.png[/img][/url]
