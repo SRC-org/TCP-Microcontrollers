@@ -182,7 +182,7 @@
 				</object>
 			</c>
 			<c type="56">
-				<object id="328" script='s,scr,i,o,m=self,screen,input,output,math
+				<object id="328" script="s,scr,i,o,m=self,screen,input,output,math
 pgn,pgb,gn,gb,sn,sb=property.getNumber,property.getBool,i.getNumber,i.getBool,o.setNumber,o.setBool
 abs=m.abs
 			
@@ -209,8 +209,8 @@ return clamp(error*s.p+s.integral,min,max)
 end}
 end
 
-mult=pgn("Acceleration Multiplier")
-siz=pgn("Wheel Size")
+mult=pgn(&quot;Acceleration Multiplier&quot;)
+siz=pgn(&quot;Wheel Size&quot;)
 piVal=pid(mult*0.003,mult*0.000003)
 a=1
 b=1
@@ -263,7 +263,7 @@ sn(2,rpsd)
 sn(3,a)
 sn(4,targetTemp)
 sn(5,tinteg)
-end'>
+end">
 					<pos x="0.5" y="-10.75"/>
 					<in1 component_id="329"/>
 				</object>
@@ -917,7 +917,7 @@ end'>
 				<pos x="-4.75" y="-14.75"/>
 				<in1 component_id="293"/>
 			</c18>
-			<c19 id="328" script='s,scr,i,o,m=self,screen,input,output,math
+			<c19 id="328" script="s,scr,i,o,m=self,screen,input,output,math
 pgn,pgb,gn,gb,sn,sb=property.getNumber,property.getBool,i.getNumber,i.getBool,o.setNumber,o.setBool
 abs=m.abs
 			
@@ -944,8 +944,8 @@ return clamp(error*s.p+s.integral,min,max)
 end}
 end
 
-mult=pgn("Acceleration Multiplier")
-siz=pgn("Wheel Size")
+mult=pgn(&quot;Acceleration Multiplier&quot;)
+siz=pgn(&quot;Wheel Size&quot;)
 piVal=pid(mult*0.003,mult*0.000003)
 a=1
 b=1
@@ -998,7 +998,7 @@ sn(2,rpsd)
 sn(3,a)
 sn(4,targetTemp)
 sn(5,tinteg)
-end'>
+end">
 				<pos x="0.5" y="-10.75"/>
 				<in1 component_id="329"/>
 			</c19>
@@ -1399,4 +1399,3 @@ end'>
 		<group_states/>
 	</group>
 </microprocessor>
-

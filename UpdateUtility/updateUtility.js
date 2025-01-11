@@ -265,14 +265,19 @@ async function execSteam() {
 		promises.push(fs.promises.writeFile(sPath + "item.vdf", vdf,"utf-8"))
 		await Promise.all(promises)
 
-		if (await prompt("Upload controller: " + c.identifier + " [y/n] ") !== 'y') continue
-		let res = execSync(process.env.steamCMDPath + "steamcmd.exe +login \"" + process.env.steamLogin + "\" \"" + process.env.steamPassword + "\" +workshop_build_item \"" + sPath + "item.vdf\" +quit")
-		console.log(res.toString());
+		//if (await prompt("Upload controller: " + c.identifier + " [y/n] ") !== 'y') continue
+		/*let res = */
+		try {
+			execSync(process.env.steamCMDPath + "steamcmd.exe +login \"" + process.env.steamLogin + "\" \"" + process.env.steamPassword + "\" +workshop_build_item \"" + sPath + "item.vdf\" +quit", {stdio: "inherit"})
+		} catch (e) {
+			console.error(e)
+		}
+		/*console.log(res.toString());
 		let newID = res.toString().matchAll(/Create new workshop item \( PublishFileID (\d+)\)./gm).next()?.value?.[1]
 		if (newID) {
 			console.log("publishfileid updated " + newID)
 			c.publishedfileid = newID
-		}
+		}*/
 	}
 
 	if (fs.existsSync(sPath + "content/")) fs.rmSync(sPath + "content/", {recursive: true})

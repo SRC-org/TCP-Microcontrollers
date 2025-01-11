@@ -4,7 +4,7 @@
  "publishedfileid" "{$.publishedfileid}"
  "contentfolder" "{$.contentfolder}"
  "previewfile" "{$.previewfile}"
- "visibility" "1"
+ "visibility" "0"
  "title" "SRC-TCP {$.identifier}"
  "description" "{$.wsDescription}"
 }
