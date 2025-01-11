@@ -5,11 +5,10 @@ database = require("../Controllers/database.json")
 require("./mediaElements")
 require("dotenv").config({ path: path.join(__dirname, "./.env") });
 
-const { execSync, spawn } = require('child_process');
+const { execSync, spawnSync } = require('child_process');
 const { XMLParser, XMLBuilder } = require("fast-xml-parser")
 const { Resvg } = require('@resvg/resvg-js')
 const readline = require("readline")
-const stream = require('node:stream')
 
 let appdataPath = process.env.APPDATA
 if (os.platform() === "win32") {
@@ -238,49 +237,56 @@ async function execImages() {
 // Steam
 async function execSteam() {
 
+	// setup folders
 	let sPath = path.join(__dirname, ".steam/")
 	if (!fs.existsSync(sPath)) fs.mkdirSync(sPath)
-	if (!fs.existsSync(sPath + "content/")) fs.mkdirSync(sPath + "content/")
+	if (fs.existsSync(sPath + "temp/")) fs.rmSync(sPath + "temp/", {recursive: true})
+	fs.mkdirSync(sPath + "temp/")
 
-	let controllers = Object.values(database.controllers).filter(c => c.publishedfileid)
+	// filter controllers
+	let controllers = Object.values(database.controllers).filter(c => c.workshopID)
 	if (controllers.length === 0) return;
 
 	let vdfTemplate = fs.readFileSync(sPath + "template.vdf", "utf-8")
+	let commandChain = ""
 
+	// setup for each controller (let user choose)
 	for (const c of controllers) {
-		if (fs.existsSync(sPath + "content/")) fs.rmSync(sPath + "content/", {recursive: true})
-		if (!fs.existsSync(sPath + "content/")) fs.mkdirSync(sPath + "content/")
+		if (await prompt("Upload controller: " + c.identifier + " [y/n] ") !== 'y') continue;
 
+		// add content dir
+		fs.mkdirSync(sPath + "temp/" + c.identifier + "/")
+
+		// setup vdf file
 		let desc = fs.readFileSync(mPath + "Export/Desc/" + c.identifier + ".txt", "utf-8")
 		let vdf = placeholders(vdfTemplate, mergeJSON(c, {
-			publishedfileid: c.publishedfileid,
-			contentfolder: sPath + "content/",
+			publishedfileid: c.workshopID,
+			contentfolder: sPath + "temp/" + c.identifier + "/",
 			previewfile: mPath + "Export/Thumbnails/" + c.identifier + ".png",
 			wsDescription: desc
 		}))
 
+		// copy and safe files
 		let promises = []
-		promises.push(fs.promises.copyFile(cPath + c.group + " Group/SRC-TCP " + c.identifier + ".xml", sPath + "content/microcontroller.xml"))
-		promises.push(fs.promises.copyFile(mPath + "Export/Thumbnails/" + c.identifier + ".png", sPath + "content/workshop_preview.png"))
-		promises.push(fs.promises.writeFile(sPath + "item.vdf", vdf,"utf-8"))
+		promises.push(fs.promises.copyFile(cPath + c.group + " Group/SRC-TCP " + c.identifier + ".xml", sPath + "temp/" + c.identifier + "/microcontroller.xml"))
+		promises.push(fs.promises.copyFile(mPath + "Export/Thumbnails/" + c.identifier + ".png", sPath + "temp/" + c.identifier + "/workshop_preview.png"))
+		promises.push(fs.promises.writeFile(sPath + "temp/" + c.identifier + ".vdf", vdf,"utf-8"))
 		await Promise.all(promises)
 
-		//if (await prompt("Upload controller: " + c.identifier + " [y/n] ") !== 'y') continue
-		/*let res = */
-		try {
-			execSync(process.env.steamCMDPath + "steamcmd.exe +login \"" + process.env.steamLogin + "\" \"" + process.env.steamPassword + "\" +workshop_build_item \"" + sPath + "item.vdf\" +quit", {stdio: "inherit"})
-		} catch (e) {
-			console.error(e)
-		}
-		/*console.log(res.toString());
-		let newID = res.toString().matchAll(/Create new workshop item \( PublishFileID (\d+)\)./gm).next()?.value?.[1]
-		if (newID) {
-			console.log("publishfileid updated " + newID)
-			c.publishedfileid = newID
-		}*/
+		// add command
+		commandChain += "+workshop_build_item \"" + sPath + "temp/" + c.identifier + ".vdf\" "
 	}
 
-	if (fs.existsSync(sPath + "content/")) fs.rmSync(sPath + "content/", {recursive: true})
+	// execute command
+	try {
+		let TFA = await prompt("Steam guard code? ")
+		execSync(process.env.steamCMDPath + "steamcmd.exe +login \"" + process.env.steamLogin + "\" \"" + process.env.steamPassword + "\" " + TFA + " " + commandChain + "+quit", {stdio: "inherit"})
+	} catch (e) {
+		console.error(e)
+	}
+
+	if (fs.existsSync(sPath + "temp/")) fs.rmSync(sPath + "temp/", {recursive: true})
+
 }
 
 async function execExport(index) {
