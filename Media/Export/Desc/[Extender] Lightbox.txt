@@ -1,6 +1,6 @@
 Interacts with TCP Lighting Interface to control train lights
 
-[url=https://discord.gg/3Swuqkb8d2][img]https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/All/NewToTCP.png[/img][/url]
-[img]https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/Nodes/%5BExtender%5D%20Lightbox.png[/img]
-[img]https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/Layout/%5BExtender%5D%20Lightbox.png[/img]
-[url=https://steamcommunity.com/sharedfiles/filedetails/?id=undefined][img]https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/LinkHigher/%5BInterface%5D%20Exterior%20Lighting.png[/img][/url]
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3365767211][img]https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/All/NewToTCP.png[/img][/url]
+[url=https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/Nodes/%5BExtender%5D%20Lightbox.png][img]https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/Nodes/%5BExtender%5D%20Lightbox.png[/img][/url]
+[url=https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/Layout/%5BExtender%5D%20Lightbox.png][img]https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/Layout/%5BExtender%5D%20Lightbox.png[/img][/url]
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3405497394][img]https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/LinkHigher/%5BInterface%5D%20Exterior%20Lighting.png[/img][/url]

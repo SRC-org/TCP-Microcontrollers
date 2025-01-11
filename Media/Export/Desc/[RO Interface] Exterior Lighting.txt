@@ -1,7 +1,7 @@
 Controls exterior lights on the train
 
-[url=https://discord.gg/3Swuqkb8d2][img]https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/All/NewToTCP.png[/img][/url]
-[img]https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/Nodes/%5BRO%20Interface%5D%20Exterior%20Lighting.png[/img]
-[img]https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/Layout/%5BRO%20Interface%5D%20Exterior%20Lighting.png[/img]
-[url=https://steamcommunity.com/sharedfiles/filedetails/?id=undefined][img]https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/LinkHigher/%5BRO%20Module%5D%20Exterior%20Lighting.png[/img][/url]
-[url=https://steamcommunity.com/sharedfiles/filedetails/?id=undefined][img]https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/LinkLower/%5BExtender%5D%20Lightbox.png[/img][/url]
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3365767211][img]https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/All/NewToTCP.png[/img][/url]
+[url=https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/Nodes/%5BRO%20Interface%5D%20Exterior%20Lighting.png][img]https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/Nodes/%5BRO%20Interface%5D%20Exterior%20Lighting.png[/img][/url]
+[url=https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/Layout/%5BRO%20Interface%5D%20Exterior%20Lighting.png][img]https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/Layout/%5BRO%20Interface%5D%20Exterior%20Lighting.png[/img][/url]
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3405497767][img]https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/LinkHigher/%5BRO%20Module%5D%20Exterior%20Lighting.png[/img][/url]
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3405497264][img]https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/LinkLower/%5BExtender%5D%20Lightbox.png[/img][/url]

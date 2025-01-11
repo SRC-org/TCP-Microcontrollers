@@ -1,6 +1,6 @@
 {$.description}
 
-[url={$udiscord}][img]{$maNewToTCP}[/img][/url]
-[img]{$mcNodes}[/img]
-[img]{$mcLayout}[/img]
+[url={$uguide}][img]{$maNewToTCP}[/img][/url]
+[url={$mcNodes}][img]{$mcNodes}[/img][/url]
+[url={$mcLayout}][img]{$mcLayout}[/img][/url]
 {$msLinks}

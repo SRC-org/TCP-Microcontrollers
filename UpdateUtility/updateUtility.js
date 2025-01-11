@@ -5,10 +5,11 @@ database = require("../Controllers/database.json")
 require("./mediaElements")
 require("dotenv").config({ path: path.join(__dirname, "./.env") });
 
-const { execSync } = require('child_process');
+const { execSync, spawn } = require('child_process');
 const { XMLParser, XMLBuilder } = require("fast-xml-parser")
 const { Resvg } = require('@resvg/resvg-js')
 const readline = require("readline")
+const stream = require('node:stream')
 
 let appdataPath = process.env.APPDATA
 if (os.platform() === "win32") {
@@ -241,7 +242,7 @@ async function execSteam() {
 	if (!fs.existsSync(sPath)) fs.mkdirSync(sPath)
 	if (!fs.existsSync(sPath + "content/")) fs.mkdirSync(sPath + "content/")
 
-	let controllers = Object.values(database.controllers).filter(c => c.publishedfileid)
+	let controllers = Object.values(database.controllers)//.filter(c => c.publishedfileid)
 	if (controllers.length === 0) return;
 
 	let vdfTemplate = fs.readFileSync(sPath + "template.vdf", "utf-8")
@@ -259,14 +260,19 @@ async function execSteam() {
 		}))
 
 		let promises = []
-		promises.push(fs.promises.copyFile(cPath + c.group + " Group/SRC-TCP " + c.identifier + ".xml", sPath + "content/SRC-TCP " + c.identifier + ".xml"))
+		promises.push(fs.promises.copyFile(cPath + c.group + " Group/SRC-TCP " + c.identifier + ".xml", sPath + "content/microcontroller.xml"))
+		promises.push(fs.promises.copyFile(mPath + "Export/Thumbnails/" + c.identifier + ".png", sPath + "content/workshop_preview.png"))
 		promises.push(fs.promises.writeFile(sPath + "item.vdf", vdf,"utf-8"))
 		await Promise.all(promises)
 
 		if (await prompt("Upload controller: " + c.identifier + " [y/n] ") !== 'y') continue
-
-		let res = execSync(process.env.steamCMDPath + "steamcmd.exe +login \"" + process.env.steamLogin + "\" \"" + process.env.steamPassword + "\" +workshop_build_item \"" + sPath + "item.vdf\" +quit", {stdio: "inherit"})
-		console.log("")
+		let res = execSync(process.env.steamCMDPath + "steamcmd.exe +login \"" + process.env.steamLogin + "\" \"" + process.env.steamPassword + "\" +workshop_build_item \"" + sPath + "item.vdf\" +quit")
+		console.log(res.toString());
+		let newID = res.toString().matchAll(/Create new workshop item \( PublishFileID (\d+)\)./gm).next()?.value?.[1]
+		if (newID) {
+			console.log("publishfileid updated " + newID)
+			c.publishedfileid = newID
+		}
 	}
 
 	if (fs.existsSync(sPath + "content/")) fs.rmSync(sPath + "content/", {recursive: true})

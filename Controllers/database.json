@@ -37,7 +37,8 @@
 		},
 		"urls": {
 			"images": "https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/",
-			"discord": "https://discord.gg/3Swuqkb8d2"
+			"discord": "https://discord.gg/3Swuqkb8d2",
+			"guide": "https://steamcommunity.com/sharedfiles/filedetails/?id=3365767211"
 		}
 	},
 	"connections": {
@@ -532,7 +533,8 @@
 				"higher": [
 					"[Module] Decouple"
 				]
-			}
+			},
+			"publishedfileid": "3405496163"
 		},
 		"[Module] Decouple": {
 			"identifier": "[Module] Decouple",
@@ -598,7 +600,8 @@
 				"lower": [
 					"[Interface] Decouple"
 				]
-			}
+			},
+			"publishedfileid": "3405496352"
 		},
 		"[RO Interface] Decouple": {
 			"identifier": "[RO Interface] Decouple",
@@ -647,7 +650,8 @@
 				"higher": [
 					"[RO Module] Decouple"
 				]
-			}
+			},
+			"publishedfileid": "3405496486"
 		},
 		"[RO Module] Decouple": {
 			"identifier": "[RO Module] Decouple",
@@ -690,7 +694,8 @@
 				"lower": [
 					"[RO Interface] Decouple"
 				]
-			}
+			},
+			"publishedfileid": "3405496656"
 		},
 		"[Interface] Drivetrain": {
 			"identifier": "[Interface] Drivetrain",
@@ -812,7 +817,8 @@
 				"higher": [
 					"[Module] Drivetrain"
 				]
-			}
+			},
+			"publishedfileid": "3405496762"
 		},
 		"[Module] Drivetrain": {
 			"identifier": "[Module] Drivetrain",
@@ -900,7 +906,8 @@
 				"lower": [
 					"[Interface] Drivetrain"
 				]
-			}
+			},
+			"publishedfileid": "3405496873"
 		},
 		"[RO Interface] Drivetrain (Brakes Only)": {
 			"identifier": "[RO Interface] Drivetrain (Brakes Only)",
@@ -961,7 +968,7 @@
 					"[RO Module] Drivetrain"
 				]
 			},
-			"publishedfileid": 2931481370
+			"publishedfileid": "3405497010"
 		},
 		"[RO Module] Drivetrain": {
 			"identifier": "[RO Module] Drivetrain",
@@ -1005,7 +1012,7 @@
 					"[RO Interface] Drivetrain (Brakes Only)"
 				]
 			},
-			"publishedfileid": 2931480927
+			"publishedfileid": "3405497158"
 		},
 		"[Extender] Lightbox": {
 			"identifier": "[Extender] Lightbox",
@@ -1142,7 +1149,8 @@
 				"higher": [
 					"[Interface] Exterior Lighting"
 				]
-			}
+			},
+			"publishedfileid": "3405497264"
 		},
 		"[Interface] Exterior Lighting": {
 			"identifier": "[Interface] Exterior Lighting",
@@ -1227,7 +1235,8 @@
 				"lower": [
 					"[Extender] Lightbox"
 				]
-			}
+			},
+			"publishedfileid": "3405497394"
 		},
 		"[Module] Exterior Lighting": {
 			"identifier": "[Module] Exterior Lighting",
@@ -1293,7 +1302,8 @@
 				"lower": [
 					"[Interface] Exterior Lighting"
 				]
-			}
+			},
+			"publishedfileid": "3405497517"
 		},
 		"[RO Interface] Exterior Lighting": {
 			"identifier": "[RO Interface] Exterior Lighting",
@@ -1336,7 +1346,8 @@
 				"lower": [
 					"[Extender] Lightbox"
 				]
-			}
+			},
+			"publishedfileid": "3405497646"
 		},
 		"[RO Module] Exterior Lighting": {
 			"identifier": "[RO Module] Exterior Lighting",
@@ -1379,7 +1390,8 @@
 				"lower": [
 					"[RO Interface] Exterior Lighting"
 				]
-			}
+			},
+			"publishedfileid": "3405497767"
 		},
 		"[Interface] Passenger Doors": {
 			"identifier": "[Interface] Passenger Doors",
@@ -1454,7 +1466,8 @@
 				"lower": [
 					"[Extender] Door Opener"
 				]
-			}
+			},
+			"publishedfileid": "3405497918"
 		},
 		"[Interface] Passenger Lighting": {
 			"identifier": "[Interface] Passenger Lighting",
@@ -1549,7 +1562,8 @@
 				"lower": [
 					"[Extender] Door Opener"
 				]
-			}
+			},
+			"publishedfileid": "3405498075"
 		},
 		"[Module] Passenger": {
 			"identifier": "[Module] Passenger",
@@ -1626,7 +1640,8 @@
 					"[Interface] Passenger Doors",
 					"[Interface] Passenger Lighting"
 				]
-			}
+			},
+			"publishedfileid": "3405498235"
 		},
 		"[RO Interface] Passenger Doors": {
 			"identifier": "[RO Interface] Passenger Doors",
@@ -1669,7 +1684,8 @@
 				"lower": [
 					"[Extender] Door Opener"
 				]
-			}
+			},
+			"publishedfileid": "3405498366"
 		},
 		"[RO Interface] Passenger Lighting": {
 			"identifier": "[RO Interface] Passenger Lighting",
@@ -1729,7 +1745,8 @@
 				"higher": [
 					"[RO Module] Passenger"
 				]
-			}
+			},
+			"publishedfileid": "3405498522"
 		},
 		"[RO Module] Passenger": {
 			"identifier": "[RO Module] Passenger",
@@ -1773,7 +1790,8 @@
 					"[RO Interface] Passenger Doors",
 					"[RO Interface] Passenger Lighting"
 				]
-			}
+			},
+			"publishedfileid": "3405498644"
 		},
 		"[System] Display Controller": {
 			"identifier": "[System] Display Controller",
@@ -1897,7 +1915,8 @@
 				}
 			],
 			"readonly": false,
-			"hierarchy": {}
+			"hierarchy": {},
+			"publishedfileid": "3405498758"
 		},
 		"[System] Dual Cab Controller": {
 			"identifier": "[System] Dual Cab Controller",
@@ -1975,7 +1994,8 @@
 				}
 			],
 			"readonly": false,
-			"hierarchy": {}
+			"hierarchy": {},
+			"publishedfileid": "3405498895"
 		},
 		"[System] Dual Cab Switchbox": {
 			"identifier": "[System] Dual Cab Switchbox",
@@ -2150,7 +2170,8 @@
 				}
 			],
 			"readonly": false,
-			"hierarchy": {}
+			"hierarchy": {},
+			"publishedfileid": "3405499034"
 		},
 		"[System] Hub": {
 			"identifier": "[System] Hub",
@@ -2204,7 +2225,8 @@
 				}
 			],
 			"readonly": false,
-			"hierarchy": {}
+			"hierarchy": {},
+			"publishedfileid": "3405499192"
 		},
 		"[System] Main Controller (Slave Only)": {
 			"identifier": "[System] Main Controller (Slave Only)",
@@ -2302,7 +2324,8 @@
 				}
 			],
 			"readonly": false,
-			"hierarchy": {}
+			"hierarchy": {},
+			"publishedfileid": "3405499329"
 		},
 		"[System] Main Controller": {
 			"identifier": "[System] Main Controller",
@@ -2410,7 +2433,8 @@
 				}
 			],
 			"readonly": false,
-			"hierarchy": {}
+			"hierarchy": {},
+			"publishedfileid": "3405499447"
 		},
 		"[Extender] Door Opener": {
 			"identifier": "[Extender] Door Opener",
@@ -2458,7 +2482,8 @@
 				"higher": [
 					"[Interface] Passenger Doors"
 				]
-			}
+			},
+			"publishedfileid": "3405499549"
 		}
 	}
 }
