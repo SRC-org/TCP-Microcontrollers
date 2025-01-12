@@ -18,13 +18,13 @@
       .description {
         font-family: Roboto;
         font-size: 35px;
-        font-weight: 300;
+        font-weight: 400;
       }
 
       .heading {
         font-family: Roboto;
         font-size: 50px;
-        font-weight: 500;
+        font-weight: 700;
       }
 
       .layoutLine {

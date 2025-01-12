@@ -27,10 +27,8 @@ let groupDescTemplate = fs.readFileSync(mPath + "Templates/GroupDescription.txt"
 // text width calculations
 getTextWidthFunction = font => options => text => textSVG.loadSync(mPath + 'Fonts/' + font).getMetrics(text, options).width
 textWidth = {
-	robotoLight: getTextWidthFunction('Roboto-Light.ttf'),
-	robotoMedium: getTextWidthFunction('Roboto-Medium.ttf'),
-	robotoBold: getTextWidthFunction('Roboto-Bold.ttf'),
-	jetbrainsMonoMedium: getTextWidthFunction('JetBrainsMono-Medium.ttf')
+	roboto: getTextWidthFunction('Roboto-Regular.ttf'),
+	jetbrainsMono: getTextWidthFunction('JetBrainsMono-Medium.ttf')
 }
 
 /*
@@ -92,7 +90,7 @@ genCompositeChannelInfo = (cid, opt) => {
 		eLabels.font({leading: 1})
 
 		let d = 0
-		eIDs.text(id => eLabels.text(label => c.forEach(v => wrapText(v.label, textWidth.robotoMedium({fontSize: 35}), opt.width - 150).forEach((line, i) => {
+		eIDs.text(id => eLabels.text(label => c.forEach(v => wrapText(v.label, textWidth.roboto({fontSize: 35}), opt.width - 150).forEach((line, i) => {
 			let d = i === 0 ? 52 : 45
 			eIDs.font({size: d})
 			eLabels.font({size: d})
@@ -133,12 +131,12 @@ genNodeInfo = (n, opt) => {
 
 	let y = 120
 
-	let wLabel = wrapText(n.label, textWidth.robotoMedium({fontSize: 50}), opt.width - 150)
+	let wLabel = wrapText(n.label, textWidth.roboto({fontSize: 50}), opt.width - 150)
 	eLabel.font({size: 60, leading: 1})
 	eLabel.text(add => wLabel.forEach(line => add.tspan(line).newLine()))
 	y += (wLabel.length-1) * 60
 
-	let wDescription = wrapText(n.description, textWidth.robotoMedium({fontSize: 35}), opt.width - 150)
+	let wDescription = wrapText(n.description, textWidth.roboto({fontSize: 35}), opt.width - 150)
 	if (wDescription.length > 0) y += 60
 	eDescription.attr({y: y - 180})
 	eDescription.font({size: 45, leading: 1})
@@ -190,7 +188,7 @@ genMicrocontroller = (c, opt) => {
 	eBackground.attr(size)
 	eBorder.attr(size)
 
-	let wText = wrapText(opt?.text, textWidth.jetbrainsMonoMedium({fontSize: 30}), opt.width * 120 - 100)
+	let wText = wrapText(opt?.text, textWidth.jetbrainsMono({fontSize: 30}), opt.width * 120 - 100)
 	eText.attr({x: 60 * opt.width, y: 60 * opt.height - 40 * (wText.length - 1) / 2})
 	eText.font({size: 40, leading: 1})
 	eText.text(add => wText.forEach(line => add.tspan(line).newLine()))
@@ -260,7 +258,7 @@ genThumbLike = (o, template) => {
 	eArrow?.addClass(rgbToHsl(hexToRgb(colour)).l > .5 ? "cFGb" : "cFGw")
 
 	// text
-	let wName = wrapText(o.name, textWidth.robotoBold({fontSize: 80}), 392)
+	let wName = wrapText(o.name, textWidth.roboto({fontSize: 80}), 392)
 	eName.attr({y: -80 * (wName.length-1)})
 	eName.font({size: 80, leading: 1})
 	eName.text(add => wName.forEach(line => add.tspan(line).newLine()))
@@ -315,7 +313,7 @@ genControllerCard = c => {
 	eName.text(c.name)
 	eInfo.text(c.identifier + (c.version ? " v" + c.version : ""))
 	eDescription.font({size: 45, leading: 1})
-	eDescription.text(add => wrapText(c.description, textWidth.robotoLight({fontSize: 35}), 840).forEach(line => add.tspan(line).newLine()))
+	eDescription.text(add => wrapText(c.description, textWidth.roboto({fontSize: 35}), 840).forEach(line => add.tspan(line).newLine()))
 	eTitleNext.text("Next" + (c.readonly ? " (Readonly)" : ""))
 
 	// microcontroller
@@ -435,7 +433,7 @@ genGroupCard = g => {
 	eFrame.css({fill: "#" + colour})
 
 	// text
-	let wDescription = wrapText(g.description ?? "", textWidth.robotoLight({fontSize: 35}), 1170)
+	let wDescription = wrapText(g.description ?? "", textWidth.roboto({fontSize: 35}), 1170)
 	eDescription.font({size: 45, leading: 1})
 	eDescription.text(add => wDescription.forEach(line => add.tspan(line).newLine()))
 	eName.text(g.name)

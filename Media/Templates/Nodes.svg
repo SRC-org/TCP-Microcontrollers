@@ -18,13 +18,13 @@
       .description {
         font-family: Roboto;
         font-size: 35px;
-        font-weight: 300;
+        font-weight: 400;
       }
 
       .heading {
         font-family: Roboto;
         font-size: 50px;
-        font-weight: 500;
+        font-weight: 700;
       }
 
       .nodeBox {
@@ -37,7 +37,7 @@
       }
 
       .cFG01 {
-        fill: #E6E6E6;
+        fill: #403E57;
       }
 
       .cFG02 {
@@ -53,13 +53,13 @@
       }
 
       .cBG01 {
-        fill: #2A2A31;
+        fill: #E6E6E6;
       }
 
     </style>
   </defs>
   <rect id="Background" class="cBG01" x="30" y="30" width="1860" height="1020" rx="30" ry="30"/>
-  <!--<rect id="Frame" class="cBG01" width="1920" height="1080"/>-->
+  <rect id="Frame" class="cBG01" width="1920" height="1080"/>
   <text id="Name" class="title cFG01" transform="translate(120 239.96)"><tspan x="0" y="0">Nodes</tspan></text>
   <text id="Info" class="mono cFG02" transform="translate(120 119.68)"><tspan x="0" y="0">Info</tspan></text>
   <g id="Nodes" transform="translate(120 360)"></g>

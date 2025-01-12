@@ -18,7 +18,7 @@
       .description {
         font-family: Roboto;
         font-size: 35px;
-        font-weight: 300;
+        font-weight: 400;
       }
 
       .cMC {

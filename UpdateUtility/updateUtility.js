@@ -182,19 +182,19 @@ async function execImages() {
 	let PNGs = []
 
 	Object.values(database.controllers).forEach(c => {
-		SVGs.push(mergeJSON(genControllerThumbnail(c), {
+		/*SVGs.push(mergeJSON(genControllerThumbnail(c), {
 			path: mPath + "Export/Thumbnails/" + c.identifier
-		}))
+		}))*/
 		SVGs.push(mergeJSON(genControllerCard(c), {
 			path: mPath + "Export/Cards/" + c.identifier
 		}))
-		if (c.group !== "System") SVGs.push(mergeJSON(genControllerLayout(c), {
+		/**if (c.group !== "System") SVGs.push(mergeJSON(genControllerLayout(c), {
 			path: mPath + "Export/Layout/" + c.identifier
-		}))
+		}))*/
 		SVGs.push(mergeJSON(genControllerNodes(c), {
 			path: mPath + "Export/Nodes/" + c.identifier
 		}))
-		SVGs.push(mergeJSON(genControllerLink(c, "Higher"), {
+		/*SVGs.push(mergeJSON(genControllerLink(c, "Higher"), {
 			path: mPath + "Export/LinkHigher/" + c.identifier
 		}))
 		SVGs.push(mergeJSON(genControllerLink(c, "Lower"), {
@@ -202,11 +202,11 @@ async function execImages() {
 		}))
 		TXTs.push(mergeJSON(genControllerDesc(c), {
 			path: mPath + "Export/Desc/" + c.identifier
-		}))
+		}))*/
 	})
 
 	Object.values(database.groups).forEach(g => {
-		SVGs.push(mergeJSON(genGroupThumbnail(g), {
+		/*SVGs.push(mergeJSON(genGroupThumbnail(g), {
 			path: mPath + "Export/Thumbnails/" + g.identifier
 		}))
 		SVGs.push(mergeJSON(genGroupCard(g), {
@@ -214,7 +214,7 @@ async function execImages() {
 		}))
 		TXTs.push(mergeJSON(genGroupDesc(g), {
 			path: mPath + "Export/Desc/" + g.identifier
-		}))
+		}))*/
 	})
 
 	// convert to png
