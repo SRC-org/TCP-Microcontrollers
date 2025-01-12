@@ -37,7 +37,7 @@
       }
 
       .cFG01 {
-        fill: #403E57;
+        fill: #E6E6E6;
       }
 
       .cFG02 {
@@ -53,7 +53,7 @@
       }
 
       .cBG01 {
-        fill: #E6E6E6;
+        fill: #2A2A31;
       }
 
     </style>
