@@ -5,7 +5,7 @@
 			<node label="Module -&gt; Interface" mode="1" type="5" description="Communicates with lighting module"/>
 		</n>
 		<n id="57" component_id="920">
-			<node label="Lightbox Extender &amp; Instrument Panel" type="5" description="Outputs information to both the Lightbox Extender and Instrument Panels // Channels: B4: Front Headlights (toggle); B5: Rear Headlights (toggle); B6: Front Taillights (toggle); B7: Rear Taillights (toggle; B8: Front Highbeams (toggle); B9: Rear Highbeams (toggle); B10: Work Lights (toggle); B11: Warning Lights (toggle); B12: Decorative Lights (toggle); N1: Front Light Red (0-1); N2: Front Light Green (0-1); N3: Front Light Blue (0-1); N4: Rear Light Red (0-1); N5: Rear Light Green (0-1); N6: Rear Light Blue (0-1);">
+			<node label="Lightbox Extender &amp; Instrument Panel" type="5" description="Outputs information to both the Lightbox Extender and Instrument Panels">
 				<position x="1"/>
 			</node>
 		</n>

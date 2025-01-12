@@ -50,12 +50,12 @@
 			</node>
 		</n>
 		<n id="48" component_id="575">
-			<node label="Front RGB" type="5" description="Front RGB Lights. Combined Headlights/Taillights">
+			<node label="Front RGB" type="5" description="Front RGB Lights. Combined Headlights/Taillights // Channels: N1: Red (0-1); N2: Green (0-1); N3: Blue (0-1);">
 				<position x="1"/>
 			</node>
 		</n>
 		<n id="49" component_id="578">
-			<node label="Rear RGB" type="5" description="Rear RGB Lights. Combined Headlights/Taillights">
+			<node label="Rear RGB" type="5" description="Rear RGB Lights. Combined Headlights/Taillights // Channels: N1: Red (0-1); N2: Green (0-1); N3: Blue (0-1);">
 				<position x="2"/>
 			</node>
 		</n>

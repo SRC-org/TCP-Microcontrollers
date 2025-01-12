@@ -236,7 +236,7 @@
 				}
 			},
 			"Lighting#Extender": {
-				"visibility": 2,
+				"visibility": 1,
 				"channels": {
 					"boolean": {
 						"4": "Front Headlights (toggle)",
@@ -258,6 +258,14 @@
 						"6": "Rear Light Blue (0-1)"
 					}
 				}
+			},
+			"Lighting#FrontRGB": {
+				"visibility": 2,
+				"inherit": "Any#RGB"
+			},
+			"Lighting#RearRGB": {
+				"visibility": 2,
+				"inherit": "Any#RGB"
 			},
 			"Decouple#Module->Interface": {
 				"visibility": 1,
@@ -411,7 +419,8 @@
 			"Passenger.PassengerDoors#Interface->Module": "Passenger#DoorsInterface->Module",
 			"Passenger.PassengerDoors#DoorOpener": "Passenger.PassengerDoors#Extender",
 			"Passenger.DoorOpener#FromPassengerDoorsInterface": "Passenger.PassengerDoors#Extender",
-			"Lighting.ExteriorLighting#LightboxExtender&InstrumentPanel": "Lighting#Extender"
+			"Lighting.ExteriorLighting#LightboxExtender&InstrumentPanel": "Lighting#Extender",
+			"Lighting.Lightbox#Interface": "Lighting#Extender"
 		},
 		"common": {
 			"Any#RGB": {
@@ -1028,6 +1037,7 @@
 					"description": "Communicates with lighting interface",
 					"mode": true,
 					"type": 5,
+					"channels": "Lighting.Lightbox#Interface",
 					"position": {
 						"x": 0,
 						"z": 0
@@ -1128,6 +1138,7 @@
 					"description": "Front RGB Lights. Combined Headlights/Taillights",
 					"mode": false,
 					"type": 5,
+					"channels": "Lighting#FrontRGB",
 					"position": {
 						"x": 1,
 						"z": 0
@@ -1138,6 +1149,7 @@
 					"description": "Rear RGB Lights. Combined Headlights/Taillights",
 					"mode": false,
 					"type": 5,
+					"channels": "Lighting#RearRGB",
 					"position": {
 						"x": 2,
 						"z": 0
