@@ -1,4 +1,5 @@
 Controls brakes and drivetrain systems
 
-[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3365767211][img]https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/All/NewToTCP.png[/img][/url]
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3365767211][img]https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/All/Link_Banner_Guide.png[/img][/url]
 [url=https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/Nodes/%5BInterface%5D%20Drivetrain.png][img]https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/Nodes/%5BInterface%5D%20Drivetrain.png[/img][/url]
+[url=https://discord.gg/3Swuqkb8d2][img]https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/All/Link_Banner_Discord.png[/img][/url]

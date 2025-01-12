@@ -38,7 +38,9 @@
 		"urls": {
 			"images": "https://raw.githubusercontent.com/SRC-org/TCP/main/Media/Export/",
 			"discord": "https://discord.gg/3Swuqkb8d2",
-			"guide": "https://steamcommunity.com/sharedfiles/filedetails/?id=3365767211"
+			"guide": "https://steamcommunity.com/sharedfiles/filedetails/?id=3365767211",
+			"TCPCollection": "https://steamcommunity.com/sharedfiles/filedetails/?id=2126765606",
+			"vehicleCollection": "https://steamcommunity.com/sharedfiles/filedetails/?id=1910279596"
 		}
 	},
 	"connections": {

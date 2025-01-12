@@ -199,10 +199,10 @@ async function execImages() {
 		}))
 		SVGs.push(mergeJSON(genControllerLink(c, "Lower"), {
 			path: mPath + "Export/LinkLower/" + c.identifier
-		}))
+		}))*/
 		TXTs.push(mergeJSON(genControllerDesc(c), {
 			path: mPath + "Export/Desc/" + c.identifier
-		}))*/
+		}))
 	})
 
 	Object.values(database.groups).forEach(g => {

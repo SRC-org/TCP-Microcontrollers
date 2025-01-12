@@ -1,4 +1,5 @@
 {$.description}
 
-[url={$uguide}][img]{$maNewToTCP}[/img][/url]
+[url={$uguide}][img]{$maLink_Banner_Guide}[/img][/url]
 [url={$mcNodes}][img]{$mcNodes}[/img][/url]
+[url={$udiscord}][img]{$maLink_Banner_Discord}[/img][/url]
