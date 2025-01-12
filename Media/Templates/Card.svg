@@ -33,72 +33,80 @@
         font-weight: 500;
       }
 
-      .cBack {
+      .cMC {
         fill: #cacacc;
       }
 
-      .cDark {
+      .cFG01 {
         fill: #403e57;
       }
 
-      .cDark2 {
+      .cFG02 {
         fill: #727182;
       }
 
-      .cLight {
+	  .cFGw {
+        fill: #e6e6e6;
+      }
+
+      .cFGb {
+        fill: #403e57;
+      }
+
+      .cBG01 {
         fill: #e6e6e6;
       }
 
     </style>
   </defs>
   <rect id="Frame" width="1920" height="1080"/>
-  <rect id="Background" class="cLight" x="30" y="30" width="1860" height="1020" rx="30" ry="30"/>
+  <rect id="Background" class="cBG01" x="30" y="30" width="1860" height="1020" rx="30" ry="30"/>
   <g id="Grid">
-    <rect class="cBack" x="172" y="412" width="16" height="16" rx="5" ry="5"/>
-    <rect class="cBack" x="172" y="532" width="16" height="16" rx="5" ry="5"/>
-    <rect class="cBack" x="172" y="652" width="16" height="16" rx="5" ry="5"/>
-    <rect class="cBack" x="172" y="772" width="16" height="16" rx="5" ry="5"/>
-    <rect class="cBack" x="172" y="892" width="16" height="16" rx="5" ry="5"/>
-    <rect class="cBack" x="292" y="412" width="16" height="16" rx="5" ry="5"/>
-    <rect class="cBack" x="292" y="532" width="16" height="16" rx="5" ry="5"/>
-    <rect class="cBack" x="292" y="652" width="16" height="16" rx="5" ry="5"/>
-    <rect class="cBack" x="292" y="772" width="16" height="16" rx="5" ry="5"/>
-    <rect class="cBack" x="292" y="892" width="16" height="16" rx="5" ry="5"/>
-    <rect class="cBack" x="412" y="412" width="16" height="16" rx="5" ry="5"/>
-    <rect class="cBack" x="412" y="532" width="16" height="16" rx="5" ry="5"/>
-    <rect class="cBack" x="412" y="652" width="16" height="16" rx="5" ry="5"/>
-    <rect class="cBack" x="412" y="772" width="16" height="16" rx="5" ry="5"/>
-    <rect class="cBack" x="412" y="892" width="16" height="16" rx="5" ry="5"/>
-    <rect class="cBack" x="532" y="412" width="16" height="16" rx="5" ry="5"/>
-    <rect class="cBack" x="532" y="532" width="16" height="16" rx="5" ry="5"/>
-    <rect class="cBack" x="532" y="652" width="16" height="16" rx="5" ry="5"/>
-    <rect class="cBack" x="532" y="772" width="16" height="16" rx="5" ry="5"/>
-    <rect class="cBack" x="532" y="892" width="16" height="16" rx="5" ry="5"/>
-    <rect class="cBack" x="652" y="412" width="16" height="16" rx="5" ry="5"/>
-    <rect class="cBack" x="652" y="532" width="16" height="16" rx="5" ry="5"/>
-    <rect class="cBack" x="652" y="652" width="16" height="16" rx="5" ry="5"/>
-    <rect class="cBack" x="652" y="772" width="16" height="16" rx="5" ry="5"/>
-    <rect class="cBack" x="652" y="892" width="16" height="16" rx="5" ry="5"/>
-    <rect class="cBack" x="772" y="412" width="16" height="16" rx="5" ry="5"/>
-    <rect class="cBack" x="772" y="532" width="16" height="16" rx="5" ry="5"/>
-    <rect class="cBack" x="772" y="652" width="16" height="16" rx="5" ry="5"/>
-    <rect class="cBack" x="772" y="772" width="16" height="16" rx="5" ry="5"/>
-    <rect class="cBack" x="772" y="892" width="16" height="16" rx="5" ry="5"/>
+    <rect class="cMC" x="172" y="412" width="16" height="16" rx="5" ry="5"/>
+    <rect class="cMC" x="172" y="532" width="16" height="16" rx="5" ry="5"/>
+    <rect class="cMC" x="172" y="652" width="16" height="16" rx="5" ry="5"/>
+    <rect class="cMC" x="172" y="772" width="16" height="16" rx="5" ry="5"/>
+    <rect class="cMC" x="172" y="892" width="16" height="16" rx="5" ry="5"/>
+    <rect class="cMC" x="292" y="412" width="16" height="16" rx="5" ry="5"/>
+    <rect class="cMC" x="292" y="532" width="16" height="16" rx="5" ry="5"/>
+    <rect class="cMC" x="292" y="652" width="16" height="16" rx="5" ry="5"/>
+    <rect class="cMC" x="292" y="772" width="16" height="16" rx="5" ry="5"/>
+    <rect class="cMC" x="292" y="892" width="16" height="16" rx="5" ry="5"/>
+    <rect class="cMC" x="412" y="412" width="16" height="16" rx="5" ry="5"/>
+    <rect class="cMC" x="412" y="532" width="16" height="16" rx="5" ry="5"/>
+    <rect class="cMC" x="412" y="652" width="16" height="16" rx="5" ry="5"/>
+    <rect class="cMC" x="412" y="772" width="16" height="16" rx="5" ry="5"/>
+    <rect class="cMC" x="412" y="892" width="16" height="16" rx="5" ry="5"/>
+    <rect class="cMC" x="532" y="412" width="16" height="16" rx="5" ry="5"/>
+    <rect class="cMC" x="532" y="532" width="16" height="16" rx="5" ry="5"/>
+    <rect class="cMC" x="532" y="652" width="16" height="16" rx="5" ry="5"/>
+    <rect class="cMC" x="532" y="772" width="16" height="16" rx="5" ry="5"/>
+    <rect class="cMC" x="532" y="892" width="16" height="16" rx="5" ry="5"/>
+    <rect class="cMC" x="652" y="412" width="16" height="16" rx="5" ry="5"/>
+    <rect class="cMC" x="652" y="532" width="16" height="16" rx="5" ry="5"/>
+    <rect class="cMC" x="652" y="652" width="16" height="16" rx="5" ry="5"/>
+    <rect class="cMC" x="652" y="772" width="16" height="16" rx="5" ry="5"/>
+    <rect class="cMC" x="652" y="892" width="16" height="16" rx="5" ry="5"/>
+    <rect class="cMC" x="772" y="412" width="16" height="16" rx="5" ry="5"/>
+    <rect class="cMC" x="772" y="532" width="16" height="16" rx="5" ry="5"/>
+    <rect class="cMC" x="772" y="652" width="16" height="16" rx="5" ry="5"/>
+    <rect class="cMC" x="772" y="772" width="16" height="16" rx="5" ry="5"/>
+    <rect class="cMC" x="772" y="892" width="16" height="16" rx="5" ry="5"/>
   </g>
   <g id="ROMarker" style="display: none">
     <path id="FrameCorner" d="M1410,30V0h510v150h-30c0-16.57-13.43-30-30-30h-390c-16.57,0-30-13.43-30-30v-30c0-16.57-13.43-30-30-30Z"/>
-    <text id="ROText" class="roText cLight" transform="translate(1560 81)"><tspan x="0" y="0">Readonly</tspan></text>
+    <text id="ROText" class="roText cBG01" transform="translate(1560 81)"><tspan x="0" y="0">Readonly</tspan></text>
   </g>
   <g id="TCPLogo">
-    <path id="Text" class="cDark" d="M1637.61,915.09h-17.61v-15.09h52.58v15.09h-17.61v44.91h-17.36v-44.91ZM1677.34,930.07c0-17.23,11.46-31.2,30.35-31.2,17.44,0,27.62,10.8,29.5,24.17h-17.44c-1.54-4.37-4.7-9.09-11.8-9.09-8.21,0-13.25,6.94-13.25,16.11s5.04,16.11,13.25,16.11c7.1,0,10.26-4.71,11.8-9.09h17.44c-1.88,13.37-12.06,24.17-29.5,24.17-18.9,0-30.35-13.97-30.35-31.2ZM1745.02,900h31.12c15.05,0,23.85,8.31,23.85,20.14s-9.41,20.23-23.85,20.23h-13.77v19.63h-17.36v-60ZM1775.29,926.23c4.62,0,7.44-2.31,7.44-6.17,0-3.51-2.56-5.91-7.44-5.91h-12.91v12.09h12.91Z"/>
-    <path id="Logo" class="cDark" d="M1485,900v15h-13.18c-4.15,0-7.9,1.67-10.61,4.39l-18.38,18.37-7.23,7.23h34.4v15h-60v-60h15v34.39l25.6-25.61h0c5.42-5.43,12.92-8.79,21.21-8.79h13.18ZM1500,900v15h34.4l-7.23,7.23-18.37,18.37c-2.71,2.72-6.46,4.4-10.61,4.4h-13.18v15h13.18c8.29,0,15.79-3.36,21.21-8.79h0s25.6-25.61,25.6-25.61v34.4h15v-60h-60Z"/>
+    <path id="Text" class="cFG01" d="M1637.61,915.09h-17.61v-15.09h52.58v15.09h-17.61v44.91h-17.36v-44.91ZM1677.34,930.07c0-17.23,11.46-31.2,30.35-31.2,17.44,0,27.62,10.8,29.5,24.17h-17.44c-1.54-4.37-4.7-9.09-11.8-9.09-8.21,0-13.25,6.94-13.25,16.11s5.04,16.11,13.25,16.11c7.1,0,10.26-4.71,11.8-9.09h17.44c-1.88,13.37-12.06,24.17-29.5,24.17-18.9,0-30.35-13.97-30.35-31.2ZM1745.02,900h31.12c15.05,0,23.85,8.31,23.85,20.14s-9.41,20.23-23.85,20.23h-13.77v19.63h-17.36v-60ZM1775.29,926.23c4.62,0,7.44-2.31,7.44-6.17,0-3.51-2.56-5.91-7.44-5.91h-12.91v12.09h12.91Z"/>
+    <path id="Logo" class="cFG01" d="M1485,900v15h-13.18c-4.15,0-7.9,1.67-10.61,4.39l-18.38,18.37-7.23,7.23h34.4v15h-60v-60h15v34.39l25.6-25.61h0c5.42-5.43,12.92-8.79,21.21-8.79h13.18ZM1500,900v15h34.4l-7.23,7.23-18.37,18.37c-2.71,2.72-6.46,4.4-10.61,4.4h-13.18v15h13.18c8.29,0,15.79-3.36,21.21-8.79h0s25.6-25.61,25.6-25.61v34.4h15v-60h-60Z"/>
   </g>
   <g id="Microcontroller" transform="translate(120 360)">
-    <rect id="MCBorder" class="mcBorder cBack" x="0" y="0" width="120" height="120" rx="20" ry="20"/>
-    <rect id="MCBackground" class="cBack" x="0" y="0" width="120" height="120" rx="20" ry="20"/>
+    <rect id="MCBorder" class="mcBorder cMC" x="0" y="0" width="120" height="120" rx="20" ry="20"/>
+    <rect id="McMCground" class="cMC" x="0" y="0" width="120" height="120" rx="20" ry="20"/>
     <g id="Nodes"></g>
   </g>
-  <text id="Description" class="description cDark" transform="translate(960 389.94)"><tspan x="0" y="0">Description</tspan></text>
-  <text id="Name" class="title cDark" transform="translate(120 239.96)"><tspan x="0" y="0">Name</tspan></text>
-  <text id="Info" class="mono cDark2" transform="translate(120 119.68)"><tspan x="0" y="0">Info</tspan></text>
+  <text id="Description" class="description cFG01" transform="translate(960 389.94)"><tspan x="0" y="0">Description</tspan></text>
+  <text id="Name" class="title cFG01" transform="translate(120 239.96)"><tspan x="0" y="0">Name</tspan></text>
+  <text id="Info" class="mono cFG02" transform="translate(120 119.68)"><tspan x="0" y="0">Info</tspan></text>
 </svg>

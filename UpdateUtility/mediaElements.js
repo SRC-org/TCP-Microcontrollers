@@ -45,7 +45,7 @@ genNode = (n, opt) => {
 
 	let nodeColour = database.definitions.nodeColours[n.type]
 
-	let eNodeBox = SVG("<rect " + (opt.layout ? "style=\"display: none\" " : "") + "class=\"cBack\" width=\"120\" height=\"120\" rx=\"20\" ry=\"20\"/>")
+	let eNodeBox = SVG("<rect " + (opt.layout ? "style=\"display: none\" " : "") + "class=\"cMC\" width=\"120\" height=\"120\" rx=\"20\" ry=\"20\"/>")
 	let eNodeIcon = SVG(n.mode ? "<circle style=\"stroke-width: 10px; fill: " + (opt.layout ? "#e6e6e6" : "none") + "; stroke: #" + nodeColour + ";\"  r=\"25\"/>" : "<circle style=\"fill: #" + nodeColour + ";\" r=\"15\"/>\n")
 	let eNodeConnections = SVG("<g></g>")
 	let eNode = SVG("<g></g>")
@@ -79,7 +79,7 @@ genCompositeChannelInfo = (cid, opt) => {
 	let y = -22
 	let render = type => {
 		let eIDs = SVG("<text class=\"mono\" transform=\"translate(120 0)\" text-anchor=\"end\" style='fill: #" + database.definitions.nodeColours[type === "boolean" ? "0" : "1"] + "'></text>")
-		let eLabels = SVG("<text class=\"description cDark\" transform=\"translate(150 0)\"></text>")
+		let eLabels = SVG("<text class=\"description cFG01\" transform=\"translate(150 0)\"></text>")
 
 		let c = []
 		for (let ch in channels[type]) c.push(mergeJSON(channels[type][ch], { channel: Number(ch) }))
@@ -123,9 +123,9 @@ genNodeInfo = (n, opt) => {
 	}
 
 	let eNode = SVG(genNode(n).data)
-	let eInfo = SVG("<text class=\"mono cDark2\" transform=\"translate(150 42)\"></text>")
-	let eLabel = SVG("<text class=\"heading cDark\" transform=\"translate(150 100)\"></text>")
-	let eDescription = SVG("<text class=\"description cDark\" transform=\"translate(150 180)\"></text>")
+	let eInfo = SVG("<text class=\"mono cFG02\" transform=\"translate(150 42)\"></text>")
+	let eLabel = SVG("<text class=\"heading cFG01\" transform=\"translate(150 100)\"></text>")
+	let eDescription = SVG("<text class=\"description cFG01\" transform=\"translate(150 180)\"></text>")
 	let eNodeInfo = SVG("<g></g>")
 
 	// text & positioning
@@ -181,10 +181,10 @@ genMicrocontroller = (c, opt) => {
 	let col = database.definitions.groupColours[c.group]
 
 	let eMicrocontroller = SVG("<g transform=\"translate(0 0)\"></g>")
-	let eBackground = SVG("<rect class=\"cBack\" x=\"0\" y=\"0\" rx=\"" + rad + "\" ry=\"" + rad + "\"/>")
-	let eBorder = SVG("<rect class=\"cBack\" x=\"0\" y=\"0\" rx=\"" + rad + "\" ry=\"" + rad + "\"/>")
+	let eBackground = SVG("<rect class=\"cMC\" x=\"0\" y=\"0\" rx=\"" + rad + "\" ry=\"" + rad + "\"/>")
+	let eBorder = SVG("<rect class=\"cMC\" x=\"0\" y=\"0\" rx=\"" + rad + "\" ry=\"" + rad + "\"/>")
 	let eNodes = SVG("<g></g>")
-	let eText = SVG("<text class=\"mono cDark\" dominant-baseline=\"middle\" text-anchor=\"middle\"></text>")
+	let eText = SVG("<text class=\"mono cFG01\" dominant-baseline=\"middle\" text-anchor=\"middle\"></text>")
 
 	let size = {x: 0, y: 0, width: 120 * opt.width, height: 120 * opt.height}
 	eBackground.attr(size)
@@ -256,8 +256,8 @@ genThumbLike = (o, template) => {
 	eFrame.css({fill: "#" + colour})
 	eType.attr({class: "type"})
 	eArrow?.attr({class: ""})
-	eType.addClass(rgbToHsl(hexToRgb(colour)).l > .5 ? "cDark" : "cLight")
-	eArrow?.addClass(rgbToHsl(hexToRgb(colour)).l > .5 ? "cDark" : "cLight")
+	eType.addClass(rgbToHsl(hexToRgb(colour)).l > .5 ? "cFGb" : "cFGw")
+	eArrow?.addClass(rgbToHsl(hexToRgb(colour)).l > .5 ? "cFGb" : "cFGw")
 
 	// text
 	let wName = wrapText(o.name, textWidth.robotoBold({fontSize: 80}), 392)
@@ -307,7 +307,7 @@ genControllerCard = c => {
 	eFrame.css({fill: "#" + colour})
 	eROMarker.css({fill: "#" + colour})
 	eROText.attr({class: "roText"})
-	eROText.addClass(rgbToHsl(hexToRgb(colour)).l > .5 ? "cDark" : "cLight")
+	eROText.addClass(rgbToHsl(hexToRgb(colour)).l > .5 ? "cFGb" : "cFGw")
 	if (c.readonly) eROMarker.show()
 	else eROMarker.hide()
 
@@ -363,7 +363,7 @@ genControllerNodes = c => {
 
 	// elements
 	let eFrame = nodesTemplate.find("#Frame")
-	//let eBackground = nodesTemplate.find("#Background")
+	let eBackground = nodesTemplate.find("#Background")
 	//let eLogo = nodesTemplate.find("#TCPLogo")
 	let eName = nodesTemplate.find("#Name")
 	let eInfo = nodesTemplate.find("#Info")
@@ -392,8 +392,8 @@ genControllerNodes = c => {
 	// resize
 	let height = 480 + wrap.min
 	nodesTemplate.first().viewbox(0, 0, 1920, height)
-	eFrame.attr({height: height})
-	//eBackground.attr({height: height-60})
+	eFrame?.attr({height: height})
+	eBackground?.attr({height: height-60})
 	//eLogo.attr({transform: "translate(0, " + (height - 1080) + ")"})
 
 	return {

@@ -15,19 +15,35 @@
         font-weight: 500;
       }
 
-      .cDark {
+      .cMC {
+        fill: #cacacc;
+      }
+
+      .cFG01 {
         fill: #403e57;
       }
 
-      .cLight {
+      .cFG02 {
+        fill: #727182;
+      }
+
+	  .cFGw {
+        fill: #e6e6e6;
+      }
+
+      .cFGb {
+        fill: #403e57;
+      }
+
+      .cBG01 {
         fill: #e6e6e6;
       }
 
     </style>
   </defs>
   <rect id="Frame" width="512" height="512"/>
-  <rect id="Background" class="cLight" x="30" y="30" width="452" height="360" rx="30" ry="30"/>
-  <text id="Name" class="name cDark" transform="translate(60 345)"><tspan x="0" y="0">Name</tspan></text>
-  <text id="Type" class="type cLight" transform="translate(452 467)" text-anchor="end"><tspan x="0" y="0">Type</tspan></text>
-  <path id="TCPLogo" class="cDark" d="M135,60v15h-13.18c-4.15,0-7.9,1.67-10.61,4.39l-18.38,18.37-7.23,7.23h34.4v15h-60v-60h15v34.39l25.6-25.61h0c5.42-5.43,12.92-8.79,21.21-8.79h13.18ZM150,60v15h34.4l-7.23,7.23-18.37,18.37c-2.71,2.72-6.46,4.4-10.61,4.4h-13.18v15h13.18c8.29,0,15.79-3.36,21.21-8.79h0s25.6-25.61,25.6-25.61v34.4h15v-60h-60Z"/>
+  <rect id="Background" class="cBG01" x="30" y="30" width="452" height="360" rx="30" ry="30"/>
+  <text id="Name" class="name cFG01" transform="translate(60 345)"><tspan x="0" y="0">Name</tspan></text>
+  <text id="Type" class="type cBG01" transform="translate(452 467)" text-anchor="end"><tspan x="0" y="0">Type</tspan></text>
+  <path id="TCPLogo" class="cFG01" d="M135,60v15h-13.18c-4.15,0-7.9,1.67-10.61,4.39l-18.38,18.37-7.23,7.23h34.4v15h-60v-60h15v34.39l25.6-25.61h0c5.42-5.43,12.92-8.79,21.21-8.79h13.18ZM150,60v15h34.4l-7.23,7.23-18.37,18.37c-2.71,2.72-6.46,4.4-10.61,4.4h-13.18v15h13.18c8.29,0,15.79-3.36,21.21-8.79h0s25.6-25.61,25.6-25.61v34.4h15v-60h-60Z"/>
 </svg>

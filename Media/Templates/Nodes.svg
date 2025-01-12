@@ -32,26 +32,35 @@
         stroke-width: 10px;
       }
 
-      .cBack {
+      .cMC {
         fill: #cacacc;
       }
 
-      .cDark {
+      .cFG01 {
+        fill: #E6E6E6;
+      }
+
+      .cFG02 {
+        fill: #706F80;
+      }
+
+	  .cFGw {
+        fill: #e6e6e6;
+      }
+
+      .cFGb {
         fill: #403e57;
       }
 
-      .cDark2 {
-        fill: #727182;
-      }
-
-      .cLight {
-        fill: #e6e6e6;
+      .cBG01 {
+        fill: #2A2A31;
       }
 
     </style>
   </defs>
-  <rect id="Frame" class="cLight" width="1920" height="1080"/>
-  <text id="Name" class="title cDark" transform="translate(120 239.96)"><tspan x="0" y="0">Nodes</tspan></text>
-  <text id="Info" class="mono cDark2" transform="translate(120 119.68)"><tspan x="0" y="0">Info</tspan></text>
+  <rect id="Background" class="cBG01" x="30" y="30" width="1860" height="1020" rx="30" ry="30"/>
+  <!--<rect id="Frame" class="cBG01" width="1920" height="1080"/>-->
+  <text id="Name" class="title cFG01" transform="translate(120 239.96)"><tspan x="0" y="0">Nodes</tspan></text>
+  <text id="Info" class="mono cFG02" transform="translate(120 119.68)"><tspan x="0" y="0">Info</tspan></text>
   <g id="Nodes" transform="translate(120 360)"></g>
 </svg>
