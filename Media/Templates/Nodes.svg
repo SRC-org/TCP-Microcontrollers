@@ -56,9 +56,13 @@
         fill: #2A2A31;
       }
 
+	  #Background {
+		paint-order: stroke;
+	  }
+
     </style>
   </defs>
-  <rect id="Background" class="cBG01" x="30" y="30" width="1860" height="1020" rx="30" ry="30"/>
+  <rect id="Background" class="cBG01" x="30" y="30" width="1860" height="1020" rx="30" ry="30" stroke="#565661" stroke-width="20"/>
   <!--<rect id="Frame" class="cBG01" width="1920" height="1080"/>-->
   <text id="Name" class="title cFG01" transform="translate(120 239.96)"><tspan x="0" y="0">Nodes</tspan></text>
   <text id="Info" class="mono cFG02" transform="translate(120 119.68)"><tspan x="0" y="0">Info</tspan></text>
