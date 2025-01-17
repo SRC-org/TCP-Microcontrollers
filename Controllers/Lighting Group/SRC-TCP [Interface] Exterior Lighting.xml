@@ -10,7 +10,7 @@
 			</node>
 		</n>
 		<n id="42" component_id="351">
-			<node label="UI" mode="1" type="5" description="Connects to Instruments or Display Controller // Channels: B4: Auto Lights (toggle); B5: Head Lights (toggle); B6: High Beams (toggle); B7: Work Lights (toggle); B8: Warning Lights (toggle); B9: Decorative Lights (toggle);">
+			<node label="UI" mode="1" type="5" description="Connects to Instruments or Display Controller // Channels: B4: Auto Lights (toggle); B5: Head Lights (toggle); B6: High Beams (t">
 				<position z="1"/>
 			</node>
 		</n>
@@ -141,13 +141,13 @@
 			<c type="41">
 				<object id="906" count="7">
 					<pos x="-17" y="12.75"/>
-					<in1 component_id="1255"/>
-					<in2 component_id="1265"/>
-					<in3 component_id="1261"/>
-					<in4 component_id="1263"/>
+					<in1 component_id="1241"/>
+					<in2 component_id="1242"/>
+					<in3 component_id="1245"/>
+					<in4 component_id="1244"/>
 					<in5 component_id="1267"/>
-					<in6 component_id="1269"/>
-					<in7 component_id="966"/>
+					<in6 component_id="1243"/>
+					<in7 component_id="1246"/>
 				</object>
 			</c>
 			<c type="47">
@@ -575,8 +575,8 @@
 				</object>
 			</c>
 			<c type="56">
-				<object id="1210" script="colors={w={85,90,90},w2={70,75,75},b={10,10,10},b2={8,8,8},acc={69,12,10}}
-labels = {&quot;Auto&quot;,&quot;Head&quot;,&quot;High&quot;,&quot;Work&quot;,&quot;Warn&quot;,&quot;Deco&quot;}
+				<object id="1210" script='colors={w={85,90,90},w2={70,75,75},b={10,10,10},b2={8,8,8},acc={69,12,10}}
+labels = {"Auto","Head","High","Work","Warn","Deco"}
 state = {}
 out = {}
 
@@ -650,7 +650,7 @@ function onDraw()
             if (k &lt;= 6) then dOpt(6+i*28,24+j*12,24,9,labels[k],state[k]) end
 		end
 	end
-end">
+end'>
 					<pos x="-25.25" y="14"/>
 					<in1 component_id="1271"/>
 				</object>
@@ -671,43 +671,43 @@ end">
 			</c>
 			<c type="2">
 				<object id="1241">
-					<pos x="-21.75" y="14"/>
-					<in1 component_id="826"/>
+					<pos x="-18.75" y="14"/>
+					<in1 component_id="1255"/>
 					<in2 component_id="1248"/>
 				</object>
 			</c>
 			<c type="2">
 				<object id="1242">
-					<pos x="-21.75" y="13"/>
-					<in1 component_id="827"/>
+					<pos x="-18.75" y="13"/>
+					<in1 component_id="1265"/>
 					<in2 component_id="1249"/>
 				</object>
 			</c>
 			<c type="2">
 				<object id="1243">
-					<pos x="-21.75" y="10"/>
-					<in1 component_id="830"/>
+					<pos x="-18.75" y="10"/>
+					<in1 component_id="1267"/>
 					<in2 component_id="1252"/>
 				</object>
 			</c>
 			<c type="2">
 				<object id="1244">
-					<pos x="-21.75" y="11"/>
-					<in1 component_id="829"/>
+					<pos x="-18.75" y="11"/>
+					<in1 component_id="1263"/>
 					<in2 component_id="1251"/>
 				</object>
 			</c>
 			<c type="2">
 				<object id="1245">
-					<pos x="-21.75" y="12"/>
-					<in1 component_id="828"/>
+					<pos x="-18.75" y="12"/>
+					<in1 component_id="1261"/>
 					<in2 component_id="1250"/>
 				</object>
 			</c>
 			<c type="2">
 				<object id="1246">
-					<pos x="-21.75" y="9"/>
-					<in1 component_id="831"/>
+					<pos x="-18.75" y="9"/>
+					<in1 component_id="1269"/>
 					<in2 component_id="1253"/>
 				</object>
 			</c>
@@ -749,98 +749,86 @@ end">
 			</c>
 			<c type="28">
 				<object id="1255">
-					<pos x="-18.75" y="14.25"/>
+					<pos x="-20.5" y="14.25"/>
 					<in1 component_id="1256"/>
 				</object>
 			</c>
 			<c type="48">
 				<object id="1256">
-					<pos x="-20" y="14.25"/>
-					<in1 component_id="1241"/>
+					<pos x="-21.75" y="14.25"/>
+					<in1 component_id="826"/>
 				</object>
 			</c>
 			<c type="28">
 				<object id="1261">
-					<pos x="-18.75" y="12.25"/>
+					<pos x="-20.5" y="12.25"/>
 					<in1 component_id="1262"/>
 				</object>
 			</c>
 			<c type="48">
 				<object id="1262">
-					<pos x="-20" y="12.25"/>
-					<in1 component_id="1245"/>
+					<pos x="-21.75" y="12.25"/>
+					<in1 component_id="828"/>
 				</object>
 			</c>
 			<c type="28">
 				<object id="1263">
-					<pos x="-18.75" y="11.25"/>
+					<pos x="-20.5" y="11.25"/>
 					<in1 component_id="1264"/>
 				</object>
 			</c>
 			<c type="48">
 				<object id="1264">
-					<pos x="-20" y="11.25"/>
-					<in1 component_id="1244"/>
+					<pos x="-21.75" y="11.25"/>
+					<in1 component_id="829"/>
 				</object>
 			</c>
 			<c type="28">
 				<object id="1265">
-					<pos x="-18.75" y="13.25"/>
+					<pos x="-20.5" y="13.25"/>
 					<in1 component_id="1266"/>
 				</object>
 			</c>
 			<c type="48">
 				<object id="1266">
-					<pos x="-20" y="13.25"/>
-					<in1 component_id="1242"/>
+					<pos x="-21.75" y="13.25"/>
+					<in1 component_id="827"/>
 				</object>
 			</c>
 			<c type="28">
 				<object id="1267">
-					<pos x="-18.75" y="10.25"/>
+					<pos x="-20.5" y="10.25"/>
 					<in1 component_id="1268"/>
 				</object>
 			</c>
 			<c type="48">
 				<object id="1268">
-					<pos x="-20" y="10.25"/>
-					<in1 component_id="1243"/>
+					<pos x="-21.75" y="10.25"/>
+					<in1 component_id="830"/>
 				</object>
 			</c>
 			<c type="28">
 				<object id="1269">
-					<pos x="-18.75" y="9.25"/>
+					<pos x="-20.5" y="9.25"/>
 					<in1 component_id="1270"/>
 				</object>
 			</c>
 			<c type="48">
 				<object id="1270">
-					<pos x="-20" y="9.25"/>
-					<in1 component_id="1246"/>
+					<pos x="-21.75" y="9.25"/>
+					<in1 component_id="831"/>
 				</object>
 			</c>
 			<c type="41">
 				<object id="1271" count="6" offset="9">
 					<pos x="-17" y="9.25"/>
 					<inc component_id="351"/>
-					<in1 component_id="1255"/>
-					<in2 component_id="1265"/>
-					<in3 component_id="1261"/>
-					<in4 component_id="1263"/>
-					<in5 component_id="1267"/>
-					<in6 component_id="1269"/>
-				</object>
-			</c>
-			<c type="44">
-				<object id="1272" l="STATE" on="on" off="off">
-					<pos x="-18.75" y="15"/>
-					<in1 component_id="1255"/>
-				</object>
-			</c>
-			<c type="44">
-				<object id="1274" l="OUT" on="on" off="off">
-					<pos x="-20" y="15"/>
 					<in1 component_id="1241"/>
+					<in2 component_id="1242"/>
+					<in3 component_id="1245"/>
+					<in4 component_id="1244"/>
+					<in5 component_id="1243"/>
+					<in6 component_id="1246"/>
 				</object>
 			</c>
 		</components>
@@ -951,13 +939,13 @@ end">
 			</c16>
 			<c17 id="906" count="7">
 				<pos x="-17" y="12.75"/>
-				<in1 component_id="1255"/>
-				<in2 component_id="1265"/>
-				<in3 component_id="1261"/>
-				<in4 component_id="1263"/>
+				<in1 component_id="1241"/>
+				<in2 component_id="1242"/>
+				<in3 component_id="1245"/>
+				<in4 component_id="1244"/>
 				<in5 component_id="1267"/>
-				<in6 component_id="1269"/>
-				<in7 component_id="966"/>
+				<in6 component_id="1243"/>
+				<in7 component_id="1246"/>
 			</c17>
 			<c18 id="963" e="(((x|y)&amp;a)|(b&amp;z))&amp;w">
 				<pos x="3.5" y="-0.5"/>
@@ -1279,8 +1267,8 @@ end">
 				<in4 component_id="1078"/>
 				<in5 component_id="1077"/>
 			</c69>
-			<c70 id="1210" script="colors={w={85,90,90},w2={70,75,75},b={10,10,10},b2={8,8,8},acc={69,12,10}}
-labels = {&quot;Auto&quot;,&quot;Head&quot;,&quot;High&quot;,&quot;Work&quot;,&quot;Warn&quot;,&quot;Deco&quot;}
+			<c70 id="1210" script='colors={w={85,90,90},w2={70,75,75},b={10,10,10},b2={8,8,8},acc={69,12,10}}
+labels = {"Auto","Head","High","Work","Warn","Deco"}
 state = {}
 out = {}
 
@@ -1354,7 +1342,7 @@ function onDraw()
             if (k &lt;= 6) then dOpt(6+i*28,24+j*12,24,9,labels[k],state[k]) end
 		end
 	end
-end">
+end'>
 				<pos x="-25.25" y="14"/>
 				<in1 component_id="1271"/>
 			</c70>
@@ -1369,33 +1357,33 @@ end">
 				<in2 component_id="963"/>
 			</c72>
 			<c73 id="1241">
-				<pos x="-21.75" y="14"/>
-				<in1 component_id="826"/>
+				<pos x="-18.75" y="14"/>
+				<in1 component_id="1255"/>
 				<in2 component_id="1248"/>
 			</c73>
 			<c74 id="1242">
-				<pos x="-21.75" y="13"/>
-				<in1 component_id="827"/>
+				<pos x="-18.75" y="13"/>
+				<in1 component_id="1265"/>
 				<in2 component_id="1249"/>
 			</c74>
 			<c75 id="1243">
-				<pos x="-21.75" y="10"/>
-				<in1 component_id="830"/>
+				<pos x="-18.75" y="10"/>
+				<in1 component_id="1267"/>
 				<in2 component_id="1252"/>
 			</c75>
 			<c76 id="1244">
-				<pos x="-21.75" y="11"/>
-				<in1 component_id="829"/>
+				<pos x="-18.75" y="11"/>
+				<in1 component_id="1263"/>
 				<in2 component_id="1251"/>
 			</c76>
 			<c77 id="1245">
-				<pos x="-21.75" y="12"/>
-				<in1 component_id="828"/>
+				<pos x="-18.75" y="12"/>
+				<in1 component_id="1261"/>
 				<in2 component_id="1250"/>
 			</c77>
 			<c78 id="1246">
-				<pos x="-21.75" y="9"/>
-				<in1 component_id="831"/>
+				<pos x="-18.75" y="9"/>
+				<in1 component_id="1269"/>
 				<in2 component_id="1253"/>
 			</c78>
 			<c79 id="1248" i="3">
@@ -1423,71 +1411,63 @@ end">
 				<in1 component_id="351"/>
 			</c84>
 			<c85 id="1255">
-				<pos x="-18.75" y="14.25"/>
+				<pos x="-20.5" y="14.25"/>
 				<in1 component_id="1256"/>
 			</c85>
 			<c86 id="1256">
-				<pos x="-20" y="14.25"/>
-				<in1 component_id="1241"/>
+				<pos x="-21.75" y="14.25"/>
+				<in1 component_id="826"/>
 			</c86>
 			<c87 id="1261">
-				<pos x="-18.75" y="12.25"/>
+				<pos x="-20.5" y="12.25"/>
 				<in1 component_id="1262"/>
 			</c87>
 			<c88 id="1262">
-				<pos x="-20" y="12.25"/>
-				<in1 component_id="1245"/>
+				<pos x="-21.75" y="12.25"/>
+				<in1 component_id="828"/>
 			</c88>
 			<c89 id="1263">
-				<pos x="-18.75" y="11.25"/>
+				<pos x="-20.5" y="11.25"/>
 				<in1 component_id="1264"/>
 			</c89>
 			<c90 id="1264">
-				<pos x="-20" y="11.25"/>
-				<in1 component_id="1244"/>
+				<pos x="-21.75" y="11.25"/>
+				<in1 component_id="829"/>
 			</c90>
 			<c91 id="1265">
-				<pos x="-18.75" y="13.25"/>
+				<pos x="-20.5" y="13.25"/>
 				<in1 component_id="1266"/>
 			</c91>
 			<c92 id="1266">
-				<pos x="-20" y="13.25"/>
-				<in1 component_id="1242"/>
+				<pos x="-21.75" y="13.25"/>
+				<in1 component_id="827"/>
 			</c92>
 			<c93 id="1267">
-				<pos x="-18.75" y="10.25"/>
+				<pos x="-20.5" y="10.25"/>
 				<in1 component_id="1268"/>
 			</c93>
 			<c94 id="1268">
-				<pos x="-20" y="10.25"/>
-				<in1 component_id="1243"/>
+				<pos x="-21.75" y="10.25"/>
+				<in1 component_id="830"/>
 			</c94>
 			<c95 id="1269">
-				<pos x="-18.75" y="9.25"/>
+				<pos x="-20.5" y="9.25"/>
 				<in1 component_id="1270"/>
 			</c95>
 			<c96 id="1270">
-				<pos x="-20" y="9.25"/>
-				<in1 component_id="1246"/>
+				<pos x="-21.75" y="9.25"/>
+				<in1 component_id="831"/>
 			</c96>
 			<c97 id="1271" count="6" offset="9">
 				<pos x="-17" y="9.25"/>
 				<inc component_id="351"/>
-				<in1 component_id="1255"/>
-				<in2 component_id="1265"/>
-				<in3 component_id="1261"/>
-				<in4 component_id="1263"/>
-				<in5 component_id="1267"/>
-				<in6 component_id="1269"/>
-			</c97>
-			<c98 id="1272" l="STATE" on="on" off="off">
-				<pos x="-18.75" y="15"/>
-				<in1 component_id="1255"/>
-			</c98>
-			<c99 id="1274" l="OUT" on="on" off="off">
-				<pos x="-20" y="15"/>
 				<in1 component_id="1241"/>
-			</c99>
+				<in2 component_id="1242"/>
+				<in3 component_id="1245"/>
+				<in4 component_id="1244"/>
+				<in5 component_id="1243"/>
+				<in6 component_id="1246"/>
+			</c97>
 		</component_states>
 		<component_bridge_states>
 			<c0 id="264">
@@ -1515,3 +1495,4 @@ end">
 		<group_states/>
 	</group>
 </microprocessor>
+
