@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<microprocessor name="SRC-TCP [Extender] Lightbox" description="Interacts with TCP Lighting Interface to control train lights" width="3" length="4" id_counter="612" id_counter_node="51" sym6="4984" sym7="5144" sym8="6184" sym9="7880">
+<microprocessor name="SRC-TCP [Extender] Lightbox v1.3" description="Interacts with TCP Lighting Interface to control train lights" width="3" length="4" id_counter="612" id_counter_node="51" sym6="4984" sym7="5144" sym8="6184" sym9="7880">
 	<nodes>
 		<n id="38" component_id="554">
 			<node label="Interface" mode="1" type="5" description="Communicates with lighting interface"/>
@@ -125,37 +125,37 @@
 				</object>
 			</c>
 			<c type="31">
-				<object id="590">
+				<object id="590" i="3">
 					<pos x="-1.25" y="-5"/>
 					<in1 component_id="554"/>
 				</object>
 			</c>
 			<c type="31">
-				<object id="591" i="1">
+				<object id="591" i="4">
 					<pos x="-1.25" y="-5.5"/>
 					<in1 component_id="554"/>
 				</object>
 			</c>
 			<c type="31">
-				<object id="592" i="2">
+				<object id="592" i="5">
 					<pos x="-1.25" y="-6"/>
 					<in1 component_id="554"/>
 				</object>
 			</c>
 			<c type="31">
-				<object id="593" i="3">
+				<object id="593" i="6">
 					<pos x="-1.25" y="-6.75"/>
 					<in1 component_id="554"/>
 				</object>
 			</c>
 			<c type="31">
-				<object id="594" i="4">
+				<object id="594" i="7">
 					<pos x="-1.25" y="-7.25"/>
 					<in1 component_id="554"/>
 				</object>
 			</c>
 			<c type="31">
-				<object id="595" i="5">
+				<object id="595" i="8">
 					<pos x="-1.25" y="-7.75"/>
 					<in1 component_id="554"/>
 				</object>
@@ -342,27 +342,27 @@
 				<pos x="-1.25" y="-3"/>
 				<in1 component_id="554"/>
 			</c8>
-			<c9 id="590">
+			<c9 id="590" i="3">
 				<pos x="-1.25" y="-5"/>
 				<in1 component_id="554"/>
 			</c9>
-			<c10 id="591" i="1">
+			<c10 id="591" i="4">
 				<pos x="-1.25" y="-5.5"/>
 				<in1 component_id="554"/>
 			</c10>
-			<c11 id="592" i="2">
+			<c11 id="592" i="5">
 				<pos x="-1.25" y="-6"/>
 				<in1 component_id="554"/>
 			</c11>
-			<c12 id="593" i="3">
+			<c12 id="593" i="6">
 				<pos x="-1.25" y="-6.75"/>
 				<in1 component_id="554"/>
 			</c12>
-			<c13 id="594" i="4">
+			<c13 id="594" i="7">
 				<pos x="-1.25" y="-7.25"/>
 				<in1 component_id="554"/>
 			</c13>
-			<c14 id="595" i="5">
+			<c14 id="595" i="8">
 				<pos x="-1.25" y="-7.75"/>
 				<in1 component_id="554"/>
 			</c14>

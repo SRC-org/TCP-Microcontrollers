@@ -228,7 +228,10 @@
 				"visibility": 2,
 				"channels": {
 					"boolean": {
-						"4": "Auto Lights (toggle)",
+						"4": {
+							"label": "Auto Lights (toggle)",
+							"visibility": 0
+						},
 						"5": "Head Lights (toggle)",
 						"6": "High Beams (toggle)",
 						"7": "Work Lights (toggle)",
@@ -238,7 +241,10 @@
 				}
 			},
 			"Lighting#Extender": {
-				"visibility": 1,
+				"visibility": {
+					"in": 1,
+					"out": 2
+				},
 				"channels": {
 					"boolean": {
 						"4": "Front Headlights (toggle)",
@@ -249,15 +255,17 @@
 						"9": "Rear Highbeams (toggle)",
 						"10": "Work Lights (toggle)",
 						"11": "Warning Lights (toggle)",
-						"12": "Decorative Lights (toggle)"
+						"12": "Decorative Lights (toggle)",
+						"13": "Front Unobstructed",
+						"14": "Rear Unobstructed"
 					},
 					"number": {
-						"1": "Front Light Red (0-1)",
-						"2": "Front Light Green (0-1)",
-						"3": "Front Light Blue (0-1)",
-						"4": "Rear Light Red (0-1)",
-						"5": "Rear Light Green (0-1)",
-						"6": "Rear Light Blue (0-1)"
+						"4": "Front Light Red (0-1)",
+						"5": "Front Light Green (0-1)",
+						"6": "Front Light Blue (0-1)",
+						"7": "Rear Light Red (0-1)",
+						"8": "Rear Light Green (0-1)",
+						"9": "Rear Light Blue (0-1)"
 					}
 				}
 			},
@@ -1164,7 +1172,8 @@
 					"[Interface] Exterior Lighting"
 				]
 			},
-			"workshopID": "3405561931"
+			"workshopID": "3405561931",
+			"version": "1.3"
 		},
 		"[Interface] Exterior Lighting": {
 			"identifier": "[Interface] Exterior Lighting",
@@ -1257,7 +1266,7 @@
 			"group": "Lighting",
 			"type": "Module",
 			"name": "Exterior Lighting",
-			"version": "1.0",
+			"version": "1.3",
 			"description": "Highly customizable exterior lighting",
 			"width": "2",
 			"length": "2",
@@ -1368,7 +1377,7 @@
 			"group": "Lighting",
 			"type": "RO Module",
 			"name": "Exterior Lighting",
-			"version": "1.0",
+			"version": "1.3",
 			"description": "Highly customizable exterior lighting",
 			"width": "2",
 			"length": "1",
@@ -2192,7 +2201,7 @@
 			"group": "System",
 			"type": "System",
 			"name": "Hub",
-			"version": "1.0",
+			"version": "1.3",
 			"description": "Can be used to connect multiple modules to the main controller. Multiple Hubs can be chained",
 			"width": "1",
 			"length": "4",
@@ -2497,7 +2506,8 @@
 					"[Interface] Passenger Doors"
 				]
 			},
-			"workshopID": "3405561206"
+			"workshopID": "3405561206",
+			"version": "1.3"
 		}
 	}
 }
