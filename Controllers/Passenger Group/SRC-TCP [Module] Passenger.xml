@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<microprocessor name="SRC-TCP [Module] Passenger v1.3" description="Module for controlling passenger functions such as doors and lighting" width="2" length="3" id_counter="799" id_counter_node="38" sym6="4984" sym7="5144" sym8="6184" sym9="7880">
+<microprocessor name="SRC-TCP [Module] Passenger v1.3" description="Module for controlling passenger functions such as doors and lighting" width="2" length="3" id_counter="801" id_counter_node="38" sym6="4984" sym7="5144" sym8="6184" sym9="7880">
 	<nodes>
 		<n id="17" component_id="111">
 			<node label="Hub slot/Main Input" type="5" description="Outputs information to Hub/Main"/>
@@ -270,8 +270,11 @@ function onTick()
 	
 	-- lighting
 	enc(16,3,clamp(gN(6),0,1)*7) -- r
+	enc(26,2,(clamp(gN(6),0,1)-math.floor(clamp(gN(6),0,1)*7)/7)*21) -- dr
 	enc(19,3,clamp(gN(7),0,1)*7) -- g
+	enc(28,2,(clamp(gN(7),0,1)-math.floor(clamp(gN(7),0,1)*7)/7)*21) -- dg
 	enc(22,3,clamp(gN(8),0,1)*7) -- b
+	enc(30,2,(clamp(gN(8),0,1)-math.floor(clamp(gN(8),0,1)*7)/7)*21) -- db
 	
 
 end
@@ -320,10 +323,10 @@ function onTick()
 	sN(5,dec(10,6)) -- last
 	
 	-- lighting
-	sN(6,dec(16,3)/7) -- r
-	sN(7,dec(19,3)/7) -- g
-	sN(8,dec(22,3)/7) -- b
-	
+	sN(6,dec(16,3)/7+dec(26,2)/21) -- r
+	sN(7,dec(19,3)/7+dec(28,2)/21) -- g
+	sN(8,dec(22,3)/7+dec(30,2)/21) -- b
+
 
 end
 
@@ -553,8 +556,11 @@ function onTick()
 	
 	-- lighting
 	enc(16,3,clamp(gN(6),0,1)*7) -- r
+	enc(26,2,(clamp(gN(6),0,1)-math.floor(clamp(gN(6),0,1)*7)/7)*21) -- dr
 	enc(19,3,clamp(gN(7),0,1)*7) -- g
+	enc(28,2,(clamp(gN(7),0,1)-math.floor(clamp(gN(7),0,1)*7)/7)*21) -- dg
 	enc(22,3,clamp(gN(8),0,1)*7) -- b
+	enc(30,2,(clamp(gN(8),0,1)-math.floor(clamp(gN(8),0,1)*7)/7)*21) -- db
 	
 
 end
@@ -599,10 +605,10 @@ function onTick()
 	sN(5,dec(10,6)) -- last
 	
 	-- lighting
-	sN(6,dec(16,3)/7) -- r
-	sN(7,dec(19,3)/7) -- g
-	sN(8,dec(22,3)/7) -- b
-	
+	sN(6,dec(16,3)/7+dec(26,2)/21) -- r
+	sN(7,dec(19,3)/7+dec(28,2)/21) -- g
+	sN(8,dec(22,3)/7+dec(30,2)/21) -- b
+
 
 end
 
@@ -648,3 +654,4 @@ end">
 		<group_states/>
 	</group>
 </microprocessor>
+

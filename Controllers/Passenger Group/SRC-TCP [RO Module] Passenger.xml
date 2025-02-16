@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<microprocessor name="SRC-TCP [RO Module] Passenger v1.3" description="Module for controlling passenger functions such as doors and lighting" width="2" length="1" id_counter="797" id_counter_node="36" sym6="4984" sym7="5144" sym8="6184" sym9="7880">
+<microprocessor name="SRC-TCP [RO Module] Passenger v1.3" description="Module for controlling passenger functions such as doors and lighting" width="2" length="1" id_counter="799" id_counter_node="36" sym6="4984" sym7="5144" sym8="6184" sym9="7880">
 	<nodes>
 		<n id="24" component_id="139">
 			<node label="Main Both" mode="1" type="5" description="Connects to Main Both for information from other cars"/>
@@ -117,10 +117,10 @@ function onTick()
 	sN(5,dec(10,6)) -- last
 	
 	-- lighting
-	sN(6,dec(16,3)/7) -- r
-	sN(7,dec(19,3)/7) -- g
-	sN(8,dec(22,3)/7) -- b
-	
+	sN(6,dec(16,3)/7+dec(26,2)/21) -- r
+	sN(7,dec(19,3)/7+dec(28,2)/21) -- g
+	sN(8,dec(22,3)/7+dec(30,2)/21) -- b
+
 
 end
 
@@ -236,10 +236,10 @@ function onTick()
 	sN(5,dec(10,6)) -- last
 	
 	-- lighting
-	sN(6,dec(16,3)/7) -- r
-	sN(7,dec(19,3)/7) -- g
-	sN(8,dec(22,3)/7) -- b
-	
+	sN(6,dec(16,3)/7+dec(26,2)/21) -- r
+	sN(7,dec(19,3)/7+dec(28,2)/21) -- g
+	sN(8,dec(22,3)/7+dec(30,2)/21) -- b
+
 
 end
 
@@ -273,3 +273,4 @@ end">
 		<group_states/>
 	</group>
 </microprocessor>
+
