@@ -70,7 +70,7 @@
 			<c type="41">
 				<object id="316" count="3">
 					<pos x="-0.25" y="6"/>
-					<inc component_id="792"/>
+					<inc component_id="791"/>
 					<in1 component_id="313"/>
 					<in2 component_id="314"/>
 					<in3 component_id="315"/>
@@ -340,15 +340,15 @@ function dec(c,b)
 	end
 	return n
 end">
-					<pos x="-2" y="7.5"/>
-					<in1 component_id="457"/>
+					<pos x="-0.25" y="7.75"/>
+					<in1 component_id="792"/>
 				</object>
 			</c>
 			<c type="53">
 				<object id="792">
-					<pos x="-0.25" y="7.5"/>
-					<in1 component_id="765"/>
-					<in2 component_id="791"/>
+					<pos x="-2" y="7.5"/>
+					<in1 component_id="775"/>
+					<in2 component_id="457"/>
 					<in3 component_id="313"/>
 				</object>
 			</c>
@@ -410,7 +410,7 @@ end">
 			</c5>
 			<c6 id="316" count="3">
 				<pos x="-0.25" y="6"/>
-				<inc component_id="792"/>
+				<inc component_id="791"/>
 				<in1 component_id="313"/>
 				<in2 component_id="314"/>
 				<in3 component_id="315"/>
@@ -622,13 +622,13 @@ function dec(c,b)
 	end
 	return n
 end">
-				<pos x="-2" y="7.5"/>
-				<in1 component_id="457"/>
+				<pos x="-0.25" y="7.75"/>
+				<in1 component_id="792"/>
 			</c35>
 			<c36 id="792">
-				<pos x="-0.25" y="7.5"/>
-				<in1 component_id="765"/>
-				<in2 component_id="791"/>
+				<pos x="-2" y="7.5"/>
+				<in1 component_id="775"/>
+				<in2 component_id="457"/>
 				<in3 component_id="313"/>
 			</c36>
 		</component_states>
